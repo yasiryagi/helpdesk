@@ -1,2 +1,2 @@
-# helpdesk
-Helpdesk - not sure where to ask? ask here!
+# Helpdesk
+Ask your question by creating an issue.
