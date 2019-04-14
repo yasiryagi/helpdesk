@@ -34,6 +34,10 @@
 
 This page contains all information on how to setup your node and becoming a `Validator` on the Joystream Testnets. It will be updated for improvements, and when something changes for new testnets.
 
+# Instructions
+
+The instructions below covers Windows, Mac and Linux. As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards.
+
 ---
 
 ## Windows
@@ -110,7 +114,7 @@ Repeat the steps two more times, but with different names, leaving you with thre
 * `controller`
 * `session`
 
-Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them. You *can* also use `Schnorrkel` instead of `Edwards` for the non `session` keys.
+Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them.
 
 #### Re-start your node as a validator
 
@@ -234,7 +238,7 @@ Repeat the steps two more times, but with different names, leaving you with thre
 * `controller`
 * `session`
 
-Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them. You *can* also use `Schnorrkel` instead of `Edwards` for the non `session` keys.
+Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them.
 
 #### Re-start your node as a validator
 
@@ -358,7 +362,7 @@ Repeat the steps two more times, but with different names, leaving you with thre
 * `controller`
 * `session`
 
-Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them. You *can* also use `Schnorrkel` instead of `Edwards` for the non `session` keys.
+Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them.
 
 #### Re-start your node as a validator
 
