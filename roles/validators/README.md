@@ -1,4 +1,4 @@
-<p align="center"><img src="validators.svg"></p>
+<p align="center"><img src="validator.png"></p>
 
 <div align="center">
   <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/substrate-node-joystream">full node</a>, and get started as a Validator on the latest
@@ -12,20 +12,20 @@
 - [Overview](#overview)
 - [Instructions](#instructions)
     - [Windows](#windows)
-        - [Setup node](#setup-nodew)
-        - [Generate your keys](#generate-your-keysw)
-        - [Re-start your node as a validator](#re-start-your-node-as-a-validatorw)
-        - [Configure your validator keys](#configure-your-validatorw)
+        - [Setup node](#setup-node)
+        - [Generate your keys](#generate-your-keys)
+        - [Re-start your node as a validator](#re-start-your-node-as-a-validator)
+        - [Configure your validator keys](#configure-your-validator)
     - [Mac](#mac)
-        - [Setup node](#setup-nodem)
-        - [Generate your keys](#generate-your-keysm)
-        - [Re-start your node as a validator](#re-start-your-node-as-a-validatorm)
-        - [Configure your validator keys](#configure-your-validatorm)
+        - [Setup node](#setup-node-1)
+        - [Generate your keys](#generate-your-keys-1)
+        - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
+        - [Configure your validator keys](#configure-your-validator-1)
     - [Linux](#Linux)
-        - [Setup node](#setup-nodel)
-        - [Generate your keys](#generate-your-keysl)
-        - [Re-start your node as a validator](#re-start-your-node-as-a-validatorl)
-        - [Configure your validator keys](#configure-your-validatorl)
+        - [Setup node](#setup-node-2)
+        - [Generate your keys](#generate-your-keys-2)
+        - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
+        - [Configure your validator keys](#configure-your-validator-2)
 - [Troubleshooting](#troubleshooting)
     - [Session Key](#session-key)
 
@@ -46,7 +46,7 @@ This page contains all information on how to setup your node and becoming a `Val
 > cd C:\joystream-node-windows-x64
 # Only type/paste the "cd C:\joystream-node-windows-x64", not the preceding > !
 ```
-#### Setup Node<w>
+#### Setup Node
 
 Get the binary [here](https://github.com/Joystream/substrate-node-joystream/releases/download/v0.10.1/joystream-node-win-x86_64.zip).
 To make the actual commands the same for all users, I'm going to save and unzip to `C:\joystream-node-windows-x64`. Feel free to store it somewhere else, just make sure you use the correct path in the instructions that follow.
@@ -88,7 +88,7 @@ When the `target=#block_height`is the same as `best: #"synced_height"`, your nod
 
 Now you need to generate your `keys` in the `Pioneer app`. If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
 
-#### Generate your keys<w>
+#### Generate your keys
 
 While the node is syncing, you can start the process of setting up the rest.
 
@@ -112,7 +112,7 @@ Repeat the steps two more times, but with different names, leaving you with thre
 
 Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them. You *can* also use `Schnorrkel` instead of `Edwards` for the non `session` keys.
 
-#### Re-start your node as a validator<w>
+#### Re-start your node as a validator
 
 1. Open the terminal that is running your node, and kill the session with `ctrl+c`.
 2. Restart it again with the following command:
@@ -140,7 +140,7 @@ There are some issues with the `authority key` currently.
 * If your `session` was generated as `Edwards (ed25519)`, the last three characters in "5YourJoySessionAddress" the last three in the `Pioneer app`. This is to expected.
 * If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keysw).
 
-#### Configure your validator keys<w>
+#### Configure your validator keys
 
 In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
@@ -171,7 +171,7 @@ Refresh your browser, and select the `Validator Overview` tab. If your account s
 $ cd ~/
 # Only type/paste the "cd ~/, not the preceding $ !
 ```
-#### Setup Node<m>
+#### Setup Node
 
 Open the terminal (Applications->Utilities):
 
@@ -212,7 +212,7 @@ When the `target=#block_height`is the same as `best: #"synced_height"`, your nod
 
 Now you need to generate your `keys` in the `Pioneer app`. If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
 
-#### Generate your keys<m>
+#### Generate your keys
 
 While the node is syncing, you can start the process of setting up the rest.
 
@@ -236,7 +236,7 @@ Repeat the steps two more times, but with different names, leaving you with thre
 
 Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them. You *can* also use `Schnorrkel` instead of `Edwards` for the non `session` keys.
 
-#### Re-start your node as a validator<m>
+#### Re-start your node as a validator
 
 1. Open the terminal that is running your node, and kill the session with `ctrl+c`.
 2. Restart it again with the following command:
@@ -264,7 +264,7 @@ There are some issues with the `authority key` currently.
 * If your `session` was generated as `Edwards (ed25519)`, the last three characters in "5YourJoySessionAddress" the last three in the `Pioneer app`. This is to expected.
 * If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keysm).
 
-#### Configure your validator keys<m>
+#### Configure your validator keys
 
 In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
@@ -295,7 +295,7 @@ Refresh your browser, and select the `Validator Overview` tab. If your account s
 $ cd ~/
 # Only type/paste the "cd ~/, not the preceding $ !
 ```
-#### Setup Node<l>
+#### Setup Node
 
 Open the terminal (Applications->Utilities):
 
@@ -336,7 +336,7 @@ When the `target=#block_height`is the same as `best: #"synced_height"`, your nod
 
 Now you need to generate your `keys` in the `Pioneer app`. If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
 
-#### Generate your keys<l>
+#### Generate your keys
 
 While the node is syncing, you can start the process of setting up the rest.
 
@@ -360,7 +360,7 @@ Repeat the steps two more times, but with different names, leaving you with thre
 
 Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them. You *can* also use `Schnorrkel` instead of `Edwards` for the non `session` keys.
 
-#### Re-start your node as a validator<l>
+#### Re-start your node as a validator
 
 1. Open the terminal that is running your node, and kill the session with `ctrl+c`.
 2. Restart it again with the following command:
@@ -388,7 +388,7 @@ There are some issues with the `authority key` currently.
 * If your `session` was generated as `Edwards (ed25519)`, the last three characters in "5YourJoySessionAddress" the last three in the `Pioneer app`. This is to expected.
 * If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keysl).
 
-#### Configure your validator keys<l>
+#### Configure your validator keys
 
 In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
