@@ -28,35 +28,6 @@ This page contains all information on how to setup your storage node and becomin
 # Instructions
 Note that the software will only run on Mac and Linux. If you are not comfortable using the command line, proceed with caution.
 
-## Mac & Linux
-
-If you are using mac, you need [homebrew](https://brew.sh/) installed on your system. The following packages are required:
-```
-# On mac
-$ brew install npm yarn node git
-# On Linux
-$ sudo apt-get install npm yarn node git
-```
-Note that `node` v11.xx will lead to some issues on Linux.
-
-#### Run a Joystream Node
-To be a `Storage Provider`, you also have to run a [full node](https://github.com/Joystream/substrate-node-joystream). Instructions can be found [here](https://github.com/Joystream/helpdesk/roles/validators). Note that you can stop after the first setup.
-
-#### Download and install
-First you need to clone the repo:
-```
-$ git clone https://github.com/Joystream/storage-node-joystream.git
-$ cd storage-node-Joystream
-$ yarn run build
-$ npm install -g
-# If this fails, replace js_storage with ./path/to/storage-node-joystream/bin/cli.js
-```
-#### Generate keys and memberships
-
-Click [here](https://testnet.joystream.org) to open the `Pioneer app` in your browser. Generate a set of keys, by clicking `Keys` in the sidebar, and `Generate keys`.
-
-...continue.
-
 ---
 
 # Troubleshooting

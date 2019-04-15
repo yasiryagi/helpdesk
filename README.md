@@ -50,16 +50,19 @@
 - [Troubleshooting](#troubleshooting)
 
 # Overview
-This repo contains a current and verbose guide to setup our software, and take on the active roles on our platform. If you have a question, we encourage you to make an [Issue](/issues)!
+This repo contains detailed guides and help for user to interact with our current [testnet](http://testnet.joystream.org/).
 
 # Contribute
-If you find something that is wrong or missing, please make an `Issue`, or better yet, make a `PR` to help us improve!
+If you find something that is wrong or missing, please make an [Issue](/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](#builders-and-bug-reporters).
 
 # Get Paid to Participate
 Some of the roles will be compensated in [Monero](https://www.getmonero.org/). Our philosophy behind the choice of paying for participation is outlined in [this](https://blog.joystream.org/pay-for-play/) blog post. Information about the current incentive structure can be found in the list of [Active Roles](#active-roles) below.
 
 ## How it Works
-Note that in order for us know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar.
+**Note**
+After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
+
+In order for us know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar.
 
 ```
 # Only the part in the line below goes in the memo:
@@ -72,7 +75,7 @@ For our convenience, we ask you to use a regular address or sub-address (95 char
 To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser [here](http://testnet.joystream.org).
 
 ## Generate Keys
-Click `Keys` in the sidebar, and then select the `Generate Keys` tab. The choices you make from here, depends a little on how you want to participate. If you just want to play around, you can just follow the defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
+Click `My keys` in the sidebar, and then select the `Generate Keys` tab. The choices you make from here, depends a little on how you want to participate. If you just want to play around, you can just follow the defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
 
 In any event, the `Keys` will be stored in your browser for your convenience, but it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file. The `Mnemonic` can also be used to restore your `Keys`, but will not do you any good if you want to become a `Validator`.
 
@@ -89,7 +92,7 @@ The list below shows the currently active roles available at our current [testne
 
 <p align="center"><img src="validator_earn.png"></p>
 
-In proof of stake systems, block producers, or `Validators`, are typically paid a fixed amount for each block produced. While Sparta has been running, we have learned that the interest for being a `Validator` was higher than we anticipated, so we are increasing the [`validator_count`](https://github.com/Joystream/substrate-node-joystream/blob/03f87d875098511caea98d42b233bf12e3d66999/src/chain_spec.rs/#L164) from 10 to 20. To avoid reducing individual rewards too much, we are increasing the pool from $20 to **$30 per week**.
+In proof of stake systems, block producers, or `Validators`, are typically paid a fixed amount for each block produced. While Sparta has been running, we have learned that the interest for being a `Validator` was higher than we anticipated, so we are increasing the [`validator_count`](https://github.com/Joystream/substrate-node-joystream/blob/03f87d875098511caea98d42b233bf12e3d66999/src/chain_spec.rs/#L164) from 10 to 20. To avoid reducing individual rewards too much, we are increasing the pool from $20 to $30 per week.
 
 ```
 blocktime = 6
@@ -143,7 +146,7 @@ To report an `Issue` or make a `Pull request` go to the [node repo](https://gith
 
 The quality of an issue can be measured from the level of details in general, like how to reproduce, pasted log outputs, etc. In terms of PRs, simply copying new features implemented on substrate will not be rewarded unless the PR includes changes that was required for compatibility on Joystream.
 
-The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure the add your monero address to the `memo` field of your account as explained at the beginning of this post.
+The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure the add your monero address to the `memo` field of your `keys` as explained at the beginning of this post.
 
 # Glossary
 TODO

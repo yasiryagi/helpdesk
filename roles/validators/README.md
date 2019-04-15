@@ -21,7 +21,7 @@
         - [Generate your keys](#generate-your-keys-1)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
         - [Configure your validator keys](#configure-your-validator-1)
-    - [Linux](#Linux)
+    - [Linux](#linux)
         - [Setup node](#setup-node-2)
         - [Generate your keys](#generate-your-keys-2)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
@@ -36,7 +36,10 @@ This page contains all information on how to setup your node and becoming a `Val
 
 # Instructions
 
-The instructions below covers Windows, Mac and Linux. As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards.
+The instructions below covers Windows, Mac and Linux. As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards. Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows you to connect to your own node in `Settings`.
+
+**Note**
+After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
 
 ---
 
@@ -44,7 +47,7 @@ The instructions below covers Windows, Mac and Linux. As a general note, remembe
 
 * Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
-* For terminal commands, `>` means you must type what comes after that on windows and mac respectively. # Means it's just a comment/explanation, and must not be typed.
+* For terminal commands, `>` means you must type what comes after that on windows and mac respectively. `#` Means it's just a comment/explanation, and must not be typed.
 ```
 # This is just a comment, don't type or paste it in your terminal!
 > cd C:\joystream-node-windows-x64
@@ -52,8 +55,9 @@ The instructions below covers Windows, Mac and Linux. As a general note, remembe
 ```
 #### Setup Node
 
-Get the binary [here](https://github.com/Joystream/substrate-node-joystream/releases/download/v0.10.1/joystream-node-win-x86_64.zip).
-To make the actual commands the same for all users, I'm going to save and unzip to `C:\joystream-node-windows-x64`. Feel free to store it somewhere else, just make sure you use the correct path in the instructions that follow.
+**Windows Binary Incoming! If you see this, check back in an hour or two.**
+
+To make the actual commands the same for all users, I'm going to save it `C:\` and unzip it there. `C:\joystream-node-1.0.0-windows-x86_64`. Feel free to store it somewhere else, just make sure you use the correct path in the instructions that follow.
 
 If you don't have it, download Microsoft Visual Studio C++ runtime distributable 2015 [here](https://www.microsoft.com/en-ie/download/details.aspx?id=48145).  
 
@@ -62,7 +66,7 @@ Get the missing ssl libraries [here](https://indy.fulgan.com/SSL/openssl-1.0.2q-
 Open `Command Prompt` (type in cmd... after clicking windows button):
 
 ```
-> cd C:\joystream-node-windows-x64
+> cd C:\joystream-node-1.0.0-windows-x86_64
 > joystream-node.exe
 # If you want your node to have a non-random identifier:
 > joystream-node.exe --name <nodename>
@@ -96,7 +100,7 @@ Now you need to generate your `keys` in the `Pioneer app`. If you want to have t
 
 While the node is syncing, you can start the process of setting up the rest.
 
-1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `Keys` in the sidebar. Click the `Generate keys` tab.
+1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Generate keys` tab.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
@@ -148,7 +152,7 @@ There are some issues with the `authority key` currently.
 
 In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
-1. Still in the `Keys` sidebar, choose your `stash` key.
+1. Still in the `My keys` sidebar, choose your `stash` key.
 2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
 3. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
 4. Locate the address/key named `stash`, and click `Bond Funds`.
@@ -169,7 +173,7 @@ Refresh your browser, and select the `Validator Overview` tab. If your account s
 
 * Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
-* For terminal commands, `$` means you must type what comes after that on windows and mac respectively. # Means it's just a comment/explanation, and must not be typed.
+* For terminal commands, `$` means you must type what comes after that on windows and mac respectively. `#` Means it's just a comment/explanation, and must not be typed.
 ```
 # This is just a comment, don't type or paste it in your terminal!
 $ cd ~/
@@ -181,12 +185,13 @@ Open the terminal (Applications->Utilities):
 
 ```
 $ cd ~/
-$ wget xxx
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-osx-x86_64.zip
 ----
-# If this doesn't work, get the binary here xxx
-$ mv xx ~/
+# If you don't have wget installed, paste the link in your browser save.
+# Assuming it gets saved in your ~/Downloads folder:
+$ mv ~/Downloads/joystream-node-1.0.0-osx-x86_64.zip ~/
 ---
-$ tar -vxf joystream-node-1.0.0-mac.zip
+$ tar -vxf joystream-node-1.0.0-osx-x86_64.zip
 $ ./joystream-node
 # If you want your node to have a non-random identifier:
 > ./joystream-node --name <nodename>
@@ -220,7 +225,7 @@ Now you need to generate your `keys` in the `Pioneer app`. If you want to have t
 
 While the node is syncing, you can start the process of setting up the rest.
 
-1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `Keys` in the sidebar. Click the `Generate keys` tab.
+1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Generate keys` tab.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
@@ -272,7 +277,7 @@ There are some issues with the `authority key` currently.
 
 In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
-1. Still in the `Keys` sidebar, choose your `stash` key.
+1. Still in the `My keys` sidebar, choose your `stash` key.
 2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
 3. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
 4. Locate the address/key named `stash`, and click `Bond Funds`.
@@ -293,7 +298,7 @@ Refresh your browser, and select the `Validator Overview` tab. If your account s
 
 * Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
-* For terminal commands, `$` means you must type what comes after that on windows and mac respectively. # Means it's just a comment/explanation, and must not be typed.
+* For terminal commands, `$` means you must type what comes after that on windows and mac respectively. `#` Means it's just a comment/explanation, and must not be typed.
 ```
 # This is just a comment, don't type or paste it in your terminal!
 $ cd ~/
@@ -301,16 +306,12 @@ $ cd ~/
 ```
 #### Setup Node
 
-Open the terminal (Applications->Utilities):
+Open the terminal:
 
 ```
 $ cd ~/
-$ wget xxx
-----
-# If this doesn't work, get the binary here xxx
-$ mv xx ~/
----
-$ tar -vxf joystream-node-1.0.0-mac.zip
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-linux-x86_64.tar.gz
+$ tar -vxf joystream-node-1.0.0-linux-x86_64.tar.gz
 $ ./joystream-node
 # If you want your node to have a non-random identifier:
 > ./joystream-node --name <nodename>
@@ -344,7 +345,7 @@ Now you need to generate your `keys` in the `Pioneer app`. If you want to have t
 
 While the node is syncing, you can start the process of setting up the rest.
 
-1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `Keys` in the sidebar. Click the `Generate keys` tab.
+1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Generate keys` tab.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
@@ -396,7 +397,7 @@ There are some issues with the `authority key` currently.
 
 In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
-1. Still in the `Keys` sidebar, choose your `stash` key.
+1. Still in the `My keys` sidebar, choose your `stash` key.
 2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
 3. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
 4. Locate the address/key named `stash`, and click `Bond Funds`.

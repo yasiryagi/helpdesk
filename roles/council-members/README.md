@@ -1,7 +1,7 @@
 <p align="center"><img src="council_member.png"></p>
 
 <div align="center">
-  <h4>This is a step-by-step guide for the Joystream council election cycle, allowing users to take part in the governance system for the
+  <h4>This is a step-by-step guide through Joystream council election cycle, allowing users to take part in the governance system for the
   <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a><h4>
 </div>
 
@@ -30,6 +30,9 @@ This page contains a detailed guide about how the governance system works on the
 
 # Instructions
 Unlike most of the other current and future roles on the Joystream Platform, becoming a `Council Member` or voting on proposals require no extra software. Everything can be done in the browser, by going [here](http://testnet.joystream.org).
+
+**Note**
+After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
 
 ## Get Started
 If you want to get elected as a `Council Member` or vote on the platform, you need to be a `Member`. Instructions for this can be found [here](https://github.com/JoyStream/helpdesk/#get-started).

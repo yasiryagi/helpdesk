@@ -1,8 +1,8 @@
 <p align="center"><img src="builder.png"></p>
 
 <div align="center">
-  <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/substrate-node-joystream">full node</a>, and get started as a Validator on the latest
-  <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a><h4>
+  <h4>This guide will explain how you can take part in building the Joystream platform, either be reporting bugs or contribute to our
+  <a href="https://github.com/Joystream">software</a><h4>
 </div>
 
 
