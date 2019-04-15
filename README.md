@@ -1,7 +1,7 @@
 <p align="center"><img src="helpdesk-repo.svg"></p>
 
 <div align="center">
-  <h4>This repo contains detailed guides and help on how to use and interact with our current testnet.<h4>
+  <h4>This repo contains detailed guides and help on how to use and interact with our <a href="https://testnet.joystream.org/">current testnet</a> <h4>
 </div>
 <div align="center">
   <h5>Forward looking functionality and long term plans our <a href="https://github.com/Joystream/whitepaper/blob/master/paper.pdf">whitepaper</a> </h5>
@@ -42,7 +42,7 @@
     - [Generate Keys](#generate-keys)
     - [Get a Membership](#get-a-membership)
 - [Active Roles](#active-roles)
-    - [Validator](#validator)
+    - [Validators](#validators)
     - [Council Members](#council-members)
     - [Storage Providers](#storage-providers)
     - [Builders and Bug Reporters](#builders-and-bug-reporters)
