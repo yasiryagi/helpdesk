@@ -15,12 +15,12 @@
         - [Setup node](#setup-node)
         - [Generate your keys](#generate-your-keys)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator)
-        - [Configure your validator keys](#configure-your-validator)
+        - [Configure your validator keys](#configure-your-validator-keys)
     - [Linux](#linux)
         - [Setup node](#setup-node-1)
         - [Generate your keys](#generate-your-keys-1)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
-        - [Configure your validator keys](#configure-your-validator-1)
+        - [Configure your validator keys](#configure-your-validator-keys-1)
 - [Troubleshooting](#troubleshooting)
     - [Session Key](#session-key)
 
@@ -149,16 +149,17 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 
 1. Still in the `My keys` sidebar, choose your `stash` key.
 2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
-4. Locate the address/key named `stash`, and click `Bond Funds`.
-5. In the popup window, choose your `controller` as the `controller account`.
-6. Enter the amount you want to stake in the `value bonded` field.
-7. In the `payment destination` dropdown, there are three options.
+3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
+4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
+5. Locate the address/key named `stash`, and click `Bond Funds`.
+6. In the popup window, choose your `controller` as the `controller account`.
+7. Enter the amount you want to stake in the `value bonded` field. Best to leave a little, in case you need to make a transaction later.
+8. In the `payment destination` dropdown, there are three options.
     * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
-8. Your `controller` account should now show a `Set Session Key` button. Click it.
-9. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-10. Your `controller` account should now show a `Validate` button. Click it.
-11. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
+9. Your `controller` account should now show a `Set Session Key` button. Click it.
+10. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
+11. Your `controller` account should now show a `Validate` button. Click it.
+12. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
@@ -274,16 +275,17 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 
 1. Still in the `My keys` sidebar, choose your `stash` key.
 2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
-4. Locate the address/key named `stash`, and click `Bond Funds`.
-5. In the popup window, choose your `controller` as the `controller account`.
-6. Enter the amount you want to stake in the `value bonded` field.
-7. In the `payment destination` dropdown, there are three options.
+3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
+4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
+5. Locate the address/key named `stash`, and click `Bond Funds`.
+6. In the popup window, choose your `controller` as the `controller account`.
+7. Enter the amount you want to stake in the `value bonded` field. Best to leave a little, in case you need to make a transaction later.
+8. In the `payment destination` dropdown, there are three options.
     * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
-8. Your `controller` account should now show a `Set Session Key` button. Click it.
-9. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-10. Your `controller` account should now show a `Validate` button. Click it.
-11. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
+9. Your `controller` account should now show a `Set Session Key` button. Click it.
+10. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
+11. Your `controller` account should now show a `Validate` button. Click it.
+12. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
@@ -397,16 +399,17 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 
 1. Still in the `My keys` sidebar, choose your `stash` key.
 2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
-4. Locate the address/key named `stash`, and click `Bond Funds`.
-5. In the popup window, choose your `controller` as the `controller account`.
-6. Enter the amount you want to stake in the `value bonded` field.
-7. In the `payment destination` dropdown, there are three options.
+3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
+4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
+5. Locate the address/key named `stash`, and click `Bond Funds`.
+6. In the popup window, choose your `controller` as the `controller account`.
+7. Enter the amount you want to stake in the `value bonded` field. Best to leave a little, in case you need to make a transaction later.
+8. In the `payment destination` dropdown, there are three options.
     * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
-8. Your `controller` account should now show a `Set Session Key` button. Click it.
-9. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-10. Your `controller` account should now show a `Validate` button. Click it.
-11. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
+9. Your `controller` account should now show a `Set Session Key` button. Click it.
+10. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
+11. Your `controller` account should now show a `Validate` button. Click it.
+12. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
@@ -429,3 +432,12 @@ Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519
 5. Once it confirms, go back to `Validators` -> `Validator staking` and `Stake`.
 
 In the `Next up`, your new `session` key should show, and match the `authority key` in your node. (minus the final 3 characters).
+
+## Unstaking
+
+If you want to unstake your tokens, there are currently a couple of steps you need to go through. First, make sure you have set `Fully Featured` interface in the `Settings` sidebar.
+1. `staking.chill`. This can be performed by the `controller` in `Validator Staking`, or via an `Extrinsic`.
+2. Next you must unbond. In `Extrinsics`, using the `controller`, select `staking` -> `unbond(value)` and choose how much you want to unbond. Submit Transaction.
+3. Replace `unbond(value)` with `withdrawUnbonded()`, and wait for the funds to become unbonded.
+
+You can check the status in `Chain State` -> `staking` ->`ledger(AccountId): Option<StakingLedger>` with your `controller`.
