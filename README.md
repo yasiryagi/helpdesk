@@ -26,7 +26,7 @@
       Storage Providers
     </a>
     <span> | </span>
-    <a href="/roles/bug-reporters">
+    <a href="/roles/builder">
       Bug Reporters
     </a>
   </h3>
