@@ -42,7 +42,7 @@
     - [Generate Keys](#generate-keys)
     - [Get a Membership](#get-a-membership)
 - [Active Roles](#active-roles)
-    - [Validator](#validator)
+    - [Validators](#validators)
     - [Council Members](#council-members)
     - [Storage Providers](#storage-providers)
     - [Builders and Bug Reporters](#builders-and-bug-reporters)
