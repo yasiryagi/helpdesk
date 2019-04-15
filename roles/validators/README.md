@@ -11,21 +11,16 @@
 
 - [Overview](#overview)
 - [Instructions](#instructions)
-    - [Windows](#windows)
+    - [Mac](#mac)
         - [Setup node](#setup-node)
         - [Generate your keys](#generate-your-keys)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator)
         - [Configure your validator keys](#configure-your-validator)
-    - [Mac](#mac)
+    - [Linux](#linux)
         - [Setup node](#setup-node-1)
         - [Generate your keys](#generate-your-keys-1)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
         - [Configure your validator keys](#configure-your-validator-1)
-    - [Linux](#linux)
-        - [Setup node](#setup-node-2)
-        - [Generate your keys](#generate-your-keys-2)
-        - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
-        - [Configure your validator keys](#configure-your-validator-2)
 - [Troubleshooting](#troubleshooting)
     - [Session Key](#session-key)
 
@@ -36,13 +31,13 @@ This page contains all information on how to setup your node and becoming a `Val
 
 # Instructions
 
-The instructions below covers Windows, Mac and Linux. As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards. Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows you to connect to your own node in `Settings`.
+The instructions below covers Mac and Linux (64 bit and armv7) for now. Windows binary should come later. As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards. Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows you to connect to your own node in `Settings`.
 
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
 
 ---
-
+<!---
 ## Windows
 
 * Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
@@ -76,7 +71,7 @@ Your node should now start syncing the blockchain. The output should look like t
 Joystream Node
   version "Version"-"your_OS"
   by Joystream, 2019
-Chain specification: Joystream Testnet
+Chain specification: Joystream Testnet v2
 Node name: "nodename"
 Roles: FULL
 Generated a new keypair: "some_long_ouput"
@@ -168,7 +163,7 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
 ---
-
+-->
 ## Mac
 
 * Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
@@ -201,7 +196,7 @@ Your node should now start syncing the blockchain. The output should look like t
 Joystream Node
   version "Version"-"your_OS"
   by Joystream, 2019
-Chain specification: Joystream Testnet
+Chain specification: Joystream Testnet v2
 Node name: "nodename"
 Roles: FULL
 Generated a new keypair: "some_long_ouput"
@@ -310,7 +305,10 @@ Open the terminal:
 
 ```
 $ cd ~/
+# 64 bit debian based linux
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-linux-x86_64.tar.gz
+# armv7 (raspberry pi)
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-armv7.tar.gz
 $ tar -vxf joystream-node-1.0.0-linux-x86_64.tar.gz
 $ ./joystream-node
 # If you want your node to have a non-random identifier:
@@ -321,7 +319,7 @@ Your node should now start syncing the blockchain. The output should look like t
 Joystream Node
   version "Version"-"your_OS"
   by Joystream, 2019
-Chain specification: Joystream Testnet
+Chain specification: Joystream Testnet v2
 Node name: "nodename"
 Roles: FULL
 Generated a new keypair: "some_long_ouput"
