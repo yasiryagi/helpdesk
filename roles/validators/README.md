@@ -417,7 +417,7 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
 5. Locate the address/key named `stash`, and click `Bond Funds`.
 6. In the popup window, choose your `controller` as the `controller account`.
-7. Enter the amount you want to stake in the `value bonded` field. Best to leave a little, in case you need to make a transaction later.
+7. Enter the amount you want to stake in the `value bonded` field.
 8. In the `payment destination` dropdown, there are three options.
     * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
 9. Your `controller` account should now show a `Set Session Key` button. Click it.
@@ -432,7 +432,7 @@ Refresh your browser, and select the `Validator Overview` tab. If your account s
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
 
-## Session Key
+## Session key
 Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519)` for your `session` key, and didn't notice before you configured your `Validator keys`? This can be resolved.
 
 1. Go to `Validators` -> `Validator staking` and `Unstake`.
@@ -448,10 +448,56 @@ Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519
 In the `Next up`, your new `session` key should show, and match the `authority key` in your node. (minus the final 3 characters).
 
 ## Unstaking
+If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `validator` set. If you know in advance (~1hr) you can do the following steps instead:
 
-If you want to unstake your tokens, there are currently a couple of steps you need to go through. First, make sure you have set `Fully Featured` interface in the `Settings` sidebar.
-1. `staking.chill`. This can be performed by the `controller` in `Validator Staking`, or via an `Extrinsic`.
-2. Next you must unbond. In `Extrinsics`, using the `controller`, select `staking` -> `unbond(value)` and choose how much you want to unbond. Submit Transaction.
-3. Replace `unbond(value)` with `withdrawUnbonded()`, and wait for the funds to become unbonded.
+First, make sure you have set `Fully Featured` interface in the `Settings` sidebar.
+1. In `Validator Staking`, click `Stop Validating` with your controller. This can also be done via `Extrinsic`: With `controller` -> `staking` -> `chill()`.
 
-You can check the status in `Chain State` -> `staking` ->`ledger(AccountId): Option<StakingLedger>` with your `controller`.
+If you are just pausing the `validator` and intend to start it up later, you can stop here. When you are ready to start again, fire up your node, go to `Validator Staking`, and click `Validate`.
+
+If you want to stop being a `validator` and move your tokens to other/better use, continue.
+
+---
+
+2. Next you must unbond. In `Extrinsics`, using the `controller`, select `staking` -> `unbond(value)` and choose how much you want to unbond, `<unbonding>`. Submit Transaction.
+
+At this point, you can just wait 2hrs to be sure, and proceed to step `6.` Or:
+
+---
+
+3. Go to `Chain State` -> `staking` -> `ledger(AccountId): Option<StakingLedger>` with the `controller`. Output:
+```
+# If you have successfully initiated unstaking:
+{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,<act_bonded>:[{"value":<unbonding>,"era":<E_unbonded>}]}
+# If you have not successfully initiated unstaking, or it has already completed:
+{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,"<act_bonded>":[]}
+```
+* `<tot_bonded>` Is the total amount you have staked/bonded
+* `<act_bonded>` Is the amount of tokens that is not being unlocked
+* `<unbonding>` Is the amount of tokens that is in the process of being freed
+  * `<unbonding>` + `<act_bonded>` = `<tot_bonded>`
+* `<E_unbonded>` Is the `era` when your tokens will be "free" to transfer/bond/vote
+
+The `era` should only change every 600 blocks, but certain events may trigger a new era. To calculate when your funds are "free"
+4. In `Chain State` -> `staking` -> `currentEra()`. Let output be `<E_current>`
+5. In `Explored` collect `<blocks_in_era>/600` under era.
+```
+600(<E_unbonded> - <E_current> - 1) - <blocks_in_era> = <blocks_left>
+(<blocks_left> * 6)/60 = <minutes_left>
+```
+After `<minutes_left>` has passed, ie. `<E_current>` = `<E_unbonded>`, your tokens should be free.
+Repeat step `3.` if you want to confirm.
+```
+# If you have completed unstaking:
+{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,"<act_bonded>":[]}
+```
+---
+
+6. In `Extrinsics`, using the `controller`, select `staking` -> `withdrawUnbonded()`
+
+Your tokens should now be "free".
+
+## Restart validating after getting booted
+If your node shut down before you had stopped validating and/or the grace period for `staking.chill` was completed, all you need to is start `validating` again from `Validator Staking`. Just make sure that your node is back up, and the `authority` key showing at node startup is the same as your `session` key.
+**Note**
+It doesn't matter if your `stash` has a `balance` < `bonded`.
