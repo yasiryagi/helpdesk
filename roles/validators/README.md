@@ -11,18 +11,24 @@
 
 - [Overview](#overview)
 - [Instructions](#instructions)
-    - [Mac](#mac)
+    - [Windows](#windows)
         - [Setup node](#setup-node)
         - [Generate your keys](#generate-your-keys)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator)
         - [Configure your validator keys](#configure-your-validator-keys)
-    - [Linux](#linux)
+    - [Mac](#mac)
         - [Setup node](#setup-node-1)
         - [Generate your keys](#generate-your-keys-1)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
         - [Configure your validator keys](#configure-your-validator-keys-1)
+    - [Linux](#linux)
+        - [Setup node](#setup-node-2)
+        - [Generate your keys](#generate-your-keys-2)
+        - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
+        - [Configure your validator keys](#configure-your-validator-keys-2)      
 - [Troubleshooting](#troubleshooting)
     - [Session Key](#session-key)
+    - [Unstaking](#unstaking)
 
 
 # Overview
@@ -31,13 +37,16 @@ This page contains all information on how to setup your node and becoming a `Val
 
 # Instructions
 
-The instructions below covers Mac and Linux (64 bit and armv7) for now. Windows binary should come later. As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards. Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows you to connect to your own node in `Settings`.
+The instructions below covers Windows, Mac and Linux (64 bit and armv7). As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards.
+Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows the `Pioneer` app to connect to your own node in `Settings`. It seems neither Firefox, Safari or Edge will connect at this time.
+
+If you want to be visible in the polkadot/substrate telemetry, go [here](https://telemetry.polkadot.io/). Note that for windows and armv7 (raspberry pi), you need to add a telemetry flag at startup (see applicable setup node).
 
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
 
 ---
-<!---
+
 ## Windows
 
 * Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
@@ -45,14 +54,12 @@ After introducing `Memberships` to the platform, we found it to be confusing to 
 * For terminal commands, `>` means you must type what comes after that on windows and mac respectively. `#` Means it's just a comment/explanation, and must not be typed.
 ```
 # This is just a comment, don't type or paste it in your terminal!
-> cd C:\joystream-node-windows-x64
+> cd C:\joystream-node-1.0.0-windows-x86_64
 # Only type/paste the "cd C:\joystream-node-windows-x64", not the preceding > !
 ```
 #### Setup Node
 
-**Windows Binary Incoming! If you see this, check back in an hour or two.**
-
-To make the actual commands the same for all users, I'm going to save it `C:\` and unzip it there. `C:\joystream-node-1.0.0-windows-x86_64`. Feel free to store it somewhere else, just make sure you use the correct path in the instructions that follow.
+Get the binary [here](https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-windows-x86_64.zip). To make the actual commands the same for all users, I'm going to save it `C:\` and unzip it there. `C:\joystream-node-1.0.0-windows-x86_64`. Feel free to store it somewhere else, just make sure you use the correct path in the instructions that follows.
 
 If you don't have it, download Microsoft Visual Studio C++ runtime distributable 2015 [here](https://www.microsoft.com/en-ie/download/details.aspx?id=48145).  
 
@@ -65,6 +72,8 @@ Open `Command Prompt` (type in cmd... after clicking windows button):
 > joystream-node.exe
 # If you want your node to have a non-random identifier:
 > joystream-node.exe --name <nodename>
+# If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
+> joystream-node.exe --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/
 ```
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -117,12 +126,15 @@ Note that you only *strictly need* the Raw seed for the `session` keypair, but i
 
 #### Re-start your node as a validator
 
-1. Open the terminal that is running your node, and kill the session with `ctrl+c`.
+1. Open the terminal that is running your node, and kill the session with `ctrl+c` (twice).
+    * On windows, the first`ctrl+c` this will produce a long and confusing output.
 2. Restart it again with the following command:
 ```
 > joystream-node.exe --validator --key <0xMyLongRawSeed>
 # If you want your node to have a non-random identifier:
 > joystream-node.exe --name <nodename> --validator --key <0xYourLongSessionRawSeed>
+# If you also want it show up in telemetry:
+> joystream-node.exe --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/ --validator --key <0xYourLongSessionRawSeed>
 ```
 This time, the output should show a slightly different startup output:
 ```
@@ -139,9 +151,7 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 ...
 ```
 **Note**
-There are some issues with the `authority key` currently.
-* If your `session` was generated as `Edwards (ed25519)`, the last three characters in "5YourJoySessionAddress" the last three in the `Pioneer app`. This is to expected.
-* If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keysw).
+If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
 
 #### Configure your validator keys
 
@@ -164,7 +174,7 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
 ---
--->
+
 ## Mac
 
 * Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
@@ -265,9 +275,7 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 ...
 ```
 **Note**
-There are some issues with the `authority key` currently.
-* If your `session` was generated as `Edwards (ed25519)`, the last three characters in "5YourJoySessionAddress" the last three in the `Pioneer app`. This is to expected.
-* If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keysm).
+If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-1) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
 
 #### Configure your validator keys
 
@@ -309,12 +317,17 @@ Open the terminal:
 $ cd ~/
 # 64 bit debian based linux
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-linux-x86_64.tar.gz
+$ tar -vxf joystream-node-1.0.0-linux-x86_64.tar.gz
 # armv7 (raspberry pi)
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-armv7.tar.gz
-$ tar -vxf joystream-node-1.0.0-linux-x86_64.tar.gz
+$ tar -vxf joystream-node-1.0.0-armv7.tar.gz
+# For both
 $ ./joystream-node
 # If you want your node to have a non-random identifier:
-> ./joystream-node --name <nodename>
+$ ./joystream-node --name <nodename>
+# armv7 (raspberry pi) only:
+# If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
+$ ./joystream-node --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/
 ```
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -373,6 +386,9 @@ Note that you only *strictly need* the Raw seed for the `session` keypair, but i
 $ ./joystream-node --validator --key <0xMyLongRawSeed>
 # If you want your node to have a non-random identifier:
 $ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed>
+# armv7 (raspberry pi) only:
+# If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
+$ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed> --telemetry-url ws://telemetry.polkadot.io:1024/
 ```
 This time, the output should show a slightly different startup output:
 ```
@@ -389,9 +405,7 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 ...
 ```
 **Note**
-There are some issues with the `authority key` currently.
-* If your `session` was generated as `Edwards (ed25519)`, the last three characters in "5YourJoySessionAddress" the last three in the `Pioneer app`. This is to expected.
-* If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keysl).
+If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-2) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
 
 #### Configure your validator keys
 
