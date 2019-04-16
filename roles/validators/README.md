@@ -40,6 +40,8 @@ This page contains all information on how to setup your node and becoming a `Val
 The instructions below covers Windows, Mac and Linux (64 bit and armv7). As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards.
 Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows the `Pioneer` app to connect to your own node in `Settings`. It seems neither Firefox, Safari or Edge will connect at this time.
 
+If you want to be visible in the polkadot/substrate telemetry, go [here](https://telemetry.polkadot.io/). Note that for windows and armv7 (raspberry pi), you need to add a telemetry flag at startup (see applicable setup node).
+
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
 
@@ -315,12 +317,17 @@ Open the terminal:
 $ cd ~/
 # 64 bit debian based linux
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-linux-x86_64.tar.gz
+$ tar -vxf joystream-node-1.0.0-linux-x86_64.tar.gz
 # armv7 (raspberry pi)
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-armv7.tar.gz
-$ tar -vxf joystream-node-1.0.0-linux-x86_64.tar.gz
+$ tar -vxf joystream-node-1.0.0-armv7.tar.gz
+# For both
 $ ./joystream-node
 # If you want your node to have a non-random identifier:
-> ./joystream-node --name <nodename>
+$ ./joystream-node --name <nodename>
+# armv7 (raspberry pi) only:
+# If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
+$ ./joystream-node --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/
 ```
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -379,6 +386,9 @@ Note that you only *strictly need* the Raw seed for the `session` keypair, but i
 $ ./joystream-node --validator --key <0xMyLongRawSeed>
 # If you want your node to have a non-random identifier:
 $ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed>
+# armv7 (raspberry pi) only:
+# If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
+$ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed> --telemetry-url ws://telemetry.polkadot.io:1024/
 ```
 This time, the output should show a slightly different startup output:
 ```
