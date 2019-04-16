@@ -45,7 +45,7 @@ The election cycle consists four stages.
 4. `Term`         - lasts 201600 blocks (~14days)
 
 ## Announcement
-During the `Announcement` stage, anyone that is `Member`, and holds at least 1000Joy tokens can announce their candidacy to become a `Council Member`.
+During the `Announcement` stage, anyone that is `Member`, and holds at least unstaked 1000Joy (ie. if you use your `validator` `stash` key, you need a `balance` > `bonded` +1000Joy) tokens can announce their candidacy to become a `Council Member`.
 
 Select `Council` in the sidebar, and click the `Applicants` tab. Set the amount of tokens you want to, stake, and confirm.
 If you want to put more stake behind your candidacy later, you can top up at any point during the stage. After sending the transaction, you should appear under "Applicants". The max number of Applicants is `25`. When the 25th candidate applies, the one with the lowest amount staked will be pushed off the list, and get their stake returned. In total, `12` Council Members must be elected. If there are less than 12 applicants, the `Announcment` stage will be restarted.
