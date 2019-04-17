@@ -100,7 +100,8 @@ You are now ready to start your node:
 $ js_storage --key-file 5YourStorageAddress.json
 # If you port 3000 is blocked (for example running our Pioneer app locally), you can pass --port=<port>.
 ```
-Again, note that
+Again, note that the nodes are currently not syncing, so you will have to update the node later.
+
 ---
 
 # Troubleshooting
