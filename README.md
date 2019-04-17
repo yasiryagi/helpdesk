@@ -1,18 +1,6 @@
 <p align="center"><img src="helpdesk-repo.svg"></p>
 
 <div align="center">
-  <h4>This repo contains detailed guides and help on how to use and interact with our <a href="https://testnet.joystream.org/">current testnet</a> <h4>
-</div>
-<div align="center">
-  <h5>Forward looking functionality and long term plans our <a href="https://github.com/Joystream/whitepaper/blob/master/paper.pdf">whitepaper</a> </h5>
-</div>
-<div align="center">
-  These are our <a href="https://github.com/Joystream/manifesto">ends and means</a>
-</div>
-
-<br />
-
-<div align="center">
   <h3>
     <a href="/roles/validators">
       Validators
