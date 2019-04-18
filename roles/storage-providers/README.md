@@ -23,6 +23,14 @@
 **NOTE**
 You can setup the node and signup for the role now, but you will have to update the software before you can actually perform the desired function in the system. We user to only to this for testing purposes at this point.
 
+**NOTE 2**
+Make sure you always have the most recent version of the repo, as it is being updated frequently. If you do have any issues, either delete and re-clone the repo, or:
+
+```
+$ git pull
+$ yarn && yarn run build
+```
+
 # Overview
 
 This page contains all information on how to setup your storage node and becoming a `Storage Provider` on the Joystream Testnets. It will be updated for improvements, and when something changes for new testnets.
@@ -35,11 +43,10 @@ Note that the software will only run on Mac and Linux. If you are not comfortabl
 If you are using mac, you need [homebrew](https://brew.sh/) installed on your system. The following packages are required:
 ```
 # On mac
-$ brew install npm yarn node git
+$ brew install npm yarn node git libtool automake autoconf
 # On Linux
-$ sudo apt-get install npm yarn node git
+$ sudo apt-get install npm yarn node git build-essential
 ```
-Note that `node` v11.xx will lead to some issues on Linux.
 
 #### Run a Joystream Node
 To be a `Storage Provider`, you also have to run a [full node](https://github.com/Joystream/substrate-node-joystream). Instructions can be found [here](https://github.com/Joystream/helpdesk/roles/validators). Note that you can stop after the first setup.
@@ -56,7 +63,7 @@ $ npm install -g
 # Test if it works with:
 $ js_storage --help
 # This should list the commands and options available
-# If this fails, replace js_storage with ~/storage-node-joystream/bin/cli.js
+# If this fails, replace js_storage with /path/to/storage-node-joystream/bin/cli.js
 ```
 #### Generate keys and memberships
 
@@ -91,7 +98,20 @@ Creating repository from template "undefined"...
 Repository created with id: <5049ebe0-68b9-59bf-9cff-a6581933f0ef>
 You can access this via `/path/to/storage/directory/repos/<50>/<49>/<5049ebe0-68b9-59bf-9cff-a6581933f0ef>
 ```
-This will produce the config file. For now, it will only contain your storage directory.
+This will produce the config file like so:
+
+```
+{
+	"port": 3000,
+	"syncPort": 3030,
+	"syncPeriod": 30000,
+	"dhtPort": 3060,
+	"dhtRpcPort": 3090,
+	"storage": "/path/to/storage-node-joystream/storage",
+	"storageType": "hyperdrive"
+}
+
+```
 
 #### Start your node
 You are now ready to start your node:
