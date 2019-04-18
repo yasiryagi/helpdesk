@@ -98,7 +98,12 @@ print(blockreward)
 0.03
 ```
 
-The number - 0.03 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and with armv7 binaries, it should be cheap to run! Payouts will be made every Monday at ~11:00GMT.
+The number - 0.03 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and with armv7 binaries, it should be cheap to run!
+
+**Note**
+`validators` must include their [xmr address](#how-it-works) in the `memo` of their `controller` key, but as this may change, it's best to update the `memo` for the `stash` and `session` key as well.
+
+Payouts will be made every Monday at ~11:00GMT.
 
 ## Council Members
 
@@ -110,7 +115,12 @@ We are looking at how to best incentivize them to act in the platforms long term
 
 If during you term a proposal to upgrade the runtime is submitted by the `sudo` key, `5CJzTaCp5fuqG7NdJQ6oUCwdmFHKichew8w4RZ3zFHM8qSe6` anyone that votes yes will receive a bonus worth $5.
 
-During the `Announcement` and `Voting` stage, you should include some information about yourself, and why you should get elected in your `memo` field. If you do get elected, make sure to change the `memo` field to your monero address in order to get your reward. Payouts will occur at ~11:00GMT the day after the election/vote.
+During the `Announcement` and `Voting` stage, you should include some information about yourself, and why you should get elected in your `memo` field.
+
+**Note**
+If you do get elected, make sure to change the `memo` field to your monero address in order to get your reward.
+
+Payouts will occur at ~11:00GMT the day after the election/vote.
 
 ## Storage Providers
 
@@ -120,7 +130,12 @@ You can't have a video platform without videos, so someone has to take the role 
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
 
-Up to 10 `Storage Providers` that keeps a full copy and provides continues service for at least 24h will compete for $75 per week. In addition, you will earn a $0.025/GB/week calculated on an average basis. We will try our best to catch any cheaters, so at the very least you must avoid getting caught! Payouts will be made every Monday at ~11:00GMT.
+Up to 10 `Storage Providers` that keeps a full copy and provides continues service for at least 24h will compete for $75 per week. In addition, you will earn a $0.025/GB/week calculated on an average basis. We will try our best to catch any cheaters, so at the very least you must avoid getting caught!
+
+**Note**
+`Storage Providers` must include their [xmr address](#how-it-works) in the `memo` of their `membership` key, or their `storage` key to qualify for rewards.
+
+Payouts will be made every Monday at ~11:00GMT.
 
 ## Builders and Bug Reporters
 
@@ -137,7 +152,11 @@ To report an `Issue` or make a `Pull request` go to the [node repo](https://gith
 
 The quality of an issue can be measured from the level of details in general, like how to reproduce, pasted log outputs, etc. In terms of PRs, simply copying new features implemented on substrate will not be rewarded unless the PR includes changes that was required for compatibility on Joystream.
 
+**Note**
+
 The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure the add your monero address to the `memo` field of your `keys` as explained at the beginning of this post.
+
+Payouts will be made on agreement.
 
 # Glossary
 TODO
