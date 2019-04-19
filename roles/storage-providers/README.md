@@ -49,7 +49,7 @@ $ sudo apt-get install npm yarn node git build-essential
 ```
 
 #### Run a Joystream Node
-To be a `Storage Provider`, you also have to run a [full node](https://github.com/Joystream/substrate-node-joystream). Instructions can be found [here](https://github.com/Joystream/helpdesk/roles/validators). Note that you can stop after the first setup.
+To be a `Storage Provider`, you also have to run a [full node](https://github.com/Joystream/substrate-node-joystream). Instructions can be found [here](https://github.com/Joystream/helpdesk/tree/master/roles/validators). Note that you can stop after the first setup.
 
 #### Download and install
 First you need to clone the repo:
