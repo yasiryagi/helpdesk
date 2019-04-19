@@ -37,6 +37,7 @@ This page contains all information on how to setup your storage node and becomin
 
 # Instructions
 Note that the software will only run on Mac and Linux. If you are not comfortable using the command line, proceed with caution.
+If you try running this role with poor hardware and bandwidth, you must expect to be kicked out of the role.
 
 ## Mac & Linux
 
@@ -45,7 +46,10 @@ If you are using mac, you need [homebrew](https://brew.sh/) installed on your sy
 # On mac
 $ brew install npm yarn node git libtool automake autoconf
 # On Linux
-$ sudo apt-get install npm yarn node git build-essential
+$ sudo apt-get install npm yarn nodejs git build-essential libtool automake autoconf
+# If you get an output saying:
+Note, selecting `cmdtest` instead of `yarn`
+# go here: https://github.com/Joystream/helpdesk/issues/16#issuecomment-484966596
 ```
 
 #### Run a Joystream Node
@@ -64,6 +68,7 @@ $ npm install -g
 $ js_storage --help
 # This should list the commands and options available
 # If this fails, replace js_storage with /path/to/storage-node-joystream/bin/cli.js
+# To avoid typing the whole thing, consider using "bash_aliases"
 ```
 #### Generate keys and memberships
 
