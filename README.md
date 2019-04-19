@@ -1,6 +1,10 @@
 <p align="center"><img src="helpdesk-repo.svg"></p>
 
 <div align="center">
+  <h4>Guides to get started on our <a href="https://testnet.joystream.org/">current testnet</a> in links below<h4>
+</div>
+
+<div align="center">
   <h3>
     <a href="/roles/validators">
       Validators
@@ -14,7 +18,7 @@
       Storage Providers
     </a>
     <span> | </span>
-    <a href="/roles/builder">
+    <a href="/roles/builders">
       Bug Reporters
     </a>
   </h3>
@@ -83,7 +87,13 @@ The list below shows the currently active roles available at our current [testne
 
 <p align="center"><img src="validator_earn.png"></p>
 
-In proof of stake systems, block producers, or `Validators`, are typically paid a fixed amount for each block produced. While Sparta has been running, we have learned that the interest for being a `Validator` was higher than we anticipated, so we are increasing the [`validator_count`](https://github.com/Joystream/substrate-node-joystream/blob/03f87d875098511caea98d42b233bf12e3d66999/src/chain_spec.rs/#L164) from 10 to 20. To avoid reducing individual rewards too much, we are increasing the pool from $20 to $30 per week.
+#### Description
+In proof of stake systems, block producers, or `Validators`, are typically paid a fixed amount for each block produced. `Validators` must run a full node.
+
+Instructions on how to get started [here](/roles/validators).
+
+#### Incentives
+While Sparta was running, we have that the interest for being a `Validator` was higher than we anticipated, so we are increasing the `validator_count` from 10 to [20](https://github.com/Joystream/substrate-node-joystream/blob/master/src/chain_spec.rs#L213). To avoid reducing individual rewards too much, we are increasing the pool from $20 to $30 per week.
 
 ```
 blocktime = 6
@@ -100,8 +110,8 @@ print(blockreward)
 
 The number - 0.03 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and with armv7 binaries, it should be cheap to run!
 
-**Note**
-`validators` must include their [xmr address](#how-it-works) in the `memo` of their `controller` key, but as this may change, it's best to update the `memo` for the `stash` and `session` key as well.
+#### Payouts
+`Validators` must include their [xmr address](#how-it-works) in the `memo` of their `controller` key, but as this may change, it's best to update the `memo` for the `stash` and `session` key as well.
 
 Payouts will be made every Monday at ~11:00GMT.
 
@@ -109,7 +119,13 @@ Payouts will be made every Monday at ~11:00GMT.
 
 <p align="center"><img src="council_earn.png"></p>
 
-`Council Members` are elected by the stakeholders in the system to act in the interest of their constituency. Somewhat simplified, the council will allocate the platforms resources, and hire executive personnel to run the day to day.
+#### Description
+
+`Council Members` are elected by the stakeholders in the system to act in the interest of their constituency. Currently, `Council Members` can only vote on `proposals` to upgrade the `runtime`. In the future, the council will also allocate the platforms resources, and hire executive personnel to run the day to day operations.
+
+Instructions on how to apply and vote can be found [here](/roles/council-members).
+
+#### Incentives
 
 We are looking at how to best incentivize them to act in the platforms long term interest. As this position generated less interest than we anticipated, we are tweaking the incentives by increasing the payout to get elected from $5 to $8.
 
@@ -117,23 +133,30 @@ If during you term a proposal to upgrade the runtime is submitted by the `sudo` 
 
 During the `Announcement` and `Voting` stage, you should include some information about yourself, and why you should get elected in your `memo` field.
 
-**Note**
+#### Payouts
 If you do get elected, make sure to change the `memo` field to your monero address in order to get your reward.
 
-Payouts will occur at ~11:00GMT the day after the election/vote.
+Payouts will be made at ~11:00GMT the day after the election/vote.
 
 ## Storage Providers
 
 <p align="center"><img src="storage_earn.png"></p>
 
+#### Description
+
 You can't have a video platform without videos, so someone has to take the role storing the data. In the future, this will be highly specialized role, focusing on what is implied by the name of the role. For Athens, it will in practice also entail the future `Bandwidth Provider` role.
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
 
+Instructions on how to get started [here](/roles/storage-providers).
+
+#### Incentives
+
 Up to 10 `Storage Providers` that keeps a full copy and provides continues service for at least 24h will compete for $75 per week. In addition, you will earn a $0.025/GB/week calculated on an average basis. We will try our best to catch any cheaters, so at the very least you must avoid getting caught!
 
-**Note**
-`Storage Providers` must include their [xmr address](#how-it-works) in the `memo` of their `membership` key, or their `storage` key to qualify for rewards.
+#### Payouts
+
+`Storage Providers` must include their [xmr address](#how-it-works) in the `memo` of their `membership` key, or their `storage` key to qualify for rewards. The former is "better", but requires a little more work...
 
 Payouts will be made every Monday at ~11:00GMT.
 
@@ -141,9 +164,11 @@ Payouts will be made every Monday at ~11:00GMT.
 
 <p align="center"><img src="bug_earn.png"></p>
 
-Unlike the Validators and Council Members, the bug bounty payments will be somewhat subjective. Long term, such decisions will be resolved by the platform, so in future testnets these payouts will at least partially be made by the Council.
+#### Description
 
-We saw little interest in this role for Sparta, and only one community member reported `Issues` in the hopes of getting rewarded. Jsgenesis contracted this person to perform a more in depth investigation, but we still hope to generate more interest.
+Unlike the `Validators` and `Council Members`, the bug bounty payments will be somewhat subjective. Long term, such decisions will be resolved by the platform, so in future testnets these payouts will at least partially be made by the council.
+
+We saw little interest in this role for Sparta, and only one community member reported `Issues` in the hopes of getting rewarded. Jsgenesis contracted this person to perform a more in depth investigation, but we still hope to generate more interest in building and finding/resolving bugs.
 
 To report an `Issue` or make a `Pull request` go to the [node repo](https://github.com/Joystream/substrate-node-joystream), the [UI repo](https://github.com/Joystream/apps/tree/joystream), the [storage node repo](https://github.com/Joystream/storage-node-joystream) or the [runtime repo](https://github.com/Joystream/substrate-runtime-joystream). Based on the *importance and quality* of the issue/PR, the Jsgenesis team will decide on the rewards.
 
@@ -152,7 +177,9 @@ To report an `Issue` or make a `Pull request` go to the [node repo](https://gith
 
 The quality of an issue can be measured from the level of details in general, like how to reproduce, pasted log outputs, etc. In terms of PRs, simply copying new features implemented on substrate will not be rewarded unless the PR includes changes that was required for compatibility on Joystream.
 
-**Note**
+More details can be found [here](/roles/builders).
+
+#### Incentives
 
 The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure the add your monero address to the `memo` field of your `keys` as explained at the beginning of this post.
 
