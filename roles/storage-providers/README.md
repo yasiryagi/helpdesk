@@ -60,7 +60,7 @@ First you need to clone the repo:
 ```
 $ cd
 $ git clone https://github.com/Joystream/storage-node-joystream.git
-$ cd storage-node-Joystream
+$ cd storage-node-joystream
 $ yarn run build
 $ npm install -g
 # You will likely see some errors and warnings now.
