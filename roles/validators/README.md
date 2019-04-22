@@ -25,7 +25,8 @@
         - [Setup node](#setup-node-2)
         - [Generate your keys](#generate-your-keys-2)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
-        - [Configure your validator keys](#configure-your-validator-keys-2)      
+        - [Configure your validator keys](#configure-your-validator-keys-2)
+- [Nominating](#nominating)
 - [Troubleshooting](#troubleshooting)
     - [Session Key](#session-key)
     - [Unstaking](#unstaking)
@@ -34,6 +35,8 @@
 # Overview
 
 This page contains all information on how to setup your node and becoming a `Validator` on the Joystream Testnets. It will be updated for improvements, and when something changes for new testnets.
+
+If you want to earn more `Joy` tokens, but for some reason can´t or won't become a `Validator`, you can `Nominate` instead.
 
 # Instructions
 
@@ -429,10 +432,38 @@ Refresh your browser, and select the `Validator Overview` tab. If your account s
 
 ---
 
+# Nominating
+
+If you want to get some return on your tokens without running a node yourself, you can `nominate` another `validator` and get a share of their rewards.
+
+This might also come in handy if there are too many `validators` and you don't have enough tokens get a spot, or if you have to shut down your own node for a while.
+
+## Generate keys
+If you haven't already been through the process of setting up your `stash`, `controller` and `session` key, you first need to [generate your keys](#generate-your-keys). Note that you don't need a `session` key to nominate, so you can skip those steps.
+
+## Configure your nominating keys
+In order to be a `nominator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away. If you have previously been a `Validator`, or tried to do so, skip ahead to step `9.`.
+
+1. In the `My keys` sidebar, choose your `stash` key.
+2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
+3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
+4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
+5. Locate the address/key named `stash`, and click `Bond Funds`.
+6. In the popup window, choose your `controller` as the `controller account`.
+7. Enter the amount you want to stake in the `value bonded` field.
+8. In the `payment destination` dropdown, there are three options.
+    * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
+9. Your `controller` account should now show a `Set Session Key` and a `Nominating` button. Click the latter.
+10. In the popup, select/paste the `stash` address of the `Validator` you wish to nominate. Confirm, sign and submit.
+
+In the next `era`, you will show as a `nominator` of the `Validator` you nominated.
+
+---
+
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
 
-## Session key
+#### Session key
 Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519)` for your `session` key, and didn't notice before you configured your `Validator keys`? This can be resolved.
 
 1. Go to `Validators` -> `Validator staking` and `Unstake`.
@@ -447,7 +478,7 @@ Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519
 
 In the `Next up`, your new `session` key should show, and match the `authority key` in your node. (minus the final 3 characters).
 
-## Unstaking
+#### Unstaking
 If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `validator` set. If you know in advance (~1hr) you can do the following steps instead:
 
 First, make sure you have set `Fully Featured` interface in the `Settings` sidebar.
@@ -497,7 +528,7 @@ Repeat step `3.` if you want to confirm.
 
 Your tokens should now be "free".
 
-## Restart validating after getting booted
+#### Restart validating after getting booted
 If your node shut down before you had stopped validating and/or the grace period for `staking.chill` was completed, all you need to is start `validating` again from `Validator Staking`. Just make sure that your node is back up, and the `authority` key showing at node startup is the same as your `session` key.
 **Note**
 It doesn't matter if your `stash` has a `balance` < `bonded`.
