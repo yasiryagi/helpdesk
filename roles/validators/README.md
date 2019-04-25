@@ -11,22 +11,31 @@
 
 - [Overview](#overview)
 - [Instructions](#instructions)
+- [On your Machine](#on-your-machine)
     - [Windows](#windows)
         - [Setup node](#setup-node)
-        - [Generate your keys](#generate-your-keys)
+        - [Keys](#keys)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator)
-        - [Configure your validator keys](#configure-your-validator-keys)
+        - [Final Step](#final-step)
     - [Mac](#mac)
         - [Setup node](#setup-node-1)
+        - [Keys](#keys-1)        
         - [Generate your keys](#generate-your-keys-1)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
-        - [Configure your validator keys](#configure-your-validator-keys-1)
+        - [Final Step](#final-step-1)
     - [Linux](#linux)
         - [Setup node](#setup-node-2)
-        - [Generate your keys](#generate-your-keys-2)
+        - [Keys](#keys-2)
         - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
-        - [Configure your validator keys](#configure-your-validator-keys-2)
-- [Nominating](#nominating)
+        - [Final Step](#final-step-2)
+- [In the Pioneer app (browser)](#in-the-pioneer-app-browser)
+    - [Validator Setup](#validator-setup)  
+        - [Generate your keys](#generate-your-keys)
+        - [Configure your validator keys](#configure-your-validator-keys)
+    - [Advanced](#advanced)
+        - [Bonding Preferences](#bonding-preferences)
+        - [Staking Preferences](#staking-preferences)
+    - [Nominating](#nominating)
 - [Troubleshooting](#troubleshooting)
     - [Session Key](#session-key)
     - [Unstaking](#unstaking)
@@ -47,6 +56,8 @@ If you want to be visible in the polkadot/substrate telemetry, go [here](https:/
 
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
+
+# On Your Machine
 
 ---
 
@@ -101,33 +112,16 @@ When the `target=#block_height`is the same as `best: #"synced_height"`, your nod
 
 **Keep the terminal window open.**
 
-Now you need to generate your `keys` in the `Pioneer app`. If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
+#### Keys
 
-#### Generate your keys
+Now you need to generate your `keys` in the `Pioneer app`. Go [here](#generate-your-keys) to do that now.
 
-While the node is syncing, you can start the process of setting up the rest.
+If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
 
-1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Generate keys` tab.
-
-Names are entirely optional, but the next steps will be easier if you follow the system suggested.
-
-2. Name your first keypair `session`, or at least something that contains the word. Ie `john-doe-session-key`.
-3. In the dropdown in the field below, choose `Raw seed`. Note that each time you toggle between `Mnemonic` and `Raw seed`, you will generate a new key pair.
-4. Copy the `"0xYourLongSessionRawSeed"`, and save it somewhere safe - like a password manager. You need this later!
-5. Choose a password (this key will hold all your tokens!)
-6. For the `session` key, you also need to select `Edwards (ed25519)` from the `Advanced creation options`.
-7. Click `Save` -> `Create and backup keys`
-
-Depending on your browser, you might have to confirm saving the `"5YourJoySessionAddress.json"`.
-
-Repeat the steps two more times, but with different names, leaving you with three sets of keys as shown below:
-* `stash`
-* `controller`
-* `session`
-
-Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them.
 
 #### Re-start your node as a validator
+
+If you haven't already, go [here](#generate-your-keys) to generate your keys.
 
 1. Open the terminal that is running your node, and kill the session with `ctrl+c` (twice).
     * On windows, the first`ctrl+c` this will produce a long and confusing output.
@@ -156,25 +150,10 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 **Note**
 If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
 
-#### Configure your validator keys
+#### Final Step
 
-In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
+Now it's time to configure your kees to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
 
-1. Still in the `My keys` sidebar, choose your `stash` key.
-2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
-4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
-5. Locate the address/key named `stash`, and click `Bond Funds`.
-6. In the popup window, choose your `controller` as the `controller account`.
-7. Enter the amount you want to stake in the `value bonded` field. Best to leave a little, in case you need to make a transaction later.
-8. In the `payment destination` dropdown, there are three options.
-    * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
-9. Your `controller` account should now show a `Set Session Key` button. Click it.
-10. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-11. Your `controller` account should now show a `Validate` button. Click it.
-12. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
-
-Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
 ---
 
@@ -228,33 +207,16 @@ When the `target=#block_height`is the same as `best: #"synced_height"`, your nod
 
 **Keep the terminal window open.**
 
-Now you need to generate your `keys` in the `Pioneer app`. If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
+#### Keys
 
-#### Generate your keys
+Now you need to generate your `keys` in the `Pioneer app`. Go [here](#generate-your-keys) to do that now.
 
-While the node is syncing, you can start the process of setting up the rest.
+If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
 
-1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Generate keys` tab.
-
-Names are entirely optional, but the next steps will be easier if you follow the system suggested.
-
-2. Name your first keypair `session`, or at least something that contains the word. Ie `john-doe-session-key`.
-3. In the dropdown in the field below, choose `Raw seed`. Note that each time you toggle between `Mnemonic` and `Raw seed`, you will generate a new key pair.
-4. Copy the `"0xYourLongSessionRawSeed"`, and save it somewhere safe - like a password manager. You need this later!
-5. Choose a password (this key will hold all your tokens!)
-6. For the `session` key, you also need to select `Edwards (ed25519)` from the `Advanced creation options`.
-7. Click `Save` -> `Create and backup keys`
-
-Depending on your browser, you might have to confirm saving the `"5YourJoySessionAddress.json"`.
-
-Repeat the steps two more times, but with different names, leaving you with three sets of keys as shown below:
-* `stash`
-* `controller`
-* `session`
-
-Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them.
 
 #### Re-start your node as a validator
+
+If you haven't already, go [here](#generate-your-keys) to generate your keys.
 
 1. Open the terminal that is running your node, and kill the session with `ctrl+c`.
 2. Restart it again with the following command:
@@ -280,25 +242,9 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 **Note**
 If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-1) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
 
-#### Configure your validator keys
+#### Final Step
 
-In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
-
-1. Still in the `My keys` sidebar, choose your `stash` key.
-2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
-4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
-5. Locate the address/key named `stash`, and click `Bond Funds`.
-6. In the popup window, choose your `controller` as the `controller account`.
-7. Enter the amount you want to stake in the `value bonded` field. Best to leave a little, in case you need to make a transaction later.
-8. In the `payment destination` dropdown, there are three options.
-    * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
-9. Your `controller` account should now show a `Set Session Key` button. Click it.
-10. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-11. Your `controller` account should now show a `Validate` button. Click it.
-12. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
-
-Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
+Now it's time to configure your kees to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
 
 ---
 
@@ -355,33 +301,16 @@ When the `target=#block_height`is the same as `best: #"synced_height"`, your nod
 
 **Keep the terminal window open.**
 
-Now you need to generate your `keys` in the `Pioneer app`. If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
+#### Keys
 
-#### Generate your keys
+Now you need to generate your `keys` in the `Pioneer app`. Go [here](#generate-your-keys) to do that now.
 
-While the node is syncing, you can start the process of setting up the rest.
+If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
 
-1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Generate keys` tab.
-
-Names are entirely optional, but the next steps will be easier if you follow the system suggested.
-
-2. Name your first keypair `session`, or at least something that contains the word. Ie `john-doe-session-key`.
-3. In the dropdown in the field below, choose `Raw seed`. Note that each time you toggle between `Mnemonic` and `Raw seed`, you will generate a new key pair.
-4. Copy the `"0xYourLongSessionRawSeed"`, and save it somewhere safe - like a password manager. You need this later!
-5. Choose a password (this key will hold all your tokens!)
-6. For the `session` key, you also need to select `Edwards (ed25519)` from the `Advanced creation options`.
-7. Click `Save` -> `Create and backup keys`
-
-Depending on your browser, you might have to confirm saving the `"5YourJoySessionAddress.json"`.
-
-Repeat the steps two more times, but with different names, leaving you with three sets of keys as shown below:
-* `stash`
-* `controller`
-* `session`
-
-Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them.
 
 #### Re-start your node as a validator
+
+If you haven't already, go [here](#generate-your-keys) to generate your keys.
 
 1. Open the terminal that is running your node, and kill the session with `ctrl+c`.
 2. Restart it again with the following command:
@@ -410,38 +339,104 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 **Note**
 If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-2) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
 
+#### Final Step
+
+Now it's time to configure your kees to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
+
+---
+
+# In the Pioneer app (browser)
+
+## Validator Setup
+
+#### Generate your keys
+
+While the node is syncing, you can start the process of setting up the rest.
+
+1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Generate keys` tab.
+
+Names are entirely optional, but the next steps will be easier if you follow the system suggested.
+
+2. Name your first keypair `session`, or at least something that contains the word. Ie `john-doe-session-key`.
+3. In the dropdown in the field below, choose `Raw seed`. Note that each time you toggle between `Mnemonic` and `Raw seed`, you will generate a new key pair.
+4. Copy the `"0xYourLongSessionRawSeed"`, and save it somewhere safe - like a password manager. You need this later!
+5. Choose a password (this key will hold all your tokens!)
+6. For the `session` key, you also need to select `Edwards (ed25519)` from the `Advanced creation options`.
+7. Click `Save` -> `Create and backup keys`
+
+Depending on your browser, you might have to confirm saving the `"5YourJoySessionAddress.json"`.
+
+Repeat the steps two more times, but with different names, leaving you with three sets of keys as shown below:
+* `stash`
+* `controller`
+* `session`
+
+Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them.
+
 #### Configure your validator keys
 
 In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
-1. Still in the `My keys` sidebar, choose your `stash` key.
+1. Still in the `My keys` sidebar of the [Pioneer App](https://testnet.joystream.org/pioneer), choose your `stash` key.
 2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
 3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
 4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
 5. Locate the address/key named `stash`, and click `Bond Funds`.
 6. In the popup window, choose your `controller` as the `controller account`.
-7. Enter the amount you want to stake in the `value bonded` field.
-8. In the `payment destination` dropdown, there are three options.
-    * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
+7. Enter the amount you want to stake in the `value bonded` field. (It could be wise to leave a couple of Joy left).
+8. In the `payment destination` dropdown, there are three options. Select the default `Stash account (increase the amount at stake)`, or go to [advanced](#bonding-preferences).
 9. Your `controller` account should now show a `Set Session Key` button. Click it.
 10. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
 11. Your `controller` account should now show a `Validate` button. Click it.
-12. You can leave the `unstake threshold` and `payment preferences` as defaults. Confirm, sign and submit.
+12. You can leave the `unstake threshold` and `payment preferences` as defaults, or go to [advanced](#validating-preferences). Confirm, sign and submit.
 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
----
+## Advanced
 
-# Nominating
+#### Bonding preferences
+The bonding preferences decides on how where your (Joy) staking rewards are distributed. There are three alternatives:
+1. `Stash account (increase the amount at stake)` (default).
+
+This automatically sends all rewards the the `stash` address, where it gets bonded as additional stake. This will increase your probability of staying in the `validator` set.
+
+2. `Stash account (do no increase the amount at stake)`
+
+As like `1.` this automatically sends all rewards the the `stash` address, but does *not* get bonded as stake, meaning you it will not help "guard" your spot in the `validator` set.
+
+3. `Controller account`
+
+This sends all rewards to the `controller`, at your disposal.
+
+#### Validating preferences
+1. The `unstake threshold` is the amount of times you can get slashed (for being offline) before you're automatically [unstaked](#unstaking). A low number can mean you stop being `validator` just because your internet is down a minute, but if you set the number too high, you will get slashed heavily if your node breaks down or you lose internet for an hour.
+
+2. the `payment preferences` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The defualt (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
+
+Let `v` [Joy] be the bonded tokens for the validator `stash`
+Let `p` [Joy] be the `payment preference` decided by the validator
+Let `n1` [Joy] be the bonded tokens for the nominator1 `stash`
+Let `n2` [Joy] be the bonded tokens for the nominator2 `stash`
+Let `r` [Joy] be the reward that `era`
+
+```
+# payout for the validator
+p + (v/(v+n1+n2)*(r-p))
+# payout for the nominator1
+(n1/(v+n1+n2)*(r-p))
+```
+
+
+## Nominating
 
 If you want to get some return on your tokens without running a node yourself, you can `nominate` another `validator` and get a share of their rewards.
 
 This might also come in handy if there are too many `validators` and you don't have enough tokens get a spot, or if you have to shut down your own node for a while.
 
-## Generate keys
+#### Generate keys
 If you haven't already been through the process of setting up your `stash`, `controller` and `session` key, you first need to [generate your keys](#generate-your-keys). Note that you don't need a `session` key to nominate, so you can skip those steps.
 
-## Configure your nominating keys
+#### Configure your nominating keys
 In order to be a `nominator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away. If you have previously been a `Validator`, or tried to do so, skip ahead to step `9.`.
 
 1. In the `My keys` sidebar, choose your `stash` key.
@@ -451,8 +446,7 @@ In order to be a `nominator`, you need stake. Note that you may have to refresh 
 5. Locate the address/key named `stash`, and click `Bond Funds`.
 6. In the popup window, choose your `controller` as the `controller account`.
 7. Enter the amount you want to stake in the `value bonded` field.
-8. In the `payment destination` dropdown, there are three options.
-    * As the validator algorithm will have a preference towards the `Validators` with the most stake, you are most likely to stay competitive if you select the default `Stash account (increase the amount at stake)`. You can always top up later with `Bond additional`.
+8. In the `payment destination` dropdown, there are three options. Select the default `Stash account (increase the amount at stake)`, or go to [advanced](#bonding-preferences).
 9. Your `controller` account should now show a `Set Session Key` and a `Nominating` button. Click the latter.
 10. In the popup, select/paste the `stash` address of the `Validator` you wish to nominate. Confirm, sign and submit.
 
