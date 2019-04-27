@@ -88,6 +88,11 @@ Open `Command Prompt` (type in cmd... after clicking windows button):
 > joystream-node.exe --name <nodename>
 # If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
 > joystream-node.exe --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/
+
+# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
+# it might help your uptime by also passing:
+--in-peers 100 --out-peers 100
+# after the other flags. You can choose any number you like, but default is 25.
 ```
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -132,6 +137,11 @@ If you haven't already, go [here](#generate-your-keys) to generate your keys.
 > joystream-node.exe --name <nodename> --validator --key <0xYourLongSessionRawSeed>
 # If you also want it show up in telemetry:
 > joystream-node.exe --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/ --validator --key <0xYourLongSessionRawSeed>
+
+# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
+# it might help your uptime by also passing:
+--in-peers 100 --out-peers 100
+# after the other flags. You can choose any number you like, but default is 25.
 ```
 This time, the output should show a slightly different startup output:
 ```
@@ -183,6 +193,11 @@ $ tar -vxf joystream-node-1.0.0-osx-x86_64.zip
 $ ./joystream-node
 # If you want your node to have a non-random identifier:
 > ./joystream-node --name <nodename>
+
+# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
+# it might help your uptime by also passing:
+--in-peers 100 --out-peers 100
+# after the other flags. You can choose any number you like, but default is 25.
 ```
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -224,6 +239,11 @@ If you haven't already, go [here](#generate-your-keys) to generate your keys.
 $ ./joystream-node --validator --key <0xMyLongRawSeed>
 # If you want your node to have a non-random identifier:
 $ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed>
+
+# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
+# it might help your uptime by also passing:
+--in-peers 100 --out-peers 100
+# after the other flags. You can choose any number you like, but default is 25.
 ```
 This time, the output should show a slightly different startup output:
 ```
@@ -277,6 +297,11 @@ $ ./joystream-node --name <nodename>
 # armv7 (raspberry pi) only:
 # If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
 $ ./joystream-node --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/
+
+# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
+# it might help your uptime by also passing:
+--in-peers 100 --out-peers 100
+# after the other flags. You can choose any number you like, but default is 25.
 ```
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -321,6 +346,11 @@ $ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed
 # armv7 (raspberry pi) only:
 # If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
 $ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed> --telemetry-url ws://telemetry.polkadot.io:1024/
+
+# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
+# it might help your uptime by also passing:
+--in-peers 100 --out-peers 100
+# after the other flags. You can choose any number you like, but default is 25.
 ```
 This time, the output should show a slightly different startup output:
 ```
@@ -353,7 +383,7 @@ Now it's time to configure your kees to start validating. Go [here](#configure-y
 
 While the node is syncing, you can start the process of setting up the rest.
 
-1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Generate keys` tab.
+1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Create keys` tab.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 

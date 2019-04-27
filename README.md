@@ -186,8 +186,7 @@ The contributor must include either their Joystream or monero address when submi
 
 Payouts will be made on agreement.
 
-# Other
-
+# Advanced Users
 This section covers other things you can do after [getting started](#getting-started), that isn't a paid role as of now.
 
 
