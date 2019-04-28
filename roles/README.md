@@ -1,4 +1,4 @@
-<p align="center"><img src="placeholder.png"></p>
+<p align="center"><img src="roles.png"></p>
 
 <div align="center">
   <h4>If you want to stay updated on current and future roles on the Joystream platform, <br />

@@ -38,6 +38,7 @@
     - [Council Members](#council-members)
     - [Storage Providers](#storage-providers)
     - [Builders and Bug Reporters](#builders-and-bug-reporters)
+- [Advanced Users](#advanced-users)
 - [Glossary](#glossary)
 - [Troubleshooting](#troubleshooting)
 
@@ -185,8 +186,9 @@ The contributor must include either their Joystream or monero address when submi
 
 Payouts will be made on agreement.
 
+# Advanced Users
+This section covers other things you can do after [getting started](#getting-started), that isn't a paid role as of now.
+
+
 # Glossary
 TODO
-
-# Troubleshooting
-If you had any issues setting it up, you may find your answer here!
