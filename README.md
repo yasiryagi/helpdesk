@@ -26,21 +26,24 @@
 
 # Table of contents
 
+<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
+- [Table of contents](#table-of-contents)
 - [Overview](#overview)
 - [Contribute](#contribute)
 - [Get Paid to Participate](#get-paid-to-participate)
-    - [How it Works](#how-it-works)
+  - [How it Works](#how-it-works)
 - [Get Started](#get-started)
-    - [Generate Keys](#generate-keys)
-    - [Get a Membership](#get-a-membership)
+  - [Generate Keys](#generate-keys)
+  - [Get a Membership](#get-a-membership)
 - [Active Roles](#active-roles)
-    - [Validators](#validators)
-    - [Council Members](#council-members)
-    - [Storage Providers](#storage-providers)
-    - [Builders and Bug Reporters](#builders-and-bug-reporters)
+  - [Validators](#validators)
+  - [Council Members](#council-members)
+  - [Storage Providers](#storage-providers)
+  - [Builders and Bug Reporters](#builders-and-bug-reporters)
 - [Advanced Users](#advanced-users)
 - [Glossary](#glossary)
-- [Troubleshooting](#troubleshooting)
+<!-- TOC END -->
+
 
 # Overview
 This repo contains detailed guides and help for user to interact with our current [testnet](http://testnet.joystream.org/).
@@ -141,19 +144,25 @@ Payouts will be made at ~11:00GMT the day after the election/vote.
 
 ## Storage Providers
 
+**NOTE:** The current storage node will be deprecated and replaced. At this point, there is no reason to run the software, as the spots are filled.
+
 <p align="center"><img src="storage_earn.png"></p>
 
 #### Description
+
 
 You can't have a video platform without videos, so someone has to take the role storing the data. In the future, this will be highly specialized role, focusing on what is implied by the name of the role. For Athens, it will in practice also entail the future `Bandwidth Provider` role.
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
 
-Instructions on how to get started [here](/roles/storage-providers).
+**NOTE:** The current storage node will be deprecated and replaced. At this point, there is no reason to run the software, as the spots are filled.
 
 #### Incentives
 
 Up to 10 `Storage Providers` that keeps a full copy and provides continues service for at least 24h will compete for $75 per week. In addition, you will earn a $0.025/GB/week calculated on an average basis. We will try our best to catch any cheaters, so at the very least you must avoid getting caught!
+
+**NOTE:** We will honor promised incentives, so the the 10 people that currently occupy the role will collect payments until [Acropolis](https://github.com/Joystream/joystream/tree/master/testnets/acropolis).
+
 
 #### Payouts
 
