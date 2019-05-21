@@ -485,7 +485,7 @@ LimitNOFILE=8192
 WantedBy=multi-user.target
 ```
 
-If you just want to have the node restart at reboot or if it crashes, replace:
+If you just want to have the node restart if it crashes, replace:
 
 ```
 Restart=always
@@ -526,7 +526,7 @@ LimitNOFILE=8192
 WantedBy=multi-user.target
 ```
 
-If you just want to have the node restart at reboot or if it crashes, replace:
+If you just want to have the node restart if it crashes, replace:
 
 ```
 Restart=always
@@ -551,6 +551,9 @@ $ systemctl start joystream-node
 $ systemctl status joystream-node
 # this will only show the last few lines. To see the latest 100 entries (and follow as new are added)
 $ journalctl -n 100 -f -u joystream-node
+
+# To make the service start automatically at boot:
+$ systemctl enable joystream-node
 ```
 You can restart the service with:
 - `systemctl restart joystream-node`
