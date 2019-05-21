@@ -8,37 +8,46 @@
 
 
 # Table of contents
-
+<!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
+- [Table of contents](#table-of-contents)
 - [Overview](#overview)
 - [Instructions](#instructions)
-- [On your Machine](#on-your-machine)
-    - [Windows](#windows)
-        - [Setup node](#setup-node)
-        - [Keys](#keys)
-        - [Re-start your node as a validator](#re-start-your-node-as-a-validator)
-        - [Final Step](#final-step)
-    - [Mac](#mac)
-        - [Setup node](#setup-node-1)
-        - [Keys](#keys-1)        
-        - [Generate your keys](#generate-your-keys-1)
-        - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
-        - [Final Step](#final-step-1)
-    - [Linux](#linux)
-        - [Setup node](#setup-node-2)
-        - [Keys](#keys-2)
-        - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
-        - [Final Step](#final-step-2)
+- [On Your Machine](#on-your-machine)
+  - [Windows](#windows)
+      - [Setup Node](#setup-node)
+      - [Keys](#keys)
+      - [Re-start your node as a validator](#re-start-your-node-as-a-validator)
+      - [Final Step](#final-step)
+  - [Mac](#mac)
+      - [Setup Node](#setup-node-1)
+      - [Keys](#keys-1)
+      - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
+      - [Final Step](#final-step-1)
+  - [Linux](#linux)
+      - [Setup Node](#setup-node-2)
+      - [Keys](#keys-2)
+      - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
+      - [Final Step](#final-step-2)
 - [In the Pioneer app (browser)](#in-the-pioneer-app-browser)
-    - [Validator Setup](#validator-setup)  
-        - [Generate your keys](#generate-your-keys)
-        - [Configure your validator keys](#configure-your-validator-keys)
-    - [Advanced](#advanced)
-        - [Bonding Preferences](#bonding-preferences)
-        - [Staking Preferences](#staking-preferences)
-    - [Nominating](#nominating)
+  - [Validator Setup](#validator-setup)
+      - [Generate your keys](#generate-your-keys)
+      - [Configure your validator keys](#configure-your-validator-keys)
+- [Advanced](#advanced)
+  - [Run as a service](#run-as-a-service)
+      - [Configure the service](#configure-the-service)
+      - [Starting the service](#starting-the-service)
+      - [Errors](#errors)
+  - [Settings](#settings)
+      - [Bonding preferences](#bonding-preferences)
+      - [Validating preferences](#validating-preferences)
+  - [Nominating](#nominating)
+      - [Generate keys](#generate-keys)
+      - [Configure your nominating keys](#configure-your-nominating-keys)
 - [Troubleshooting](#troubleshooting)
-    - [Session Key](#session-key)
-    - [Unstaking](#unstaking)
+      - [Session key](#session-key)
+      - [Unstaking](#unstaking)
+      - [Restart validating after getting booted](#restart-validating-after-getting-booted)
+<!-- TOC END -->
 
 
 # Overview
@@ -53,6 +62,8 @@ The instructions below covers Windows, Mac and Linux (64 bit and armv7). As a ge
 Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows the `Pioneer` app to connect to your own node in `Settings`. It seems neither Firefox, Safari or Edge will connect at this time.
 
 If you want to be visible in the polkadot/substrate telemetry, go [here](https://telemetry.polkadot.io/). Note that for windows and armv7 (raspberry pi), you need to add a telemetry flag at startup (see applicable setup node).
+
+If your `Validator` have experienced some of the networking issues described [here](https://github.com/Joystream/substrate-node-joystream/issues/68), consider restarting your node at regular intervals. If you want to automate this process, consider running your node as a [service](#run-as-a-service).
 
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
@@ -264,7 +275,7 @@ If your `session` was generated as `Schnorrkel (sr25519)`, it will show a comple
 
 #### Final Step
 
-Now it's time to configure your kees to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
+Now it's time to configure your keys to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
 
 ---
 
@@ -422,7 +433,158 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
-## Advanced
+# Advanced
+
+## Run as a service
+
+If you are running your node on a [linux](#linux) and want to have to run it as a [service](https://wiki.debian.org/systemd/Services), you can set it up this way.
+Note that you should avoid this unless you know what you are doing, or is running your node on **your own VPS**, or a single board computer. With great (sudo) privileges, comes great responsibilities!
+
+If you are already running as a `validator`, consider [unstaking](#unstaking) first, as you may experience some downtime if you make any mistakes in the setup.
+
+#### Configure the service
+
+Either as root, or a user with sudo privileges. If the latter, add `sudo` before commands.
+
+```
+$ cd /etc/systemd/system
+# you can choose whatever name you like, but the name has to end with .service
+$ touch joystream-node.service
+# open the file with your favorite editor (I use nano below)
+$ nano joystream-node.service
+```
+
+##### Example with user joystream
+
+The example below assumes the following:
+- You want to restart your node every 24h (`86400`s)
+- You have setup a user `joystream` to to run the node
+- The path to the `joystream-node` binary is `/home/joystream/joystream-node`
+
+```
+[Unit]
+Description=Joystream Node
+After=network.target
+
+[Service]
+Type=simple
+User=joystream
+WorkingDirectory=/home/joystream/
+ExecStart=/home/joystream/joystream-node \
+        --out-peers 100 \
+        --in-peers 100 \
+        --validator \
+        --key <0xYourLongSessionRawSeed> \
+        --name <nodename>
+Restart=always
+RuntimeMaxSec=86400
+RestartSec=3
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target
+```
+
+If you just want to have the node restart if it crashes, replace:
+
+```
+Restart=always
+RuntimeMaxSec=86400
+# with
+Restart=on-failure
+```
+
+
+##### Example as root
+
+The example below assumes the following:
+- You want to restart your node every 24h (`86400`s)
+- You have setup a user `root` to to run the node
+- The path to the `joystream-node` binary is `/home/joystream/joystream-node`
+
+```
+[Unit]
+Description=Joystream Node
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/
+ExecStart=/root/joystream-node \
+        --out-peers 100 \
+        --in-peers 100 \
+        --validator \
+        --key <0xYourLongSessionRawSeed> \
+        --name <nodename>
+Restart=always
+RuntimeMaxSec=86400
+RestartSec=3
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target
+```
+
+If you just want to have the node restart if it crashes, replace:
+
+```
+Restart=always
+RuntimeMaxSec=86400
+# with
+Restart=on-failure
+```
+
+#### Starting the service
+
+You can add/remove any `flags` as long as you remember to include `\` for every line but the last. Also note that systemd is very sensitive to syntax, so make sure there are no extra spaces before or after the `\`.
+
+After you are happy with your configuration:
+
+```
+$ systemctl daemon-reload
+# this is only strictly necessary after you changed the .service file after running, but chances are you will need to use it once or twice.
+# if your node is still running, now is the the time to kill it.
+$ systemctl start joystream-node
+# if everything is correctly configured, this command will not return anything.
+# To verify it's running:
+$ systemctl status joystream-node
+# this will only show the last few lines. To see the latest 100 entries (and follow as new are added)
+$ journalctl -n 100 -f -u joystream-node
+
+# To make the service start automatically at boot:
+$ systemctl enable joystream-node
+```
+You can restart the service with:
+- `systemctl restart joystream-node`
+
+If you want to change something (or just stop), run:
+- `systemctl stop joystream-node`
+
+Before you make the changes. After changing:
+
+```
+$ systemctl daemon-reload
+$ systemctl start joystream-node
+```
+
+#### Errors
+
+If you make a mistake somewhere, `systemctl start joystream-node` will prompt:
+```
+Failed to start joystream-node.service: Unit joystream-node.service is not loaded properly: Invalid argument.
+See system logs and 'systemctl status joystream-node.service' for details.
+```
+Follow the instructions, and see if anything looks wrong. Correct it, then:
+
+```
+$ systemctl daemon-reload
+$ systemctl start joystream-node
+```
+
+## Settings
+
+If you don't want to use the default settings, here are some of the options you can configure.
 
 #### Bonding preferences
 The bonding preferences decides on how where your (Joy) staking rewards are distributed. There are three alternatives:
@@ -488,6 +650,7 @@ In the next `era`, you will show as a `nominator` of the `Validator` you nominat
 If you had any issues setting it up, you may find your answer here!
 
 #### Session key
+
 Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519)` for your `session` key, and didn't notice before you configured your `Validator keys`? This can be resolved.
 
 1. Go to `Validators` -> `Validator staking` and `Unstake`.
@@ -503,6 +666,7 @@ Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519
 In the `Next up`, your new `session` key should show, and match the `authority key` in your node. (minus the final 3 characters).
 
 #### Unstaking
+
 If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `validator` set. If you know in advance (~1hr) you can do the following steps instead:
 
 First, make sure you have set `Fully Featured` interface in the `Settings` sidebar.
