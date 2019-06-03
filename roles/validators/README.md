@@ -426,10 +426,12 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 6. In the popup window, choose your `controller` as the `controller account`.
 7. Enter the amount you want to stake in the `value bonded` field. (It could be wise to leave a couple of Joy left).
 8. In the `payment destination` dropdown, there are three options. Select the default `Stash account (increase the amount at stake)`, or go to [advanced](#bonding-preferences).
-9. Your `controller` account should now show a `Set Session Key` button. Click it.
-10. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-11. Your `controller` account should now show a `Validate` button. Click it.
-12. You can leave the `unstake threshold` and `payment preferences` as defaults, or go to [advanced](#validating-preferences). Confirm, sign and submit.
+9.The button `bond` should be highlighted now. Click it.
+10. Type in your password in the `unlock with password` field and click `sign and submit`.
+11. Your `controller` account should now show a `Set Session Key` button. Click it.
+12. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
+13. Your `controller` account should now show a `Validate` button. Click it.
+14. You can leave the `unstake threshold` and `payment preferences` as defaults, or go to [advanced](#validating-preferences). Confirm, sign and submit.
 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
