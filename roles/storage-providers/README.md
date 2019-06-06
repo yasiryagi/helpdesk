@@ -24,7 +24,7 @@ This page will contain all information on how to setup your storage node and bec
 # Instructions
 If you want to try just for fun of it, go [here](old-instructions.md). Note that we will not provide support, and that the paid spots are already filled until [Acropolis](https://github.com/Joystream/joystream/tree/master/testnets/acropolis).
 
-Note that if you are on linux, on don't want to run the software as root, setting up `npm` with `node` and `yarn` often gets users in trouble. Go [here](#install-npm-without-sudo) for instructions.
+Note that if you are on linux, and don't want to run the software as root, setting up `npm` with `node` and `yarn` often gets users in trouble. Go [here](#install-npm-without-sudo) for instructions.
 
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
@@ -35,6 +35,8 @@ Go [here](https://nodejs.org/en/download/) and find the newest binary for your d
 
 If you want to install with `root`, so your user can use `npm` without `sudo` privileges, go [here](#install-as-root).
 If you want to install with another user (must have `sudo` privileges), go [here](#install-as-user-with-sudo-privileges).
+
+As an alternative, [nvm](https://github.com/nvm-sh/nvm) is worth considering.
 
 #### Install as Root
 This section assumes you are installing as `root`, for user `joystream` (feel free to use a different username). It doesn't matter if `joystream` has `sudo` privileges or not.
