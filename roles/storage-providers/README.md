@@ -26,9 +26,6 @@
 This page will contain all information on how to setup your storage node and becoming a `Storage Provider` on the Joystream Testnets. As we have decided to re-write the node from scratch instead of fixing the one currently active, there is currently no reason to run the node.
 
 # Instructions
-If you want to try just for fun of it, go [here](old-instructions.md). Note that we will not provide support, and that the paid spots are already filled until [Acropolis](https://github.com/Joystream/joystream/tree/master/testnets/acropolis).
-
-Note that if you are on linux, and don't want to run the software as root, setting up `npm` with `node` and `yarn` often gets users in trouble. Go [here](#install-npm-without-sudo) for instructions.
 
 The instructions below will assume you are running as `root`. This makes the instructions somewhat easier, but less safe and robust.
 
