@@ -13,10 +13,10 @@
 This page contains links to the guides for the currently active roles, and a list of the future platform roles.
 
 # Active Roles
-- [Validators](/validators)
-- [Council Members](/council-members)
-- [Storage Providers](/storage-providers)
-- [Builders and Bug Reporters](/builders)
+- [Validators](validators)
+- [Council Members](council-members)
+- [Storage Providers](storage-providers)
+- [Builders and Bug Reporters](builders)
 
 # Future Roles
  - Membership Screener
