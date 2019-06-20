@@ -23,13 +23,13 @@
 
 # Overview
 
-This page will contain all information on how to setup your storage node and becoming a `Storage Provider` on the Joystream Testnets. As we have decided to re-write the node from scratch instead of fixing the one currently active, there is currently no reason to run the node.
+This page will contain all information on how to setup your storage node and becoming a `Storage Provider` on the Joystream Testnets. As we have decided to re-write the node from scratch instead of fixing the one currently active, there is currently no reason to run the node before the release of [Acropolis](https://github.com/Joystream/joystream/tree/master/testnets/acropolis#live-milestones).
 
 # Instructions
 
 The instructions below will assume you are running as `root`. This makes the instructions somewhat easier, but less safe and robust.
 
-Note that this has only been tested on fresh images of `Ubuntu 18.04 LTS` and `Debian 8`.
+Note that this has only been tested on fresh images of `Ubuntu 16.04 LTS`, `Ubuntu 18.04 LTS` and `Debian 8`.
 
 ## Initial setup
 First of all, you need a fully synced [Joystream full node](https://github.com/Joystream/substrate-node-joystream/releases). For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys, and just install the software.
