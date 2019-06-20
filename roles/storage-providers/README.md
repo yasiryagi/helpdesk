@@ -17,7 +17,7 @@
   - [Setup Hosting](#setup-hosting)
   - [Install and Setup the Storage Node](#install-and-setup-the-storage-node)
 - [Troubleshooting](#troubleshooting)
-  - [Install yarn and node without on linux](#install-yarn-and-node-without-on-linux)
+  - [Install yarn and node on linux](#install-yarn-and-node-on-linux)
 <!-- TOC END -->
 
 
@@ -52,7 +52,7 @@ $ cd go-ipfs
 $ ./ipfs init --profile server
 $ ./install.sh
 # start ipfs daemon:
-$ (screen) ipfs daemon
+$ ipfs daemon
 ```
 If you see `Daemon is ready` at the end, you are good!
 
@@ -90,6 +90,8 @@ $ systemctl start ipfs
 # If everything works, you should get an output. Verify with:
 $ systemctl status ipfs
 # If you see something else than "Daemon is ready" at the end, try again in a couple of seconds.
+# To have ipfs start automatically at reboot:
+$ systemctl enable ipfs
 # If you want to stop ipfs, either to edit the file or some other reason:
 $ systemctl stop ipfs
 ```
@@ -117,7 +119,6 @@ https://<your.cool.url> {
     header / {
         Access-Control-Allow-Origin  *
         Access-Control-Allow-Methods "GET, PUT, HEAD, OPTIONS"
-        #Access-Control-Allow-Headers "content-type, range, bytes"
     }
 }
 ```
@@ -169,7 +170,7 @@ $ systemctl status caddy
    Active: active (running) since Tue 2019-06-18 17:15:44 UTC; 6s ago
  Main PID: 5613 (caddy)
    CGroup: /system.slice/caddy.service
-           └─5613 /usr/local/bin/caddy -agree email -<your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
+           └─5613 /usr/local/bin/caddy -agree email <your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
 
 Jun 18 17:15:44 localhost systemd[1]: Started Reverse proxy for hosted apps.
 Jun 18 17:15:44 localhost caddy[5613]: Activating privacy features... done.
@@ -179,6 +180,8 @@ Jun 18 17:15:44 localhost caddy[5613]: https://<your.cool.url>
 Jun 18 17:15:44 localhost caddy[5613]: Serving HTTP on port 80
 Jun 18 17:15:44 localhost caddy[5613]: https://<your.cool.url>
 ---
+# To have caddy start automatically at reboot:
+$ systemctl enable caddy
 # If you want to stop caddy, either to edit the file or some other reason:
 $ systemctl stop caddy
 ```
@@ -189,7 +192,7 @@ First, you need to clone the repo:
 ```
 $ git clone https://github.com/Joystream/storage-node-joystream.git
 $ cd storage-node-joystream
-$ yarn && yarn install
+$ yarn
 # Test that it's working with:
 $ yarn run colossus --help
 ```
@@ -227,17 +230,17 @@ On the machine/VPS you want to run your storage node:
 ```
 # If you are not already in that directory:
 $ cd storage-node-joystream
-$ (yarn run) colossus signup <5YourJoyMemberAddress.json>
-# Follow the instructions as prompted.
+# If you configured your .bash_profile:
+$ colossus signup <5YourJoyMemberAddress.json>
+# If you didn't configure your .bash_profile:
+$ yarn run colossus signup <5YourJoyMemberAddress.json>
+# Follow the instructions as prompted. For ease of use, it's best to not set a password.
 # This produces a new key <5YourStorageAddress.json>
 ---
 # To make sure everything is running smoothly, it would be helpful to run with DEBUG:
 $ DEBUG=* (yarn run) colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
-# If you would rather log the events
-$ colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
-
 ```
-If you do this, you will at see something like:
+If you do this, you should see something like:
 
 ```
 discovery::publish { name: 'QmPwws576n3ByE6CQUvUt3dgmokk2XN2cJgPYHWoM6SSUS',
@@ -255,7 +258,7 @@ In your second terminal window:
 ```
 $ ipfs bitswap wantlist
 ---
-# Output should be a long list of keys, eg.
+# Output should be a long list of keys, eg. Note that it might take a few minutes before the actual content from the Joystream content directory shows up.
 ---
 QmeszeBjBErFQrkiQPh8QhTs3hfCEGJuK2jNopatHnps1k
 ...
@@ -290,7 +293,7 @@ Should return nothing.
 
 #### Run as a service
 
-To ensure how uptime, it's best to set the system up as a `service`.
+To ensure how uptime, it's best to set the system up as a `service`. Note that this will not work if you set a password for your `<5YourStorageAddress.json> `.
 
 Example file below:
 
@@ -341,6 +344,8 @@ Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:ut
 Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges Ignoring chunk; it is out of range.
 Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges = Got chunk with byte range [ 1568256, 1568874 ]
 ---
+# To have colossus start automatically at reboot:
+$ systemctl enable colossus
 # If you want to stop the storage node, either to edit the storage-node.service file or some other reason:
 $ systemctl stop storage-node
 ```
@@ -348,14 +353,15 @@ $ systemctl stop storage-node
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
 
-## Install yarn and node without on linux
+## Install yarn and node on linux
 
-Go [here](https://nodejs.org/en/download/) and find the newest binary for your distro. This guide will assume 64-bit linux, and `node-v10.16.0`.
+Go [here](https://nodejs.org/en/download/) and find the newest (LTS) binary for your distro. This guide will assume 64-bit linux, and `node-v10.16.0`.
 
-If you want to install with `root`, so your user can use `npm` without `sudo` privileges, go [here](#install-as-root).
-If you want to install with another user (must have `sudo` privileges), go [here](#install-as-user-with-sudo-privileges).
+If you want to install as `root`, so your user can use `npm` without `sudo` privileges, go [here](#install-as-root).
 
-As an alternative, [nvm](https://github.com/nvm-sh/nvm) is worth considering.
+If you want to install as another user (must have `sudo` privileges), go [here](#install-as-user-with-sudo-privileges).
+
+Alternatives such as [nvm](https://github.com/nvm-sh/nvm) or [nodesource](https://github.com/nodesource/distributions/blob/master/README.md) are also worth considering.
 
 #### Install as Root
 This section assumes you are installing as `root`. It also demonstrates how you can provide another user access without having to use `sudo`. It doesn't matter if user `joystream` has `sudo` privileges or not.
@@ -410,7 +416,7 @@ $ npx -v
 $ yarn -v
 ```
 
-You have now successfully installed the newest versions of `npm`, `node` and `yarn`.
+You have now successfully installed the newest (LTS) versions of `npm`, `node` and `yarn`.
 
 #### Install as user with `sudo` privileges
 This section assumes the steps are performed as user `joystream` with `sudo` privileges.
