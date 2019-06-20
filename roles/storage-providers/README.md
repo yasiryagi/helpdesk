@@ -128,7 +128,7 @@ $ /usr/local/bin/caddy --validate --conf ~/Caddyfile
 Caddyfile is valid
 
 # You can now run caddy with:
-$ (screen) /usr/local/bin/caddy -agree --email <your_mail@some.domain> --conf ~/Caddyfile
+$ (screen) /usr/local/bin/caddy --agree --email <your_mail@some.domain> --conf ~/Caddyfile
 ```
 
 #### Run as a service
@@ -149,7 +149,7 @@ User=root
 WorkingDirectory=/root
 LimitNOFILE=8192
 PIDFile=/var/run/caddy/caddy.pid
-ExecStart=/usr/local/bin/caddy -agree -<your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
+ExecStart=/usr/local/bin/caddy -agree -email <your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
 Restart=on-failure
 StartLimitInterval=600
 
@@ -169,7 +169,7 @@ $ systemctl status caddy
    Active: active (running) since Tue 2019-06-18 17:15:44 UTC; 6s ago
  Main PID: 5613 (caddy)
    CGroup: /system.slice/caddy.service
-           └─5613 /usr/local/bin/caddy -agree -<your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
+           └─5613 /usr/local/bin/caddy -agree email -<your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
 
 Jun 18 17:15:44 localhost systemd[1]: Started Reverse proxy for hosted apps.
 Jun 18 17:15:44 localhost caddy[5613]: Activating privacy features... done.
