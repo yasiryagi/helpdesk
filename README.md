@@ -49,7 +49,7 @@
 This repo contains detailed guides and help for user to interact with our current [testnet](http://testnet.joystream.org/).
 
 # Contribute
-If you find something that is wrong or missing, please make an [Issue](/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](#builders-and-bug-reporters).
+If you find something that is wrong or missing, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](#builders-and-bug-reporters).
 
 # Get Paid to Participate
 Some of the roles will be compensated in [Monero](https://www.getmonero.org/). Our philosophy behind the choice of paying for participation is outlined in [this](https://blog.joystream.org/pay-for-play/) blog post. Information about the current incentive structure can be found in the list of [Active Roles](#active-roles) below.
