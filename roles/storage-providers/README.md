@@ -31,6 +31,8 @@ The instructions below will assume you are running as `root`. This makes the ins
 
 Note that this has only been tested on fresh images of `Ubuntu 16.04 LTS`, `Ubuntu 18.04 LTS` and `Debian 8`.
 
+Please note that unless there are any open spots (which you can check in [Pioneer](https://testnet.joystream.org/pioneer) under `Roles` -> `Available Roles`), you will not be able to join. Note that we will be quite vigilant in booting non-performing `Storage Providers`, so if you have everything setup in advance, you could be the quickest to take a slot when it opens!
+
 ## Initial setup
 First of all, you need a fully synced [Joystream full node](https://github.com/Joystream/substrate-node-joystream/releases). For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys, and just install the software.
 We strongly encourage that you run both the [node](../validators#run-as-a-service) and the other software below as a service.
@@ -188,7 +190,7 @@ $ systemctl stop caddy
 
 ## Install and Setup the Storage Node
 
-First, you need to clone the repo:
+First, you need to clone the repo.
 ```
 $ git clone https://github.com/Joystream/storage-node-joystream.git
 $ cd storage-node-joystream
@@ -208,6 +210,8 @@ Then:
 Now, you can test `colossus --help`.
 
 #### Generate keys and memberships
+
+**Please note that you should stop her if you proceed with this before the 23rd of June 2019. runtime upgrade to acropolis, you will have to restart your node.**
 
 Click [here](https://testnet.joystream.org) to open the `Pioneer app` in your browser. Then follow instructions [here](https://github.com/Joystream/helpdesk#get-started) to generate a set of `Keys`, get tokens, and sign up for a `Membership`. This will `key` will be referred to as the `member` key from now on. Make sure to save the `5YourJoyMemberAddress.json` file. Note that you need to keep the rest of your tokens as stake to become a `Storage Provider`.
 
@@ -234,12 +238,19 @@ $ cd storage-node-joystream
 $ colossus signup <5YourJoyMemberAddress.json>
 # If you didn't configure your .bash_profile:
 $ yarn run colossus signup <5YourJoyMemberAddress.json>
+# Note that the rest of the guide will assume you did in fact configure .bash_profile and don't need "yarn run"
 # Follow the instructions as prompted. For ease of use, it's best to not set a password.
-# This produces a new key <5YourStorageAddress.json>
----
-# To make sure everything is running smoothly, it would be helpful to run with DEBUG:
-$ DEBUG=* (yarn run) colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
 ```
+
+This produces a new key `<5YourStorageAddress.json>`, and prompts you to open the "app" (Pioneer). Make sure that you your current/default is the `5YourJoyMemberAddress` key. After you click `Stake`, you will see a notification in the top right corner. If you get an error, this most likely means all the slots are full. Unfortunately, this means you have to import the `<5YourStorageAddress.json>` to recover your tokens.
+
+If it succeeded, proceed as shown below:
+
+```
+# To make sure everything is running smoothly, it would be helpful to run with DEBUG:
+$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
+```
+
 If you do this, you should see something like:
 
 ```
@@ -248,7 +259,7 @@ discovery::publish   value: '/ipfs/QmeDAWGRjbWx6fMCxtt95YTSgTgBhhtbk1qsGkteRXaES
 ```
 You can just do this instead, but it will make it more difficult to debug...
 ```
-$ (yarn run) colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
+$ colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
 ```
 If everything is working smoothly, you will now start syncing the `content directory`
 Note that unless you run this is a [service](#run-storage-node-as-a-service), you now have to open a second terminal for the remaining steps.
