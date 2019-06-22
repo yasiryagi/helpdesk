@@ -143,7 +143,7 @@ $ (screen) /usr/local/bin/caddy --agree --email <your_mail@some.domain> --conf ~
 ```
 
 ### Run caddy as a service
-To ensure how uptime, it's best to set the system up as a `service`.
+To ensure high uptime, it's best to set the system up as a `service`.
 
 Example file below:
 
