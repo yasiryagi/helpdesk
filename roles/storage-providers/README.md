@@ -14,8 +14,14 @@
 - [Instructions](#instructions)
   - [Initial setup](#initial-setup)
   - [Install ipfs](#install-ipfs)
+    - [Run ipfs as a service](#run-ipfs-as-a-service)
   - [Setup Hosting](#setup-hosting)
+    - [Run caddy as a service](#run-caddy-as-a-service)
   - [Install and Setup the Storage Node](#install-and-setup-the-storage-node)
+    - [Update Storage Node](#update-storage-node)
+    - [Generate keys and memberships](#generate-keys-and-memberships)
+    - [Run storage node as a service](#run-storage-node-as-a-service)
+    - [Verify everything is working](#verify-everything-is-working)
 - [Troubleshooting](#troubleshooting)
   - [Install yarn and node on linux](#install-yarn-and-node-on-linux)
 <!-- TOC END -->
@@ -30,6 +36,8 @@ This page will contain all information on how to setup your storage node and bec
 The instructions below will assume you are running as `root`. This makes the instructions somewhat easier, but less safe and robust.
 
 Note that this has only been tested on fresh images of `Ubuntu 16.04 LTS`, `Ubuntu 18.04 LTS` and `Debian 8`.
+
+The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better. (Not an affiliate).
 
 Please note that unless there are any open spots (which you can check in [Pioneer](https://testnet.joystream.org/pioneer) under `Roles` -> `Available Roles`), you will not be able to join. Note that we will be quite vigilant in booting non-performing `Storage Providers`, so if you have everything setup in advance, you could be the quickest to take a slot when it opens!
 
@@ -58,9 +66,9 @@ $ ipfs daemon
 ```
 If you see `Daemon is ready` at the end, you are good!
 
-#### Run as a service
+### Run ipfs as a service
 
-To ensure how uptime, it's best to set the system up as a `service`.
+To ensure high uptime, it's best to set the system up as a `service`.
 
 Example file below:
 
@@ -101,7 +109,7 @@ $ systemctl stop ipfs
 ## Setup Hosting
 In order to allow for users to upload and download, you have to setup hosting, with an actual domain as both chrome and firefox requires `https://`. If you have a "spare" domain or subdomain you don't mind using for this purpose, go to your domain registrar and point your domain to the IP you want. If you don't, you must unfortunately go purchase one.
 
- To configure SSL-certificates the easiest is to use [caddy](https://caddyserver.com/), but feel free to take a different approach. Note that if you are using caddy for commercial use, you need to acquire a license. Please check their terms and make sure you comply with what is considered personal use.
+To configure SSL-certificates the easiest is to use [caddy](https://caddyserver.com/), but feel free to take a different approach. Note that if you are using caddy for commercial use, you need to acquire a license. Please check their terms and make sure you comply with what is considered personal use.
 
 ```
 $ curl https://getcaddy.com | bash -s personal
@@ -134,8 +142,8 @@ Caddyfile is valid
 $ (screen) /usr/local/bin/caddy --agree --email <your_mail@some.domain> --conf ~/Caddyfile
 ```
 
-#### Run as a service
-To ensure how uptime, it's best to set the system up as a `service`.
+### Run caddy as a service
+To ensure high uptime, it's best to set the system up as a `service`.
 
 Example file below:
 
@@ -190,7 +198,11 @@ $ systemctl stop caddy
 
 ## Install and Setup the Storage Node
 
+**Note**
+If you proceed before [this PR](https://github.com/Joystream/storage-node-joystream/pull/82) is merged, you will need to [update later](#update-storage-node)
+
 First, you need to clone the repo.
+
 ```
 $ git clone https://github.com/Joystream/storage-node-joystream.git
 $ cd storage-node-joystream
@@ -209,15 +221,27 @@ Then:
 `. ~/.bash_profile`
 Now, you can test `colossus --help`.
 
-#### Generate keys and memberships
+### Update Storage Node
 
-**Please note that you should stop her if you proceed with this before the 23rd of June 2019. runtime upgrade to acropolis, you will have to restart your node.**
+If you need to update your storage node, you will first need to stop the software.
+
+```
+# If you are running as service (which you should)
+$ systemctl stop storage-node
+$ cd /path/to/storage-node-joystream
+# Assuming you cloned as shown above
+$ git pull origin master
+$ yarn
+```
+
+### Generate keys and memberships
 
 Click [here](https://testnet.joystream.org) to open the `Pioneer app` in your browser. Then follow instructions [here](https://github.com/Joystream/helpdesk#get-started) to generate a set of `Keys`, get tokens, and sign up for a `Membership`. This will `key` will be referred to as the `member` key from now on. Make sure to save the `5YourJoyMemberAddress.json` file. Note that you need to keep the rest of your tokens as stake to become a `Storage Provider`.
 
 ---
 
 Assuming you are running the storage node on a VPS via ssh, on your local machine:
+
 ```
 # Go the directory where you saved your <5YourJoyMemberAddress.json>:
 $ scp <5YourJoyMemberAddress.json> <user>@<your.vps.ip.address>:/path/to/storage-node-joystream/
@@ -302,7 +326,7 @@ $ ipfs refs local
 ```
 Should return nothing.
 
-#### Run as a service
+### Run storage node as a service
 
 To ensure how uptime, it's best to set the system up as a `service`. Note that this will not work if you set a password for your `<5YourStorageAddress.json> `.
 
@@ -360,6 +384,16 @@ $ systemctl enable colossus
 # If you want to stop the storage node, either to edit the storage-node.service file or some other reason:
 $ systemctl stop storage-node
 ```
+
+### Verify everything is working
+
+In your browser, find click on an uploaded media file. Copy the `<content-id>`, ie. what comes after the last `/`.
+
+Then paste the following in your browser:
+
+`https://<your.cool.url>/asset/v0/<content-id>`.
+
+If you get a black screen with a media player, that means you are good!
 
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
