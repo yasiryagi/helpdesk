@@ -387,7 +387,7 @@ $ systemctl stop storage-node
 
 ### Verify everything is working
 
-In your browser, find click on an uploaded media file. Copy the `<content-id>`, ie. what comes after the last `/` (which looks a `key`).
+In your browser, find click on an uploaded media file. Copy the `<content-id>`, ie. what comes after the last `/`.
 
 Then paste the following in your browser:
 
