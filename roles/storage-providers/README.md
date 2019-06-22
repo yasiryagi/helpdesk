@@ -68,7 +68,7 @@ If you see `Daemon is ready` at the end, you are good!
 
 ### Run ipfs as a service
 
-To ensure how uptime, it's best to set the system up as a `service`.
+To ensure high uptime, it's best to set the system up as a `service`.
 
 Example file below:
 
