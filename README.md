@@ -101,6 +101,8 @@ Now, click `Members` in the sidebar, and select the `Register` tab. Choose a `Ha
 
 The list below shows the currently active roles available at our current [testnet](https://testnet.joystream.org/pioneer).
 
+Note that the new rewards will not apply before the [runtime upgrade](https://testnet.joystream.org/athens/pioneer/#/proposals/2) to `Acropolis`.
+
 ## Validators
 
 <p align="center"><img src="validator_50.png"></p>
@@ -216,11 +218,11 @@ This section covers other things you can do after [getting started](#getting-sta
 
 ## Upload Content
 
-TODO
+Since Athens, `members` can upload content. Currently, there are no rewards for doing so, but any user created content is welcome!
 
 ## On-Chain Forum
 
-TODO
+This is the first step in providing users, infrastructure role participants, `Council Members` and future stakeholders a way to communicate and coordinate. Hopefully, this method of interaction will further help develop a strong community around Joystream. Note that you have to be a `member` to post, and only the forum moderator (forum sudo) can create categories.
 
 # Glossary
 
