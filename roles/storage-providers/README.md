@@ -1,4 +1,4 @@
-<p align="center"><img src="storage_provider.png"></p>
+<p align="center"><img src="img/storage_provider.png"></p>
 
 <div align="center">
   <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/storage-node-joystream">storage node</a>, and get started as a Storage Provider on the latest
@@ -263,7 +263,8 @@ $ colossus signup <5YourJoyMemberAddress.json>
 # If you didn't configure your .bash_profile:
 $ yarn run colossus signup <5YourJoyMemberAddress.json>
 # Note that the rest of the guide will assume you did in fact configure .bash_profile and don't need "yarn run"
-# Follow the instructions as prompted. For ease of use, it's best to not set a password.
+# Follow the instructions as prompted. For ease of use, it's best to not set a password... If you do, rememember to add:
+# --passphrase <your_passphrase> as an argument every time you start the colossus server.
 ```
 
 This produces a new key `<5YourStorageAddress.json>`, and prompts you to open the "app" (Pioneer). Make sure that you your current/default is the `5YourJoyMemberAddress` key. After you click `Stake`, you will see a notification in the top right corner. If you get an error, this most likely means all the slots are full. Unfortunately, this means you have to import the `<5YourStorageAddress.json>` to recover your tokens.
@@ -273,6 +274,8 @@ If it succeeded, proceed as shown below:
 ```
 # To make sure everything is running smoothly, it would be helpful to run with DEBUG:
 $ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
+# If you set a passphrase for <5YourStorageAddress.json>:
+$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --passphrase <your_passphrase> --public-url https://<your.cool.url>
 ```
 
 If you do this, you should see something like:
@@ -397,6 +400,38 @@ If you get a black screen with a media player, that means you are good!
 
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
+
+## Port not set
+
+If you get this error:
+```
+TypeError [ERR_INVALID_OPT_VALUE]: The value "{ port: true, host: '::' }" is invalid for option "options"
+    at Server.listen (net.js:1450:9)
+    at Promise (/root/storage-node-joystream/packages/colossus/bin/cli.js:129:12)
+    at new Promise (<anonymous>)
+    at start_express_app (/root/storage-node-joystream/packages/colossus/bin/cli.js:120:10)
+    at start_all_services (/root/storage-node-joystream/packages/colossus/bin/cli.js:138:10)
+    at Object.server (/root/storage-node-joystream/packages/colossus/bin/cli.js:328:11)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+```
+
+It most likely means your port is not set, (although it should default to 3000).
+
+```
+$ colossus --help
+# Should list the path to your current config file.
+$ cat /path/to/.config/configstore/@joystream/colossus.json
+# should return something like:
+---
+{
+ "port": 3000,
+ "syncPeriod": 300000,
+ "publicUrl": "https://<your.cool.url>",
+ "keyFile": "/path/to/<5YourStorageAddress.json>"
+}
+```
+If `"port": <n>` is missing, or not a number, pass the:
+`-p <n> ` argument or edit your config file, where `<n>` could be 3000.
 
 ## Install yarn and node on linux
 

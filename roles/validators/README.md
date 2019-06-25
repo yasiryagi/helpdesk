@@ -1,4 +1,4 @@
-<p align="center"><img src="validator.png"></p>
+<p align="center"><img src="img/validator.png"></p>
 
 <div align="center">
   <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/substrate-node-joystream">full node</a>, and get started as a Validator on the latest

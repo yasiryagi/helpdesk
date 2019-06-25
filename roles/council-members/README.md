@@ -1,4 +1,4 @@
-<p align="center"><img src="council_member.png"></p>
+<p align="center"><img src="img/council_member.png"></p>
 
 <div align="center">
   <h4>This is a step-by-step guide through Joystream council election cycle, allowing users to take part in the governance system for the
