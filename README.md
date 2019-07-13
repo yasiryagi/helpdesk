@@ -60,7 +60,7 @@
 
 
 # Overview
-This repo contains detailed guides and help for user to interact with our current [testnet](http://testnet.joystream.org/).
+This repo contains detailed guides and help for users to interact with our current [testnet](http://testnet.joystream.org/).
 
 # Contribute
 If you find something that is wrong or missing, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](#builders-and-bug-reporters). For more information on this, please see the [bounties repo](https://github.com/Joystream/bounties).
@@ -70,7 +70,7 @@ Some of the roles will be compensated in [Monero](https://www.getmonero.org/). O
 
 ## How it Works
 **Note**
-After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
+After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Accounts` showing up.
 
 In order for us know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar.
 
@@ -85,12 +85,12 @@ For our convenience, we ask you to use a regular address or sub-address (95 char
 To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser [here](http://testnet.joystream.org).
 
 ## Generate Keys
-Click `My keys` in the sidebar, and then select the `Create Keys` tab. The choices you make from here, depends a little on how you want to participate. If you just want to play around, you can just follow the defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
+Click `My Keys` in the sidebar, and then select the `Create Keys` tab. The choices you make from here, depends a little on how you want to participate. If you just want to play around, you can just follow the defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
 
 In any event, the `Keys` will be stored in your browser for your convenience, but it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file. The `Mnemonic` can also be used to restore your `Keys`, but will not do you any good if you want to become a `Validator`.
 
 ## Get a Membership
-To become a `Member` of the platform, you need some tokens. Either click the `Get free tokens` link, or click [here](https://testnet.joystream.org/faucet). After you solved the captcha, your tokens should be on their way.
+To become a `Member` of the platform, you need some tokens. Either click the `Free Tokens` link, or click [here](https://testnet.joystream.org/faucet). After you solved the captcha, your tokens should be on their way.
 
 **Note**
 All transactions (extrinsics) cost 1 Joy token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/acropolis/pioneer/#/forum).
@@ -197,13 +197,13 @@ If you find a bug, potential improvement, or just an idea, there are a couple of
 
 #### Report a software bug
 
-Go to the applicable technical repo(s), eg. [node repo](https://github.com/Joystream/substrate-node-joystream), [Pioneer repo](https://github.com/Joystream/apps/tree/joystream),  [storage node repo](https://github.com/Joystream/storage-node-joystream), [runtime-repo](https://github.com/Joystream/substrate-runtime-joystream), etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
+Go to the applicable technical repo(s), e.g. [node repo](https://github.com/Joystream/substrate-node-joystream), [Pioneer repo](https://github.com/Joystream/apps/tree/joystream),  [storage node repo](https://github.com/Joystream/storage-node-joystream), [runtime-repo](https://github.com/Joystream/substrate-runtime-joystream), etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
 
 #### Errors in the helpdesk guides (or a non-code repo)
 
 If you find something missing, inaccurate or poorly described, either report an `Issue`, or even better, make a `Pull request`.
 
-This applies equally to this repo as well as the other non-code repos, eg. [landing repo](https://github.com/Joystream/joystream), [communications repo](https://github.com/Joystream/communications), [bounties repo](https://github.com/Joystream/bounties), etc. it will most likely be covered by [this bounty](https://github.com/Joystream/bounties/issues/3). Note that the bar here is quite low (grammar, dead links, etc.) so more significant findings can lead to a lot larger payouts.
+This applies equally to this repo as well as the other non-code repos, e.g. [landing repo](https://github.com/Joystream/joystream), [communications repo](https://github.com/Joystream/communications), [bounties repo](https://github.com/Joystream/bounties), etc. it will most likely be covered by [this bounty](https://github.com/Joystream/bounties/issues/3). Note that the bar here is quite low (grammar, dead links, etc.) so more significant findings can lead to a lot larger payouts.
 
 #### Fix a software bug, or add/improve a feature
 
