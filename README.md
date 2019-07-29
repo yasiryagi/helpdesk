@@ -1,4 +1,4 @@
-<p align="center"><img src="helpdesk-repo.svg"></p>
+<p align="center"><img src="img/helpdesk-repo.svg"></p>
 
 <div align="center">
   <h4>Guides to get started on our <a href="https://testnet.joystream.org/">current testnet</a> in links below<h4>
@@ -105,7 +105,7 @@ Note that the new rewards will not apply before the [runtime upgrade](https://te
 
 ## Validators
 
-<p align="center"><img src="validator_50.png"></p>
+<p align="center"><img src="img/validator_50.png"></p>
 
 ### Description
 In proof of stake systems, block producers, or `Validators`, are typically paid a fixed amount for each block produced. `Validators` must run a full node.
@@ -137,7 +137,7 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ## Council Members
 
-<p align="center"><img src="council_10.png"></p>
+<p align="center"><img src="img/council_10.png"></p>
 
 ### Description
 
@@ -158,7 +158,7 @@ Payouts will be made at ~11:00GMT the day after the election/vote.
 
 ## Storage Providers
 
-<p align="center"><img src="storage_300.png"></p>
+<p align="center"><img src="img/storage_300.png"></p>
 
 ### Description
 
@@ -183,7 +183,7 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ## Builders and Bug Reporters
 
-<p align="center""><img src="bug-report.png" style="height:400px"></p>
+<p align="center""><img src="img/bug-report.png" style="height:400px"></p>
 
 ### Description
 

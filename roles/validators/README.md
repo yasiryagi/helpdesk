@@ -1,4 +1,4 @@
-<p align="center"><img src="validator.png"></p>
+<p align="center"><img src="img/validator.png"></p>
 
 <div align="center">
   <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/substrate-node-joystream">full node</a>, and get started as a Validator on the latest
@@ -58,7 +58,7 @@ If you want to earn more `Joy` tokens, but for some reason can´t or won't becom
 
 # Instructions
 
-The instructions below covers Windows, Mac and Linux (64 bit and armv7). As a general note, remember to use your `session` key when setting the `memo` to qualify for the monero rewards.
+The instructions below covers Windows, Mac and Linux (64 bit and armv7). As a general note, remember to use your `controller` key when setting the `memo` to qualify for the monero rewards.
 Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows the `Pioneer` app to connect to your own node in `Settings`. It seems neither Firefox, Safari or Edge will connect at this time.
 
 If you want to be visible in the polkadot/substrate telemetry, go [here](https://telemetry.polkadot.io/). Note that for windows and armv7 (raspberry pi), you need to add a telemetry flag at startup (see applicable setup node).
