@@ -65,6 +65,8 @@ If you want to be visible in the polkadot/substrate telemetry, go [here](https:/
 
 If your `Validator` have experienced some of the networking issues described [here](https://github.com/Joystream/substrate-node-joystream/issues/68), consider restarting your node at regular intervals. If you want to automate this process, consider running your node as a [service](#run-as-a-service).
 
+You should not start validating unless your node is fully synced. If you do, this causes your node to be dropped out from the list of validators.
+
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
 
