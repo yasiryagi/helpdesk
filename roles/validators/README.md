@@ -430,8 +430,9 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 10. Type in your password in the `unlock with password` field and click `sign and submit`.
 11. Your `controller` account should now show a `Set Session Key` button. Click it.
 12. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-13. Your `controller` account should now show a `Validate` button. Click it.
-14. You can leave the `unstake threshold` and `payment preferences` as defaults, or go to [advanced](#validating-preferences). Confirm, sign and submit.
+13. You need to check your node, which you started earlier. In the output `target=#"block_height"` should equal `best: #"synced_height"`. Do not proceed before those two values are identical, as your node will be dropped out from the validators if your node is not fully synced.
+14. Your `controller` account should now show a `Validate` button. Click it.
+15. You can leave the `unstake threshold` and `payment preferences` as defaults, or go to [advanced](#validating-preferences). Confirm, sign and submit.
 
 Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
