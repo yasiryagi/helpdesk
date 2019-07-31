@@ -198,9 +198,6 @@ $ systemctl stop caddy
 
 ## Install and Setup the Storage Node
 
-**Note**
-If you proceed before [this PR](https://github.com/Joystream/storage-node-joystream/pull/82) is merged, you will need to [update later](#update-storage-node)
-
 First, you need to clone the repo.
 
 ```
@@ -263,7 +260,7 @@ $ colossus signup <5YourJoyMemberAddress.json>
 # If you didn't configure your .bash_profile:
 $ yarn run colossus signup <5YourJoyMemberAddress.json>
 # Note that the rest of the guide will assume you did in fact configure .bash_profile and don't need "yarn run"
-# Follow the instructions as prompted. For ease of use, it's best to not set a password... If you do, rememember to add:
+# Follow the instructions as prompted. For ease of use, it's best to not set a password... If you do, remember to add:
 # --passphrase <your_passphrase> as an argument every time you start the colossus server.
 ```
 
@@ -331,7 +328,7 @@ Should return nothing.
 
 ### Run storage node as a service
 
-To ensure how uptime, it's best to set the system up as a `service`. Note that this will not work if you set a password for your `<5YourStorageAddress.json> `.
+To ensure high uptime, it's best to set the system up as a `service`. Note that this will not work if you set a password for your `<5YourStorageAddress.json> `.
 
 Example file below:
 
