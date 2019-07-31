@@ -418,6 +418,8 @@ Note that you only *strictly need* the Raw seed for the `session` keypair, but i
 
 In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
+**IMPORTANT:** Read step 13. carefully. Your node needs to be fully synced, before proceeding to step 14.
+
 1. Still in the `My keys` sidebar of the [Pioneer App](https://testnet.joystream.org/pioneer), choose your `stash` key.
 2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
 3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
