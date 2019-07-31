@@ -169,7 +169,7 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 ...
 ```
 **Note**
-If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
+If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get slashed and kicked out as `Validator`.
 
 #### Final Step
 
@@ -271,7 +271,7 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 ...
 ```
 **Note**
-If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-1) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
+If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-1) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get slashed and kicked out as `Validator`.
 
 #### Final Step
 
@@ -305,7 +305,6 @@ $ tar -vxf joystream-node-1.0.0-armv7.tar.gz
 $ ./joystream-node
 # If you want your node to have a non-random identifier:
 $ ./joystream-node --name <nodename>
-# armv7 (raspberry pi) only:
 # If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
 $ ./joystream-node --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/
 
@@ -382,7 +381,7 @@ If your `session` was generated as `Schnorrkel (sr25519)`, it will show a comple
 
 #### Final Step
 
-Now it's time to configure your kees to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
+Now it's time to configure your keys to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
 
 ---
 
@@ -432,7 +431,7 @@ In order to be a `validator`, you need stake. Note that you may have to refresh 
 10. Type in your password in the `unlock with password` field and click `sign and submit`.
 11. Your `controller` account should now show a `Set Session Key` button. Click it.
 12. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-13. You need to check your node, which you started earlier. In the output `target=#"block_height"` should equal `best: #"synced_height"`. Do not proceed before those two values are identical, as your node will be dropped out from the validators if your node is not fully synced.
+13. You need to check your node, which you started earlier. In the output `target=#"block_height"` should equal `best: #"synced_height"`. Do not proceed before those two values are identical, as your node will be dropped out from the validators if your node is not fully synced. If you did start your node with `--name <nodename>` parameter, then also can check if your node is fully synced from [Telemetry](https://telemetry.polkadot.io/#list/Joystream%20Testnet%20v2).
 14. Your `controller` account should now show a `Validate` button. Click it.
 15. You can leave the `unstake threshold` and `payment preferences` as defaults, or go to [advanced](#validating-preferences). Confirm, sign and submit.
 
@@ -549,7 +548,7 @@ After you are happy with your configuration:
 ```
 $ systemctl daemon-reload
 # this is only strictly necessary after you changed the .service file after running, but chances are you will need to use it once or twice.
-# if your node is still running, now is the the time to kill it.
+# if your node is still running, now is the time to kill it.
 $ systemctl start joystream-node
 # if everything is correctly configured, this command will not return anything.
 # To verify it's running:
@@ -595,11 +594,11 @@ If you don't want to use the default settings, here are some of the options you 
 The bonding preferences decides on how where your (Joy) staking rewards are distributed. There are three alternatives:
 1. `Stash account (increase the amount at stake)` (default).
 
-This automatically sends all rewards the the `stash` address, where it gets bonded as additional stake. This will increase your probability of staying in the `validator` set.
+This automatically sends all rewards the `stash` address, where it gets bonded as additional stake. This will increase your probability of staying in the `validator` set.
 
 2. `Stash account (do no increase the amount at stake)`
 
-As like `1.` this automatically sends all rewards the the `stash` address, but does *not* get bonded as stake, meaning you it will not help "guard" your spot in the `validator` set.
+As like `1.` this automatically sends all rewards the `stash` address, but does *not* get bonded as stake, meaning you it will not help "guard" your spot in the `validator` set.
 
 3. `Controller account`
 
@@ -608,7 +607,7 @@ This sends all rewards to the `controller`, at your disposal.
 #### Validating preferences
 1. The `unstake threshold` is the amount of times you can get slashed (for being offline) before you're automatically [unstaked](#unstaking). A low number can mean you stop being `validator` just because your internet is down a minute, but if you set the number too high, you will get slashed heavily if your node breaks down or you lose internet for an hour.
 
-2. the `payment preferences` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The defualt (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
+2. the `payment preferences` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
 
 Let `v` [Joy] be the bonded tokens for the validator `stash`
 Let `p` [Joy] be the `payment preference` decided by the validator
