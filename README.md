@@ -101,8 +101,6 @@ Now, click `Members` in the sidebar, and select the `Register` tab. Choose a `Ha
 
 The list below shows the currently active roles available at our current [testnet](https://testnet.joystream.org/pioneer).
 
-Note that the new rewards will not apply before the [runtime upgrade](https://testnet.joystream.org/athens/pioneer/#/proposals/2) to `Acropolis`.
-
 ## Validators
 
 <p align="center"><img src="img/validator_50.png"></p>
@@ -128,10 +126,10 @@ print(blockreward)
 0.05
 ```
 
-The number - 0.05 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and blocks come in every 6secs. With armv7 binaries or low-end VPS nodes, it should be cheap to run!
+The number - 0.05 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and blocks come in every 6 seconds. With armv7 binaries or low-end VPS nodes, it should be cheap to run!
 
 ### Payouts
-`Validators` must include their [xmr address](#how-it-works) in the `memo` of their `controller` key.
+`Validators` must include their [XMR address](#how-it-works) in the `memo` of their `controller` key.
 
 Payouts will be made every Monday at ~11:00GMT.
 
@@ -166,8 +164,6 @@ You can't have a video platform without videos, so someone has to take the role 
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
 
-**NOTE:** We will kick out all the current `Storage Providers` before the launch of Acropolis, so everyone will compete on the same terms.
-
 ### Incentives
 
 Up to 10 `Storage Providers` that keep a full copy and provides continues service for at least 24h will compete for $300 per week. In addition,  you will earn $0.025/GB/week calculated on an average basis. Please note that the setup is a lot more complicated this time, so some experience using linux on the command line is required. You will also need a domain to point to your node, so unless you already own one (that you don't mind using), you will need to buy one... A detailed guide to setting up the node can be found [here](/roles/storage-providers).
@@ -177,7 +173,7 @@ We will try our best to police the `Storage Providers`, so if you are not doing 
 
 ### Payouts
 
-`Storage Providers` must include their [xmr address](#how-it-works) in the `memo` of their `membership` key, or their `storage` key to qualify for rewards. The former is "better", but requires a little more work...
+`Storage Providers` must include their [XMR address](#how-it-works) in the `memo` of their `membership` key, or their `storage` key to qualify for rewards. The former is "better", but requires a little more work...
 
 Payouts will be made every Monday at ~11:00GMT.
 
@@ -214,6 +210,7 @@ If you want, you can just make a PR directly, and your contribution will be comp
 The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure the add your monero address to the `memo` field of your Joystream address.
 
 # Other Features and Future Roles
+
 This section covers other things you can do after [getting started](#getting-started), that isn't a paid role as of now.
 
 ## Upload Content

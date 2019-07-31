@@ -45,10 +45,10 @@ The election cycle consists four stages.
 4. `Term`         - lasts 201600 blocks (~14days)
 
 ## Announcement
-During the `Announcement` stage, anyone that is `Member`, and holds at least unstaked 1000Joy (ie. if you use your `validator` `stash` key, you need a `balance` > `bonded` +1000Joy) tokens can announce their candidacy to become a `Council Member`.
+During the `Announcement` stage, anyone that is `Member`, and holds at least unstaked 1000 Joy (ie. if you use your `validator` `stash` key, you need a `balance` > `bonded` + 1000 Joy) tokens can announce their candidacy to become a `Council Member`.
 
 Select `Council` in the sidebar, and click the `Applicants` tab. Set the amount of tokens you want to, stake, and confirm.
-If you want to put more stake behind your candidacy later, you can top up at any point during the stage. After sending the transaction, you should appear under "Applicants". The max number of Applicants is `25`. When the 25th candidate applies, the one with the lowest amount staked will be pushed off the list, and get their stake returned. In total, `12` Council Members must be elected. If there are less than 12 applicants, the `Announcment` stage will be restarted.
+If you want to put more stake behind your candidacy later, you can top up at any point during the stage. After sending the transaction, you should appear under "Applicants". The max number of Applicants is `25`. When the 25th candidate applies, the one with the lowest amount staked will be pushed off the list, and get their stake returned. In total, `12` Council Members must be elected. If there are less than 12 applicants, the `Announcement` stage will be restarted.
 
 ## Voting
 As soon as the `Announcement` stage closes, you can begin voting for applicants. As with everything else, you need to stake in order to do so. Joystream is currently working under the "One Token - One Vote" principal. Go to the `Votes` tab, set your staking amount, select your candidate and generate a `Random salt`. This will be needed to reveal and actually "broadcast" your vote. You can vote more than once, for your self, and for more than one applicant. All the data will be stored in your browser, so as long as you are using the same machine/browser/cookies, you don't need to save anything.
