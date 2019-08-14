@@ -1,4 +1,4 @@
-<p align="center"><img src="helpdesk-repo.svg"></p>
+<p align="center"><img src="img/helpdesk-repo.svg"></p>
 
 <div align="center">
   <h4>Guides to get started on our <a href="https://testnet.joystream.org/">current testnet</a> in links below<h4>
@@ -60,7 +60,7 @@
 
 
 # Overview
-This repo contains detailed guides and help for user to interact with our current [testnet](http://testnet.joystream.org/).
+This repo contains detailed guides and help for users to interact with our current [testnet](http://testnet.joystream.org/).
 
 # Contribute
 If you find something that is wrong or missing, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](#builders-and-bug-reporters). For more information on this, please see the [bounties repo](https://github.com/Joystream/bounties).
@@ -70,7 +70,7 @@ Some of the roles will be compensated in [Monero](https://www.getmonero.org/). O
 
 ## How it Works
 **Note**
-After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
+After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Accounts` showing up.
 
 In order for us know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar.
 
@@ -85,12 +85,12 @@ For our convenience, we ask you to use a regular address or sub-address (95 char
 To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser [here](http://testnet.joystream.org).
 
 ## Generate Keys
-Click `My keys` in the sidebar, and then select the `Create Keys` tab. The choices you make from here, depends a little on how you want to participate. If you just want to play around, you can just follow the defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
+Click `My Keys` in the sidebar, and then select the `Create Keys` tab. The choices you make from here, depends a little on how you want to participate. If you just want to play around, you can just follow the defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
 
 In any event, the `Keys` will be stored in your browser for your convenience, but it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file. The `Mnemonic` can also be used to restore your `Keys`, but will not do you any good if you want to become a `Validator`.
 
 ## Get a Membership
-To become a `Member` of the platform, you need some tokens. Either click the `Get free tokens` link, or click [here](https://testnet.joystream.org/faucet). After you solved the captcha, your tokens should be on their way.
+To become a `Member` of the platform, you need some tokens. Either click the `Free Tokens` link, or click [here](https://testnet.joystream.org/faucet). After you solved the captcha, your tokens should be on their way.
 
 **Note**
 All transactions (extrinsics) cost 1 Joy token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/acropolis/pioneer/#/forum).
@@ -101,11 +101,9 @@ Now, click `Members` in the sidebar, and select the `Register` tab. Choose a `Ha
 
 The list below shows the currently active roles available at our current [testnet](https://testnet.joystream.org/pioneer).
 
-Note that the new rewards will not apply before the [runtime upgrade](https://testnet.joystream.org/athens/pioneer/#/proposals/2) to `Acropolis`.
-
 ## Validators
 
-<p align="center"><img src="validator_50.png"></p>
+<p align="center"><img src="img/validator_50.png"></p>
 
 ### Description
 In proof of stake systems, block producers, or `Validators`, are typically paid a fixed amount for each block produced. `Validators` must run a full node.
@@ -128,16 +126,16 @@ print(blockreward)
 0.05
 ```
 
-The number - 0.05 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and blocks come in every 6secs. With armv7 binaries or low-end VPS nodes, it should be cheap to run!
+The number - 0.05 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and blocks come in every 6 seconds. With armv7 binaries or low-end VPS nodes, it should be cheap to run!
 
 ### Payouts
-`Validators` must include their [xmr address](#how-it-works) in the `memo` of their `controller` key.
+`Validators` must include their [XMR address](#how-it-works) in the `memo` of their `controller` key.
 
 Payouts will be made every Monday at ~11:00GMT.
 
 ## Council Members
 
-<p align="center"><img src="council_10.png"></p>
+<p align="center"><img src="img/council_10.png"></p>
 
 ### Description
 
@@ -158,15 +156,13 @@ Payouts will be made at ~11:00GMT the day after the election/vote.
 
 ## Storage Providers
 
-<p align="center"><img src="storage_300.png"></p>
+<p align="center"><img src="img/storage_300.png"></p>
 
 ### Description
 
 You can't have a video platform without videos, so someone has to take the role storing the data. In the future, this will be highly specialized role, focusing on what is implied by the name of the role. For Acropolis, it will in practice also entail the future `Bandwidth Provider` role.
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
-
-**NOTE:** We will kick out all the current `Storage Providers` before the launch of Acropolis, so everyone will compete on the same terms.
 
 ### Incentives
 
@@ -177,13 +173,13 @@ We will try our best to police the `Storage Providers`, so if you are not doing 
 
 ### Payouts
 
-`Storage Providers` must include their [xmr address](#how-it-works) in the `memo` of their `membership` key, or their `storage` key to qualify for rewards. The former is "better", but requires a little more work...
+`Storage Providers` must include their [XMR address](#how-it-works) in the `memo` of their `membership` key, or their `storage` key to qualify for rewards. The former is "better", but requires a little more work...
 
 Payouts will be made every Monday at ~11:00GMT.
 
 ## Builders and Bug Reporters
 
-<p align="center""><img src="bug-report.png" style="height:400px"></p>
+<p align="center""><img src="img/bug-report.png" style="height:400px"></p>
 
 ### Description
 
@@ -197,13 +193,13 @@ If you find a bug, potential improvement, or just an idea, there are a couple of
 
 #### Report a software bug
 
-Go to the applicable technical repo(s), eg. [node repo](https://github.com/Joystream/substrate-node-joystream), [Pioneer repo](https://github.com/Joystream/apps/tree/joystream),  [storage node repo](https://github.com/Joystream/storage-node-joystream), [runtime-repo](https://github.com/Joystream/substrate-runtime-joystream), etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
+Go to the applicable technical repo(s), e.g. [node repo](https://github.com/Joystream/substrate-node-joystream), [Pioneer repo](https://github.com/Joystream/apps/tree/joystream),  [storage node repo](https://github.com/Joystream/storage-node-joystream), [runtime-repo](https://github.com/Joystream/substrate-runtime-joystream), etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
 
 #### Errors in the helpdesk guides (or a non-code repo)
 
 If you find something missing, inaccurate or poorly described, either report an `Issue`, or even better, make a `Pull request`.
 
-This applies equally to this repo as well as the other non-code repos, eg. [landing repo](https://github.com/Joystream/joystream), [communications repo](https://github.com/Joystream/communications), [bounties repo](https://github.com/Joystream/bounties), etc. it will most likely be covered by [this bounty](https://github.com/Joystream/bounties/issues/3). Note that the bar here is quite low (grammar, dead links, etc.) so more significant findings can lead to a lot larger payouts.
+This applies equally to this repo as well as the other non-code repos, e.g. [landing repo](https://github.com/Joystream/joystream), [communications repo](https://github.com/Joystream/communications), [bounties repo](https://github.com/Joystream/bounties), etc. it will most likely be covered by [this bounty](https://github.com/Joystream/bounties/issues/3). Note that the bar here is quite low (grammar, dead links, etc.) so more significant findings can lead to a lot larger payouts.
 
 #### Fix a software bug, or add/improve a feature
 
@@ -214,6 +210,7 @@ If you want, you can just make a PR directly, and your contribution will be comp
 The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure the add your monero address to the `memo` field of your Joystream address.
 
 # Other Features and Future Roles
+
 This section covers other things you can do after [getting started](#getting-started), that isn't a paid role as of now.
 
 ## Upload Content
