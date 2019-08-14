@@ -2,14 +2,14 @@
 
 <div align="center">
   <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/substrate-node-joystream">full node</a>, and get started as a Validator on the latest
-  <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a><h4>
+  <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a>.<h4>
 </div>
 
 
 
-# Table of contents
+# Table of Contents
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
-- [Table of contents](#table-of-contents)
+- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Instructions](#instructions)
 - [On Your Machine](#on-your-machine)
@@ -54,16 +54,16 @@
 
 This page contains all information on how to setup your node and becoming a `Validator` on the Joystream Testnets. It will be updated for improvements, and when something changes for new testnets.
 
-If you want to earn more `Joy` tokens, but for some reason can´t or won't become a `Validator`, you can `Nominate` instead.
+If you want to earn more `Joy` tokens, but for some reason can't or won't become a `Validator`, you can `Nominate` instead.
 
 # Instructions
 
 The instructions below covers Windows, Mac and Linux (64 bit and armv7). As a general note, remember to use your `controller` key when setting the `memo` to qualify for the monero rewards.
-Some browsers will work better than others, but in general, chrome and chromium based browsers seems to offer the best experience, as it allows the `Pioneer` app to connect to your own node in `Settings`. It seems neither Firefox, Safari or Edge will connect at this time.
+Some browsers will work better than others, but in general, Chrome and Chromium-based browsers seems to offer the best experience, as it allows the `Pioneer` app to connect to your own node in `Settings`. It seems neither Firefox, Safari or Edge will connect at this time.
 
 If you want to be visible in the polkadot/substrate telemetry, go [here](https://telemetry.polkadot.io/). Note that for windows and armv7 (raspberry pi), you need to add a telemetry flag at startup (see applicable setup node).
 
-If your `Validator` have experienced some of the networking issues described [here](https://github.com/Joystream/substrate-node-joystream/issues/68), consider restarting your node at regular intervals. If you want to automate this process, consider running your node as a [service](#run-as-a-service).
+If your `Validator` has experienced some of the networking issues described [here](https://github.com/Joystream/substrate-node-joystream/issues/68), consider restarting your node at regular intervals. If you want to automate this process, consider running your node as a [service](#run-as-a-service).
 
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
@@ -74,7 +74,7 @@ After introducing `Memberships` to the platform, we found it to be confusing to 
 
 ## Windows
 
-* Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
+* Every time something is written in `<brackets>`, it means you have to replace this with your input, without the `<>`.
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
 * For terminal commands, `>` means you must type what comes after that on windows and mac respectively. `#` Means it's just a comment/explanation, and must not be typed.
 ```
@@ -140,7 +140,7 @@ If you want to have the application talk to your own node, choose `Settings` in 
 If you haven't already, go [here](#generate-your-keys) to generate your keys.
 
 1. Open the terminal that is running your node, and kill the session with `ctrl+c` (twice).
-    * On windows, the first`ctrl+c` this will produce a long and confusing output.
+    * On Windows, the first `ctrl+c` will produce a long and confusing output.
 2. Restart it again with the following command:
 ```
 > joystream-node.exe --validator --key <0xMyLongRawSeed>
@@ -169,7 +169,7 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 ...
 ```
 **Note**
-If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get slashed and kicked out as `Validator`.
+If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get slashed and kicked out as a `Validator`.
 
 #### Final Step
 
@@ -180,7 +180,7 @@ Now it's time to configure your kees to start validating. Go [here](#configure-y
 
 ## Mac
 
-* Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
+* Every time something is written in `<brackets>`, it means you have to replace this with your input, without the `<>`.
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
 * For terminal commands, `$` means you must type what comes after that on windows and mac respectively. `#` Means it's just a comment/explanation, and must not be typed.
 ```
@@ -393,7 +393,7 @@ Now it's time to configure your keys to start validating. Go [here](#configure-y
 
 While the node is syncing, you can start the process of setting up the rest.
 
-1. Go the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Create keys` tab.
+1. Go to the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Create keys` tab.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
@@ -402,7 +402,7 @@ Names are entirely optional, but the next steps will be easier if you follow the
 4. Copy the `"0xYourLongSessionRawSeed"`, and save it somewhere safe - like a password manager. You need this later!
 5. Choose a password (this key will hold all your tokens!)
 6. For the `session` key, you also need to select `Edwards (ed25519)` from the `Advanced creation options`.
-7. Click `Save` -> `Create and backup keys`
+7. Click `Save` -> `Create and backup keys`.
 
 Depending on your browser, you might have to confirm saving the `"5YourJoySessionAddress.json"`.
 
@@ -415,14 +415,14 @@ Note that you only *strictly need* the Raw seed for the `session` keypair, but i
 
 #### Configure your validator keys
 
-In order to be a `validator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away.
+In order to be a `Validator`, you need to stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
 **IMPORTANT:** Read step 13. carefully. Your node needs to be fully synced, before proceeding to step 14.
 
-1. Still in the `My keys` sidebar of the [Pioneer App](https://testnet.joystream.org/pioneer), choose your `stash` key.
-2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
+1. Still in the `My Keys` sidebar of the [Pioneer App](https://testnet.joystream.org/pioneer), choose your `stash` key.
+2. Click the `Free Tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
 3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
-4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
+4. Now, click `Validators` in the sidebar, and then the `Validator Staking` tab.
 5. Locate the address/key named `stash`, and click `Bond Funds`.
 6. In the popup window, choose your `controller` as the `controller account`.
 7. Enter the amount you want to stake in the `value bonded` field. (It could be wise to leave a couple of Joy left).
@@ -441,8 +441,8 @@ Refresh your browser, and select the `Validator Overview` tab. If your account s
 
 ## Run as a service
 
-If you are running your node on a [linux](#linux) and want to have to run it as a [service](https://wiki.debian.org/systemd/Services), you can set it up this way.
-Note that you should avoid this unless you know what you are doing, or is running your node on **your own VPS**, or a single board computer. With great (sudo) privileges, comes great responsibilities!
+If you are running your node on a [linux](#linux) and want to run it as a [service](https://wiki.debian.org/systemd/Services), you can set it up this way.
+Note that you should avoid this unless you know what you are doing, are running your node on **your own VPS** or a single board computer. With great (sudo) privileges, comes great responsibilities!
 
 If you are already running as a `validator`, consider [unstaking](#unstaking) first, as you may experience some downtime if you make any mistakes in the setup.
 
@@ -635,10 +635,10 @@ If you haven't already been through the process of setting up your `stash`, `con
 #### Configure your nominating keys
 In order to be a `nominator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away. If you have previously been a `Validator`, or tried to do so, skip ahead to step `9.`.
 
-1. In the `My keys` sidebar, choose your `stash` key.
-2. Click the `Get free tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
+1. In the `My Keys` sidebar, choose your `stash` key.
+2. Click the `Free Tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
 3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
-4. Now, click `Validators` in the sidebar, and then the `Validator staking` tab.
+4. Now, click `Validators` in the sidebar, and then the `Validator Staking` tab.
 5. Locate the address/key named `stash`, and click `Bond Funds`.
 6. In the popup window, choose your `controller` as the `controller account`.
 7. Enter the amount you want to stake in the `value bonded` field.
@@ -657,7 +657,7 @@ If you had any issues setting it up, you may find your answer here!
 
 Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519)` for your `session` key, and didn't notice before you configured your `Validator keys`? This can be resolved.
 
-1. Go to `Validators` -> `Validator staking` and `Unstake`.
+1. Go to `Validators` -> `Validator Staking` and `Unstake`.
 
 2. Generate a new `session` key with `Edwards (ed25519)`, restart your node, and replace the `raw seed` with the new one.
 
@@ -665,7 +665,7 @@ Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519
 
 4. Go to `Extrinsics`, and select your `controller` key from the dropdown at the top. In the second dropdown, select `session`, and in the third, `setKey`. Finally, choose your new `session` key in the fourth and final dropdown, and submit.
 
-5. Once it confirms, go back to `Validators` -> `Validator staking` and `Stake`.
+5. Once it confirms, go back to `Validators` -> `Validator Staking` and `Stake`.
 
 In the `Next up`, your new `session` key should show, and match the `authority key` in your node. (minus the final 3 characters).
 
