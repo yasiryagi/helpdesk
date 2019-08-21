@@ -1,15 +1,15 @@
 <p align="center"><img src="img/storage_provider.png"></p>
 
 <div align="center">
-  <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/storage-node-joystream">storage node</a>, and get started as a Storage Provider on the latest
-  <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a><h4>
+  <h4>This is a step-by-step guide to setting up your <a href="https://github.com/Joystream/storage-node-joystream">storage node</a>, and getting started as a Storage Provider on the latest
+  <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a>.<h4>
 </div>
 
 
 
-# Table of contents
+# Table of Contents
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
-- [Table of contents](#table-of-contents)
+- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Instructions](#instructions)
   - [Initial setup](#initial-setup)
@@ -29,7 +29,7 @@
 
 # Overview
 
-This page will contain all information on how to setup your storage node and becoming a `Storage Provider` on the Joystream Testnets. As we have decided to re-write the node from scratch instead of fixing the one currently active, there is currently no reason to run the node before the release of [Acropolis](https://github.com/Joystream/joystream/tree/master/testnets/acropolis#live-milestones).
+This page will contain all information on how to setup your storage node and becoming a `Storage Provider` on the Joystream Testnets.
 
 # Instructions
 
@@ -37,7 +37,7 @@ The instructions below will assume you are running as `root`. This makes the ins
 
 Note that this has only been tested on fresh images of `Ubuntu 16.04 LTS`, `Ubuntu 18.04 LTS` and `Debian 8`.
 
-The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better. (Not an affiliate).
+The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better (not an affiliate link).
 
 Please note that unless there are any open spots (which you can check in [Pioneer](https://testnet.joystream.org/pioneer) under `Roles` -> `Available Roles`), you will not be able to join. Note that we will be quite vigilant in booting non-performing `Storage Providers`, so if you have everything setup in advance, you could be the quickest to take a slot when it opens!
 
@@ -107,7 +107,7 @@ $ systemctl stop ipfs
 ```
 
 ## Setup Hosting
-In order to allow for users to upload and download, you have to setup hosting, with an actual domain as both chrome and firefox requires `https://`. If you have a "spare" domain or subdomain you don't mind using for this purpose, go to your domain registrar and point your domain to the IP you want. If you don't, you must unfortunately go purchase one.
+In order to allow for users to upload and download, you have to setup hosting, with an actual domain as both Chrome and Firefox requires `https://`. If you have a "spare" domain or subdomain you don't mind using for this purpose, go to your domain registrar and point your domain to the IP you want. If you don't, you must unfortunately go purchase one.
 
 To configure SSL-certificates the easiest is to use [caddy](https://caddyserver.com/), but feel free to take a different approach. Note that if you are using caddy for commercial use, you need to acquire a license. Please check their terms and make sure you comply with what is considered personal use.
 

@@ -24,10 +24,10 @@
   </h3>
 </div>
 
-# Table of contents
+# Table of Contents
 
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
-- [Table of contents](#table-of-contents)
+- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Contribute](#contribute)
 - [Get Paid to Participate](#get-paid-to-participate)
@@ -79,7 +79,7 @@ In order for us know what address to pay, you must tie your Joystream address to
 "4or8YourXmrAddressInDoubleQuotesAndNothingElse"
 ```
 
-For our convenience, we ask you to use a regular address or sub-address (95 char) instead of the (106 char) payment-ID style address. The latter will not be paid out automatically, but if you ask nicely, you might get away with once.
+For our convenience, we ask you to use a regular address or sub-address (95 char) instead of the (106 char) payment-ID style address. The latter will not be paid out automatically, but if you ask nicely, you might get away with it once.
 
 # Get Started
 To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser [here](http://testnet.joystream.org).
@@ -147,7 +147,7 @@ A detailed explanation the election cycle and responsibilities can be found [her
 
 We are looking at how to best incentivize them to act in the platforms long term interest. As this position generated less interest than we anticipated, we are tweaking the incentives by increasing the payout to get elected from $8 to $10.
 
-If during you term a proposal to upgrade the runtime is submitted by the `sudo` key, `5CJzTaCp5fuqG7NdJQ6oUCwdmFHKichew8w4RZ3zFHM8qSe6` anyone that votes yes will receive a bonus worth $10.
+If during you term a proposal to upgrade the runtime is submitted by the `sudo` key, `5CJzTaCp5fuqG7NdJQ6oUCwdmFHKichew8w4RZ3zFHM8qSe6` anyone that votes `yes` will receive a bonus worth $10.
 
 ### Payouts
 During the `Announcement` and `Voting` stage, you should include some information about yourself, and why you should get elected in your `memo` field. If you do get elected, make sure to change the `memo` field to your monero address in order to get your reward.
@@ -168,7 +168,7 @@ Unlike `Validators` that can come and go without too much friction (at least for
 
 Up to 10 `Storage Providers` that keep a full copy and provides continues service for at least 24h will compete for $300 per week. In addition,  you will earn $0.025/GB/week calculated on an average basis. Please note that the setup is a lot more complicated this time, so some experience using linux on the command line is required. You will also need a domain to point to your node, so unless you already own one (that you don't mind using), you will need to buy one... A detailed guide to setting up the node can be found [here](/roles/storage-providers).
 
-We will try our best to police the `Storage Providers`, so if you are not doing your job (either lack of maintenance, or cheating) at least make sure to not get caught!
+We will try our best to police the `Storage Providers`, so if you are not doing your job (either lack of maintenance or cheating), at least make sure to not get caught!
 
 
 ### Payouts
@@ -199,7 +199,7 @@ Go to the applicable technical repo(s), e.g. [node repo](https://github.com/Joys
 
 If you find something missing, inaccurate or poorly described, either report an `Issue`, or even better, make a `Pull request`.
 
-This applies equally to this repo as well as the other non-code repos, e.g. [landing repo](https://github.com/Joystream/joystream), [communications repo](https://github.com/Joystream/communications), [bounties repo](https://github.com/Joystream/bounties), etc. it will most likely be covered by [this bounty](https://github.com/Joystream/bounties/issues/3). Note that the bar here is quite low (grammar, dead links, etc.) so more significant findings can lead to a lot larger payouts.
+This applies equally to this repo as well as the other non-code repos, e.g. [landing repo](https://github.com/Joystream/joystream), [communications repo](https://github.com/Joystream/communications), [bounties repo](https://github.com/Joystream/bounties), etc. it will most likely be covered by [this bounty](https://github.com/Joystream/bounties/issues/3). Note that the bar here is quite low (grammar, dead links, etc.) so more significant findings can lead to significantly larger payouts.
 
 #### Fix a software bug, or add/improve a feature
 
