@@ -57,7 +57,7 @@ As soon as the `Announcement` stage closes, you can begin voting for applicants.
 As soon as the `Voting` stage closes, the Revealing stage begins. This is when you can reveal your vote. Go to the `Reveal a vote` tab, to actually broadcast your vote. Votes that are not revealed in time will not get counted in the election.
 
 ## Term
-As soon as the `Reveal` stage closes, the 12 candidates with the highest total backing, ie. their own stake + voter stake, will become `Council Members`. Their term will run for 14 days, after which a new `Council` will been elected.
+As soon as the `Reveal` stage closes, the 12 candidates with the highest total backing, ie. their own stake + voter stake, will become `Council Members`. Their term will run for 14 days, after which a new `Council` will be elected.
 
 Note that the next `Announcement` stage will start exactly 201600 blocks (14 days) after the previous.
 

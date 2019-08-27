@@ -207,7 +207,7 @@ If you want, you can just make a PR directly, and your contribution will be comp
 
 ### Payouts
 
-The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure the add your monero address to the `memo` field of your Joystream address.
+The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure to add your monero address to the `memo` field of your Joystream address.
 
 # Other Features and Future Roles
 
