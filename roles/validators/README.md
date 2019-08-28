@@ -88,7 +88,7 @@ Get the binary [here](https://github.com/Joystream/substrate-node-joystream/rele
 
 If you don't have it, download Microsoft Visual Studio C++ runtime distributable 2015 [here](https://www.microsoft.com/en-ie/download/details.aspx?id=48145).  
 
-Get the missing ssl libraries [here](https://indy.fulgan.com/SSL/openssl-1.0.2q-x64_86-win64.zip), extract, and move the files `ssleay32.dll` and `libeay32.dll` to `C:\joystream-node-windows-x64`.
+Get the missing SSL libraries [here](https://indy.fulgan.com/SSL/openssl-1.0.2q-x64_86-win64.zip), extract, and move the files `ssleay32.dll` and `libeay32.dll` to `C:\joystream-node-windows-x64`.
 
 Open `Command Prompt` (type in cmd... after clicking windows button):
 
@@ -173,7 +173,7 @@ If your `session` was generated as `Schnorrkel (sr25519)`, it will show a comple
 
 #### Final Step
 
-Now it's time to configure your kees to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
+Now it's time to configure your keys to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
 
 
 ---
@@ -377,7 +377,7 @@ Using authority key  "5YourJoySessionAddress"  # See Note
 ...
 ```
 **Note**
-If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-2) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get get slashed and kicked out as `Validator`.
+If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-2) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get slashed and kicked out as `Validator`.
 
 #### Final Step
 
@@ -462,7 +462,7 @@ $ nano joystream-node.service
 
 The example below assumes the following:
 - You want to restart your node every 24h (`86400`s)
-- You have setup a user `joystream` to to run the node
+- You have setup a user `joystream` to run the node
 - The path to the `joystream-node` binary is `/home/joystream/joystream-node`
 
 ```
@@ -503,8 +503,8 @@ Restart=on-failure
 
 The example below assumes the following:
 - You want to restart your node every 24h (`86400`s)
-- You have setup a user `root` to to run the node
-- The path to the `joystream-node` binary is `/home/joystream/joystream-node`
+- You have setup a user `root` to run the node
+- The path to the `joystream-node` binary is `/root/joystream-node`
 
 ```
 [Unit]
@@ -607,7 +607,7 @@ This sends all rewards to the `controller`, at your disposal.
 #### Validating preferences
 1. The `unstake threshold` is the amount of times you can get slashed (for being offline) before you're automatically [unstaked](#unstaking). A low number can mean you stop being `validator` just because your internet is down a minute, but if you set the number too high, you will get slashed heavily if your node breaks down or you lose internet for an hour.
 
-2. the `payment preferences` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
+2. The `payment preferences` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
 
 Let `v` [Joy] be the bonded tokens for the validator `stash`
 Let `p` [Joy] be the `payment preference` decided by the validator
