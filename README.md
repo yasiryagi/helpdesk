@@ -93,7 +93,7 @@ In any event, the `Keys` will be stored in your browser for your convenience, bu
 To become a `Member` of the platform, you need some tokens. Either click the `Free Tokens` link, or click [here](https://testnet.joystream.org/faucet). After you solved the captcha, your tokens should be on their way.
 
 **Note**
-All transactions (extrinsics) cost 1 Joy token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/acropolis/pioneer/#/forum).
+All transactions (extrinsic) cost 1 Joy token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/acropolis/pioneer/#/forum).
 
 Now, click `Members` in the sidebar, and select the `Register` tab. Choose a `Handle/nickname`. Optionally, provide a link to an image file for your avatar, and fill in the markdown enabled `About` field.
 
@@ -111,7 +111,7 @@ In proof of stake systems, block producers, or `Validators`, are typically paid 
 A detailed guide to setting up the `Validator` node and settings can be found [here](/roles/validators).
 
 ### Incentives
-Due to some connectivity issues we had for a while, the `Validator` nodes was often getting booted. Because of this, we are increasing the payout pool from $30 to $50 per week.
+Due to some connectivity issues we had for a while, the `Validator` nodes were often getting booted. Because of this, we are increasing the payout pool from $30 to $50 per week.
 
 ```
 blocktime = 6
