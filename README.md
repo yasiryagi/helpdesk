@@ -93,7 +93,7 @@ In any event, the `Keys` will be stored in your browser for your convenience, bu
 To become a `Member` of the platform, you need some tokens. Either click the `Free Tokens` link, or click [here](https://testnet.joystream.org/faucet). After you solved the captcha, your tokens should be on their way.
 
 **Note**
-All transactions (extrinsic) cost 1 Joy token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/acropolis/pioneer/#/forum).
+All transactions (extrinsics) cost 1 Joy token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/acropolis/pioneer/#/forum).
 
 Now, click `Members` in the sidebar, and select the `Register` tab. Choose a `Handle/nickname`. Optionally, provide a link to an image file for your avatar, and fill in the markdown enabled `About` field.
 
@@ -139,13 +139,13 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ### Description
 
-`Council Members` are elected by the stakeholders in the system to act in the interest of their constituency. Currently, `Council Members` can only vote on `proposals` to upgrade the `runtime`. In the future, the council will also allocate the platforms resources, and hire executive personnel to run the day to day operations.
+`Council Members` are elected by the stakeholders in the system to act in the interest of their constituency. Currently, `Council Members` can only vote on `proposals` to upgrade the `runtime`. In the future, the council will also allocate the platform's resources, and hire executive personnel to run the day to day operations.
 
-A detailed explanation the election cycle and responsibilities can be found [here](/roles/council-members).
+A detailed explanation of the election cycle and responsibilities can be found [here](/roles/council-members).
 
 ### Incentives
 
-We are looking at how to best incentivize them to act in the platforms long term interest. As this position generated less interest than we anticipated, we are tweaking the incentives by increasing the payout to get elected from $8 to $10.
+We are looking at how to best incentivize them to act in the platform's long term interest. As this position generated less interest than we anticipated, we are tweaking the incentives by increasing the payout to get elected from $8 to $10.
 
 If during you term a proposal to upgrade the runtime is submitted by the `sudo` key, `5CJzTaCp5fuqG7NdJQ6oUCwdmFHKichew8w4RZ3zFHM8qSe6` anyone that votes `yes` will receive a bonus worth $10.
 
@@ -160,13 +160,13 @@ Payouts will be made at ~11:00GMT the day after the election/vote.
 
 ### Description
 
-You can't have a video platform without videos, so someone has to take the role storing the data. In the future, this will be highly specialized role, focusing on what is implied by the name of the role. For Acropolis, it will in practice also entail the future `Bandwidth Provider` role.
+You can't have a video platform without videos, so someone has to take the role of storing the data. In the future, this will be a highly specialized role, focusing on what is implied by the name of the role. For Acropolis, it will in practice also entail the future `Bandwidth Provider` role.
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
 
 ### Incentives
 
-Up to 10 `Storage Providers` that keep a full copy and provides continues service for at least 24h will compete for $300 per week. In addition,  you will earn $0.025/GB/week calculated on an average basis. Please note that the setup is a lot more complicated this time, so some experience using linux on the command line is required. You will also need a domain to point to your node, so unless you already own one (that you don't mind using), you will need to buy one... A detailed guide to setting up the node can be found [here](/roles/storage-providers).
+Up to 10 `Storage Providers` that keep a full copy and provides continuous service for at least 24h will compete for $300 per week. In addition,  you will earn $0.025/GB/week calculated on an average basis. Please note that the setup is a lot more complicated this time, so some experience using linux on the command line is required. You will also need a domain to point to your node, so unless you already own one (that you don't mind using), you will need to buy one... A detailed guide to setting up the node can be found [here](/roles/storage-providers).
 
 We will try our best to police the `Storage Providers`, so if you are not doing your job (either lack of maintenance or cheating), at least make sure to not get caught!
 

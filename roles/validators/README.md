@@ -152,7 +152,7 @@ If you haven't already, go [here](#generate-your-keys) to generate your keys.
 # Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
 # it might help your uptime by also passing:
 --in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but default is 25.
+# after the other flags. You can choose any number you like, but the default is 25.
 ```
 This time, the output should show a slightly different startup output:
 ```
@@ -208,7 +208,7 @@ $ ./joystream-node
 # Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
 # it might help your uptime by also passing:
 --in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but default is 25.
+# after the other flags. You can choose any number you like, but the default is 25.
 ```
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -254,7 +254,7 @@ $ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed
 # Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
 # it might help your uptime by also passing:
 --in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but default is 25.
+# after the other flags. You can choose any number you like, but the default is 25.
 ```
 This time, the output should show a slightly different startup output:
 ```
@@ -311,7 +311,7 @@ $ ./joystream-node --name <nodename> --telemetry-url ws://telemetry.polkadot.io:
 # Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
 # it might help your uptime by also passing:
 --in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but default is 25.
+# after the other flags. You can choose any number you like, but the default is 25.
 ```
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -360,7 +360,7 @@ $ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed
 # Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
 # it might help your uptime by also passing:
 --in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but default is 25.
+# after the other flags. You can choose any number you like, but the default is 25.
 ```
 This time, the output should show a slightly different startup output:
 ```
@@ -421,17 +421,17 @@ In order to be a `Validator`, you need to stake. Note that you may have to refre
 
 1. Still in the `My Keys` sidebar of the [Pioneer App](https://testnet.joystream.org/pioneer), choose your `stash` key.
 2. Click the `Free Tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
+3. Send some tokens to your `controller`. It needs to perform at least two transactions, but better to send ~10.
 4. Now, click `Validators` in the sidebar, and then the `Validator Staking` tab.
 5. Locate the address/key named `stash`, and click `Bond Funds`.
 6. In the popup window, choose your `controller` as the `controller account`.
 7. Enter the amount you want to stake in the `value bonded` field. (It could be wise to leave a couple of Joy left).
 8. In the `payment destination` dropdown, there are three options. Select the default `Stash account (increase the amount at stake)`, or go to [advanced](#bonding-preferences).
-9.The button `bond` should be highlighted now. Click it.
+9. The button `bond` should be highlighted now. Click it.
 10. Type in your password in the `unlock with password` field and click `sign and submit`.
 11. Your `controller` account should now show a `Set Session Key` button. Click it.
 12. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-13. You need to check your node, which you started earlier. In the output `target=#"block_height"` should equal `best: #"synced_height"`. Do not proceed before those two values are identical, as your node will be dropped out from the validators if your node is not fully synced. If you did start your node with `--name <nodename>` parameter, then also can check if your node is fully synced from [Telemetry](https://telemetry.polkadot.io/#list/Joystream%20Testnet%20v2).
+13. You need to check your node, which you started earlier. In the output `target=#"block_height"` should equal `best: #"synced_height"`. Do not proceed before those two values are identical, as your node will be dropped out from the validators if your node is not fully synced. If you did start your node with `--name <nodename>` parameter, then you also can check if your node is fully synced from [Telemetry](https://telemetry.polkadot.io/#list/Joystream%20Testnet%20v2).
 14. Your `controller` account should now show a `Validate` button. Click it.
 15. You can leave the `unstake threshold` and `payment preferences` as defaults, or go to [advanced](#validating-preferences). Confirm, sign and submit.
 
@@ -594,7 +594,7 @@ If you don't want to use the default settings, here are some of the options you 
 The bonding preferences decides on how where your (Joy) staking rewards are distributed. There are three alternatives:
 1. `Stash account (increase the amount at stake)` (default).
 
-This automatically sends all rewards the `stash` address, where it gets bonded as additional stake. This will increase your probability of staying in the `validator` set.
+This automatically sends all rewards the `stash` address, where it gets bonded as an additional stake. This will increase your probability of staying in the `validator` set.
 
 2. `Stash account (do no increase the amount at stake)`
 
@@ -605,7 +605,7 @@ As like `1.` this automatically sends all rewards the `stash` address, but does 
 This sends all rewards to the `controller`, at your disposal.
 
 #### Validating preferences
-1. The `unstake threshold` is the amount of times you can get slashed (for being offline) before you're automatically [unstaked](#unstaking). A low number can mean you stop being `validator` just because your internet is down a minute, but if you set the number too high, you will get slashed heavily if your node breaks down or you lose internet for an hour.
+1. The `unstake threshold` is the number of times you can get slashed (for being offline) before you're automatically [unstaked](#unstaking). A low number can mean you stop being `validator` just because your internet is down a minute, but if you set the number too high, you will get slashed heavily if your node breaks down or you lose the internet for an hour.
 
 2. The `payment preferences` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
 
@@ -637,7 +637,7 @@ In order to be a `nominator`, you need stake. Note that you may have to refresh 
 
 1. In the `My Keys` sidebar, choose your `stash` key.
 2. Click the `Free Tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Send some tokens to your `controller`. It needs to perform at least two transaction, but better to send ~10.
+3. Send some tokens to your `controller`. It needs to perform at least two transactions, but better to send ~10.
 4. Now, click `Validators` in the sidebar, and then the `Validator Staking` tab.
 5. Locate the address/key named `stash`, and click `Bond Funds`.
 6. In the popup window, choose your `controller` as the `controller account`.
