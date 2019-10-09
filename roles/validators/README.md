@@ -68,6 +68,9 @@ If your `Validator` has experienced some of the networking issues described [her
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
 
+**Note (ports)**
+In case you run a firewall on your node, a validator does not require any incoming ports to be open.
+
 # On Your Machine
 
 ---
