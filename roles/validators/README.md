@@ -594,7 +594,7 @@ $ systemctl start joystream-node
 If you don't want to use the default settings, here are some of the options you can configure.
 
 #### Bonding preferences
-The bonding preferences decides on how your (Joy) staking rewards are distributed. There are three alternatives:
+The bonding preferences decide on how your (Joy) staking rewards are distributed. There are three alternatives:
 1. `Stash account (increase the amount at stake)` (default).
 
 This automatically sends all rewards the `stash` address, where it gets bonded as an additional stake. This will increase your probability of staying in the `validator` set.
