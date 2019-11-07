@@ -50,7 +50,7 @@ If you want to go the extra mile and try to resolve the issue yourself for a big
 #### Instructions
 As an open sourced project, we try to follow the standard conventions and workflow.
 
-If you find a bug, or want to improve or add something in the code, documentations or guides, locate the correct repo from the organization [index](https://github.com/Joystream/joystream#repository-index). Fork the repo, make the changes you want to address, and create a `Pull request`. For our mutual convenience, it would be nice if you raised an `Issue` first so we can agree on the scope, the size of the bounty and make sure this is something we want/need.
+If you find a bug, or want to improve or add something in the code, documentations or guides, locate the correct repo from the organization [index](https://github.com/Joystream/joystream#repository-index). Fork the repo, make the changes you want to address, and create a `Pull request`. For our mutual convenience, it would be nice if you raised an `Issue` first, so we can agree on the scope, the size of the bounty and make sure this is something we want/need.
 
 ---
 

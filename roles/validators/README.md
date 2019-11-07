@@ -124,7 +124,7 @@ Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
 Listening for new connections on 127.0.0.1:9944.
 ...
 ...
-Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"iB/s ⬆ "upload_speed"kiB/s
+Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"kiB/s ⬆ "upload_speed"kiB/s
 ```
 From the last line, notice `target=#"block_height"` and `best: #"synced_height"`
 When the `target=#block_height`is the same as `best: #"synced_height"`, your node is fully synced!
@@ -229,7 +229,7 @@ Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
 Listening for new connections on 127.0.0.1:9944.
 ...
 ...
-Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"iB/s ⬆ "upload_speed"kiB/s
+Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"kiB/s ⬆ "upload_speed"kiB/s
 ```
 From the last line, notice `target=#"block_height"` and `best: #"synced_height"`
 When the `target=#block_height`is the same as `best: #"synced_height"`, your node is fully synced!
@@ -298,7 +298,7 @@ Open the terminal:
 
 ```
 $ cd ~/
-# 64 bit debian based linux
+# 64 bit debian based Linux
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-linux-x86_64.tar.gz
 $ tar -vxf joystream-node-1.0.0-linux-x86_64.tar.gz
 # armv7 (raspberry pi)
@@ -332,7 +332,7 @@ Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
 Listening for new connections on 127.0.0.1:9944.
 ...
 ...
-Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"iB/s ⬆ "upload_speed"kiB/s
+Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"kiB/s ⬆ "upload_speed"kiB/s
 ```
 From the last line, notice `target=#"block_height"` and `best: #"synced_height"`
 When the `target=#block_height`is the same as `best: #"synced_height"`, your node is fully synced!
@@ -444,7 +444,7 @@ Refresh your browser, and select the `Validator Overview` tab. If your account s
 
 ## Run as a service
 
-If you are running your node on a [linux](#linux) and want to run it as a [service](https://wiki.debian.org/systemd/Services), you can set it up this way.
+If you are running your node on a [Linux](#linux) and want to run it as a [service](https://wiki.debian.org/systemd/Services), you can set it up this way.
 Note that you should avoid this unless you know what you are doing, are running your node on **your own VPS** or a single board computer. With great (sudo) privileges, comes great responsibilities!
 
 If you are already running as a `validator`, consider [unstaking](#unstaking) first, as you may experience some downtime if you make any mistakes in the setup.
@@ -594,7 +594,7 @@ $ systemctl start joystream-node
 If you don't want to use the default settings, here are some of the options you can configure.
 
 #### Bonding preferences
-The bonding preferences decides on how where your (Joy) staking rewards are distributed. There are three alternatives:
+The bonding preferences decides on how your (Joy) staking rewards are distributed. There are three alternatives:
 1. `Stash account (increase the amount at stake)` (default).
 
 This automatically sends all rewards the `stash` address, where it gets bonded as an additional stake. This will increase your probability of staying in the `validator` set.
