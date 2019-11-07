@@ -166,7 +166,7 @@ Unlike `Validators` that can come and go without too much friction (at least for
 
 ### Incentives
 
-Up to 12 `Storage Providers` that keep a full copy and provides continuous service for at least 24h will compete for $360 per week. In addition,  you will earn $0.025/GB/week calculated on an average basis. Please note that the setup is a lot more complicated this time, so some experience using linux on the command line is required. You will also need a domain to point to your node, so unless you already own one (that you don't mind using), you will need to buy one... A detailed guide to setting up the node can be found [here](/roles/storage-providers).
+Up to 12 `Storage Providers` that keep a full copy and provides continuous service for at least 24h will compete for $360 per week. In addition, you will earn $0.025/GB/week calculated on an average basis. Please note that the setup is a lot more complicated this time, so some experience using Linux on the command line is required. You will also need a domain to point to your node, so unless you already own one (that you don't mind using), you will need to buy one... A detailed guide to setting up the node can be found [here](/roles/storage-providers).
 
 We will try our best to police the `Storage Providers`, so if you are not doing your job (either lack of maintenance or cheating), at least make sure to not get caught!
 
@@ -193,7 +193,7 @@ If you find a bug, potential improvement, or just an idea, there are a couple of
 
 #### Report a software bug
 
-Go to the applicable technical repo(s), e.g. [node repo](https://github.com/Joystream/substrate-node-joystream), [Pioneer repo](https://github.com/Joystream/apps/tree/joystream),  [storage node repo](https://github.com/Joystream/storage-node-joystream), [runtime-repo](https://github.com/Joystream/substrate-runtime-joystream), etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
+Go to the applicable technical repo(s), e.g. [node repo](https://github.com/Joystream/substrate-node-joystream), [Pioneer repo](https://github.com/Joystream/apps/tree/joystream), [storage node repo](https://github.com/Joystream/storage-node-joystream), [runtime-repo](https://github.com/Joystream/substrate-runtime-joystream), etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
 
 #### Errors in the helpdesk guides (or a non-code repo)
 
