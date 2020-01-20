@@ -1,4 +1,4 @@
-<p align="center"><img src="img/builder.png"></p>
+<p align="center"><img src="img/builder_new.svg"></p>
 
 <div align="center">
   <h4>This guide will explain how you can take part in building the Joystream platform, either reporting bugs or contributing to our

@@ -1,4 +1,4 @@
-<p align="center"><img src="img/helpdesk-repo.svg"></p>
+<p align="center"><img src="img/helpdesk_new.svg"></p>
 
 <div align="center">
   <h4>Guides to get started on our <a href="https://testnet.joystream.org/">current testnet</a> in links below<h4>
