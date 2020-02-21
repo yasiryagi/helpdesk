@@ -1,4 +1,4 @@
-<p align="center"><img src="img/storage_provider.png"></p>
+<p align="center"><img src="img/storage-provider_new.svg"></p>
 
 <div align="center">
   <h4>This is a step-by-step guide to setting up your <a href="https://github.com/Joystream/storage-node-joystream">storage node</a>, and getting started as a Storage Provider on the latest
