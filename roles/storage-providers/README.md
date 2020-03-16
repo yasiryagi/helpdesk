@@ -7,9 +7,10 @@
 
 
 
-# Table of Contents
+Table of Contents
+==
+
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
-- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Instructions](#instructions)
   - [Initial setup](#initial-setup)

@@ -7,11 +7,22 @@
 
 
 
-# Table of Contents
+Table of Contents
+==
+
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
-
+- [Overview](#overview)
+- [Hiring Process](#hiring-process)
+  - [Applying for a Role](#applying-for-a-role)
+    - [Accepting applications](#accepting-applications)
+      - [Track the status of your application](#track-the-status-of-your-application)
+      - [Withdraw or change your application](#withdraw-or-change-your-application)
+    - [Applications in review](#applications-in-review)
+      - [Track the status of your application](#track-the-status-of-your-application-1)
+  - [Hiring complete](#hiring-complete)
+- [Working as a curator](#working-as-a-curator)
+- [Advanced](#advanced)
 <!-- TOC END -->
-
 
 # Overview
 
