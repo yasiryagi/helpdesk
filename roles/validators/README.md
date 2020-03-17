@@ -213,7 +213,7 @@ You should now have two sets of keys, namely:
 - the "stash" key that will stake your funds
 - the "controller" key that you will use to operate your validator
 
-5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, [click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
+5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, [click here](https://faucet.joystream.org/). Solve the captcha, and you should receive tokens.
 
 If you want/need more, ask in the telegram chat. Note that long time followers will receive more tokens than newcomers.
 
@@ -457,7 +457,7 @@ You should now have two sets of keys, namely:
 - the "stash" key that will stake your funds
 - the "controller" key that you will use to operate your validator
 
-5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, [click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
+5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, [click here](https://faucet.joystream.org/). Solve the captcha, and you should receive tokens.
 
 If you want/need more, ask in the telegram chat. Note that long time followers will receive more tokens than newcomers.
 
