@@ -145,7 +145,7 @@ print(blockreward)
 The number - 0.10 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and blocks come in every 6 seconds. With armv7 binaries or low-end VPS nodes, it should be cheap to run!
 
 ### Payouts
-`Validators` must include their [XMR address](#how-it-works) in the `memo` of their `controller` key.
+`Validators` must include their [XMR address](#how-it-works) in the `memo` of their `stash` key.
 
 Payouts will be made every Monday at ~11:00GMT.
 
