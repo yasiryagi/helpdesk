@@ -69,7 +69,6 @@
     - [Incentives](#incentives-5)
     - [Payouts](#payouts-5)
 - [Other Features and Future Roles](#other-features-and-future-roles)
-  - [Upload Content](#upload-content)
   - [On-Chain Forum](#on-chain-forum)
 - [Glossary](#glossary)
 <!-- TOC END -->
