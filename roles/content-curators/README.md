@@ -8,8 +8,16 @@
 
 
 # Table of Contents
-<!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
-
+<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
+- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
+- [Hiring Process](#hiring-process)
+  - [Applying for a Role](#applying-for-a-role)
+    - [Accepting applications](#accepting-applications)
+    - [Applications in review](#applications-in-review)
+  - [Hiring complete](#hiring-complete)
+- [Working as a curator](#working-as-a-curator)
+- [Advanced](#advanced)
 <!-- TOC END -->
 
 
