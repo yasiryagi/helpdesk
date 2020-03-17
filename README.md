@@ -119,7 +119,7 @@ The list below shows the currently active roles available at our current [testne
 
 ## Validators
 
-<p align="center"><img src="img/validators.png"></p>
+<p align="center"><img src="img/validators.png" width="700"></p>
 
 ### Description
 In proof of stake systems, block producers, or `Validators`, are typically paid a fixed amount for each block produced. `Validators` must run a full node.
@@ -151,7 +151,7 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ## Council Members
 
-<p align="center"><img src="img/councilmembers.png"></p>
+<p align="center"><img src="img/councilmembers.png" width="700"></p>
 
 ### Description
 
@@ -172,7 +172,7 @@ Payouts will be made at ~11:00GMT the day after the election/vote.
 
 ## Storage Providers
 
-<p align="center"><img src="img/storageproviders.png"></p>
+<p align="center"><img src="img/storageproviders.png" width="700"></p>
 
 ### Description
 
@@ -196,7 +196,7 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ## Content Creators
 
-<p align="center"><img src="img/contentcreators.png"></p>
+<p align="center"><img src="img/contentcreators.png" width="700"></p>
 
 ### Description
 
@@ -233,7 +233,7 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ## Content Curators
 
-<p align="center"><img src="img/contentcurators.png"></p>
+<p align="center"><img src="img/contentcurators.png" width="700"></p>
 
 ### Description
 
@@ -259,7 +259,7 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ## Builders and Bug Reporters
 
-<p align="center""><img src="img/bug-report.png" style="height:400px"></p>
+<p align="center""><img src="img/bugreporters.png" width="700"></p>
 
 ### Description
 
