@@ -82,7 +82,7 @@ $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v
 $ mv ~/Downloads/joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz ~/
 ---
 $ tar -vxf joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
-$ ./joystream-node --chain rome.json --pruning archive --validator
+$ ./joystream-node --chain rome-testnet.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
 - If you want get a more verbose log output, add the flag `<nodename> --log runtime`
@@ -146,7 +146,7 @@ $ tar -vxf joystream-node-2.1.2-441c04b-x86_64-linux-gnu.tar.gz
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-armv7-linux-gnueabihf.tar.gz
 $ tar -joystream-node-armv7-linux-gnueabihf.tar.gz
 # For both
-$ $ ./joystream-node --chain rome.json --pruning archive --validator
+$ $ ./joystream-node --chain rome-testnet.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
 - If you want get a more verbose log output, add the flag `<nodename> --log runtime`
@@ -287,7 +287,7 @@ Type=simple
 User=joystream
 WorkingDirectory=/home/joystream/
 ExecStart=/home/joystream/joystream-node \
-        --chain rome.json \
+        --chain rome-testnet.json \
         --pruning archive \
         --validator \
         --name <nodename>
@@ -327,7 +327,7 @@ Type=simple
 User=root
 WorkingDirectory=/root/
 ExecStart=/root/joystream-node \
-        --chain rome.json \
+        --chain rome-testnet.json \
         --pruning archive \
         --validator \
         --name <nodename>
