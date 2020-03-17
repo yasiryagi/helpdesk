@@ -16,12 +16,13 @@ This page contains links to the guides for the currently active roles, and a lis
 - [Validators](validators)
 - [Council Members](council-members)
 - [Storage Providers](storage-providers)
+- [Content Creator](content-creator)
+- [Content Curator](content-curator)
 - [Builders and Bug Reporters](builders)
 
 # Future Roles
  - Membership Screener
  - Membership Curator
- - Content Curator
  - Bandwidth Provider
  - Discovery Provider
  - Live Streaming Provider

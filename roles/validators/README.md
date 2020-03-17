@@ -7,27 +7,21 @@
 
 
 
-# Table of Contents
+Table of Contents
+==
+
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
-- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Instructions](#instructions)
 - [On Your Machine](#on-your-machine)
-  - [Windows](#windows)
+  - [Mac](#mac)
       - [Setup Node](#setup-node)
       - [Keys](#keys)
-      - [Re-start your node as a validator](#re-start-your-node-as-a-validator)
       - [Final Step](#final-step)
-  - [Mac](#mac)
+  - [Linux](#linux)
       - [Setup Node](#setup-node-1)
       - [Keys](#keys-1)
-      - [Re-start your node as a validator](#re-start-your-node-as-a-validator-1)
       - [Final Step](#final-step-1)
-  - [Linux](#linux)
-      - [Setup Node](#setup-node-2)
-      - [Keys](#keys-2)
-      - [Re-start your node as a validator](#re-start-your-node-as-a-validator-2)
-      - [Final Step](#final-step-2)
 - [In the Pioneer app (browser)](#in-the-pioneer-app-browser)
   - [Validator Setup](#validator-setup)
       - [Generate your keys](#generate-your-keys)
@@ -41,143 +35,27 @@
       - [Bonding preferences](#bonding-preferences)
       - [Validating preferences](#validating-preferences)
   - [Nominating](#nominating)
-      - [Generate keys](#generate-keys)
-      - [Configure your nominating keys](#configure-your-nominating-keys)
+      - [Generate your keys](#generate-your-keys-1)
+      - [Configure your validator keys](#configure-your-validator-keys-1)
 - [Troubleshooting](#troubleshooting)
-      - [Session key](#session-key)
-      - [Unstaking](#unstaking)
-      - [Restart validating after getting booted](#restart-validating-after-getting-booted)
 <!-- TOC END -->
-
 
 # Overview
 
 This page contains all information on how to setup your node and becoming a `Validator` on the Joystream Testnets. It will be updated for improvements, and when something changes for new testnets.
 
-If you want to earn more `Joy` tokens, but for some reason can't or won't become a `Validator`, you can `Nominate` instead.
+If you want to earn more `Joy` tokens, but for some reason can't or won't become a `Validator`, you can [`Nominate`](#nominating) instead.
 
 # Instructions
 
-The instructions below covers Windows, Mac and Linux (64 bit and armv7). As a general note, remember to use your `controller` key when setting the `memo` to qualify for the monero rewards.
-Some browsers will work better than others, but in general, Chrome and Chromium-based browsers seems to offer the best experience, as it allows the `Pioneer` app to connect to your own node in `Settings`. It seems neither Firefox, Safari or Edge will connect at this time.
-
-If you want to be visible in the polkadot/substrate telemetry, go [here](https://telemetry.polkadot.io/). Note that for windows and armv7 (raspberry pi), you need to add a telemetry flag at startup (see applicable setup node).
-
-If your `Validator` has experienced some of the networking issues described [here](https://github.com/Joystream/substrate-node-joystream/issues/68), consider restarting your node at regular intervals. If you want to automate this process, consider running your node as a [service](#run-as-a-service).
+The instructions below covers Mac and Linux (64 bit and armv7). Windows binaries are currently not available. As a general note, remember to use your `stash` key when setting the `memo` to qualify for the monero rewards, not controller this time!
 
 **Note**
-After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Account` showing up.
+If you are just running a node, and don't want to be a `Validator`, you can skip the flags
+`--pruning archive` and `--validator`
 
-**Note (ports)**
-In case you run a firewall on your node, a validator does not require any incoming ports to be open.
 
 # On Your Machine
-
----
-
-## Windows
-
-* Every time something is written in `<brackets>`, it means you have to replace this with your input, without the `<>`.
-* When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
-* For terminal commands, `>` means you must type what comes after that on windows and mac respectively. `#` Means it's just a comment/explanation, and must not be typed.
-```
-# This is just a comment, don't type or paste it in your terminal!
-> cd C:\joystream-node-1.0.0-windows-x86_64
-# Only type/paste the "cd C:\joystream-node-windows-x64", not the preceding > !
-```
-#### Setup Node
-
-Get the binary [here](https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-windows-x86_64.zip). To make the actual commands the same for all users, I'm going to save it `C:\` and unzip it there. `C:\joystream-node-1.0.0-windows-x86_64`. Feel free to store it somewhere else, just make sure you use the correct path in the instructions that follows.
-
-If you don't have it, download Microsoft Visual Studio C++ runtime distributable 2015 [here](https://www.microsoft.com/en-ie/download/details.aspx?id=48145).  
-
-Get the missing SSL libraries [here](https://indy.fulgan.com/SSL/openssl-1.0.2q-x64_86-win64.zip), extract, and move the files `ssleay32.dll` and `libeay32.dll` to `C:\joystream-node-windows-x64`.
-
-Open `Command Prompt` (type in cmd... after clicking windows button):
-
-```
-> cd C:\joystream-node-1.0.0-windows-x86_64
-> joystream-node.exe
-# If you want your node to have a non-random identifier:
-> joystream-node.exe --name <nodename>
-# If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
-> joystream-node.exe --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/
-
-# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
-# it might help your uptime by also passing:
---in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but default is 25.
-```
-Your node should now start syncing the blockchain. The output should look like this:
-```
-Joystream Node
-  version "Version"-"your_OS"
-  by Joystream, 2019
-Chain specification: Joystream Testnet v2
-Node name: "nodename"
-Roles: FULL
-Generated a new keypair: "some_long_ouput"
-Initializing Genesis block/state ("some_long_ouput")
-Loaded block-time = 6 seconds from genesis on first-launch startup.
-Best block: #0
-Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
-Listening for new connections on 127.0.0.1:9944.
-...
-...
-Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"kiB/s ⬆ "upload_speed"kiB/s
-```
-From the last line, notice `target=#"block_height"` and `best: #"synced_height"`
-When the `target=#block_height`is the same as `best: #"synced_height"`, your node is fully synced!
-
-**Keep the terminal window open.**
-
-#### Keys
-
-Now you need to generate your `keys` in the `Pioneer app`. Go [here](#generate-your-keys) to do that now.
-
-If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
-
-
-#### Re-start your node as a validator
-
-If you haven't already, go [here](#generate-your-keys) to generate your keys.
-
-1. Open the terminal that is running your node, and kill the session with `ctrl+c` (twice).
-    * On Windows, the first `ctrl+c` will produce a long and confusing output.
-2. Restart it again with the following command:
-```
-> joystream-node.exe --validator --key <0xMyLongRawSeed>
-# If you want your node to have a non-random identifier:
-> joystream-node.exe --name <nodename> --validator --key <0xYourLongSessionRawSeed>
-# If you also want it show up in telemetry:
-> joystream-node.exe --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/ --validator --key <0xYourLongSessionRawSeed>
-
-# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
-# it might help your uptime by also passing:
---in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but the default is 25.
-```
-This time, the output should show a slightly different startup output:
-```
-Joystream Node
-  version "version"-"your_OS"
-  by Joystream, 2019
-Chain specification: Joystream Staging Testnet
-Node name: "nodename"
-Roles: AUTHORITY
-Best block: #"synced_height"
-Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
-Listening for new connections on 127.0.0.1:9944.
-Using authority key  "5YourJoySessionAddress"  # See Note
-...
-```
-**Note**
-If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get slashed and kicked out as a `Validator`.
-
-#### Final Step
-
-Now it's time to configure your keys to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
-
 
 ---
 
@@ -197,36 +75,36 @@ Open the terminal (Applications->Utilities):
 
 ```
 $ cd ~/
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-osx-x86_64.zip
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/rome-testnet.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
 # Assuming it gets saved in your ~/Downloads folder:
-$ mv ~/Downloads/joystream-node-1.0.0-osx-x86_64.zip ~/
+$ mv ~/Downloads/joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz ~/
 ---
-$ tar -vxf joystream-node-1.0.0-osx-x86_64.zip
-$ ./joystream-node
-# If you want your node to have a non-random identifier:
-> ./joystream-node --name <nodename>
-
-# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
-# it might help your uptime by also passing:
---in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but the default is 25.
+$ tar -vxf joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
+$ ./joystream-node --chain rome-testnet.json --pruning archive --validator
 ```
+- If you want your node to have a non-random identifier, add the flag `--name <nodename>`
+- If you want get a more verbose log output, add the flag `<nodename> --log runtime`
+
 Your node should now start syncing the blockchain. The output should look like this:
 ```
 Joystream Node
   version "Version"-"your_OS"
   by Joystream, 2019
-Chain specification: Joystream Testnet v2
+Chain specification: "Joystream Version"
 Node name: "nodename"
-Roles: FULL
-Generated a new keypair: "some_long_ouput"
-Initializing Genesis block/state ("some_long_ouput")
-Loaded block-time = 6 seconds from genesis on first-launch startup.
-Best block: #0
-Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
-Listening for new connections on 127.0.0.1:9944.
+Roles: AUTHORITY
+Initializing Genesis block/state (state: "0x…", header-hash: "0x…")
+Loading GRANDPA authority set from genesis on what appears to be first startup.
+Loaded block-time = BabeConfiguration { slot_duration: 6000, epoch_length: 100, c: (1, 4), genesis_authorities: ...
+Creating empty BABE epoch changes on what appears to be first startup.
+Highest known block at #0
+Local node identity is: "peer id"
+Starting BABE Authorship worker
+Discovered new external address for our node: /ip4/"IP"/tcp/30333/p2p/"peer id"
+New epoch 0 launching at block ...
 ...
 ...
 Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"kiB/s ⬆ "upload_speed"kiB/s
@@ -238,47 +116,11 @@ When the `target=#block_height`is the same as `best: #"synced_height"`, your nod
 
 #### Keys
 
-Now you need to generate your `keys` in the `Pioneer app`. Go [here](#generate-your-keys) to do that now.
-
-If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
-
-
-#### Re-start your node as a validator
-
-If you haven't already, go [here](#generate-your-keys) to generate your keys.
-
-1. Open the terminal that is running your node, and kill the session with `ctrl+c`.
-2. Restart it again with the following command:
-```
-$ ./joystream-node --validator --key <0xMyLongRawSeed>
-# If you want your node to have a non-random identifier:
-$ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed>
-
-# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
-# it might help your uptime by also passing:
---in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but the default is 25.
-```
-This time, the output should show a slightly different startup output:
-```
-Joystream Node
-  version "version"-"your_OS"
-  by Joystream, 2019
-Chain specification: Joystream Staging Testnet
-Node name: "nodename"
-Roles: AUTHORITY
-Best block: #"synced_height"
-Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
-Listening for new connections on 127.0.0.1:9944.
-Using authority key  "5YourJoySessionAddress"  # See Note
-...
-```
-**Note**
-If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-1) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get slashed and kicked out as `Validator`.
+Now you need to generate your keys. Go [here](#generate-your-keys) to do that now.
 
 #### Final Step
 
-Now it's time to configure your keys to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
+Now it's time to configure your keys to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator`.
 
 ---
 
@@ -299,37 +141,35 @@ Open the terminal:
 ```
 $ cd ~/
 # 64 bit debian based Linux
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-linux-x86_64.tar.gz
-$ tar -vxf joystream-node-1.0.0-linux-x86_64.tar.gz
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-2.1.2-441c04b-x86_64-linux-gnu.tar.gz
+$ tar -vxf joystream-node-2.1.2-441c04b-x86_64-linux-gnu.tar.gz
 # armv7 (raspberry pi)
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v1.0.0/joystream-node-1.0.0-armv7.tar.gz
-$ tar -vxf joystream-node-1.0.0-armv7.tar.gz
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-armv7-linux-gnueabihf.tar.gz
+$ tar -joystream-node-armv7-linux-gnueabihf.tar.gz
 # For both
-$ ./joystream-node
-# If you want your node to have a non-random identifier:
-$ ./joystream-node --name <nodename>
-# If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
-$ ./joystream-node --name <nodename> --telemetry-url ws://telemetry.polkadot.io:1024/
-
-# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
-# it might help your uptime by also passing:
---in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but the default is 25.
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/rome-testnet.json
+$ $ ./joystream-node --chain rome-testnet.json --pruning archive --validator
 ```
+- If you want your node to have a non-random identifier, add the flag `--name <nodename>`
+- If you want get a more verbose log output, add the flag `<nodename> --log runtime`
+
 Your node should now start syncing the blockchain. The output should look like this:
 ```
 Joystream Node
   version "Version"-"your_OS"
   by Joystream, 2019
-Chain specification: Joystream Testnet v2
+Chain specification: "Joystream Version"
 Node name: "nodename"
-Roles: FULL
-Generated a new keypair: "some_long_ouput"
-Initializing Genesis block/state ("some_long_ouput")
-Loaded block-time = 6 seconds from genesis on first-launch startup.
-Best block: #0
-Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
-Listening for new connections on 127.0.0.1:9944.
+Roles: AUTHORITY
+Initializing Genesis block/state (state: "0x…", header-hash: "0x…")
+Loading GRANDPA authority set from genesis on what appears to be first startup.
+Loaded block-time = BabeConfiguration { slot_duration: 6000, epoch_length: 100, c: (1, 4), genesis_authorities: ...
+Creating empty BABE epoch changes on what appears to be first startup.
+Highest known block at #0
+Local node identity is: "peer id"
+Starting BABE Authorship worker
+Discovered new external address for our node: /ip4/"IP"/tcp/30333/p2p/"peer id"
+New epoch 0 launching at block ...
 ...
 ...
 Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_synced_tip"), finalized #0 ("hash_of_finalized_tip"), ⬇ "download_speed"kiB/s ⬆ "upload_speed"kiB/s
@@ -341,50 +181,11 @@ When the `target=#block_height`is the same as `best: #"synced_height"`, your nod
 
 #### Keys
 
-Now you need to generate your `keys` in the `Pioneer app`. Go [here](#generate-your-keys) to do that now.
-
-If you want to have the application talk to your own node, choose `Settings` in the sidebar, and change the `remote node/endpoint to connect to` to local node.
-
-
-#### Re-start your node as a validator
-
-If you haven't already, go [here](#generate-your-keys) to generate your keys.
-
-1. Open the terminal that is running your node, and kill the session with `ctrl+c`.
-2. Restart it again with the following command:
-```
-$ ./joystream-node --validator --key <0xMyLongRawSeed>
-# If you want your node to have a non-random identifier:
-$ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed>
-# armv7 (raspberry pi) only:
-# If you want your node to show up in the telemetry: https://telemetry.polkadot.io/
-$ ./joystream-node --name <nodename> --validator --key <0xYourLongSessionRawSeed> --telemetry-url ws://telemetry.polkadot.io:1024/
-
-# Note: due to some issues with our nodes getting mixed up with nodes from the chainX network (see telemetry link),
-# it might help your uptime by also passing:
---in-peers 100 --out-peers 100
-# after the other flags. You can choose any number you like, but the default is 25.
-```
-This time, the output should show a slightly different startup output:
-```
-Joystream Node
-  version "version"-"your_OS"
-  by Joystream, 2019
-Chain specification: Joystream Staging Testnet
-Node name: "nodename"
-Roles: AUTHORITY
-Best block: #"synced_height"
-Local node address is: /ip4/0.0.0.0/tcp/30333/p2p/"your_node_key"
-Listening for new connections on 127.0.0.1:9944.
-Using authority key  "5YourJoySessionAddress"  # See Note
-...
-```
-**Note**
-If your `session` was generated as `Schnorrkel (sr25519)`, it will show a completely different address. If this happens, go back and generate a new [session key](#generate-your-keys-2) with `Edwards (ed25519)`. If you don't, your node will try to sign blocks with the wrong key. As a consequence, you will get slashed and kicked out as `Validator`.
+Now you need to generate your keys. Go [here](#generate-your-keys) to do that now.
 
 #### Final Step
 
-Now it's time to configure your keys to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator` keys.
+Now it's time to configure your keys to start validating. Go [here](#configure-your-validator-keys) to configure your `Validator`.
 
 ---
 
@@ -400,45 +201,55 @@ While the node is syncing, you can start the process of setting up the rest.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
-2. Name your first keypair `session`, or at least something that contains the word. Ie `john-doe-session-key`.
-3. In the dropdown in the field below, choose `Raw seed`. Note that each time you toggle between `Mnemonic` and `Raw seed`, you will generate a new key pair.
-4. Copy the `"0xYourLongSessionRawSeed"`, and save it somewhere safe - like a password manager. You need this later!
-5. Choose a password (this key will hold all your tokens!)
-6. For the `session` key, you also need to select `Edwards (ed25519)` from the `Advanced creation options`.
-7. Click `Save` -> `Create and backup keys`.
+2. For ease of use, name your first keypair "stash", or at least something that contains the word.
 
-Depending on your browser, you might have to confirm saving the `"5YourJoySessionAddress.json"`.
+If you want to be able to recover your keys later, write down your mnemonic seed, key pair crypto type and secret derivation path.
 
-Repeat the steps two more times, but with different names, leaving you with three sets of keys as shown below:
-* `stash`
-* `controller`
-* `session`
+3. Depending on your browser, you might have to confirm saving the json file.
 
-Note that you only *strictly need* the Raw seed for the `session` keypair, but it's safer to do it for all of them.
+4. Repeat the process for your "controller" key.
+
+You should now have two sets of keys, namely:
+- the "stash" key that will stake your funds
+- the "controller" key that you will use to operate your validator
+
+5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, [click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
+
+If you want/need more, ask in the telegram chat. Note that long time followers will receive more tokens than newcomers.
+
+6. Send some tokens to your "controller". It needs to perform at least two transactions, but better to send ~10.
 
 #### Configure your validator keys
 
 In order to be a `Validator`, you need to stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
-**IMPORTANT:** Read step 13. carefully. Your node needs to be fully synced, before proceeding to step 14.
+**IMPORTANT:** Read step 6. carefully. Your node needs to be fully synced, before proceeding to step 7.
+1. In a terminal window on the machine/VPS your node is running, paste the following:
+```
+curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9933
+```
+If your node is running, this should return:
+```
+{"jsonrpc":"2.0","result":"0xa0very0long0hex0string","id":1}
+```
 
-1. Still in the `My Keys` sidebar of the [Pioneer App](https://testnet.joystream.org/pioneer), choose your `stash` key.
-2. Click the `Free Tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Send some tokens to your `controller`. It needs to perform at least two transactions, but better to send ~10.
-4. Now, click `Validators` in the sidebar, and then the `Validator Staking` tab.
-5. Locate the address/key named `stash`, and click `Bond Funds`.
-6. In the popup window, choose your `controller` as the `controller account`.
-7. Enter the amount you want to stake in the `value bonded` field. (It could be wise to leave a couple of Joy left).
-8. In the `payment destination` dropdown, there are three options. Select the default `Stash account (increase the amount at stake)`, or go to [advanced](#bonding-preferences).
-9. The button `bond` should be highlighted now. Click it.
-10. Type in your password in the `unlock with password` field and click `sign and submit`.
-11. Your `controller` account should now show a `Set Session Key` button. Click it.
-12. In the popup, select your `session` as your `session key` in the dropdown. Confirm, sign and submit.
-13. You need to check your node, which you started earlier. In the output `target=#"block_height"` should equal `best: #"synced_height"`. Do not proceed before those two values are identical, as your node will be dropped out from the validators if your node is not fully synced. If you did start your node with `--name <nodename>` parameter, then you also can check if your node is fully synced from [Telemetry](https://telemetry.polkadot.io/#list/Joystream%20Testnet%20v2).
-14. Your `controller` account should now show a `Validate` button. Click it.
-15. You can leave the `unstake threshold` and `payment preferences` as defaults, or go to [advanced](#validating-preferences). Confirm, sign and submit.
+This will save the session keys to your node. Make sure you don't close the window before copying the `0xa0very0long0hex0string` somewhere.
 
-Refresh your browser, and select the `Validator Overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
+If your node is not running, is running on a different port, or `curl` is not installed, it will return something like:
+```
+curl: (7) Failed to connect to localhost port 9933: Connection refused
+# or
+{"jsonrpc":"2.0","error":{"code":-32601,"message":"Method not found"},"id":1}
+```
+
+2. Back in [Pioneer](testnet.joystream.org/), click `Validators` in the sidebar, and then the `Account actions` tab.
+3. Click the `+ New stake` button, and select the keys from the first two dropdowns.
+4. In the third field, enter the amount you want to stake (the maximum amount is the tokens in the account -1).
+5. In the bottom dropdown, select the payment destination. Your selection here depends on your preferences.
+6. If the transaction goes through, you should now see a `Set Session Key` button next to your "stash" and "controller" keys in this window. Click it, paste in your `0xa0very0long0hex0string` in the field, and confirm.
+7. If the transaction goes through, you should now see a `Validate` button instead. Click it, and set your `reward commission`. Your selection here depends on your preferences.
+
+Refresh your browser, and select the `Staking overview` tab. If your account shows under `next up`, wait for the next `era`, and you will be moved to the `validators` list.
 
 # Advanced
 
@@ -478,10 +289,9 @@ Type=simple
 User=joystream
 WorkingDirectory=/home/joystream/
 ExecStart=/home/joystream/joystream-node \
-        --out-peers 100 \
-        --in-peers 100 \
+        --chain rome-testnet.json \
+        --pruning archive \
         --validator \
-        --key <0xYourLongSessionRawSeed> \
         --name <nodename>
 Restart=always
 RuntimeMaxSec=86400
@@ -519,10 +329,9 @@ Type=simple
 User=root
 WorkingDirectory=/root/
 ExecStart=/root/joystream-node \
-        --out-peers 100 \
-        --in-peers 100 \
+        --chain rome-testnet.json \
+        --pruning archive \
         --validator \
-        --key <0xYourLongSessionRawSeed> \
         --name <nodename>
 Restart=always
 RuntimeMaxSec=86400
@@ -601,16 +410,14 @@ This automatically sends all rewards the `stash` address, where it gets bonded a
 
 2. `Stash account (do no increase the amount at stake)`
 
-As like `1.` this automatically sends all rewards the `stash` address, but does *not* get bonded as stake, meaning you it will not help "guard" your spot in the `validator` set.
+As for 1. this automatically sends all rewards the `stash` address, but does *not* get bonded as stake, meaning you it will not help "guard" your spot in the `validator` set.
 
 3. `Controller account`
 
 This sends all rewards to the `controller`, at your disposal.
 
 #### Validating preferences
-1. The `unstake threshold` is the number of times you can get slashed (for being offline) before you're automatically [unstaked](#unstaking). A low number can mean you stop being `validator` just because your internet is down a minute, but if you set the number too high, you will get slashed heavily if your node breaks down or you lose the internet for an hour.
-
-2. The `payment preferences` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
+1. The `reward commision` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
 
 Let `v` [Joy] be the bonded tokens for the validator `stash`
 Let `p` [Joy] be the `payment preference` decided by the validator
@@ -632,45 +439,46 @@ If you want to get some return on your tokens without running a node yourself, y
 
 This might also come in handy if there are too many `validators` and you don't have enough tokens get a spot, or if you have to shut down your own node for a while.
 
-#### Generate keys
-If you haven't already been through the process of setting up your `stash`, `controller` and `session` key, you first need to [generate your keys](#generate-your-keys). Note that you don't need a `session` key to nominate, so you can skip those steps.
+#### Generate your keys
 
-#### Configure your nominating keys
-In order to be a `nominator`, you need stake. Note that you may have to refresh your browser if you're not seeing the options right away. If you have previously been a `Validator`, or tried to do so, skip ahead to step `9.`.
+1. Go to the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Create keys` tab.
 
-1. In the `My Keys` sidebar, choose your `stash` key.
-2. Click the `Free Tokens` link below your address, [or click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
-3. Send some tokens to your `controller`. It needs to perform at least two transactions, but better to send ~10.
-4. Now, click `Validators` in the sidebar, and then the `Validator Staking` tab.
-5. Locate the address/key named `stash`, and click `Bond Funds`.
-6. In the popup window, choose your `controller` as the `controller account`.
-7. Enter the amount you want to stake in the `value bonded` field.
-8. In the `payment destination` dropdown, there are three options. Select the default `Stash account (increase the amount at stake)`, or go to [advanced](#bonding-preferences).
-9. Your `controller` account should now show a `Set Session Key` and a `Nominating` button. Click the latter.
-10. In the popup, select/paste the `stash` address of the `Validator` you wish to nominate. Confirm, sign and submit.
+Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
-In the next `era`, you will show as a `nominator` of the `Validator` you nominated.
+2. For ease of use, name your first keypair "stash", or at least something that contains the word.
+
+If you want to be able to recover your keys later, write down your mnemonic seed, key pair crypto type and secret derivation path.
+
+3. Depending on your browser, you might have to confirm saving the json file.
+
+4. Repeat the process for your "controller" key.
+
+You should now have two sets of keys, namely:
+- the "stash" key that will stake your funds
+- the "controller" key that you will use to operate your validator
+
+5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, [click here](https://testnet.joystream.org/faucet). Solve the captcha, and you should receive tokens.
+
+If you want/need more, ask in the telegram chat. Note that long time followers will receive more tokens than newcomers.
+
+6. Send some tokens to your "controller". It needs to perform at least two transactions, but better to send ~10.
+
+#### Configure your validator keys
+
+In order to be a `Nominator`, you need to stake. Note that you may have to refresh your browser if you're not seeing the options right away.
+
+1. In [Pioneer](testnet.joystream.org/), click `Validators` in the sidebar, and then the `Account actions` tab.
+2. Click the `+ New stake` button, and select the keys from the first two dropdowns.
+3. In the third field, enter the amount you want to stake (the maximum amount is the tokens in the account -1).
+4. In the bottom dropdown, select the payment destination. Your selection here depends on your preferences.
+5. If the transaction goes through, you should now see a `Nominate` button next to your "stash" and "controller" keys in this window. Click it, and select the "stash" account(s) of the `Validator(s)` you want to `Nominate` for.
+7. Once submitted, you will start earning a share of the rewards.
 
 ---
 
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
-
-#### Session key
-
-Did you accidentally choose `Schnorrkel (sr25519)`, instead of `Edwards (ed25519)` for your `session` key, and didn't notice before you configured your `Validator keys`? This can be resolved.
-
-1. Go to `Validators` -> `Validator Staking` and `Unstake`.
-
-2. Generate a new `session` key with `Edwards (ed25519)`, restart your node, and replace the `raw seed` with the new one.
-
-3. Then, choose `Settings` in the sidebar, and switch from `Basic features only` to `Fully featured`.
-
-4. Go to `Extrinsics`, and select your `controller` key from the dropdown at the top. In the second dropdown, select `session`, and in the third, `setKey`. Finally, choose your new `session` key in the fourth and final dropdown, and submit.
-
-5. Once it confirms, go back to `Validators` -> `Validator Staking` and `Stake`.
-
-In the `Next up`, your new `session` key should show, and match the `authority key` in your node. (minus the final 3 characters).
+<!---
 
 #### Unstaking
 
@@ -723,7 +531,4 @@ Repeat step `3.` if you want to confirm.
 
 Your tokens should now be "free".
 
-#### Restart validating after getting booted
-If your node shut down before you had stopped validating and/or the grace period for `staking.chill` was completed, all you need to is start `validating` again from `Validator Staking`. Just make sure that your node is back up, and the `authority` key showing at node startup is the same as your `session` key.
-**Note**
-It doesn't matter if your `stash` has a `balance` < `bonded`.
+--->

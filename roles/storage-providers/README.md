@@ -7,9 +7,10 @@
 
 
 
-# Table of Contents
-<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
-- [Table of Contents](#table-of-contents)
+Table of Contents
+==
+
+<!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
 - [Overview](#overview)
 - [Instructions](#instructions)
   - [Initial setup](#initial-setup)
@@ -20,10 +21,15 @@
   - [Install and Setup the Storage Node](#install-and-setup-the-storage-node)
     - [Update Storage Node](#update-storage-node)
     - [Generate keys and memberships](#generate-keys-and-memberships)
+      - [Setup and configure the storage node](#setup-and-configure-the-storage-node)
+      - [Check that you are syncing](#check-that-you-are-syncing)
     - [Run storage node as a service](#run-storage-node-as-a-service)
     - [Verify everything is working](#verify-everything-is-working)
 - [Troubleshooting](#troubleshooting)
+  - [Port not set](#port-not-set)
   - [Install yarn and node on linux](#install-yarn-and-node-on-linux)
+      - [Install as Root](#install-as-root)
+      - [Install as user with `sudo` privileges](#install-as-user-with-sudo-privileges)
 <!-- TOC END -->
 
 
@@ -35,29 +41,31 @@ This page will contain all information on how to setup your storage node and bec
 
 The instructions below will assume you are running as `root`. This makes the instructions somewhat easier, but less safe and robust.
 
-Note that this has only been tested on fresh images of `Ubuntu 16.04 LTS`, `Ubuntu 18.04 LTS` and `Debian 8`.
+Note that this has only been tested on fresh images of `Ubuntu 16.04 LTS`, `Ubuntu 18.04 LTS` and `Debian 9`.
 
 The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better (not an affiliate link).
 
 Please note that unless there are any open spots (which you can check in [Pioneer](https://testnet.joystream.org/pioneer) under `Roles` -> `Available Roles`), you will not be able to join. Note that we will be quite vigilant in booting non-performing `Storage Providers`, so if you have everything setup in advance, you could be the quickest to take a slot when it opens!
 
 ## Initial setup
-First of all, you need a fully synced [Joystream full node](https://github.com/Joystream/substrate-node-joystream/releases). For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys, and just install the software.
+First of all, you need to connect to a fully synced [Joystream full node](https://github.com/Joystream/substrate-node-joystream/releases). By default, the program assumes you are running a node on the same device. For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys, and just install the software.
 We strongly encourage that you run both the [node](../validators#run-as-a-service) and the other software below as a service.
 
-First, you need to setup `node`, `npm` and `yarn`. This is sometime troublesome to do with the `apt` package manager. Go [here](#install-yarn-and-node-without-on-linux) to do this if you are not confident in your abilities to navigate the rough seas.
+First, you need to setup `node`, `npm` and `yarn`. This is sometime troublesome to do with the `apt` package manager. Go [here](#install-yarn-and-node-on-linux) to do this if you are not confident in your abilities to navigate the rough seas.
 
 Now, get the additional dependencies:
 ```
 $ apt-get update && apt-get upgrade -y
 $ apt-get install git build-essential libtool automake autoconf python
+# on debian 9
+$ apt-get install libcap2-bin
 ```
 
 ## Install ipfs
 The new storage node uses [ipfs](https://ipfs.io/) as backend.
 ```
-$ wget https://dist.ipfs.io/go-ipfs/v0.4.21/go-ipfs_v0.4.21_linux-amd64.tar.gz
-$ tar -vxf go-ipfs_v0.4.21_linux-amd64.tar.gz
+$ wget https://dist.ipfs.io/go-ipfs/v0.4.23/go-ipfs_v0.4.23_linux-amd64.tar.gz
+$ tar -vxf go-ipfs_v0.4.23_linux-amd64.tar.gz
 $ cd go-ipfs
 $ ./ipfs init --profile server
 $ ./install.sh
@@ -141,6 +149,19 @@ Caddyfile is valid
 # You can now run caddy with:
 $ (screen) /usr/local/bin/caddy --agree --email <your_mail@some.domain> --conf ~/Caddyfile
 ```
+After a short wait, you should see:
+```
+YYYY/MM/DD HH:NN:SS [INFO] [<your.cool.url>] Server responded with a certificate.
+done.
+
+Serving HTTPS on port 443
+https://<your.cool.url>
+
+
+Serving HTTP on port 80
+https://<your.cool.url>
+
+```
 
 ### Run caddy as a service
 To ensure high uptime, it's best to set the system up as a `service`.
@@ -177,18 +198,18 @@ $ systemctl status caddy
 ---
 ● caddy.service - Reverse proxy for storage node
    Loaded: loaded (/etc/systemd/system/caddy.service; disabled)
-   Active: active (running) since Tue 2019-06-18 17:15:44 UTC; 6s ago
- Main PID: 5613 (caddy)
+   Active: active (running) since Day YYYY/MM/DD HH:NN:SS UTC; 6s ago
+ Main PID: 9053 (caddy)
    CGroup: /system.slice/caddy.service
-           └─5613 /usr/local/bin/caddy -agree email <your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
+           9053 /usr/local/bin/caddy -agree email <your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
 
-Jun 18 17:15:44 localhost systemd[1]: Started Reverse proxy for hosted apps.
-Jun 18 17:15:44 localhost caddy[5613]: Activating privacy features... done.
-Jun 18 17:15:44 localhost caddy[5613]: Serving HTTPS on port 443
-Jun 18 17:15:44 localhost caddy[5613]: https://<your.cool.url>
-Jun 18 17:15:44 localhost caddy[5613]: https://<your.cool.url>
-Jun 18 17:15:44 localhost caddy[5613]: Serving HTTP on port 80
-Jun 18 17:15:44 localhost caddy[5613]: https://<your.cool.url>
+Mon DD HH:NN:SS localhost systemd[1]: Started Reverse proxy for hosted apps.
+Mon DD HH:NN:SS localhost caddy[9053]: Activating privacy features... done.
+Mon DD HH:NN:SS localhost caddy[9053]: Serving HTTPS on port 443
+Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
+Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
+Mon DD HH:NN:SS localhost caddy[9053]: Serving HTTP on port 80
+Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
 ---
 # To have caddy start automatically at reboot:
 $ systemctl enable caddy
@@ -213,6 +234,7 @@ and append:
 ```
 # Colossus
 alias colossus="/root/storage-node-joystream/packages/colossus/bin/cli.js"
+alias helios="/root/storage-node-joystream/packages/helios/bin/cli.js"
 ```
 Then:
 `. ~/.bash_profile`
@@ -254,7 +276,7 @@ On the machine/VPS you want to run your storage node:
 
 ```
 # If you are not already in that directory:
-$ cd storage-node-joystream
+$ cd /path/to/storage-node-joystream
 # If you configured your .bash_profile:
 $ colossus signup <5YourJoyMemberAddress.json>
 # If you didn't configure your .bash_profile:
@@ -345,7 +367,7 @@ User=root
 WorkingDirectory=/root/storage-node-joystream
 LimitNOFILE=8192
 Environment=DEBUG=*
-ExecStart=/usr/local/lib/nodejs/node-v10.16.0-linux-x64/bin/node \
+ExecStart=/usr/local/lib/nodejs/node-v12.16.1-linux-x64/bin/node \
         packages/colossus/bin/cli.js \
         --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
 Restart=on-failure
@@ -362,38 +384,39 @@ $ systemctl status storage-node
 # Which should produce something like:
 ---
 ● storage-node.service - Joystream Storage Node
-   Loaded: loaded (/etc/systemd/system/storage-node.service; disabled)
-   Active: active (running) since Tue 2019-06-18 17:25:41 UTC; 4min 19s ago
- Main PID: 5654 (colossus)
+   Loaded: loaded (/etc/systemd/system/storage-node.service; disabled; vendor preset: enabled)
+   Active: active (running) since Day YYYY/MM/DD HH:NN:SS UTC; 6s ago
+ Main PID: 10190 (colossus)
+    Tasks: 11 (limit: 4915)
    CGroup: /system.slice/storage-node.service
-           └─5654 colossus
+           └─10190 colossus
 
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges = Got chunk with byte range [ 1555968, 1560063 ]
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges Current requested range is [ 33722848, 44195983 ]
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges Ignoring chunk; it is out of range.
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges = Got chunk with byte range [ 1560064, 1564159 ]
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges Current requested range is [ 33722848, 44195983 ]
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges Ignoring chunk; it is out of range.
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges = Got chunk with byte range [ 1564160, 1568255 ]
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges Current requested range is [ 33722848, 44195983 ]
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges Ignoring chunk; it is out of range.
-Jun 18 17:29:31 localhost node[5654]: Tue, 18 Jun 2019 17:29:31 GMT joystream:util:ranges = Got chunk with byte range [ 1568256, 1568874 ]
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Filtered: 0
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Mapped []
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Matching events: []
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX Ready.
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX status: Broadcast
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Number of events: 0; subscribed to dataObjectStorageRegistry,DataObjectStorageRelationshipAdded
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Filtered: 0
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Mapped []
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Matching events: []
+Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX Broadcast.
 ---
 # To have colossus start automatically at reboot:
-$ systemctl enable colossus
+$ systemctl enable storage-node
 # If you want to stop the storage node, either to edit the storage-node.service file or some other reason:
 $ systemctl stop storage-node
 ```
 
 ### Verify everything is working
 
-In your browser, find click on an uploaded media file. Copy the `<content-id>`, ie. what comes after the last `/`.
+In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org/pioneer/#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, ie. what comes after the last `/`.
 
 Then paste the following in your browser:
 
 `https://<your.cool.url>/asset/v0/<content-id>`.
 
-If you get a black screen with a media player, that means you are good!
+If the content starts playing, that means you are good!
 
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
@@ -432,7 +455,7 @@ If `"port": <n>` is missing, or not a number, pass the:
 
 ## Install yarn and node on linux
 
-Go [here](https://nodejs.org/en/download/) and find the newest (LTS) binary for your distro. This guide will assume 64-bit linux, and `node-v10.16.0`.
+Go [here](https://nodejs.org/en/download/) and find the newest (LTS) binary for your distro. This guide will assume 64-bit linux, and `node-v12.16.1`.
 
 If you want to install as `root`, so your user can use `npm` without `sudo` privileges, go [here](#install-as-root).
 
@@ -444,15 +467,15 @@ Alternatives such as [nvm](https://github.com/nvm-sh/nvm) or [nodesource](https:
 This section assumes you are installing as `root`. It also demonstrates how you can provide another user access without having to use `sudo`. It doesn't matter if user `joystream` has `sudo` privileges or not.
 
 ```
-$ wget https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-x64.tar.xz
+$ wget https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz
 $ mkdir -p /usr/local/lib/nodejs
-$ tar -xJvf node-v10.16.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
+$ tar -xJvf node-v12.16.1-linux-x64.tar.xz -C /usr/local/lib/nodejs
 $ nano ~/.bash_profile
 ---
 Append the following lines:
 ---
 # Nodejs
-VERSION=v10.16.0
+VERSION=v12.16.1
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 ```
@@ -465,7 +488,6 @@ $ npm -v
 $ npx -v
 # Install yarn
 $ npm install yarn -g
-$ npm i node-gyp@5.0.0
 # If everything looks ok, and you want to allow user joystream access:
 $ chown -R joystream /usr/local/lib/nodejs
 ```
@@ -479,7 +501,7 @@ $ nano ~/.bash_profile
 Append the following lines:
 ---
 # Nodejs
-VERSION=v10.16.0
+VERSION=v12.16.1
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 ```
@@ -500,15 +522,15 @@ This section assumes the steps are performed as user `joystream` with `sudo` pri
 
 As `joystream`
 ```
-$ wget https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-x64.tar.xz
-$ sudo mkdir -p /usr/local/lib/nodejs
-$ sudo tar -xJvf node-v10.16.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
+$ wget https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz
+$ mkdir -p /usr/local/lib/nodejs
+$ tar -xJvf node-v12.16.1-linux-x64.tar.xz -C /usr/local/lib/nodejs
 $ nano ~/.bash_profile
 ---
 Append the following lines:
 ---
 # Nodejs
-VERSION=v10.16.0
+VERSION=v12.16.1
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 ```
@@ -524,7 +546,6 @@ $ npx -v
 $ npm install yarn -g
 # Verify that it works:
 $ yarn -v
-$ npm i node-gyp@5.0.0
 ```
 If you want `root` to be able to use `npm` as well:
 
@@ -535,7 +556,7 @@ $ nano ~/.bash_profile
 Append the following lines:
 ---
 # Nodejs
-VERSION=v10.16.0
+VERSION=v12.16.1
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 ```
