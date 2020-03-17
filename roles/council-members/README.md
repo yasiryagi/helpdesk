@@ -29,7 +29,7 @@
 This page contains a detailed guide about how the governance system works on the current Joystream testnet, and how you can participate.
 
 # Instructions
-Unlike most of the other current and future roles on the Joystream Platform, becoming a `Council Member` or voting on proposals requires no extra software. Everything can be done in the browser, by going [here](http://testnet.joystream.org).
+Unlike most of the other current and future roles on the Joystream Platform, becoming a `Council Member` or voting on proposals requires no extra software. Everything can be done in the browser, by going [here](https://testnet.joystream.org).
 
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Accounts` showing up.
