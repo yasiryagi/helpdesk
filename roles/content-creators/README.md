@@ -39,5 +39,3 @@ Your channel will be `Public` by default. To upload content simply navigate to y
 
 ## Content Restrictions
 It is very important that you do not upload illegal or copyrighted content on our testnets. This will result in a disqualification from payouts. It will also result in the takedown of content, potentially slashing of funds, and the deletion of your channel. Multiple spam uploads which represent a burden to moderate for the `Content Curators` may also be penalized and result in deductions on payouts due for qualifying content uploads on your content creator profile.
-
-We will provide `Content Creators` with a list of sources for safe and non-copyrighted material which can be uploaded as part of this testnet and will qualify for the payments highlighted [here](https://github.com/blrhc/helpdesk/tree/rome#incentives-3). 
