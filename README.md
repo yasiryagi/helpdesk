@@ -293,10 +293,6 @@ The contributor must include either their Joystream or monero address when submi
 
 This section covers other things you can do after [getting started](#getting-started), that isn't a paid role as of now.
 
-## Upload Content
-
-Since Athens, `members` can upload content. Currently, there are no rewards for doing so, but any user created content is welcome!
-
 ## On-Chain Forum
 
 This is the first step in providing users, infrastructure role participants, `Council Members` and future stakeholders a way to communicate and coordinate. Hopefully, this method of interaction will further help develop a strong community around Joystream. Note that you have to be a `member` to post, and only the forum moderator (forum sudo) can create categories.
