@@ -184,7 +184,7 @@ Unlike `Validators` that can come and go without too much friction (at least for
 
 Up to eight `Storage Providers` that keep a full copy of the content directory and provide continuous service for at least 24h will compete for $120 per week. In addition, you will earn $0.03/GB/week (of data in the content directory) calculated on an average basis. You will also need a domain to point to your node, so unless you already own one (that you don't mind using), you will need to buy one.
 
-We will be closely monitoring Storage Providers for Rome (more so than we did for Acropolis) so make sure your node is performing optimally to avoid being booted. Storage Providers should also be aware that the variable part of the compensation structure is likely to be reviewed after launch (up or down) to make sure that providers are fairly compensated for their efforts.
+We will be closely monitoring `Storage Providers` for Rome (more so than we did for Acropolis) so make sure your node is performing optimally to avoid being booted. `Storage Providers` should also be aware that the variable part of the compensation structure is likely to be reviewed after launch (up or down) to make sure that providers are fairly compensated for their efforts.
 
 A detailed guide to setting up the node can be found [here](/roles/storage-providers).
 
@@ -200,7 +200,7 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ### Description
 
-When the Joystream mainnet is live, Content Creators will be responsible for creating and uploading the enormous variety of different content types and genres which we believe will allow Joystream to grow into a successful decentralized media platform.
+When the Joystream mainnet is live, `Content Creators` will be responsible for creating and uploading the enormous variety of different content types and genres which we believe will allow Joystream to grow into a successful decentralized media platform.
 
 ### Incentives
 
