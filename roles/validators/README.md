@@ -76,6 +76,7 @@ Open the terminal (Applications->Utilities):
 ```
 $ cd ~/
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/rome-testnet.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
 # Assuming it gets saved in your ~/Downloads folder:
@@ -146,6 +147,7 @@ $ tar -vxf joystream-node-2.1.2-441c04b-x86_64-linux-gnu.tar.gz
 $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-armv7-linux-gnueabihf.tar.gz
 $ tar -joystream-node-armv7-linux-gnueabihf.tar.gz
 # For both
+$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/rome-testnet.json
 $ $ ./joystream-node --chain rome-testnet.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
