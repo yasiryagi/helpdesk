@@ -59,18 +59,6 @@
   - [Content Creators](#content-creators)
     - [Description](#description-3)
     - [Incentives](#incentives-3)
-    - [Payouts](#payouts-3)
-  - [Content Curators](#content-curators)
-    - [Description](#description-4)
-    - [Incentives](#incentives-4)
-    - [Payouts](#payouts-4)
-  - [Builders and Bug Reporters](#builders-and-bug-reporters)
-    - [Description](#description-5)
-    - [Incentives](#incentives-5)
-    - [Payouts](#payouts-5)
-- [Other Features and Future Roles](#other-features-and-future-roles)
-  - [On-Chain Forum](#on-chain-forum)
-- [Glossary](#glossary)
 <!-- TOC END -->
 
 
@@ -105,7 +93,7 @@ Click `My Keys` in the sidebar, and then select the `Create Keys` tab. The choic
 In any event, the `Keys` will be stored in your browser for your convenience, but it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file. The `Mnemonic` can also be used to restore your `Keys`, but will not do you any good if you want to become a `Validator`.
 
 ## Get a Membership
-To become a `Member` of the platform, you need some tokens. Either click the `Free Tokens` link, or click [here](https://testnet.joystream.org/faucet). After you solved the captcha, your tokens should be on their way.
+To become a `Member` of the platform, you need some tokens. Either click the `Free Tokens` link, or click [here](https://faucet.joystream.org/). After you solved the captcha, your tokens should be on their way.
 
 **Note**
 All transactions (extrinsics) cost 1 Joy token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/acropolis/pioneer/#/forum).
