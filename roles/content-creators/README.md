@@ -23,7 +23,7 @@ This page will contain all information on how to act as a `Content Creator`, and
 
 # Instructions
 Unlike some of the other current and future roles on the Joystream Platform, becoming a `Content Creator`
-requires no extra software. Everything can be done in the browser, by going [here](http://testnet.joystream.org).
+requires no extra software. Everything can be done in the browser, by going [here](https://testnet.joystream.org).
 
 ## Get Started
 If you want to upload content as a `Content Creator`, you need to become a `Member`. Instructions for this
