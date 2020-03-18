@@ -270,7 +270,7 @@ Your `5YourJoyMemberAddress.json` should now be where you want it.
 
 #### Setup and configure the storage node
 
-**Make sure you're [Joystream full node](https://github.com/Joystream/substrate-node-joystream) is fully synced before you move to the next step(s)!**
+**Make sure your [Joystream full node](https://github.com/Joystream/substrate-node-joystream) is fully synced before you move to the next step(s)!**
 
 On the machine/VPS you want to run your storage node:
 
@@ -286,7 +286,7 @@ $ yarn run colossus signup <5YourJoyMemberAddress.json>
 # --passphrase <your_passphrase> as an argument every time you start the colossus server.
 ```
 
-This produces a new key `<5YourStorageAddress.json>`, and prompts you to open the "app" (Pioneer). Make sure that you your current/default is the `5YourJoyMemberAddress` key. After you click `Stake`, you will see a notification in the top right corner. If you get an error, this most likely means all the slots are full. Unfortunately, this means you have to import the `<5YourStorageAddress.json>` to recover your tokens.
+This produces a new key `<5YourStorageAddress.json>`, and prompts you to open the "app" (Pioneer). Make sure that your current/default is the `5YourJoyMemberAddress` key. After you click `Stake`, you will see a notification in the top right corner. If you get an error, this most likely means all the slots are full. Unfortunately, this means you have to import the `<5YourStorageAddress.json>` to recover your tokens.
 
 If it succeeded, proceed as shown below:
 

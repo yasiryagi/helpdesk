@@ -86,7 +86,7 @@ $ tar -vxf joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
 $ ./joystream-node --chain rome-testnet.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
-- If you want get a more verbose log output, add the flag `<nodename> --log runtime`
+- If you want to get a more verbose log output, add the flag `<nodename> --log runtime`
 
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -151,7 +151,7 @@ $ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v
 $ $ ./joystream-node --chain rome-testnet.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
-- If you want get a more verbose log output, add the flag `<nodename> --log runtime`
+- If you want to get a more verbose log output, add the flag `<nodename> --log runtime`
 
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -417,7 +417,7 @@ As for 1. this automatically sends all rewards the `stash` address, but does *no
 This sends all rewards to the `controller`, at your disposal.
 
 #### Validating preferences
-1. The `reward commision` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
+1. The `reward commission` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
 
 Let `v` [Joy] be the bonded tokens for the validator `stash`
 Let `p` [Joy] be the `payment preference` decided by the validator
