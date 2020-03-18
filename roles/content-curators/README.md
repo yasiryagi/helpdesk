@@ -21,6 +21,9 @@ Table of Contents
       - [Track the status of your application](#track-the-status-of-your-application-1)
   - [Hiring complete](#hiring-complete)
 - [Working as a curator](#working-as-a-curator)
+  - [Content](#content)
+  - [Channels](#channels)
+    - [Discretion](#discretion)
 - [Advanced](#advanced)
 <!-- TOC END -->
 
@@ -86,8 +89,34 @@ If your application was successful, you will now be able to curate content on th
 
 # Working as a curator
 
-...
+The main job for curators is to regularly check the content directory and channels, and checking that rules and guidelines are being followed. The basic rules are stated below.
+
+## Content
+
+Curators are responsible for ensuring the following:
+1. Content are not in violation with the platform [ToS](https://testnet.joystream.org/#/pages/tos), meaning
+  - illicit should be `censored`, and marked for takedown
+  - content must be given assigned the appropriate license and, if required, attribution
+  - explicit content must be marked as such
+2. Content is resolving and playing as intended
+  - content that is not playable should be marked as unlisted, and a heads up should be given to the channel owner in the forum
+3. Metadata is correct
+  - incorrect metadata should be corrected, unless the mistake requires more severe consequences (see 1.)
+
+In order to achieve this, they need to get familiarized with the Joystream Versioned Store system, outlined [here](https://github.com/Joystream/joystream-content-system)
+
+## Channels
+Channels should be treated the same way as content, and the following basic rules should be enforced:
+- Channels that consistently violates the rules for [content](#content), should be censored or closed
+- Channels that delivers standout content should get "verified" on the platform
+
+### Discretion
+
+These rules are not clearly defined in all cases, so it's important that curators are able to use discration. In many cases, it's preferable to try and get in touch with the channel owner first, rather than immediately pull the trigger. If in doubt, contact the `Lead` first. In other cases, immediate action may be required.
+
+"Speak softly, and carry a big stick"
+- Theodore Roosevelt
 
 # Advanced
 
-...
+Some of the tasks expected by curators, requires manual [extrinsics](https://testnet.joystream.org/#/extrinsics).
