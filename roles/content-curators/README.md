@@ -120,7 +120,7 @@ Channels should be treated the same way as content, and the following basic rule
 
 ### Discretion
 
-These rules are not clearly defined in all cases, so it's important that curators are able to use discration. In many cases, it's preferable to try and get in touch with the channel owner first, rather than immediately pull the trigger. If in doubt, contact the `Lead` first. In other cases, immediate action may be required.
+These rules are not clearly defined in all cases, so it's important that curators are able to use discretion. In many cases, it's preferable to try and get in touch with the channel owner first, rather than immediately pull the trigger. If in doubt, contact the `Lead` first. In other cases, immediate action may be required.
 
 "Speak softly, and carry a big stick"
 - Theodore Roosevelt
