@@ -127,7 +127,7 @@ These rules are not clearly defined in all cases, so it's important that curator
 
 # Advanced
 
-Some of the tasks expected by curators, requires manual [extrinsics](https://testnet.joystream.org/#/extrinsics). Not that all tasks that can be done in the UI directy, can also be done using extrinsics, but not vice-versa.
+Some of the tasks expected by curators require manual [extrinsics](https://testnet.joystream.org/#/extrinsics). Not  all required tasks can be done in the UI directly, but they can all be done through extrinsics.
 
 Some operations requires you to add the `curatorId` you wish to make the extrinsic with as input. This can be found with a [chain state](https://testnet.joystream.org/#/chainstate) query:
 - Select `contentWorkingGroup`, then `curatorById` with the dropdowns, then see which ID matches your account. This should be an integer > 0.
