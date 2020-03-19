@@ -115,7 +115,7 @@ In order to achieve this, they need to get familiarized with the Joystream Versi
 
 ## Channels
 Channels should be treated the same way as content, and the following basic rules should be enforced:
-- Channels that consistently violates the rules for [content](#content), should be censored or closed
+- Channels that consistently violate the rules for [content](#content), should be censored or closed
 - Channels that delivers standout content should get "verified" on the platform
 
 ### Discretion
