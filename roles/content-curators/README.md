@@ -21,7 +21,18 @@ Table of Contents
       - [Track the status of your application](#track-the-status-of-your-application-1)
   - [Hiring complete](#hiring-complete)
 - [Working as a curator](#working-as-a-curator)
+  - [Content](#content)
+  - [Channels](#channels)
+    - [Discretion](#discretion)
 - [Advanced](#advanced)
+  - [Channel](#channel)
+      - [Verify](#verify)
+      - [Remove Verification](#remove-verification)
+      - [Censor](#censor)
+      - [Un-Censor](#un-censor)
+  - [Content](#content-1)
+      - [Content License and Attribution](#content-license-and-attribution)
+      - [Curation Status](#curation-status)
 <!-- TOC END -->
 
 # Overview
@@ -86,8 +97,162 @@ If your application was successful, you will now be able to curate content on th
 
 # Working as a curator
 
-...
+The main job for curators is to regularly check the content directory and channels, and checking that rules and guidelines are being followed. The basic rules are stated below.
+
+## Content
+
+Curators are responsible for ensuring the following:
+1. Content are not in violation with the platform [ToS](https://testnet.joystream.org/#/pages/tos), meaning
+  - illicit should be `censored`, and marked for takedown
+  - content must be given assigned the appropriate license and, if required, attribution
+  - explicit content must be marked as such
+2. Content is resolving and playing as intended
+  - content that is not playable should be marked as unlisted, and a heads up should be given to the channel owner in the forum
+3. Metadata is correct
+  - incorrect metadata should be corrected, unless the mistake requires more severe consequences (see 1.)
+
+In order to achieve this, they need to get familiarized with the Joystream Versioned Store system, outlined [here](https://github.com/Joystream/joystream-content-system)
+
+## Channels
+Channels should be treated the same way as content, and the following basic rules should be enforced:
+- Channels that consistently violates the rules for [content](#content), should be censored or closed
+- Channels that delivers standout content should get "verified" on the platform
+
+### Discretion
+
+These rules are not clearly defined in all cases, so it's important that curators are able to use discration. In many cases, it's preferable to try and get in touch with the channel owner first, rather than immediately pull the trigger. If in doubt, contact the `Lead` first. In other cases, immediate action may be required.
+
+"Speak softly, and carry a big stick"
+- Theodore Roosevelt
 
 # Advanced
 
-...
+Some of the tasks expected by curators, requires manual [extrinsics](https://testnet.joystream.org/#/extrinsics). Not that all tasks that can be done in the UI directy, can also be done using extrinsics, but not vice-versa.
+
+Some operations requires you to add the `curatorId` you wish to make the extrinsic with as input. This can be found with a [chain state](https://testnet.joystream.org/#/chainstate) query:
+- Select `contentWorkingGroup`, then `curatorById` with the dropdowns, then see which ID matches your account. This should be an integer > 0.
+
+
+## Channel
+
+The table below outlines which operations can be done, and how to update them:
+
+| Action                  | Source     | Instructions                                     |
+|-------------------------|------------|--------------------------------------------------|
+| `Verify`                | UI         |[Link](#verify)                                   |
+| `Remove Verification`   | UI         |[Link](#remove-verification)                      |
+| `Censor`                | UI         |[Link](#censor)                                   |
+| `Un-Censor`             | UI         |[Link](#un-censor)                                |
+
+#### Verify
+
+If you are a `Content Curator`, with the role key loaded in Pioneer, you will automatically have the option to perform this task. If the channel you wish to perform the action on is visible under the [Media](https://testnet.joystream.org/#/media) sidebar, it will appear next to it.
+
+If you want to perform the action on a specific channel, navigate to it, and you will see the option in your browser. Channels can be accessed directly with the URL `https://testnet.joystream.org/#/media/channels/<n>`, where `<n>` is an integer.
+E.g. - `https://testnet.joystream.org/#/media/channels/1` for the "Staked" channel.
+
+The same options will be appear if you navigate to a content `entity`, added under the channel.
+
+The UI will automatically select the appropriate key and credential, and preview the action you want to make.
+
+#### Remove Verification
+
+Same as [this](#verify).
+
+#### Censor
+
+Same as [this](#verify).
+
+#### Un-Censor
+
+Same as [this](#verify).
+
+## Content
+For content, all the actions performed includes changing one or more parameters in the `Versioned Store`. This requires more knowledge about how the system works.
+The table below outlines the key actions that can be performed, with links to rough instructions:
+
+| Action                  | Source     | Type      | Instructions                                     |
+|-------------------------|------------|-----------|--------------------------------------------------|
+| `Content License`       | Extrinsic  |`Internal` | [Link](#content-license-and-attribution)         |
+| `Attribution`           | Extrinsic  |`Text`     | [Link](#content-license-and-attribution)         |
+| `Curation Status`       | Extrinsic  |`Internal` | [Link](#curation-status)                         |
+
+#### Content License and Attribution
+
+The Content License, and it's related property Attribution, is important to have configured correctly. Content that should be set as "Fair Use" or "Create Commons", would be in line with the Terms of Service if marked as such combined the appropriate attribution, would instead be violating these terms if another license, or missing/incorrect attribution is set.
+
+In order to change this, access a piece of content in the UI. The URL will end with a number, namely the `entityId` in the content directory.
+
+Suppose you have an entity `n`, that incorrectly is tagged with the "Public Domain" license, and has no attribution set, whereas it should have been tagged with the "Creative Commons" license, and include an attribution to the original creator.
+
+##### Get the necessary information
+
+By doing a [chain state](https://testnet.joystream.org/#/chainstate) query, one can get find the required information to edit this:
+
+- First select `versionedStore`, then `entityById` with the dropdowns, then type in the `entityId`, and click the plus button. This will return a json with the current state of this Entity.
+- The second entry in the json will be `"class_id":n`, where `n` is the Class the Entity belongs to. eg. `7` for the "Video" Class.
+- Change the second dropdown to `classById`, or find the class in the [Content System repo](https://github.com/Joystream/joystream-content-system/) for ease of use.
+- Find the `in_class_index`, corresponding to the name of the "License" and "Attribution", along with the "type" of each.
+- For an Entity in the Video Class, with `schemaId` = 0:
+  - "License": `in_class_index` is 11, "type" is `Internal` (where `classId` is 3 - "Content License").
+  - "Attribution": `in_class_index` is 12, "type" is `Text`.
+- This means you have to use the `classId`, and find the Entities in that Class.
+- The Content License Class has `classId` = 3
+- With `schemaId` = 0, the Entities can be found [here](https://github.com/Joystream/joystream-content-system/blob/master/entities/general/content-license.md)
+
+Further, you need to know the `curatorId` you wish to make the extrinsic with. This can be found by:
+- Select `contentWorkingGroup`, then `curatorById` with the dropdowns, then see which ID matches your account. This should be an integer > 0.
+
+##### Making the extrinsic
+
+When changing an entity as a curator, it's good practice to simultaneously change the [Curation Status](#curation-status). This can and should be done in the same transaction, but can also be done consequently. In the example below, it's excluded, but it should be easy enough to perform if you read the section in the link before you make the transaction.
+
+Go to [extrinsics](https://testnet.joystream.org/#/extrinsics), and input the following:
+- Select the correct account you wish the perform the extrinsic with (namely, your curator role account)
+- Select `versionedStorePermissions` and `updateEntityPropertyValues` in the first two dropdowns
+- Set `with_credential` to 1 (as curator)
+- Keep `as_entity_maintainer` as No/False
+- Set `entity_id` to `n`
+- In our example:
+  - Click the `+ Add item` button, and set the `in_class_index` to 11, and `value` to `Internal` for Content License
+  - In the new field `Internal`, type in 193 for "Creative Commons (attribution required)".
+  - Click the `+ Add item` button, and set the `in_class_index` to 12, and `value` to `Text` for Attribution
+  - In the new field `Text`, type in an appropriate attribution to the original creator.
+**Note: Make sure you have a terminal open with a node log running with the flag `--log runtime`. This will provide a source of error, should you have made incorrect input**
+- Click the `Submit Transaction` button, verify your input, type in the password and confirm.
+- If you used the correct input, the transaction will modify the `entity`.
+
+
+
+#### Curation Status
+
+The Curation Status covers allows curators to censor or modify an entity, while also providing a rationale for doing so. It should always be included while performing a modification, and is the first line that should be taken for content in violation of the Terms of Service.
+
+##### Get the necessary information
+
+By doing a [chain state](https://testnet.joystream.org/#/chainstate) query, one can get find the required information to edit this:
+
+- First select `versionedStore`, then `entityById` with the dropdowns, then type in the `entityId`, and click the plus button. This will return a json with the current state of this entity.
+- The second entry in the json will be `"class_id":n`, where `n` is the Class the Entity belongs to, eg. `7` for the "Video" Class.
+- Change the second dropdown to `classById`, or find the class in the [Content System repo](https://github.com/Joystream/joystream-content-system/) for ease of use.
+- Find the `in_class_index`, corresponding to the name of the "Curation Status", along with its "type".
+- For an Entity in the Video Class, with `schemaId` = 0:
+  - "Curation Status": `in_class_index` is 9, "type" is `Internal` (where `classId` is 5 - "Curation Status").
+- This means you have to use the `classId`, and find the Entities in that Class.
+- With `schemaId` = 0, the Entities can be found [here](https://github.com/Joystream/joystream-content-system/blob/master/entities/general/curation-status.md)
+
+
+##### Making the extrinsic
+
+Go to [extrinsics](https://testnet.joystream.org/#/extrinsics), and input the following:
+- Select the correct account you wish the perform the extrinsic with (namely, your curator role account)
+- Select `versionedStorePermissions` and `updateEntityPropertyValues` in the first two dropdowns
+- Set `with_credential` to 1 (as curator)
+- Keep `as_entity_maintainer` as No/False
+- Set `entity_id` to `n`
+- In our example:
+  - Click the `+ Add item` button, and set the `in_class_index` to 9, and `value` to `Internal` for Curation Status
+  - In the new field `Internal`, type in 187 for "Edited".
+**Note: Make sure you have a terminal open with a node log running with the flag `--log runtime`. This will provide a source of error, should you have made incorrect input**
+- Click the `Submit Transaction` button, verify your input, type in the password and confirm.
+- If you used the correct input, the transaction will modify the `entity`.
