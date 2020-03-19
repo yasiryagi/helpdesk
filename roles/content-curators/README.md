@@ -41,7 +41,7 @@ This page will contain all information on how to apply for the role of `Content 
 
 # Hiring Process
 
-First, open [Pioneer](testnet.joystream.org/), and navigate to the `Working groups` sidebar. Here you will find an overview of the current `Content Curators`, and the `Content Lead`. In the `Opportunities` tab, you can get an overview of future, current and previous openings, along with terms, settings, status and history (if applicable). The terms and settings include the following parameters to consider:
+First, open [Pioneer](testnet.joystream.org/), and navigate to the `Working groups` sidebar. Here you will find an overview of the current `Content Curators`, and the `Content Lead`. In the `Opportunities` tab, you can get an overview of future, current and previous openings, along with terms, settings, status, and history (if applicable). The terms and settings include the following parameters to consider:
 
 - `Max active applicants` - The maximum number of active applicants for an opening
 - `Max review period length` - The maximum length (in blocks) of the review period
@@ -102,8 +102,8 @@ The main job for curators is to regularly check the content directory and channe
 ## Content
 
 Curators are responsible for ensuring the following:
-1. Content are not in violation with the platform [ToS](https://testnet.joystream.org/#/pages/tos), meaning
-  - illicit should be `censored`, and marked for takedown
+1. Content is not in violation with the platform [ToS](https://testnet.joystream.org/#/pages/tos), meaning
+  - illicit should be `censored`, and marked for a takedown
   - content must be given assigned the appropriate license and, if required, attribution
   - explicit content must be marked as such
 2. Content is resolving and playing as intended
@@ -127,7 +127,7 @@ These rules are not clearly defined in all cases, so it's important that curator
 
 # Advanced
 
-Some of the tasks expected by curators require manual [extrinsics](https://testnet.joystream.org/#/extrinsics). Not  all required tasks can be done in the UI directly, but they can all be done through extrinsics.
+Some of the tasks expected by curators require manual [extrinsics](https://testnet.joystream.org/#/extrinsics). Not all required tasks can be done in the UI directly, but they can all be done through extrinsics.
 
 Some operations require you to add the `curatorId` you wish to make the extrinsic with as input. This can be found with a [chain state](https://testnet.joystream.org/#/chainstate) query:
 - Select `contentWorkingGroup`, then `curatorById` with the dropdowns, then see which ID matches your account. This should be an integer > 0.
@@ -151,7 +151,7 @@ If you are a `Content Curator`, with the role key loaded in Pioneer, you will au
 If you want to perform the action on a specific channel, navigate to it, and you will see the option in your browser. Channels can be accessed directly with the URL `https://testnet.joystream.org/#/media/channels/<n>`, where `<n>` is an integer.
 E.g. - `https://testnet.joystream.org/#/media/channels/1` for the "Staked" channel.
 
-The same options will be appear if you navigate to a content `entity`, added under the channel.
+The same options will appear if you navigate to a content `entity`, added under the channel.
 
 The UI will automatically select the appropriate key and credential, and preview the action you want to make.
 
