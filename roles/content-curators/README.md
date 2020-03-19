@@ -179,7 +179,7 @@ The table below outlines the key actions that can be performed, with links to ro
 
 #### Content License and Attribution
 
-The Content License, and it's related property Attribution, is important to have configured correctly. Content that should be set as "Fair Use" or "Create Commons", would be in line with the Terms of Service if marked as such combined the appropriate attribution, would instead be violating these terms if another license, or missing/incorrect attribution is set.
+The Content License and its related property Attribution are both important to have configured correctly. Content that should be set as "Creative Commons" which would be in line with the Terms of Service if marked as such combined the appropriate attribution, would instead be violating these terms if another license, or missing/incorrect attribution is set.
 
 In order to change this, access a piece of content in the UI. The URL will end with a number, namely the `entityId` in the content directory.
 
