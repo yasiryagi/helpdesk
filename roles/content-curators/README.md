@@ -102,8 +102,8 @@ The main job for curators is to regularly check the content directory and channe
 ## Content
 
 Curators are responsible for ensuring the following:
-1. Content is not in violation with the platform [ToS](https://testnet.joystream.org/#/pages/tos), meaning
-  - illicit should be `censored`, and marked for a takedown
+1. Content is not in violation of the platform [ToS](https://testnet.joystream.org/#/pages/tos), meaning
+  - illicit content should be `censored`, and marked for a takedown
   - content must be given assigned the appropriate license and, if required, attribution
   - explicit content must be marked as such
 2. Content is resolving and playing as intended
@@ -226,7 +226,7 @@ Go to [extrinsics](https://testnet.joystream.org/#/extrinsics), and input the fo
 
 #### Curation Status
 
-The Curation Status covers allows curators to censor or modify an entity, while also providing a rationale for doing so. It should always be included while performing a modification, and is the first line that should be taken for content in violation of the Terms of Service.
+The Curation Status covers allow curators to censor or modify an entity, while also providing a rationale for doing so. It should always be included while performing a modification, and is the first line that should be taken for content in violation of the Terms of Service.
 
 ##### Get the necessary information
 
