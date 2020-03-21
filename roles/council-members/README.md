@@ -2,7 +2,7 @@
 
 <div align="center">
   <h4>This is a step-by-step guide through Joystream council election cycle, allowing users to take part in the governance system for the
-  <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a>.<h4>
+  <a href="https://testnet.joystream.org/">Joystream Testnet</a>.<h4>
 </div>
 
 

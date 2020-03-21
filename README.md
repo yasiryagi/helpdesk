@@ -63,7 +63,7 @@
 
 
 # Overview
-This repo contains detailed guides and help for users to interact with our current [testnet](http://testnet.joystream.org/).
+This repo contains detailed guides and help for users to interact with our current [testnet](https://testnet.joystream.org/).
 
 # Contribute
 If you find something that is wrong or missing, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](#builders-and-bug-reporters). For more information on this, please see the [bounties repo](https://github.com/Joystream/bounties).
@@ -102,7 +102,7 @@ Now, click `Members` in the sidebar, and select the `Register` tab. Choose a `Ha
 
 # Active Roles
 
-The list below shows the currently active roles available at our current [testnet](https://testnet.joystream.org/pioneer).
+The list below shows the currently active roles available at our current [testnet](https://testnet.joystream.org/).
 
 ## Validators
 

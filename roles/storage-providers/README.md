@@ -2,7 +2,7 @@
 
 <div align="center">
   <h4>This is a step-by-step guide to setting up your <a href="https://github.com/Joystream/storage-node-joystream">storage node</a>, and getting started as a Storage Provider on the latest
-  <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a>.<h4>
+  <a href="https://testnet.joystream.org/">Joystream Testnet</a>.<h4>
 </div>
 
 
@@ -45,7 +45,7 @@ Note that this has only been tested on fresh images of `Ubuntu 16.04 LTS`, `Ubun
 
 The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better (not an affiliate link).
 
-Please note that unless there are any open spots (which you can check in [Pioneer](https://testnet.joystream.org/pioneer) under `Roles` -> `Available Roles`), you will not be able to join. Note that we will be quite vigilant in booting non-performing `Storage Providers`, so if you have everything setup in advance, you could be the quickest to take a slot when it opens!
+Please note that unless there are any open spots (which you can check in [Pioneer](https://testnet.joystream.org/) under `Roles` -> `Available Roles`), you will not be able to join. Note that we will be quite vigilant in booting non-performing `Storage Providers`, so if you have everything setup in advance, you could be the quickest to take a slot when it opens!
 
 ## Initial setup
 First of all, you need to connect to a fully synced [Joystream full node](https://github.com/Joystream/substrate-node-joystream/releases). By default, the program assumes you are running a node on the same device. For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys, and just install the software.
@@ -410,7 +410,7 @@ $ systemctl stop storage-node
 
 ### Verify everything is working
 
-In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org/pioneer/#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, ie. what comes after the last `/`.
+In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org//#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, ie. what comes after the last `/`.
 
 Then paste the following in your browser:
 
