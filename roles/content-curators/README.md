@@ -41,7 +41,7 @@ This page will contain all information on how to apply for the role of `Content 
 
 # Hiring Process
 
-First, open [Pioneer](testnet.joystream.org/), and navigate to the `Working groups` sidebar. Here you will find an overview of the current `Content Curators`, and the `Content Lead`. In the `Opportunities` tab, you can get an overview of future, current and previous openings, along with terms, settings, status, and history (if applicable). The terms and settings include the following parameters to consider:
+First, open [Pioneer](https://testnet.joystream.org/), and navigate to the `Working groups` sidebar. Here you will find an overview of the current `Content Curators`, and the `Content Lead`. In the `Opportunities` tab, you can get an overview of future, current and previous openings, along with terms, settings, status, and history (if applicable). The terms and settings include the following parameters to consider:
 
 - `Max active applicants` - The maximum number of active applicants for an opening
 - `Max review period length` - The maximum length (in blocks) of the review period
@@ -127,7 +127,7 @@ These rules are not clearly defined in all cases, so it's important that curator
 
 # Advanced
 
-Some of the tasks expected by curators require manual [extrinsics](https://testnet.joystream.org/#/extrinsics). Not all required tasks can be done in the UI directly, but they can all be done through extrinsics.
+Some of the tasks expected of curators require manual [extrinsics](https://testnet.joystream.org/#/extrinsics). Not all required tasks can be done in the UI directly, but they can all be done through extrinsics.
 
 Some operations require you to add the `curatorId` you wish to make the extrinsic with as input. This can be found with a [chain state](https://testnet.joystream.org/#/chainstate) query:
 - Select `contentWorkingGroup`, then `curatorById` with the dropdowns, then see which ID matches your account. This should be an integer > 0.
