@@ -2,7 +2,7 @@
 
 <div align="center">
   <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/substrate-node-joystream">full node</a>, and get started as a Validator on the latest
-  <a href="https://testnet.joystream.org/pioneer">Joystream Testnet</a>.<h4>
+  <a href="https://testnet.joystream.org/">Joystream Testnet</a>.<h4>
 </div>
 
 
@@ -197,7 +197,7 @@ Now it's time to configure your keys to start validating. Go [here](#configure-y
 
 While the node is syncing, you can start the process of setting up the rest.
 
-1. Go to the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Create keys` tab.
+1. Go to the [Pioneer App](https://testnet.joystream.org/), and select `My keys` in the sidebar. Click the `Create keys` tab.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
@@ -441,7 +441,7 @@ This might also come in handy if there are too many `validators` and you don't h
 
 #### Generate your keys
 
-1. Go to the [Pioneer App](https://testnet.joystream.org/pioneer), and select `My keys` in the sidebar. Click the `Create keys` tab.
+1. Go to the [Pioneer App](https://testnet.joystream.org/), and select `My keys` in the sidebar. Click the `Create keys` tab.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
