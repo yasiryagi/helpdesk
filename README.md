@@ -64,6 +64,10 @@
     - [Description](#description-4)
     - [Incentives](#incentives-4)
     - [Payouts](#payouts-4)
+  - [Builders and Bug Reporters](#builders-and-bug-reporters)
+    - [Description](#description-5)
+    - [Incentives](#incentives-5)
+    - [Payouts](#payouts-5)
 <!-- TOC END -->
 
 
