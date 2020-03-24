@@ -1,4 +1,4 @@
-<p align="center"><img src="img/roles.png"></p>
+<p align="center"><img src="img/roles_new.svg"></p>
 
 <div align="center">
   <h4>If you want to stay updated on current and future roles on the Joystream platform, <br />
@@ -16,12 +16,13 @@ This page contains links to the guides for the currently active roles, and a lis
 - [Validators](validators)
 - [Council Members](council-members)
 - [Storage Providers](storage-providers)
+- [Content Creator](content-creator)
+- [Content Curator](content-curator)
 - [Builders and Bug Reporters](builders)
 
 # Future Roles
  - Membership Screener
  - Membership Curator
- - Content Curator
  - Bandwidth Provider
  - Discovery Provider
  - Live Streaming Provider
