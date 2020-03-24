@@ -59,6 +59,11 @@
   - [Content Creators](#content-creators)
     - [Description](#description-3)
     - [Incentives](#incentives-3)
+    - [Payouts](#payouts-3)
+  - [Content Curators](#content-curators)
+    - [Description](#description-4)
+    - [Incentives](#incentives-4)
+    - [Payouts](#payouts-4)
 <!-- TOC END -->
 
 
