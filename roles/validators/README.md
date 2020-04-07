@@ -293,22 +293,12 @@ ExecStart=/home/joystream/joystream-node \
         --pruning archive \
         --validator \
         --name <nodename>
-Restart=always
-RuntimeMaxSec=86400
+Restart=on-failure
 RestartSec=3
 LimitNOFILE=8192
 
 [Install]
 WantedBy=multi-user.target
-```
-
-If you just want to have the node restart if it crashes, replace:
-
-```
-Restart=always
-RuntimeMaxSec=86400
-# with
-Restart=on-failure
 ```
 
 
@@ -333,8 +323,7 @@ ExecStart=/root/joystream-node \
         --pruning archive \
         --validator \
         --name <nodename>
-Restart=always
-RuntimeMaxSec=86400
+Restart=on-failure
 RestartSec=3
 LimitNOFILE=8192
 
@@ -342,14 +331,6 @@ LimitNOFILE=8192
 WantedBy=multi-user.target
 ```
 
-If you just want to have the node restart if it crashes, replace:
-
-```
-Restart=always
-RuntimeMaxSec=86400
-# with
-Restart=on-failure
-```
 
 #### Starting the service
 
