@@ -43,31 +43,33 @@
 - [Get Started](#get-started)
   - [Generate Keys](#generate-keys)
   - [Get a Membership](#get-a-membership)
+- [Incentives](#incentives)
 - [Active Roles](#active-roles)
   - [Validators](#validators)
     - [Description](#description)
-    - [Incentives](#incentives)
-    - [Payouts](#payouts)
+    - [Incentives](#incentives-1)
   - [Council Members](#council-members)
     - [Description](#description-1)
-    - [Incentives](#incentives-1)
-    - [Payouts](#payouts-1)
+    - [Incentives](#incentives-2)
   - [Storage Providers](#storage-providers)
     - [Description](#description-2)
-    - [Incentives](#incentives-2)
-    - [Payouts](#payouts-2)
+    - [Incentives](#incentives-3)
   - [Content Creators](#content-creators)
     - [Description](#description-3)
-    - [Incentives](#incentives-3)
-    - [Payouts](#payouts-3)
+    - [Incentives](#incentives-4)
+    - [Rewards based on content type](#rewards-based-on-content-type)
+    - [Payouts](#payouts)
   - [Content Curators](#content-curators)
     - [Description](#description-4)
-    - [Incentives](#incentives-4)
-    - [Payouts](#payouts-4)
+    - [Incentives](#incentives-5)
+    - [Payouts](#payouts-1)
   - [Builders and Bug Reporters](#builders-and-bug-reporters)
     - [Description](#description-5)
-    - [Incentives](#incentives-5)
-    - [Payouts](#payouts-5)
+    - [Incentives](#incentives-6)
+    - [Payouts](#payouts-2)
+- [Other Features and Future Roles](#other-features-and-future-roles)
+  - [On-Chain Forum](#on-chain-forum)
+- [Glossary](#glossary)
 <!-- TOC END -->
 
 
@@ -109,13 +111,32 @@ All transactions (extrinsics) cost 1 Joy token, so you should always keep a litt
 
 Now, click `Members` in the sidebar, and select the `Register` tab. Choose a `Handle/nickname`. Optionally, provide a link to an image file for your avatar, and fill in the markdown enabled `About` field.
 
+
+# Incentives
+The Joystreams testnets are incentivized, meaning users can earn real money for participating. There are many reasons for this, but the most important one is to build a community that understands the network. After the platform goes live on mainnet, Jsgenesis will not be around to run critical infrastructure, occupy the roles needed for the platform to work, or drive innovation.
+
+Previous testnets had weekly payouts for all roles, with the magnitude of rewards and slots decided by Jsgenesis. The old incentive scheme has worked in the sense that it has gotten a small group of users to participate and earn monero for their contribution. However, the testnet tokens (tJOY) has only been a means to an end. Users only needed a small amount to stake for roles, and get the recurring monero reward, without having to consider tJOY as an asset.
+
+When Joystream goes live on mainnet, there will be no one there to pay these (monero) rewards, and the platform must rely on JOY tokens as the single value carrier for maintaining critical infrastructure, continued development, governance, and incentives for content creators. In order to get a structure that reflects the mainnet incentives in a better way, we have decided to have the token issuance be backed by a fiat pool, where users can convert their tokens to cover their real costs, time and hardware. The basics of the new scheme is outlined below:
+
+-   At launch, the token issuance will be set/calculated, and an initial fiat pool will be created to back it.
+-   Each week, an amount of USD will be added to fiat pool, thus increasing the value of each token, if one were to assume the issuance would stay the constant.
+-   However, all roles on the platform will be compensated by newly minted tJOY tokens, effictively inflating the supply.
+-   In addition to a weekly replenishment, a set of KPIs (Key Performance Indicators), will be set by us, to ensure the network is working as intended.
+-   If a KPI is reached, the fiat pool will increase by the amount computed based on the level success for each KPI, new tJOY will be minted proportionally, and distributed to the voters that elected the Council Members. As a consequence, this will not affect the value of token holders not participating in the governance.
+-   Other ways both the tJOY supply, and the fiat pool can increase, is through bounties, competitions, spending proposals, etc.
+
+An overview on how the new incentive scheme works, and how it interacts with the new proposal model that gives far more power and responsibility to users via the council, can be found [here](/tokenomics).
+
+The specifics on what will happen with the upgrade from `Rome` (old incentive scheme) to `Constantinople` (new incentive scheme) is outlined [here](/testnets/constantinople). A broader guide on how the incentives will work
+
 # Active Roles
 
 The list below shows the currently active roles available at our current [testnet](https://testnet.joystream.org/).
 
 ## Validators
 
-<p align="center"><img src="img/validators.png" width="700"></p>
+<p align="center"><img src="img/validators.svg" width="500"></p>
 
 ### Description
 In proof of stake systems, block producers, or `Validators`, are typically paid a fixed amount for each block produced. `Validators` must run a full node.
@@ -123,31 +144,12 @@ In proof of stake systems, block producers, or `Validators`, are typically paid 
 A detailed guide to setting up the `Validator` node and settings can be found [here](/roles/validators).
 
 ### Incentives
-We want to encourage more people on our network to become `Validators`. Because of this, we are increasing the payout pool from $50 to $100 per week.
-
-```
-blocktime = 6
-weekly_reward = 10000
-seconds_in_week = 60*60*24*7
-
-blockreward = (weekly_reward * blocktime)/seconds_in_week
-print(blockreward)
-
-----
-
-0.10
-```
-
-The number - 0.10 cents per block - seems a bit underwhelming, but validation requires little effort for the user after setup, and blocks come in every 6 seconds. With armv7 binaries or low-end VPS nodes, it should be cheap to run!
-
-### Payouts
-`Validators` must include their [XMR address](#how-it-works) in the `memo` of their `stash` key.
-
-Payouts will be made every Monday at ~11:00GMT.
+We want to encourage more people on our network to become `Validators`.
+WIP
 
 ## Council Members
 
-<p align="center"><img src="img/councilmembers.png" width="700"></p>
+<p align="center"><img src="img/councilmembers.svg" width="500"></p>
 
 ### Description
 
@@ -161,14 +163,11 @@ We are looking at how to best incentivize them to act in the platform's long ter
 
 If during your term a proposal to upgrade the runtime is submitted by the `sudo` key, anyone that votes yes will receive a bonus worth $10.
 
-### Payouts
-During the `Announcement` and `Voting` stage, you should include some information about yourself, and why you should get elected in your `memo` field. If you do get elected, make sure to change the `memo` field to your monero address in order to get your reward.
-
-Payouts will be made at ~11:00GMT the day after the election/vote.
+WIP
 
 ## Storage Providers
 
-<p align="center"><img src="img/storageproviders.png" width="700"></p>
+<p align="center"><img src="img/storageproviders.svg" width="500"></p>
 
 ### Description
 
@@ -184,15 +183,12 @@ We will be closely monitoring `Storage Providers` for Rome (more so than we did 
 
 A detailed guide to setting up the node can be found [here](/roles/storage-providers).
 
-### Payouts
+WIP
 
-`Storage Providers` must include their [XMR address](#how-it-works) in the `memo` of their `membership` key, or their `storage` key to qualify for rewards. The former is "better", but requires a little more work...
-
-Payouts will be made every Monday at ~11:00GMT.
 
 ## Content Creators
 
-<p align="center"><img src="img/contentcreators.png" width="700"></p>
+<p align="center"><img src="img/contentcreators.svg" width="500"></p>
 
 ### Description
 
@@ -202,9 +198,9 @@ When the Joystream mainnet is live, `Content Creators` will be responsible for c
 
 For the Rome testnet, we will pay a flat-rate Monero reward for every piece of content uploaded by `Content Creators` up to a weekly limit. We will also pay a $5 bonus on top of this rate for each of the 10 best pieces of content that are uploaded every week to encourage higher quality uploads.
 
-A separate $10 bonus will be paid for up to 10 items of quality "original"* content every week. The maximum weekly incentive pool of $250 will be divided between these two categories of incentive.
+A separate  bonus will be paid for up to 10 items of quality "original" `*` content every week. The maximum weekly incentive pool of $250 will be divided between these two categories of incentive.
 
-*Original here means creative work that you created yourself and own exclusive the rights to.
+`*`Original here means creative work that you created yourself and own exclusive the rights to.
 
 Prospective `Content Creators` should also be aware that we will only pay the item reward for content with complete metadata and which follows the set-out requirements for each content type (to be released at a later date).
 
@@ -220,6 +216,7 @@ We will provide `Content Creators` with a list of sources for safe and non-cop
 | Best Content (Bonus) | $5 per video | 10 | $50 |
 | Original Content (Bonus) | $10 per video | 10 | $100 |
 
+WIP
 
 ### Payouts
 
@@ -255,7 +252,7 @@ Payouts will be made every Monday at ~11:00GMT.
 
 ## Builders and Bug Reporters
 
-<p align="center""><img src="img/bugreporters.png" width="700"></p>
+<p align="center""><img src="img/bugreporters.svg" width="500"></p>
 
 ### Description
 
