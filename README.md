@@ -18,17 +18,19 @@
       Storage Providers
     </a>
     <span> | </span>
-    <a href="/roles/content-creators">
-      Content Creators
-    </a>
-    <span> | </span>
     <a href="/roles/content-curators">
       Content Curators
+    </a>
+     <!---
+    <span> | </span>
+    <a href="/roles/content-creators">
+      Content Creators
     </a>
     <span> | </span>
     <a href="/roles/builders">
       Bug Reporters
     </a>
+    --->
   </h4>
 </div>
 
@@ -37,9 +39,8 @@
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
-- [Contribute](#contribute)
-- [Get Paid to Participate](#get-paid-to-participate)
-  - [How it Works](#how-it-works)
+  - [Contribute](#contribute)
+  - [Get Paid to Participate](#get-paid-to-participate)
 - [Get Started](#get-started)
   - [Generate Keys](#generate-keys)
   - [Get a Membership](#get-a-membership)
@@ -54,46 +55,41 @@
   - [Storage Providers](#storage-providers)
     - [Description](#description-2)
     - [Incentives](#incentives-3)
-  - [Content Creators](#content-creators)
+  - [Content Curators](#content-curators)
     - [Description](#description-3)
     - [Incentives](#incentives-4)
-    - [Rewards based on content type](#rewards-based-on-content-type)
-    - [Payouts](#payouts)
-  - [Content Curators](#content-curators)
-    - [Description](#description-4)
-    - [Incentives](#incentives-5)
-    - [Payouts](#payouts-1)
-  - [Builders and Bug Reporters](#builders-and-bug-reporters)
-    - [Description](#description-5)
-    - [Incentives](#incentives-6)
-    - [Payouts](#payouts-2)
 - [Other Features and Future Roles](#other-features-and-future-roles)
   - [On-Chain Forum](#on-chain-forum)
-- [Glossary](#glossary)
 <!-- TOC END -->
 
 
 # Overview
 This repo contains detailed guides and help for users to interact with our current [testnet](https://testnet.joystream.org/).
 
-# Contribute
+## Contribute
 If you find something that is wrong or missing, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](#builders-and-bug-reporters). For more information on this, please see the [bounties repo](https://github.com/Joystream/bounties).
 
-# Get Paid to Participate
-Some of the roles will be compensated in [Monero](https://www.getmonero.org/). Our philosophy behind the choice of paying for participation is outlined in [this](https://blog.joystream.org/pay-for-play/) blog post. Information about the current incentive structure can be found in the list of [Active Roles](#active-roles) below.
+## Get Paid to Participate
 
-## How it Works
-**Note**
-After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Accounts` showing up.
+The Joystream testnet tokens (tJOY) are backed by a USD denominated fiat pool, and redeemable via monero. More information about how this works can be found below. If you want to find the current exchange rate, when the fiat pool is getting topped up, and verify pending exchanges, go [here](https://www.joystream.org/testnet).
 
-In order for us to know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar.
+To exchange your tokens, follow these steps.
+1. In order for us to know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar:
 
 ```
 # Only the part in the line below goes in the memo:
-"4or8YourXmrAddressInDoubleQuotesAndNothingElse"
+4or8YourXmrAddressInDoubleQuotesAndNothingElse
 ```
 
-For our convenience, we ask you to use a regular address or sub-address (95 char) instead of the (106 char) payment-ID style address. The latter will not be paid out automatically, but if you ask nicely, you might get away with it once.
+2. Send your testnet tokens (tJOY) to the following address:
+
+```
+5CktGSAEApx6Z2fK5NnK3dZNwD3Hi1YHhna3aTDHULSAXGdg
+```
+
+Once the tokens have been received to this address, the time, date, your address, your memo and the current tJOY/USD exchange rate is logged. Your tokens are then burned (reducing the tJOY issuance), and the USD amount is deducted from the fiat pool. This means that the exchange rate is not affected. Your monero should arrive within 24 hours, as we are batching the transactions. Also note that the XMR/USD exchange rate is at the time of the monero transfer.
+
+In order for us to know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar.
 
 # Get Started
 To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser [here](https://testnet.joystream.org).
@@ -144,8 +140,21 @@ In proof of stake systems, block producers, or `Validators`, are typically paid 
 A detailed guide to setting up the `Validator` node and settings can be found [here](/roles/validators).
 
 ### Incentives
-We want to encourage more people on our network to become `Validators`.
-WIP
+
+Active `Validators` are rewarded in tJOY every new `era` (600 blocks). The size of the reward for each `Validator` depends on a couple of variables:
+
+- The number of `Validators`
+  - The total amount rewarded are independent of the number of active `Validators`. This means that the individual tJOY reward is the total reward divided by the number of `Validators` in the last `era`.
+- The total supply of tJOY
+  - The rewards for `Validators` are calculated as a percentage of the total tJOY issuance.
+- The ratio of tokens at stake for the `Validator` set compared to the issuance
+  - By summing up the stake of the individual `Validators` and their `Nominators`, you get the amount at stake.
+  - Divide by the tJOY issuance and you get the ratio.
+  - The ideal number (for the `Validators`) is 30%.
+  - If this number is higher or lower, than 30%, the rewards "drop off"
+
+The rewards for the last `era` will show up as an event, and can be seen in the [explorer](https://testnet.joystream.org/#/explorer), if you keep a window open. <They can also be calculated using this spreadsheet>
+If you want to exchange your tokens, you need to unbond them first. Check the guide for instructions on how to do this.
 
 ## Council Members
 
@@ -153,17 +162,14 @@ WIP
 
 ### Description
 
-`Council Members` are elected by the stakeholders in the system to act in the interest of their constituency. Currently, `Council Members` can only vote on `proposals` to upgrade the `runtime`. In the future, the council will also allocate the platform's resources, and hire executive personnel to run the day-to-day operations.
+`Council Members` are elected by the stakeholders in the system to act in the interest of their constituency. The council is responsible for allocating the platform's resources, and hire executive personnel to run the day-to-day operations.
 
+An overview of the proposal system can be found [here](/proposals)
 A detailed explanation of the election cycle and responsibilities can be found [here](/roles/council-members).
 
 ### Incentives
 
-We are looking at how to best incentivize them to act in the platform's long term interest. The payout for one term as a council member will remain at $10.
-
-If during your term a proposal to upgrade the runtime is submitted by the `sudo` key, anyone that votes yes will receive a bonus worth $10.
-
-WIP
+`Council Members` receive recurring rewards in tJOY. Unlike the other recurring rewards for roles, this is not something the `Council` can vote on, as it could lead to some unfortunate outcomes. The size of the reward can be found can be found in the chain state.
 
 ## Storage Providers
 
@@ -177,15 +183,11 @@ Unlike `Validators` that can come and go without too much friction (at least for
 
 ### Incentives
 
-Up to eight `Storage Providers` that keep a full copy of the content directory and provide continuous service for at least 24h will compete for $120 per week. In addition, you will earn $0.03/GB/week (of data in the content directory) calculated on an average basis. You will also need a domain to point to your node, so unless you already own one (that you don't mind using), you will need to buy one.
+The incentives for the `Storage Providers` are controlled by the governance system, through proposals. Any member can propose to fire a `Storage Provider` for insufficient service, or propose changes to the number of available slots, fees or staking costs.
 
-We will be closely monitoring `Storage Providers` for Rome (more so than we did for Acropolis) so make sure your node is performing optimally to avoid being booted. `Storage Providers` should also be aware that the variable part of the compensation structure is likely to be reviewed after launch (up or down) to make sure that providers are fairly compensated for their efforts.
+The status of this role can be found [here](https://testnet.joystream.org/#/storage).
 
-A detailed guide to setting up the node can be found [here](/roles/storage-providers).
-
-WIP
-
-
+ <!---
 ## Content Creators
 
 <p align="center"><img src="img/contentcreators.svg" width="500"></p>
@@ -193,36 +195,7 @@ WIP
 ### Description
 
 When the Joystream mainnet is live, `Content Creators` will be responsible for creating and uploading the enormous variety of different content types and genres which we believe will allow Joystream to grow into a successful decentralized media platform.
-
-### Incentives
-
-For the Rome testnet, we will pay a flat-rate Monero reward for every piece of content uploaded by `Content Creators` up to a weekly limit. We will also pay a $5 bonus on top of this rate for each of the 10 best pieces of content that are uploaded every week to encourage higher quality uploads.
-
-A separate  bonus will be paid for up to 10 items of quality "original" `*` content every week. The maximum weekly incentive pool of $250 will be divided between these two categories of incentive.
-
-`*`Original here means creative work that you created yourself and own exclusive the rights to.
-
-Prospective `Content Creators` should also be aware that we will only pay the item reward for content with complete metadata and which follows the set-out requirements for each content type (to be released at a later date).
-
-Uploading illegal or copyrighted content will result in a disqualification from payouts. It will also result in the takedown of content, potentially slashing of funds, and the deletion of your channel. Multiple spam uploads which represent a burden to moderate for the `Content Curators` may even be penalized and result in deductions on payouts due for qualifying content uploads on your content creator profile.
-
-We will provide `Content Creators` with a list of sources for safe and non-copyrighted material which can be uploaded as part of this testnet and will qualify for the payments discussed above and laid out in the table below.
-
-### Rewards based on content type
-
-| CONTENT TYPE | MAXIMUM PAYMENT PER ITEM | MAXIMUM QUALIFYING UPLOADS | MAXIMUM PAYOUT POOL |
-| --- | --- | --- | --- |
-| Video (Standard) | $0.50 per video | 200 | $100 |
-| Best Content (Bonus) | $5 per video | 10 | $50 |
-| Original Content (Bonus) | $10 per video | 10 | $100 |
-
-WIP
-
-### Payouts
-
-`Content Creators` must include their [XMR address](#how-it-works) in the `memo` of their `membership` key.
-
-Payouts will be made every Monday at ~11:00GMT.
+--->
 
 ## Content Curators
 
@@ -232,24 +205,22 @@ Payouts will be made every Monday at ~11:00GMT.
 
 `Content Curators` will one day be essential for ensuring that the petabytes of media items uploaded to Joystream are formatted correctly and comprehensively monitored and moderated. Our upcoming testnet allows this content monitoring to take place by giving users who are selected for the role administrative access to the Joystream content directory to make changes where necessary.
 
-We will have five slots available for `Content Curators` when Rome is launched, but this may be modified depending on demand and activity. They will need to apply to the `Content Curator Lead` (a working group lead role operated by [Jsgenesis](https://jsgenesis.com/)) and will have their application assessed by this lead before being added as a curator for a default term of one week. As the network matures, the `Content Curator Lead` role will be delegated to a community member.
-
 ### Incentives
 
-If successful in their application, curators will be rewarded with a flat reward of `$30` per week, resulting in a maximum pool of `$150` if all five content curators are signed up, and stays in the role the entire week.
+`Content Curators` are hired by the `Curator Lead`. The `Council` is responsible for setting the budget for the `Curators` by providing the lead with a so called mint. The lead can hire and fire as they choose, but if the capacity of the mint runs out, the rewards will stop flowing. This means that both the `Council` and the lead must pay attention to the mint capacity.
 
-There will also be two bonuses of `$20` and `$10` per week for the two most active curators respectively in terms of monitoring the items in the content directory for compliance with our metadata, category and content rules. These bonuses will be awarded by the `Content Curator Lead`. In total, during a typical week, `Content Curators` will be competing for their share of `$180` in XMR.
+The group and its lead is governed through the proposal system, where any member can propose to "Set Content Working Group Mint Capacity", and "Set (Curator) Lead".
 
-Inactive and/or malicious curators will be booted, and potentially slashed by the `Content Curator Lead`.
+The former, if executed, will simply set the capacity of the mint to the number proposed, regardless of previous capacity. To avoid workers "striking" due to the lack of payments (including for themselves), the lead must ensure the mint does not run out of capacity. If the lead goes rogue, or simply spends too much, the capacity can be set to zero to avoid further spending.
 
+When making a new "Set (Curator) Lead" proposal, one can propose to
+- replace the old lead
+- hire a lead if there are currently none
+- fire the current lead, without setting a new one.
 
-### Payouts
+ The lead will initially be a member of the Jsgenesis team, but the `Council` will have to find a replacement. This can be done by making a proposal to `Set Curator Lead`.
 
-`Content Curators` must include their [XMR address](#how-it-works) in the `memo` of their `membership` key.
-
-Payouts will be made every Monday at ~11:00GMT.
-
-
+ <!---
 ## Builders and Bug Reporters
 
 <p align="center""><img src="img/bugreporters.svg" width="500"></p>
@@ -281,6 +252,8 @@ If you want, you can just make a PR directly, and your contribution will be comp
 ### Payouts
 
 The contributor must include either their Joystream or monero address when submitting the issue/PR. If you choose the former, you must then make sure to add your monero address to the `memo` field of your Joystream address.
+--->
+
 
 # Other Features and Future Roles
 
@@ -289,7 +262,3 @@ This section covers other things you can do after [getting started](#getting-sta
 ## On-Chain Forum
 
 This is the first step in providing users, infrastructure role participants, `Council Members` and future stakeholders a way to communicate and coordinate. Hopefully, this method of interaction will further help develop a strong community around Joystream. Note that you have to be a `member` to post, and only the forum moderator (forum sudo) can create categories.
-
-# Glossary
-
-TODO
