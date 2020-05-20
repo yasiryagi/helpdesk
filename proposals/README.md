@@ -39,7 +39,7 @@ Although no action will happen if such a proposal is voted through, it provides 
 In general, this proposal will include an amount, and a beneficiary. This can be used in to fund development, pay winners of competitions, bonus payments for a role, or anything else that requires minting new tokens to a specific individual or group.
 
 #### Evict Storage Provider
-This allows users to make a proposal to fire a Storage Provider that does not perform the role satisfactory.
+This allows users to make a proposal to "fire" a Storage Provider that is not performing the role satisfactorily.
 
 #### Set Storage Role Parameters
 The Storage Provider will be paid by minting new tokens, effectively increasing the tJOY supply. The incentive will be to keep both the number of slots, and the size of the individual rewards, as low as possible while maintaining a sufficient service.
@@ -103,7 +103,7 @@ There are also some general parameters that applies equally to all proposals, su
 
 ## Proposal Flow
 
-Any member of the platform with sufficient amount of tokens to stake, can create a proposal. If the proposal includes values that are within the allowable range, and there are fewer `active` proposals than what is allowed, the proposal was proceed to the `active` state where the council can vote on it.
+Any member of the platform with a sufficient quantity of tokens to stake can create a proposal. If the proposal includes values that are within the allowable range, and there are fewer `active` proposals than permitted, the proposal was proceed to the `active` state where the council can vote on it.
 
 ### Example
 
