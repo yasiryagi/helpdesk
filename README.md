@@ -199,7 +199,7 @@ When the Joystream mainnet is live, `Content Creators` will be responsible for c
 
 ## Content Curators
 
-<p align="center"><img src="img/contentcurators.png" width="700"></p>
+<p align="center"><img src="img/contentcurators.svg" width="500"></p>
 
 ### Description
 
