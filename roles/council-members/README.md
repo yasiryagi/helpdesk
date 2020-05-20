@@ -78,16 +78,16 @@ The types of proposals available include:
 - Set Election Parameters
 - Runtime Upgrade
 
-To make a proposal:
-(1) Click the Proposals tab in the Pioneer sidebar (`/proposals`).
-(2) This will provide a view of all of the currently active (as well as past) proposals.
-(3) If there are fewer than five `active` proposals, you can click the `New Proposal` button at the top of the page.
-(4) You will be given a list of proposal types; select the one which is required for your proposal.
-(5) Make a note of the staking requirements, ensuring your account balance is sufficient to create the proposal.
-(6) Also note the other variables on the page, paying particular attention to the quorum and threshold for votes.
-(7) Click `Create Proposal` and fill in the required fields, `Title`, `Rationale` and `Description`.
-(8) When you are ready, click `Submit Proposal` and sign the transaction.
-(9) If everything has worked correctly, your proposal should now be `active` on the proposals page.
+To make a proposal:<br><br>
+ (1) Click the Proposals tab in the Pioneer sidebar (`/proposals`). <br>
+ (2) This will provide a view of all of the currently active (as well as past) proposals.<br>
+ (3) If there are fewer than five `active` proposals, you can click the `New Proposal` button at the top of the page.<br>
+ (4) You will be given a list of proposal types; select the one which is required for your proposal.<br>
+ (5) Make a note of the staking requirements, ensuring your account balance is sufficient to create the proposal.<br>
+ (6) Also note the other variables on the page, paying particular attention to the quorum and threshold for votes.<br>
+ (7) Click `Create Proposal` and fill in the required fields, `Title`, `Rationale` and `Description`.<br>
+ (8) When you are ready, click `Submit Proposal` and sign the transaction.<br>
+ (9) If everything has worked correctly, your proposal should now be `active` on the proposals page.<br>
 
 ## Voting on Proposals
 While any member can make a proposal, only council members can vote!
