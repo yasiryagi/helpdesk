@@ -21,7 +21,6 @@
     - [Proposals](#proposals)
     - [Voting on Proposals](#voting-on-proposals)
 - [Troubleshooting](#troubleshooting)
-    - [Session Key](#session-key)
 
 
 # Overview
@@ -62,14 +61,47 @@ As soon as the `Reveal` stage closes, the 12 candidates with the highest total b
 Note that the next `Announcement` stage will start exactly 201600 blocks (14 days) after the previous.
 
 # Governance
-TODO
+Constantinople introduced a number of important changes to the governance structure of the platform. The most important of these was the enhancement of the platform's proposal system. You can read descriptions of each of the proposal types on the helpdesk article [here](../../proposals/README.md).
 
 ## Proposals
-TODO
+
+As a member (council member or not) you are able to make proposals to be voted on by the council.
+
+The types of proposals available include:
+- Text/signal Proposal
+- Funding Requests
+- Evict Storage Provider
+- Set Storage Role Parameters
+- Set Max Validator Count
+- Set Content Curator Lead
+- Set Content Working Group Mint Capacity
+- Set Election Parameters
+- Runtime Upgrade
+
+To make a proposal:
+(1) Click the Proposals tab in the Pioneer sidebar (`/proposals`).
+(2) This will provide a view of all of the currently active (as well as past) proposals.
+(3) If there are fewer than five `active` proposals, you can click the `New Proposal` button at the top of the page.
+(4) You will be given a list of proposal types; select the one which is required for your proposal.
+(5) Make a note of the staking requirements, ensuring your account balance is sufficient to create the proposal.
+(6) Also note the other variables on the page, paying particular attention to the quorum and threshold for votes.
+(7) Click `Create Proposal` and fill in the required fields, `Title`, `Rationale` and `Description`.
+(8) When you are ready, click `Submit Proposal` and sign the transaction.
+(9) If everything has worked correctly, your proposal should now be `active` on the proposals page.
 
 ## Voting on Proposals
-TODO
+While any member can make a proposal, only council members can vote!
 
+The voting process is rather simple. The first step is to navigate to the proposals (`/proposals`) page and view the currently active proposals. Select the proposal you would like to vote on and simply click the button corresponding to your decision (based on discussion with other council members) on the merits of the proposal.
+
+You can choose:
+
+- `Approve` - approving the proposed action
+- `Reject` - reject the proposed action
+- `Slash` - reject the proposed action, and slash the stake of the proposer
+- `Abstain` - abstain from voting
+
+More information on how council votes are processed can be read [here](../../proposals/README.md).
 
 ---
 
