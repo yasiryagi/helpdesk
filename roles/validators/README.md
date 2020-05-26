@@ -428,7 +428,7 @@ R_v,te = I * (I_min + (I_max - I_min) * 2^((S_v,i − S_v,t) / F_v)) * E_l / yea
 
 #### Examples
 
-The tJOY rewards for the validators can be calculated using this [spreadsheet](). The examples below should assist in using it:
+The tJOY rewards for the validators can be calculated using this [spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing). The examples below should assist in using it:
 
 #### Example A
 In addition to the fixed parameters above, suppose:
@@ -509,25 +509,87 @@ As for 1. this automatically sends all rewards the `stash` address, but does *no
 This sends all rewards to the `controller`, at your disposal.
 
 #### Validating preferences
-1. The `reward commission` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
+The `reward commission` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
 
-Let `v` [Joy] be the bonded tokens for the validator `stash`
-Let `p` [Joy] be the `payment preference` decided by the validator
-Let `n1` [Joy] be the bonded tokens for the nominator1 `stash`
-Let `n2` [Joy] be the bonded tokens for the nominator2 `stash`
-Let `r` [Joy] be the reward that `era`
+- Let `v` be the bonded tokens by the validators `stash` key
+- Let `c` be the `reward commission` decided by the validator
+- Let `n1` be the bonded tokens by the nominator1 `stash`
+- Let `n2` be the bonded tokens by the nominator2 `stash`
+- Let `r` be the reward for the individual validators that `era`
 
 ```
 # payout for the validator
-p + (v/(v+n1+n2)*(r-p))
+c+(r-c)*v/(v+n1+n2)
 # payout for the nominator1
-(n1/(v+n1+n2)*(r-p))
+(n1/(v+n1+n2)*(r-c))
+```
+
+##### Example A
+- assume there are 10 active validators in this era
+- validator 1 bonds 100,000 tJOY
+- validators 2-10 all bonds 300,000tJOY
+- validator 1 has `reward commission` set to 100 tJOY
+- nominator A bonds 130,000 tJOY, and nominates validator 1
+- nominator B bonds 20,000 tJOY, and nominates validator 1
+- thus, validator A has an effective stake of 250,000 tJOY
+- after the end of the era, the total rewards are 25,000 tJOY
+
+```
+# All validators get an equal share, before sharing with nominators:
+R_v = 25,000tJOY / 10 = 2,500tJOY
+
+# payout for validator 1
+R_v.1 = 100tJOY + 100,000tJOY * (2,500tJOY - 100tJOY) / 250,000tJOY = 1,060tJOY
+
+# payout for nominator A
+R_n.A = 130,000tJOY * (2,500tJOY - 100tJOY) / 250,000tJOY = 1,248tJOY
+
+# payout for nominator B
+R_n.B = 20,000tJOY * (2,500tJOY - 100tJOY) / 250,000tJOY = 192tJOY
+```
+
+##### Example B (advanced)
+
+You have 200,000tJOY and wants to use tokens to `nominate`
+- there are 10 active validators in this era
+- validator 1 bonds 200,000 tJOY, with `reward commission` set to 100 tJOY
+- validator 2 bonds 200,000 tJOY, with `reward commission` set to 50 tJOY
+- validator 3 bonds 220,000 tJOY, with `reward commission` set to 20 tJOY
+- validator 4 bonds 250,000 tJOY, with `reward commission` set to 0 tJOY
+- validators 5-10 all bonds 250,000tJOY, with `reward commission` set to 5 tJOY
+
+This means that the current `slotstake` is 200,000tJOY, and the effective stake for all validators are 200,000tJOY
+
+```
+# All validators get an equal share, before sharing with nominators:
+R_v = 25,000tJOY / 10 = 2,500tJOY
+
+# All tokens used to nominate 1
+R_n.1 = 200,000tJOY * (2,500tJOY - 100tJOY) / 400,000tJOY = 1,200tJOY
+
+# All tokens used to nominate 2
+R_n.1 = 200,000tJOY * (2,500tJOY - 50tJOY) / 400,000tJOY = 1,225tJOY
+
+# All tokens used to nominate 3
+R_n.1 = 200,000tJOY * (2,500tJOY - 20tJOY) / 420,000tJOY = 1,181tJOY
+
+# All tokens used to nominate 4
+R_n.1 = 200,000tJOY * (2,500tJOY) / 450,000tJOY = 1,111tJOY
+
+# 57,000tJOY for 1 and 2, 37,000tJOY for 3, 7,000tJOY for rest
+R_n.1 = 57,000tJOY * (2,500tJOY - 100tJOY) / 257,000tJOY = 532tJOY
+R_n.2 = 57,000tJOY * (2,500tJOY - 50tJOY) / 257,000tJOY = 543tJOY
+R_n.3 = 37,000tJOY * (2,500tJOY - 20tJOY) / 257,000tJOY = 357tJOY
+R_n.4 = 7,000tJOY * (2,500tJOY) / 257,000tJOY = 68tJOY
+R_n.n = 6 * 7,000tJOY * (2,500tJOY - 5tJOY) / 257,000tJOY = 6*68tJOY = 408tJOY
+
+R_n.tot = 1908tJOY
 ```
 
 
 ## Nominating
 
-If you want to get some return on your tokens without running a node yourself, you can `nominate` another `validator` and get a share of their rewards.
+If you want to get some return on your tokens without running a node yourself, you can `nominate` another `validator` and get a share of their rewards. Note that it's in your interest as a nominator
 
 This might also come in handy if there are too many `validators` and you don't have enough tokens get a spot, or if you have to shut down your own node for a while.
 

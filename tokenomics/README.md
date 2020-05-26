@@ -34,7 +34,7 @@ The overall value flows can be summarized by the figure below:
 
 <p align="center"><img src="../img/flows.png" width="1000"></p>
 
-Examples of the system through the eyes of a user can be found [here](#tokenomics-examples).
+Examples of the system through the eyes of a user can be found [here](#tokenomics-examples). In order for community members to get a grasp of the tokenomics, a [spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing) has been made.
 
 
 ## Token Issuance
@@ -103,7 +103,7 @@ Assuming again all else being equal, ie. the only token inflation on the network
 
 If the user had instead chosen to exchange all their `1,500tJOY` in the first place, the would have locked in a value of `$150 USD`. Their actual choice however, resulted in having cashed in a total of `$102.9 USD`, with another `1,000` tJOY worth `$94.4 USD` at the prevailing rates, for a total of `$197.3 USD`.
 
-In practice, the system will be far more complex than what is outlined above. A spreadsheet will be made available for users to calculate their expected value, but for now, let's end with a slightly more elaborate example.
+In practice, the system will be far more complex than what is outlined above. For more precise calculations, please use [the spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing).
 
 ### Example B
 
