@@ -63,6 +63,8 @@ Note that the next `Announcement` stage will start exactly 201600 blocks (14 day
 # Governance
 Constantinople introduced a number of important changes to the governance structure of the platform. The most important of these was the enhancement of the platform's proposal system. You can read descriptions of each of the proposal types on the helpdesk article [here](../../proposals/README.md).
 
+Most of the proposals are meant to allow the Council to allocate the platforms resources as efficiently as possible. In order to do so, a [tokenomics spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing) has been made to assist in the decision making.
+
 ## Proposals
 
 As a member (council member or not) you are able to make proposals to be voted on by the council.
