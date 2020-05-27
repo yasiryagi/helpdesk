@@ -128,7 +128,7 @@ The specifics on what will happen with the upgrade from `Rome` (old incentive sc
 
 # Active Roles
 
-The list below shows the currently active roles available at our current [testnet](https://testnet.joystream.org/).
+The list below shows the currently active roles available at our current [testnet](https://testnet.joystream.org/). In order to know how to best allocate your tokens, consider trying the [tokenomics spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing).
 
 ## Validators
 
@@ -153,7 +153,7 @@ Active `Validators` are rewarded in tJOY every new `era` (600 blocks). The size 
   - The ideal number (for the `Validators`) is 30%.
   - If this number is higher or lower, than 30%, the rewards "drop off"
 
-The rewards for the last `era` will show up as an event, and can be seen in the [explorer](https://testnet.joystream.org/#/explorer), if you keep a window open. <They can also be calculated using this spreadsheet>
+The rewards for the last `era` will show up as an event, and can be seen in the [explorer](https://testnet.joystream.org/#/explorer), if you keep a window open. Fairly precise estimates can be found using the [tokenomics spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing).
 If you want to exchange your tokens, you need to unbond them first. Check the guide for instructions on how to do this.
 
 ## Council Members

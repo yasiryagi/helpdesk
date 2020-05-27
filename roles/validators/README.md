@@ -15,30 +15,19 @@ Table of Contents
 - [Instructions](#instructions)
 - [On Your Machine](#on-your-machine)
   - [Mac](#mac)
-      - [Setup Node](#setup-node)
-      - [Keys](#keys)
-      - [Final Step](#final-step)
   - [Linux](#linux)
-      - [Setup Node](#setup-node-1)
-      - [Keys](#keys-1)
-      - [Final Step](#final-step-1)
 - [In the Pioneer app (browser)](#in-the-pioneer-app-browser)
   - [Validator Setup](#validator-setup)
-      - [Generate your keys](#generate-your-keys)
-      - [Configure your validator keys](#configure-your-validator-keys)
 - [Advanced](#advanced)
   - [Run as a service](#run-as-a-service)
-      - [Configure the service](#configure-the-service)
-      - [Starting the service](#starting-the-service)
-      - [Errors](#errors)
+  - [Rewards](#rewards)
+    - [Dynamic Parameters](#dynamic-parameters)
+    - [Fixed Parameters](#fixed-parameters)
   - [Settings](#settings)
-      - [Bonding preferences](#bonding-preferences)
-      - [Validating preferences](#validating-preferences)
   - [Nominating](#nominating)
-      - [Generate your keys](#generate-your-keys-1)
-      - [Configure your validator keys](#configure-your-validator-keys-1)
 - [Troubleshooting](#troubleshooting)
 <!-- TOC END -->
+
 
 # Overview
 
@@ -379,6 +368,128 @@ $ systemctl daemon-reload
 $ systemctl start joystream-node
 ```
 
+## Rewards
+
+For Substrate based blockchains, the validator rewards depends on some [dynamic parameters](#dynamic-parameters), that will change continuously, and some [fixed parameters](#fixed-parameters) in the chain spec.
+
+### Dynamic Parameters
+1. Active validators (`V_a`) - the number of `validators` currently running. This can be found:
+  - in the [staking](https://testnet.joystream.org/#/staking) tab
+  - or through a [chain state](https://testnet.joystream.org/#/chainstate) query of `staking.currentElected()` (and count them)
+2. Issuance `I` - total tJOY tokens in circulation. This can be found:
+  - in the [explorer](https://testnet.joystream.org/#/explorer) tab
+  - or through a [chain state](https://testnet.joystream.org/#/chainstate) query of `balances.totalIssuance()`
+3. Effective stake (`S_v,eff`) - ie. the total *effective* stake of the `validator` set, corresponding to the stake of the `validator` with the lowest *active* stake, which again is the sum of own stake, plus the stake of their [nominators](#nominating) if any. This can be found:
+  - in the [staking](https://testnet.joystream.org/#/staking) tab, where one can look at the bottom entry among the active, and add the number(s) next to `bonded`.
+  - or through a [chain state](https://testnet.joystream.org/#/chainstate) query of `staking.slotStake()`
+  - then multiple the number with `V_a`
+4. Max/Ideal validators `V_i` - the max number of active validators. This number can be changed through proposals, but was initially set to 20. Current value can be found:
+  - in the [explorer](https://testnet.joystream.org/#/staking) tab
+  - or through a [chain state](https://testnet.joystream.org/#/chainstate) query of `staking.validatorCount()`
+
+Values that can be derived from this are:
+- Staking rate `S_v,t = S_v,eff/I`
+
+### Fixed Parameters
+5. Minimum inflation, `I_min` - the min yearly inflation distributed to validators.
+  - This number is currently set to `2.5%`.
+6. Maximum inflation, `I_max` - the max yearly inflation distributed to validators.
+  - This number is currently set to `30%`.
+7. Ideal staking rate, `S_v,i` - the ideal ratio of effective stake over issuance for maximum validator rewards.
+  - This number is currently set to `30%`.
+8. Falloff, `F_v` - how quickly the validator rewards drop when the actual staking rate `S_v,t` exceeds the ideal staking rate `S_v,i`.
+  - This number is currently set to `5%`.
+9. Era (length), `E_l` - a period of time where the validator set remains constant. Unless there's a problem with the active validator set, an era lasts a fixed amount of sessions/epochs, which contains a fixed amount of blocks.
+  - This number is currently set to 600 blocks (6-off sessions/epochs, each 100-off blocks).
+  - This should to 3600 seconds or 1 hour, as the target blocktime is 6 seconds.
+
+### Validator set and block production
+At the end of each era, a new set of active validators `V_a` is determined by sorting all those that have declared their intention (eg. both the active and next up) by their stake, and selecting up to `V_i` in a descending order. These are treated as equals, and all will in practice have the same effective stake `S_v,eff/V_a`. They will randomly be asked to produce the next block, and will earn Era Points for each successful block authored.
+
+### Total rewards calculation
+
+As shown, the maximum total validator reward per year is 30% for `S_v,t=S_v,i`. With an era length of 600 blocks, each era, the maximum total, `R_vm,te` and individual, `R_vm,ie` reward for the validators are:
+
+```
+R_vm,te = I * I_max * E_l / year
+= I * 0.3 * 3600s / (365.2425×24×60×60s)
+= 0.0000342238*I
+
+R_vm,ie = R_vm,te / V_a
+= 0.0000342238*I/V_a
+```
+
+For `S_v,t<S_v,i`, the total rewards drop linearly down to `I_min` for `S_v,t=0`
+For `S_v,t>S_v,i`, the total rewards can be found by:
+
+```
+R_v,te = I * (I_min + (I_max - I_min) * 2^((S_v,i − S_v,t) / F_v)) * E_l / year
+```
+
+#### Examples
+
+The tJOY rewards for the validators can be calculated using this [spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing). The examples below should assist in using it:
+
+#### Example A
+In addition to the fixed parameters above, suppose:
+```
+V_a=20
+I=100,000,000tJOY
+S_v,eff=30,000,000tJOY
+```
+
+As `S_v,t=S_v,eff/I=0.3`, the maximum yearly inflation rate will be shared among the validators. Each era, the total, `R_v,te` and individual, `R_v,ie` reward for the validators are:
+
+```
+R_v,te = I * I_max * E_l / year
+= 100,000,000tJOY * 0.3 * 3600s / (365.2425×24×60×60s)
+= 3,422tJOY
+
+R_v,ie = R_v,te / V_a
+= 3,422tJOY / 20
+= 1,71tJOY
+```
+
+#### Example B
+In addition to the fixed parameters above, suppose:
+```
+V_a=20
+I=100,000,000tJOY
+S_v,eff=20,000,000tJOY
+```
+
+With `S_v,t=S_v,eff/I=0.2`. Each era, the total, `R_v,te` and individual, `R_v,ie` reward for the validators are:
+
+```
+R_v,te = (I * I_min + I * (I_max - I_min) * (S_v,t / S_v,i)) * E_l / year
+= 2,376tJOY
+
+R_v,ie = R_v,te / V_a
+= 2,376tJOY / 20
+= 119tJOY
+```
+
+#### Example C
+In addition to the fixed parameters above, suppose:
+```
+V_a=20
+I=100,000,000tJOY
+S_v,eff=40,000,000tJOY
+```
+
+With `S_v,t=S_v,eff/I=0.4`. Each era, the total, `R_v,te` and individual, `R_v,ie` reward for the validators are:
+
+```
+R_v,te = I * (I_min + (I_max - I_min) * 2^((S_v,i − S_v,t) / F_v)) * E_l / year
+= 1,069tJOY
+
+R_v,ie = R_v,te / V_a
+= 1,069tJOY / 20
+= 53tJOY
+```
+
+More information on the staking, rewards and slashing mechanics can be found on the web3 foundations research papers   [here](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html).
+
 ## Settings
 
 If you don't want to use the default settings, here are some of the options you can configure.
@@ -398,19 +509,81 @@ As for 1. this automatically sends all rewards the `stash` address, but does *no
 This sends all rewards to the `controller`, at your disposal.
 
 #### Validating preferences
-1. The `reward commission` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
+The `reward commission` is how the (joy) staking rewards are split between yourself and any potential [nominators](#nominating). The default (0) means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
 
-Let `v` [Joy] be the bonded tokens for the validator `stash`
-Let `p` [Joy] be the `payment preference` decided by the validator
-Let `n1` [Joy] be the bonded tokens for the nominator1 `stash`
-Let `n2` [Joy] be the bonded tokens for the nominator2 `stash`
-Let `r` [Joy] be the reward that `era`
+- Let `v` be the bonded tokens by the validators `stash` key
+- Let `c` be the `reward commission` decided by the validator
+- Let `n1` be the bonded tokens by the nominator1 `stash`
+- Let `n2` be the bonded tokens by the nominator2 `stash`
+- Let `r` be the reward for the individual validators that `era`
 
 ```
 # payout for the validator
-p + (v/(v+n1+n2)*(r-p))
+c+(r-c)*v/(v+n1+n2)
 # payout for the nominator1
-(n1/(v+n1+n2)*(r-p))
+(n1/(v+n1+n2)*(r-c))
+```
+
+##### Example A
+- assume there are 10 active validators in this era
+- validator 1 bonds 100,000 tJOY
+- validators 2-10 all bonds 300,000tJOY
+- validator 1 has `reward commission` set to 100 tJOY
+- nominator A bonds 130,000 tJOY, and nominates validator 1
+- nominator B bonds 20,000 tJOY, and nominates validator 1
+- thus, validator A has an effective stake of 250,000 tJOY
+- after the end of the era, the total rewards are 25,000 tJOY
+
+```
+# All validators get an equal share, before sharing with nominators:
+R_v = 25,000tJOY / 10 = 2,500tJOY
+
+# payout for validator 1
+R_v.1 = 100tJOY + 100,000tJOY * (2,500tJOY - 100tJOY) / 250,000tJOY = 1,060tJOY
+
+# payout for nominator A
+R_n.A = 130,000tJOY * (2,500tJOY - 100tJOY) / 250,000tJOY = 1,248tJOY
+
+# payout for nominator B
+R_n.B = 20,000tJOY * (2,500tJOY - 100tJOY) / 250,000tJOY = 192tJOY
+```
+
+##### Example B (advanced)
+
+You have 200,000tJOY and wants to use tokens to `nominate`
+- there are 10 active validators in this era
+- validator 1 bonds 200,000 tJOY, with `reward commission` set to 100 tJOY
+- validator 2 bonds 200,000 tJOY, with `reward commission` set to 50 tJOY
+- validator 3 bonds 220,000 tJOY, with `reward commission` set to 20 tJOY
+- validator 4 bonds 250,000 tJOY, with `reward commission` set to 0 tJOY
+- validators 5-10 all bonds 250,000tJOY, with `reward commission` set to 5 tJOY
+
+This means that the current `slotstake` is 200,000tJOY, and the effective stake for all validators are 200,000tJOY
+
+```
+# All validators get an equal share, before sharing with nominators:
+R_v = 25,000tJOY / 10 = 2,500tJOY
+
+# All tokens used to nominate 1
+R_n.1 = 200,000tJOY * (2,500tJOY - 100tJOY) / 400,000tJOY = 1,200tJOY
+
+# All tokens used to nominate 2
+R_n.1 = 200,000tJOY * (2,500tJOY - 50tJOY) / 400,000tJOY = 1,225tJOY
+
+# All tokens used to nominate 3
+R_n.1 = 200,000tJOY * (2,500tJOY - 20tJOY) / 420,000tJOY = 1,181tJOY
+
+# All tokens used to nominate 4
+R_n.1 = 200,000tJOY * (2,500tJOY) / 450,000tJOY = 1,111tJOY
+
+# 57,000tJOY for 1 and 2, 37,000tJOY for 3, 7,000tJOY for rest
+R_n.1 = 57,000tJOY * (2,500tJOY - 100tJOY) / 257,000tJOY = 532tJOY
+R_n.2 = 57,000tJOY * (2,500tJOY - 50tJOY) / 257,000tJOY = 543tJOY
+R_n.3 = 37,000tJOY * (2,500tJOY - 20tJOY) / 257,000tJOY = 357tJOY
+R_n.4 = 7,000tJOY * (2,500tJOY) / 257,000tJOY = 68tJOY
+R_n.n = 6 * 7,000tJOY * (2,500tJOY - 5tJOY) / 257,000tJOY = 6*68tJOY = 408tJOY
+
+R_n.tot = 1908tJOY
 ```
 
 
@@ -459,14 +632,14 @@ In order to be a `Nominator`, you need to stake. Note that you may have to refre
 
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
-<!---
 
 #### Unstaking
 
 If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `validator` set. If you know in advance (~1hr) you can do the following steps instead:
 
 First, make sure you have set `Fully Featured` interface in the `Settings` sidebar.
-1. In `Validator Staking`, click `Stop Validating` with your controller. This can also be done via `Extrinsic`: With `controller` -> `staking` -> `chill()`.
+
+1. In `Validator -> Account Actions`, click `Stop Validating`.
 
 If you are just pausing the `validator` and intend to start it up later, you can stop here. When you are ready to start again, fire up your node, go to `Validator Staking`, and click `Validate`.
 
@@ -474,42 +647,8 @@ If you want to stop being a `validator` and move your tokens to other/better use
 
 ---
 
-2. Next you must unbond. In `Extrinsics`, using the `controller`, select `staking` -> `unbond(value)` and choose how much you want to unbond, `<unbonding>`. Submit Transaction.
+2. Next you must unbond. In the same window (`Validator -> Account Actions`), next to your keypair, click setting, then `Unbond funds`, and select the amount you wish to unbond.
 
-At this point, you can just wait 2hrs to be sure, and proceed to step `6.` Or:
+After the transaction has gone through, you will see a new line below appearing, displaying `unbonding <amount> JOY` and an info icon.  Hovering over this with your cursor will tell you when your unbonding is complete, and you can go to the third and final step.
 
----
-
-3. Go to `Chain State` -> `staking` -> `ledger(AccountId): Option<StakingLedger>` with the `controller`. Output:
-```
-# If you have successfully initiated unstaking:
-{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,<act_bonded>:[{"value":<unbonding>,"era":<E_unbonded>}]}
-# If you have not successfully initiated unstaking, or it has already completed:
-{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,"<act_bonded>":[]}
-```
-* `<tot_bonded>` Is the total amount you have staked/bonded
-* `<act_bonded>` Is the amount of tokens that is not being unlocked
-* `<unbonding>` Is the amount of tokens that is in the process of being freed
-  * `<unbonding>` + `<act_bonded>` = `<tot_bonded>`
-* `<E_unbonded>` Is the `era` when your tokens will be "free" to transfer/bond/vote
-
-The `era` should only change every 600 blocks, but certain events may trigger a new era. To calculate when your funds are "free"
-4. In `Chain State` -> `staking` -> `currentEra()`. Let output be `<E_current>`
-5. In `Explored` collect `<blocks_in_era>/600` under era.
-```
-600(<E_unbonded> - <E_current> - 1) - <blocks_in_era> = <blocks_left>
-(<blocks_left> * 6)/60 = <minutes_left>
-```
-After `<minutes_left>` has passed, ie. `<E_current>` = `<E_unbonded>`, your tokens should be free.
-Repeat step `3.` if you want to confirm.
-```
-# If you have completed unstaking:
-{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,"<act_bonded>":[]}
-```
----
-
-6. In `Extrinsics`, using the `controller`, select `staking` -> `withdrawUnbonded()`
-
-Your tokens should now be "free".
-
---->
+3. Once the unbonding is complete, still in the `Validator -> Account Actions` tab, you will see a new line displaying `unbonding <amount> JOY` and a lock icon. Click on the icon to complete the unbonding. You can now spend your tokens.

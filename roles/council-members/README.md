@@ -37,14 +37,16 @@ After introducing `Memberships` to the platform, we found it to be confusing to 
 If you want to get elected as a `Council Member` or vote on the platform, you need to be a `Member`. Instructions for this can be found [here](https://github.com/JoyStream/helpdesk/#get-started).
 
 # Election Cycle
-The election cycle consists four stages.
-1. `Announcement` - lasts 43200 blocks (~72h)
-2. `Voting`       - lasts 14400 blocks (~24h)
-3. `Reveal`       - lasts 14400 blocks (~24h)
-4. `Term`         - lasts 201600 blocks (~14days)
+The election cycle consists four stages. Currently, the length of each are:
+1. `Announcement` - lasts 14,400 blocks (~24h)
+2. `Voting`       - lasts 14,400 blocks (~24h)
+3. `Reveal`       - lasts 14,400 blocks (~24h)
+4. `Term`         - lasts 57,600 blocks (~4days)
+
+Note that these parameters can be changed through the proposal system.
 
 ## Announcement
-During the `Announcement` stage, anyone that is a `Member`, and holds at least unstaked 1000 Joy (ie. if you use your `validator` `stash` key, you need a `balance` > `bonded` + 1000 Joy) tokens can announce their candidacy to become a `Council Member`.
+During the `Announcement` stage, anyone that is a `Member` and holds the required amount of tokens to stake, can announce their candidacy to become a `Council Member`.
 
 Select `Council` in the sidebar, and click the `Applicants` tab. Set the amount of tokens you want to, stake, and confirm.
 If you want to put more stake behind your candidacy later, you can top up at any point during the stage. After sending the transaction, you should appear under "Applicants". The max number of Applicants is `25`. When the 25th candidate applies, the one with the lowest amount staked will be pushed off the list, and get their stake returned. In total, `12` Council Members must be elected. If there are less than 12 applicants, the `Announcement` stage will be restarted.
@@ -58,10 +60,12 @@ As soon as the `Voting` stage closes, the Revealing stage begins. This is when y
 ## Term
 As soon as the `Reveal` stage closes, the 12 candidates with the highest total backing, ie. their own stake + voter stake, will become `Council Members`. Their term will run for 14 days, after which a new `Council` will been elected.
 
-Note that the next `Announcement` stage will start exactly 201600 blocks (14 days) after the previous.
+Note that the next `Announcement` stage will start exactly 57,600 blocks (~4 days) after the previous.
 
 # Governance
 Constantinople introduced a number of important changes to the governance structure of the platform. The most important of these was the enhancement of the platform's proposal system. You can read descriptions of each of the proposal types on the helpdesk article [here](../../proposals/README.md).
+
+Most of the proposals are meant to allow the Council to allocate the platforms resources as efficiently as possible. In order to do so, a [tokenomics spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing) has been made to assist in the decision making.
 
 ## Proposals
 
