@@ -589,7 +589,7 @@ R_n.tot = 1908tJOY
 
 ## Nominating
 
-If you want to get some return on your tokens without running a node yourself, you can `nominate` another `validator` and get a share of their rewards. Note that it's in your interest as a nominator
+If you want to get some return on your tokens without running a node yourself, you can `nominate` another `validator` and get a share of their rewards.
 
 This might also come in handy if there are too many `validators` and you don't have enough tokens get a spot, or if you have to shut down your own node for a while.
 
