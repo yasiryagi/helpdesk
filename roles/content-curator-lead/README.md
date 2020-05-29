@@ -52,6 +52,7 @@ You can use a JSON schema validator tool to do this (e.g. https://www.jsonschema
 <br>
 An example form could be structured as follows:
 <br>
+
 ```
 {
     "version": 1,
