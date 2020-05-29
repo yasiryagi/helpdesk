@@ -101,14 +101,42 @@ An example form could be structured as follows:
 
 
 ## Accepting Applications
+Now that you have succesfully created an opening, the next step is to allow application from testnet participants. To do this, view your listing in the admin panel and click on the `Set stage` button at the bottom of the listing.
 
+You should already have agreed with the council the number of applications you will accept and the deadline for receiving these.
+
+Once these requirements have been met, or at your discretion as lead, you can begin processing the applications you have received. Decide on the applicants you will hire, and move on to the next step!
 
 ## Processing Applications
 
+The first step in the processing of applications is to close the opening to any further applicants. You can do this by viewing your listing in the admin panel and clicking on the `Begin applicant review` button at the bottom of the listing.
+
+You should then gather the `WG IDs` of the applicants you would like to hire (visible in the admin panel).
+
+You must then clone this repo: https://github.com/Joystream/joystream-api-examples and compile the scripts within it.
+
+The script used to process working group IDs and convert them into hex for an extrinsic submission is called `tohex.js`:
+
+```
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const content_working_group_1 = require("@joystream/types/lib/content-working-group");
+const types_1 = require("@joystream/types");
+let set = new types_1.BTreeSet(content_working_group_1.CuratorApplicationId, [X, Y, Z]);
+console.log(set.toHex());
+```
+Simply replace `X, Y, Z` with the WG IDs of the `Content Curators` you would like to hire. Record the output from this script for the next step.
+
+The final step is to submit an extrinsic here: `contentWorkingGroup -> fillCuratorOpening`.
+Find the `curator_opening_id` on the admin panel and for the `successful_curator_application_ids` you should use the output from `tohex.js`. For the `reward_policy`, use the figures you agreed with from the `Council`.
+
+Submit the extrinsic. You have now assembled a team of curators to improve the platform and defend it from attack!
 
 # Working As Content Curator Lead
 
 Other than the hiring aspect of the role as `Content Curator Lead`, the lead should try to coordinate the actions of the other curators and decide on priorities for curation.
+
+If necessary, upon discussing with the council, the `Content Curator Lead` can also decide to fire curators who are not performing their jobs adequately.
 
 ---
 
