@@ -49,7 +49,7 @@ The first step towards hiring `Content Curators` is creating a role opening (opp
 (4) To ensure your application form will work, you must validate the JSON against the schema [here](https://github.com/yourheropaul/pioneer/blob/feature/hiring-flow/packages/joy-types/src/hiring/schemas/role.schema.json).
 You can use a JSON schema validator tool to do this (e.g. https://www.jsonschemavalidator.net/)
 
-<br><br>
+<br>
 An example form could be structured as follows:
 <br>
 ```
