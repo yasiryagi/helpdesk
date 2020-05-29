@@ -46,9 +46,11 @@ The first step towards hiring `Content Curators` is creating a role opening (opp
 (1) Navigate to the admin panel for `Content Curator Lead`: https://testnet.joystream.org/#/working-groups/admin <br>
 (2) Click `Create new opening...` and select the template you would like for the opening. You should probably communicate with the `Council` to determine the best balance of `application stake`, `role stake` and `applicant limit`. <br>
 (3) A pop-up window will appear. While the first section covering stakes required to apply is rather self-explanatory, care must be taken with the application form design for curators (structured as a JSON). <br>
-(4) To ensure your application form will work, you must validate the JSON against the schema [here](https://github.com/yourheropaul/pioneer/blob/feature/hiring-flow/packages/joy-types/src/hiring/schemas/role.schema.json).<br>
-<br>
-An example could be structured as follows:
+(4) To ensure your application form will work, you must validate the JSON against the schema [here](https://github.com/yourheropaul/pioneer/blob/feature/hiring-flow/packages/joy-types/src/hiring/schemas/role.schema.json).
+You can use a JSON schema validator tool to do this (e.g. https://www.jsonschemavalidator.net/)
+
+<br><br>
+An example form could be structured as follows:
 <br>
 ```
 {
