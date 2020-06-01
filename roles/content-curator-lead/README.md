@@ -121,21 +121,6 @@ Unfortunately, the admin panel currently doesn't allow for setting a "reward pol
 4. In the Extrinsics sidebar, select: `contentWorkingGroup -> fillCuratorOpening`
 5. Find the `curator_opening_id` in the admin panel, paste the output from 3. as `successful_curator_application_ids`,  and set a `reward_policy`.
 
-The script used to process working group IDs and convert them into hex for an extrinsic submission is called `tohex.js`:
-
-```
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const content_working_group_1 = require("@joystream/types/lib/content-working-group");
-const types_1 = require("@joystream/types");
-let set = new types_1.BTreeSet(content_working_group_1.CuratorApplicationId, [X, Y, Z]);
-console.log(set.toHex());
-```
-Simply replace `X, Y, Z` with the WG IDs of the `Content Curators` you would like to hire. Record the output from this script for the next step.
-
-The final step is to submit an extrinsic here: `contentWorkingGroup -> fillCuratorOpening`.
-Find the `curator_opening_id` on the admin panel and for the `successful_curator_application_ids` you should use the output from `tohex.js`. For the `reward_policy`, use the figures you agreed with from the `Council`.
-
 Once submitted, you have completed the hiring!
 
 # Working As Content Curator Lead
