@@ -113,7 +113,13 @@ The first step in the processing of applications is to close the opening to any 
 
 You should then gather the `WG IDs` of the applicants you would like to hire (visible in the admin panel).
 
-You must then clone this repo: https://github.com/Joystream/joystream-api-examples and compile the scripts within it.
+Unfortunately, the admin panel currently doesn't allow for setting a "reward policy" in the UI. To do this, the Lead needs to use an extrinsic.
+
+1. You must then clone [this repo](https://github.com/Joystream/joystream-api-examples), and follow the build instructions.
+2. After building, the file `lib/tohex.js` will appear.
+3. The instructions in the comments will show you how to add the `WG ID`s as inputs, and copy the `0x...` output.
+4. In the Extrinsics sidebar, select: `contentWorkingGroup -> fillCuratorOpening`
+5. Find the `curator_opening_id` in the admin panel, paste the output from 3. as `successful_curator_application_ids`,  and set a `reward_policy`.
 
 The script used to process working group IDs and convert them into hex for an extrinsic submission is called `tohex.js`:
 
