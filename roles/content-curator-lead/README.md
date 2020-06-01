@@ -12,12 +12,18 @@ Table of Contents
 
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
 - [Overview](#overview)
-- [Who Can Become Content Curator Lead](#who-can-become-content-curator-lead)
+- [About The Curator Lead](#about-the-curator-lead)
 - [Hiring Content Curators](#hiring-content-curators)
     - [Create Opening](#create-opening)
     - [Accepting Applications](#accepting-applications)
     - [Processing Applications](#processing-applications)
 - [Working As Content Curator Lead](#working-as-content-curator-lead)
+    - [Responsibilities](#responsibilities)
+    - [Firing Curators](#firing-curators)
+    - [Content Working Group Mint](#content-working-group-mint)
+        - [Checking The Mint](#checking-the-mint)
+        - [Replenishing The Mint](#replenishing-the-mint)
+    - [Advanced Functions](#advanced-functions)
 - [Troubleshooting](#troubleshooting)
 
 <!-- TOC END -->
@@ -26,7 +32,7 @@ Table of Contents
 
 This page will contain all information on how to become `Content Curator Lead`, and how to perform the various tasks required for the job.
 
-# Who Can Become Content Curator Lead
+# About The Curator Lead
 
 Since the introduction of the proposals system for the Constantinople testnet, the `Council` has had the power to appoint a `Content Curator Lead` for the network.
 
@@ -39,6 +45,8 @@ At the moment, being both a `Council Member` and `Content Curator Lead` at the s
 As the person responsible for the platforms content curation, the Lead may find additional manpower is required, and can hire `Content Curators` to assist.
 
 Consequently, the `Content Curator Lead` must be a role filled by a highly trusted member of our community. If you are interested in becoming Lead, you can make a [proposal](/proposals#set-content-curator-lead) to hire yourself.
+
+In order to be compensated in tJOY directly for their work, the Content Curator Lead must hire themselves.
 
 ## Create Opening
 The first step towards hiring `Content Curators` is creating a role opening (opportunity) on the platform. You can do this through the Pioneer user interface.
@@ -125,9 +133,37 @@ Once submitted, you have completed the hiring!
 
 # Working As Content Curator Lead
 
+## Responsibilities
+
 Other than the hiring aspect of the role as `Content Curator Lead`, the lead should try to coordinate the actions of the other curators and decide on priorities for curation.
 
 If necessary, upon discussing with the council, the `Content Curator Lead` can also decide to fire curators who are not performing their jobs adequately.
+
+Most of the time however, the responsibilities of the `Content Curator Lead` will be very similar to those of a standard `Content Curator`. You can read about these responsibilities in [this section](../roles/content-curators#content) of the guide for `Content Curators`.
+
+
+## Firing Curators
+Unfortunately, it may sometimes be necessary to fire curators who are not doing their jobs correctly.
+
+This process requries submitting an extrinsic: `contentWorkingGroup -> terminateCuratorRole`. You must include the `curatorId` of the curator you would like to fire alongside a short hex-encoded message explaining why the person was fired.
+
+There are a number of [online tools](https://www.online-toolz.com/tools/text-hex-convertor.php) which make it easy to encode messages into hex.
+
+## Content Working Group Mint
+
+### Checking The Mint
+To check the details of the current Content Working Group Mint:
+
+(1) Use the following chain state query to determine the current mint ID: `contentWorkingGroup -> mint`.<br>
+(2) Check the details of the mint using the following query: `minting -> mints`.
+
+### Replenishing The Mint
+It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the council in order to take effect.
+
+For this reason it is best to discuss these sorts of proposals with the council before making them.
+
+## Advanced Functions
+If you need help with some of the more advanced operations associated with being the `Content Curator Lead` (e.g. maintaining the versioned store), please simply ask for help in the Telegram group or get in touch with one of the Jsgenesis team directly.
 
 ---
 
