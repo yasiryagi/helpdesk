@@ -3,6 +3,8 @@
 <div align="center">
   <h4>This is a guide for applying, and working as a Content Curator on the latest
   <a href="https://testnet.joystream.org/">Joystream Testnet</a>.<h4>
+  <h4>If you are interested in the Content Curator Lead role, please instead visit this
+    <a href="../roles/content-curator-lead">dedicated guide</a>.<h4>
 </div>
 
 
