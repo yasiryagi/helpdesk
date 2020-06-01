@@ -36,7 +36,7 @@ At the moment, being both a `Council Member` and `Content Curator Lead` at the s
 
 # Hiring Content Curators
 
-The main responsibility of the `Content Curator Lead` is hiring `Content Curators` for the platform. The lead determines the criteria for becoming a curator, handles applications and even fires curators who may not be performing their role in an acceptable manner.
+As the person responsible for the platforms content curation, the Lead may find additional manpower is required, and can hire `Content Curators` to assist.
 
 Consequently, the `Content Curator Lead` must be a role filled by a highly trusted member of our community. If you are interested in becoming Lead, get in touch with us.
 
