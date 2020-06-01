@@ -38,7 +38,7 @@ At the moment, being both a `Council Member` and `Content Curator Lead` at the s
 
 As the person responsible for the platforms content curation, the Lead may find additional manpower is required, and can hire `Content Curators` to assist.
 
-Consequently, the `Content Curator Lead` must be a role filled by a highly trusted member of our community. If you are interested in becoming Lead, get in touch with us.
+Consequently, the `Content Curator Lead` must be a role filled by a highly trusted member of our community. If you are interested in becoming Lead, you can make a [proposal](/proposals#set-content-curator-lead) to hire yourself.
 
 ## Create Opening
 The first step towards hiring `Content Curators` is creating a role opening (opportunity) on the platform. You can do this through the Pioneer user interface.
