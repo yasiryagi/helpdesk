@@ -136,7 +136,7 @@ Simply replace `X, Y, Z` with the WG IDs of the `Content Curators` you would lik
 The final step is to submit an extrinsic here: `contentWorkingGroup -> fillCuratorOpening`.
 Find the `curator_opening_id` on the admin panel and for the `successful_curator_application_ids` you should use the output from `tohex.js`. For the `reward_policy`, use the figures you agreed with from the `Council`.
 
-Submit the extrinsic. You have now assembled a team of curators to improve the platform and defend it from attack!
+Once submitted, you have completed the hiring!
 
 # Working As Content Curator Lead
 
