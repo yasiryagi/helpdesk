@@ -268,7 +268,7 @@ During this process you will be provided with a role key, which will be made ava
 The next steps (below) will only apply if you are a succesful applicant.
 
 
-#### Setup and configure the storage node
+### Setup and configure the storage node
 
 **Make sure your [Joystream full node](https://github.com/Joystream/joystream/releases) is fully synced before you move to the next step(s)!**
 
