@@ -255,7 +255,7 @@ $ git pull origin master
 $ yarn
 ```
 
-### Applying for a `Storage Provider` opening
+### Applying for a Storage Provider opening
 
 Click [here](https://testnet.joystream.org) to open the `Pioneer app` in your browser. Then follow instructions [here](https://github.com/Joystream/helpdesk#get-started) to generate a set of `Keys`, get tokens, and sign up for a `Membership`. This `key` will be referred to as the `member` key. 
 
