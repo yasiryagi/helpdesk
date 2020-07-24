@@ -73,14 +73,20 @@ As a member (council member or not) you are able to make proposals to be voted o
 
 The types of proposals available include:
 - Text/signal Proposal
-- Funding Requests
-- Evict Storage Provider
-- Set Storage Role Parameters
+- Spending Proposal
 - Set Max Validator Count
 - Set Content Curator Lead
 - Set Content Working Group Mint Capacity
 - Set Election Parameters
 - Runtime Upgrade
+- Add Working Group Leader Opening
+- Set Working Group Mint Capacity
+- Begin Review Working Group Leader Application
+- Fill Working Group Leader Opening
+- Slash Working Group Leader Stake
+- Decrease Working Group Leader Stake
+- Set Working Group Leader Reward
+- Terminate Working Group Leader Role
 
 To make a proposal:<br><br>
  (1) Click the Proposals tab in the Pioneer sidebar (`/proposals`). <br>
