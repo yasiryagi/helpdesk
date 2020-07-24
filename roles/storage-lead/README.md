@@ -21,7 +21,7 @@ Table of Contents
 - [Hiring Storage Providers](#hiring-storage-providers)
   - [Using the CLI](#using-the-cli)
     - [Create Opening](#create-opening-1)
-    - [Accepting Applications](#accepting-applications-1)
+    - [Accepting Applications](#accepting-applications)
     - [Processing Applications](#processing-applications-1)
 - [Working As Storage Lead](#working-as-storage-lead)
     - [Responsibilities](#responsibilities)
@@ -78,7 +78,7 @@ All of the useful commands which can be executed by the `Storage Lead` will requ
 
 To create an opening, the lead needs to run the `working-groups:createOpening` command using their role key.
 
-There are some options for specific purposes which can be selected, as shown below:
+There are some options for specific purposes which can be selected with this command, as shown below:
 ```
 OPTIONS
   -c, --createDraftOnly      If provided - the extrinsic will not be executed. 
@@ -102,12 +102,23 @@ Once this command is run, the prompts to set up the opening are self-explanatory
 
 ### Accepting Applications
 
+Once enough applications have submitted, these can now be reviewed to decide who should be hired as a `Storage Provider`.
+The command to be used is the following: `working-groups:startReviewPeriod WGOPENINGID`.
+
+You can find the `WGOPENINGID` in the URL in Pioneer or through a chain state query of the currently active openings.
+
 ### Processing Applications
+
+As soon as the opening is in the `In Review` status, you can start hiring!
+
+Simply run `working-groups:fillOpening WGOPENINGID` where `WGOPENINGID` is the same as earlier, and you will be prompted to select the applicants you wish to hire (using a check-box dialog). The usernames of the candidates will be shown so you don't have to worry about numerical IDs for this part.
 
 # Working As Storage Lead
 
 ## Responsibilities
+As the `Storage Lead` you are responsible for ensuring that `Storage Providers` are performing adequately. They must hold a complete and up-to-date copy of the content directory and ensure uptime in order to effectively serve testnet content consumers.
 
+If a `Storage Provider` is not performing adequately it is up to you to decide the sanctions for this, which may include slashing and, as a last resort, their eviction from the Storage Working Group.
 
 ## All Commands
 
