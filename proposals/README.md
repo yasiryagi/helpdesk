@@ -71,7 +71,7 @@ As before, upgrading the runtime can be proposed by any member, and voted in by 
 
 #### Add Working Group Leader Opening
 
-This proposal allows an opening for a Storage Lead to be created. It requires designing an application JSON which determines what information is collected from candidates as well as determining the application and role stakes alongside various other parameters.
+This proposal allows an opening for a Storage Lead to be created. When editing the "Opening schema", you must ensure your changes still returns a valid JSON schema. This determines what information is collected from candidates. Note that the reward specified is not binding, and is only determined when the [Fill Working Group Leader Opening](#fill-working-group-leader-opening) proposal is made (and approved).
 
 #### Begin Review Working Group Leader Application
 
