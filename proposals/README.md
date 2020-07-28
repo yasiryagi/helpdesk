@@ -5,13 +5,19 @@ Table of Content
   - [Implemented Proposals](#implemented-proposals)
       - [Text/signal Proposal](#textsignal-proposal)
       - [Funding Requests](#funding-requests)
-      - [Evict Storage Provider](#evict-storage-provider)
-      - [Set Storage Role Parameters](#set-storage-role-parameters)
       - [Set Max Validator Count](#set-max-validator-count)
       - [Set Content Curator Lead](#set-content-curator-lead)
       - [Set Content Working Group Mint Capacity](#set-content-working-group-mint-capacity)
       - [Set Election Parameters](#set-election-parameters)
       - [Runtime Upgrade](#runtime-upgrade)
+      - [Add Working Group Leader Opening](#add-working-group-leader-opening)
+      - [Begin Review Working Group Leader Application](#begin-review-working-group-leader-application)
+      - [Fill Working Group Leader Opening](#fill-working-group-leader-opening)
+      - [Set Working Group Mint Capacity](#set-working-group-mint-capacity)
+      - [Slash Working Group Leader Stake](#slash-working-group-leader-stake)
+      - [Decrease Working Group Leader Stake](#decrease-working-group-leader-stake)
+      - [Set Working Group Leader Reward](#set-working-group-leader-reward)
+      - [Terminate Working Group Leader Role](#terminate-working-group-leader-role)
   - [Mechanics](#mechanics)
       - [Voting Kinds](#voting-kinds)
       - [States and Outcomes](#states-and-outcomes)
@@ -38,12 +44,6 @@ Although no action will happen if such a proposal is voted through, it provides 
 #### Funding Requests
 In general, this proposal will include an amount, and a beneficiary. This can be used in to fund development, pay winners of competitions, bonus payments for a role, or anything else that requires minting new tokens to a specific individual or group.
 
-#### Evict Storage Provider
-This allows users to make a proposal to "fire" a Storage Provider that is not performing the role satisfactorily.
-
-#### Set Storage Role Parameters
-The Storage Provider will be paid by minting new tokens, effectively increasing the tJOY supply. The incentive will be to keep both the number of slots, and the size of the individual rewards, as low as possible while maintaining a sufficient service.
-
 #### Set Max Validator Count
 The Validators are rewarded for producing blocks, and will share the rewards that are minted each era (target 3600 blocks). This reward is calculated based on the total issuance, and the amount of tJOY staked by the pool of Validators relative to the total issuance. A higher number means smaller rewards for each individual Validator, but set to low and the network grinds to a halt.
 
@@ -68,6 +68,38 @@ As the Council will see a significantly increased workload, there may be need to
 
 #### Runtime Upgrade
 As before, upgrading the runtime can be proposed by any member, and voted in by the Council. This is a critical proposal that, if a "bad" runtime is proposed and voted in, can kill the blockchain.
+
+#### Add Working Group Leader Opening
+
+This proposal allows an opening for a Storage Lead to be created. It requires designing an application JSON which determines what information is collected from candidates as well as determining the application and role stakes alongside various other parameters.
+
+#### Begin Review Working Group Leader Application
+
+This simply sets the opening for Storage Lead to the "in review" status, meaning no further applications can be accepted. It is required to move on to the `Fill Working Group Leader Opening` proposal.
+
+#### Fill Working Group Leader Opening
+
+This proposal allows the council to vote on a prospective candidate.
+
+#### Set Working Group Mint Capacity
+
+This effectively acts as a budget for the working group (currently referring to the Storage Working Group). The Storage Lead will be unable to spend more than the limit established by this proposal.
+
+#### Slash Working Group Leader Stake
+
+To punish the Storage Lead for not performing their job correctly, they can be slashed using this proposal type.
+
+#### Decrease Working Group Leader Stake
+
+This proposal type decreases the stake of the Storage Lead.
+
+#### Set Working Group Leader Reward
+
+This proposal sets out the payment terms for the Storage Lead, deciding how much they should receive per interval of `n blocks`.
+
+#### Terminate Working Group Leader Role
+
+If for whatever reason the Storage Lead needs to be removed from their post, this is the proposal type which needs to be voted on.
 
 ## Mechanics
 
