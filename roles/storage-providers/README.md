@@ -1,8 +1,8 @@
 <p align="center"><img src="img/storage-provider_new.svg"></p>
 
 <div align="center">
-  <h4>This is a step-by-step guide to setting up your <a href="https://github.com/Joystream/storage-node-joystream">storage node</a>, and getting started as a Storage Provider on the latest
-  <a href="https://testnet.joystream.org/">Joystream Testnet</a>.<h4>
+  <h4>This is a step-by-step guide to setting up your <a href="https://github.com/Joystream/joystream/tree/master/storage-node">storage node</a>, and getting started as a Storage Provider on the latest
+    <a href="https://testnet.joystream.org/">Joystream Testnet</a>.</h4>
 </div>
 
 
