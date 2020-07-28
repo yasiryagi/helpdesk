@@ -28,6 +28,7 @@ Table of Contents
     - [Verify everything is working](#verify-everything-is-working)
 - [Troubleshooting](#troubleshooting)
   - [Port not set](#port-not-set)
+  - [No tokens in role account](#no-tokens-in-role-account)
   - [Install yarn and node on linux](#install-yarn-and-node-on-linux)
       - [Install as Root](#install-as-root)
       - [Install as user with `sudo` privileges](#install-as-user-with-sudo-privileges)
@@ -333,12 +334,14 @@ On the machine/VPS you want to run your storage node:
 # If you are not already in that directory:
 $ cd /path/to/joystream/storage-node
 ```
+
 On our older testnets, at this point you would have to "apply" using a separate colossus command to any available storage role. With the evolution of our testnet and the introduction of the `Storage Working Group`, this is no longer necessary. The next steps simply require that you link the "role key" (`5YourStorageAddress.json`) and `Storage ID` to your storage server.
 
 To check your `Storage ID`, you have two (easy) options:
 1. Use the [CLI](/tools/cli/README.md#working-groups:overview)
 2. Check [Pioneer](https://testnet.joystream.org/#/working-groups)
 
+**Note:** Make sure you send some tokens to your "role key"/`5YourStorageAddress.json` before proceeding! It needs tokens to send transactions, or it will be considered "down", and not be available to sync.
 
 ```
 # To make sure everything is running smoothly, it would be helpful to run with DEBUG.
@@ -486,6 +489,9 @@ Error: listen EADDRINUSE: address already in use :::3000
 It most likely means your port is blocked. This could mean your storage-node is already running (in which case you may want to kill it unless it's as a service), or that another program is using the port.
 
 In case of the latter, you can specify a new port (e.g. 3001) with the `--port 3001` flag.
+
+## No tokens in role account
+If you try to run the storage-node without tokens to pay the transaction fee, you may at some point have tried so many times your transaction gets "temporarily banned". In this case, you either have to wait for a while, or use the [CLI](/tools/cli/README.md#working-groups:updateRoleAccount) tool to change your "role account".
 
 ## Install yarn and node on linux
 
