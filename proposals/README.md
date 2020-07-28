@@ -139,7 +139,7 @@ Any member of the platform with a sufficient quantity of tokens to stake can cre
 
 ### Example
 
-Suppose there are currently 20 members of the council. A proposal to [evict a Storage Provider](#evict-storage-provider) is made, where the parameters below apply:
+Suppose there are currently 20 members of the council. A proposal to [set max validator count](#set-max-validator-count) is made, where the parameters below apply:
 
 | Proposal Parameters                | Value           |
 |:---------------------------------:|:------------:|
