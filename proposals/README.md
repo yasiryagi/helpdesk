@@ -97,7 +97,7 @@ This proposal type allows decreasing the stake of the Storage Lead.
 
 #### Set Working Group Leader Reward
 
-This proposal sets out the payment terms for the Storage Lead, deciding how much they should receive per interval of `n blocks`.
+This proposal allows for changing the reward for the Storage Lead if it appears too little or too much. Note that only the amount can be changed, not the frequency.
 
 #### Terminate Working Group Leader Role
 
