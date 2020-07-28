@@ -1,8 +1,8 @@
 <p align="center"><img src="img/storage-provider_new.svg"></p>
 
 <div align="center">
-  <h4>This is a step-by-step guide to setting up your <a href="https://github.com/Joystream/storage-node-joystream">storage node</a>, and getting started as a Storage Provider on the latest
-  <a href="https://testnet.joystream.org/">Joystream Testnet</a>.<h4>
+  <h4>This is a guide to setting up your <a href="https://github.com/Joystream/joystream/tree/master/storage-node">storage node</a>, and getting started as a Storage Provider on the latest
+    <a href="https://testnet.joystream.org/">testnet</a>.</h4><br>
 </div>
 
 
@@ -16,17 +16,19 @@ Table of Contents
   - [Initial setup](#initial-setup)
   - [Install ipfs](#install-ipfs)
     - [Run ipfs as a service](#run-ipfs-as-a-service)
+    - [Upgrade ipfs](#upgrade-ipfs)
   - [Setup Hosting](#setup-hosting)
     - [Run caddy as a service](#run-caddy-as-a-service)
   - [Install and Setup the Storage Node](#install-and-setup-the-storage-node)
-    - [Update Storage Node](#update-storage-node)
-    - [Generate keys and memberships](#generate-keys-and-memberships)
-      - [Setup and configure the storage node](#setup-and-configure-the-storage-node)
+  - [Update Your Storage Node](#update-your-storage-node)
+    - [Applying for a Storage Provider opening](#applying-for-a-storage-provider-opening)
+    - [Setup and configure the storage node](#setup-and-configure-the-storage-node)
       - [Check that you are syncing](#check-that-you-are-syncing)
     - [Run storage node as a service](#run-storage-node-as-a-service)
     - [Verify everything is working](#verify-everything-is-working)
 - [Troubleshooting](#troubleshooting)
   - [Port not set](#port-not-set)
+  - [No tokens in role account](#no-tokens-in-role-account)
   - [Install yarn and node on linux](#install-yarn-and-node-on-linux)
       - [Install as Root](#install-as-root)
       - [Install as user with `sudo` privileges](#install-as-user-with-sudo-privileges)
@@ -35,20 +37,26 @@ Table of Contents
 
 # Overview
 
-This page will contain all information on how to setup your storage node and becoming a `Storage Provider` on the Joystream Testnets.
+This page contains all information required to set up your storage node and become a `Storage Provider` on the current Joystream testnet.
+
+The guide for the `Storage Provider Lead` can be found [here](/roles/storage-lead).
 
 # Instructions
 
 The instructions below will assume you are running as `root`. This makes the instructions somewhat easier, but less safe and robust.
 
-Note that this has only been tested on fresh images of `Ubuntu 16.04 LTS`, `Ubuntu 18.04 LTS` and `Debian 9`.
+Note that this has been tested on a fresh images of `Ubuntu 20.04 LTS`.
 
 The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better (not an affiliate link).
 
-Please note that unless there are any open spots (which you can check in [Pioneer](https://testnet.joystream.org/) under `Roles` -> `Available Roles`), you will not be able to join. Note that we will be quite vigilant in booting non-performing `Storage Providers`, so if you have everything setup in advance, you could be the quickest to take a slot when it opens!
+Please note that unless there are any openings for new storage providers (which you can check in [Pioneer](https://testnet.joystream.org/) under `Working Groups` -> `Opportunities`), you will not be able to join. Applying to the opening is easiest in Pioneer, but once hired, you no longer need it. Actions you may want to perform after getting hired are easiest to carry out with the [CLI](/tools/cli/README.md#working-groups). With this, you can configure things like:
+- changing your reward destination address
+- changing your role key
+- increasing your stake
+- leaving the role
 
 ## Initial setup
-First of all, you need to connect to a fully synced [Joystream full node](https://github.com/Joystream/substrate-node-joystream/releases). By default, the program assumes you are running a node on the same device. For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys, and just install the software.
+First of all, you need to connect to a fully synced [Joystream full node](https://github.com/Joystream/joystream/releases). By default, the program assumes you are running a node on the same device. For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys before applying, and just install the software so it is ready to go.
 We strongly encourage that you run both the [node](../validators#run-as-a-service) and the other software below as a service.
 
 First, you need to setup `node`, `npm` and `yarn`. This is sometime troublesome to do with the `apt` package manager. Go [here](#install-yarn-and-node-on-linux) to do this if you are not confident in your abilities to navigate the rough seas.
@@ -64,8 +72,8 @@ $ apt-get install libcap2-bin
 ## Install ipfs
 The new storage node uses [ipfs](https://ipfs.io/) as backend.
 ```
-$ wget https://dist.ipfs.io/go-ipfs/v0.4.23/go-ipfs_v0.4.23_linux-amd64.tar.gz
-$ tar -vxf go-ipfs_v0.4.23_linux-amd64.tar.gz
+$ wget https://github.com/ipfs/go-ipfs/releases/download/v0.6.0/go-ipfs_v0.6.0_linux-amd64.tar.gz
+$ tar -xvzf go-ipfs_v0.6.0_linux-amd64.tar.gz
 $ cd go-ipfs
 $ ./ipfs init --profile server
 $ ./install.sh
@@ -114,10 +122,36 @@ $ systemctl enable ipfs
 $ systemctl stop ipfs
 ```
 
+### Upgrade ipfs
+If you have previously run a storage-node with an older version of ipfs, you should now upgrade, as there have been some stability issues with older versions on the the newest storage-node.
+
+```
+# If you are running ipfs as a service:
+# systemctl stop ipfs
+# If you are running it in some other way, kill the process.
+# Then:
+$ wget https://github.com/ipfs/go-ipfs/releases/download/v0.6.0/go-ipfs_v0.6.0_linux-amd64.tar.gz
+$ tar -xvzf go-ipfs_v0.6.0_linux-amd64.tar.gz
+$ cd go-ipfs
+$ ./install.sh
+$ ipfs daemon
+# Which will return something like:
+Initializing daemon...
+go-ipfs version: 0.6.0
+Repo version: 10
+System version: amd64/linux
+Golang version: go1.14.4
+Found outdated fs-repo, migrations need to be run.
+Run migrations now? [y/N]
+# After confirming, you can restart ipfs
+```
+
 ## Setup Hosting
 In order to allow for users to upload and download, you have to setup hosting, with an actual domain as both Chrome and Firefox requires `https://`. If you have a "spare" domain or subdomain you don't mind using for this purpose, go to your domain registrar and point your domain to the IP you want. If you don't, you must unfortunately go purchase one.
 
 To configure SSL-certificates the easiest is to use [caddy](https://caddyserver.com/), but feel free to take a different approach. Note that if you are using caddy for commercial use, you need to acquire a license. Please check their terms and make sure you comply with what is considered personal use.
+
+The instructions below are designed for `Caddy Version 1` but this will of course work in a similar way for the latest version:
 
 ```
 $ curl https://getcaddy.com | bash -s personal
@@ -219,82 +253,107 @@ $ systemctl stop caddy
 
 ## Install and Setup the Storage Node
 
-First, you need to clone the repo.
+First, you need to clone the Joystream monorepo, which contains the storage software.
+Note that if you already have a storage-node installed (or running), go [here](#update-your-storage-node).
 
 ```
-$ git clone https://github.com/Joystream/storage-node-joystream.git
-$ cd storage-node-joystream
-$ yarn
-# Test that it's working with:
+$ git clone https://github.com/Joystream/joystream.git
+$ cd joystream
+$ yarn install
 $ yarn run colossus --help
 ```
 You can set the PATH to avoid the `yarn run` prefix by:
-`nano ~/.bash_profile`
-and append:
 ```
-# Colossus
-alias colossus="/root/storage-node-joystream/packages/colossus/bin/cli.js"
-alias helios="/root/storage-node-joystream/packages/helios/bin/cli.js"
+$ cd ~/joystream/storage-node/packages/colossus
+$ yarn link
+# Test that it's working with:
+$ colossus --help
+# It should now work globally
 ```
-Then:
-`. ~/.bash_profile`
-Now, you can test `colossus --help`.
 
-### Update Storage Node
-
-If you need to update your storage node, you will first need to stop the software.
+## Update Your Storage Node
+To update your storage-node from an old network, do the following steps:
 
 ```
 # If you are running as service (which you should)
 $ systemctl stop storage-node
-$ cd /path/to/storage-node-joystream
-# Assuming you cloned as shown above
-$ git pull origin master
-$ yarn
+$ git clone https://github.com/Joystream/joystream.git
+$ cd joystream
+$ yarn install
+$ yarn run colossus --help
 ```
 
-### Generate keys and memberships
+If you have been running a storage node previously, and used `.bash_profile` to avoid the `yarn run` prefix, you need to:
+`$ nano ~/.bash_profile`
+Then, uncomment or remove the lines below:
+```
+# Colossus
+alias colossus="/root/storage-node-joystream/packages/colossus/bin/cli.js"  
+alias helios="/root/storage-node-joystream/packages/helios/bin/cli.js"
+```
+For helios, you can instead change the path from `/root/storage-node-joystream/packages/helios/bin/cli.js` -> `/root/joystream/storage-node/packages/helios/bin/cli.js`
+Then:
 
-Click [here](https://testnet.joystream.org) to open the `Pioneer app` in your browser. Then follow instructions [here](https://github.com/Joystream/helpdesk#get-started) to generate a set of `Keys`, get tokens, and sign up for a `Membership`. This `key` will be referred to as the `member` key from now on. Make sure to save the `5YourJoyMemberAddress.json` file. Note that you need to keep the rest of your tokens as stake to become a `Storage Provider`.
+```
+$ . ~/.bash_profile
+$ cd ~/joystream/storage-node/packages/colossus
+$ yarn link
+# Test that it's working with:
+$ colossus --help
+```
+It should now work globally.
 
----
+### Applying for a Storage Provider opening
+
+Click [here](https://testnet.joystream.org) to open the `Pioneer app` in your browser. Then follow instructions [here](https://github.com/Joystream/helpdesk#get-started) to generate a set of `Keys`, get tokens, and sign up for a `Membership`. This `key` will be referred to as the `member` key.
+
+Make sure to save the `5YourJoyMemberAddress.json` file. This key will require tokens to be used as stake for the `Storage Provider` application (`application stake`) and further stake may be required if you are selected for the role (`role stake`).
+
+To check for current openings, visit [this page](https://testnet.joystream.org/#/working-groups/opportunities) on Pioneer and look for any `Storage Provider` applications which are open for applications. If there is an opening available, fill in the details requested in the form required and stake the tokens needed to apply (when prompted you can sign a transaction for this purpose).
+
+During this process you will be provided with a role key, which will be made available to download in the format `5YourStorageAddress.json`. If you set a password for this key, remember it :)
+
+The next steps (below) will only apply if you are a succesful applicant.
+
+
+### Setup and configure the storage node
+
+**Make sure your [Joystream full node](https://github.com/Joystream/joystream/releases) is fully synced before you move to the next step(s)!**
 
 Assuming you are running the storage node on a VPS via ssh, on your local machine:
 
 ```
-# Go the directory where you saved your <5YourJoyMemberAddress.json>:
-$ scp <5YourJoyMemberAddress.json> <user>@<your.vps.ip.address>:/path/to/storage-node-joystream/
+# Go the directory where you saved your <5YourStorageAddress.json>:
+$ scp <5YourStorageAddress.json> <user>@<your.vps.ip.address>:/path/to/joystream/storage-node/
 ```
-Your `5YourJoyMemberAddress.json` should now be where you want it.
-
-
-#### Setup and configure the storage node
-
-**Make sure your [Joystream full node](https://github.com/Joystream/substrate-node-joystream) is fully synced before you move to the next step(s)!**
+Your `5YourStorageAddress.json` should now be where you want it.
 
 On the machine/VPS you want to run your storage node:
 
 ```
 # If you are not already in that directory:
-$ cd /path/to/storage-node-joystream
-# If you configured your .bash_profile:
-$ colossus signup <5YourJoyMemberAddress.json>
-# If you didn't configure your .bash_profile:
-$ yarn run colossus signup <5YourJoyMemberAddress.json>
-# Note that the rest of the guide will assume you did in fact configure .bash_profile and don't need "yarn run"
-# Follow the instructions as prompted. For ease of use, it's best to not set a password... If you do, remember to add:
-# --passphrase <your_passphrase> as an argument every time you start the colossus server.
+$ cd /path/to/joystream/storage-node
 ```
 
-This produces a new key `<5YourStorageAddress.json>`, and prompts you to open the "app" (Pioneer). Make sure that your current/default is the `5YourJoyMemberAddress` key. After you click `Stake`, you will see a notification in the top right corner. If you get an error, this most likely means all the slots are full. Unfortunately, this means you have to import the `<5YourStorageAddress.json>` to recover your tokens.
+On our older testnets, at this point you would have to "apply" using a separate colossus command to any available storage role. With the evolution of our testnet and the introduction of the `Storage Working Group`, this is no longer necessary. The next steps simply require that you link the "role key" (`5YourStorageAddress.json`) and `Storage ID` to your storage server.
 
-If it succeeded, proceed as shown below:
+To check your `Storage ID`, you have two (easy) options:
+1. Use the [CLI](/tools/cli/README.md#working-groups:overview)
+2. Check [Pioneer](https://testnet.joystream.org/#/working-groups)
+
+**Note:** Make sure you send some tokens to your "role key"/`5YourStorageAddress.json` before proceeding! It needs tokens to send transactions, or it will be considered "down", and unavailable for syncing.
 
 ```
-# To make sure everything is running smoothly, it would be helpful to run with DEBUG:
-$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
+# To make sure everything is running smoothly, it would be helpful to run with DEBUG.
+# If you used "yarn link":
+$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url> --provider-id ID <your_storage-id>
+
+# If not:
+$ cd ~/joystream
+$ DEBUG=* yarn run colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url> --provider-id ID <your_storage-id>
+
 # If you set a passphrase for <5YourStorageAddress.json>:
-$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --passphrase <your_passphrase> --public-url https://<your.cool.url>
+$ DEBUG=* (yarn run) colossus server --key-file <5YourStorageAddress.json> --passphrase <your_passphrase> --public-url https://<your.cool.url> --provider-id ID <your_storage-id>
 ```
 
 If you do this, you should see something like:
@@ -303,11 +362,9 @@ If you do this, you should see something like:
 discovery::publish { name: 'QmPwws576n3ByE6CQUvUt3dgmokk2XN2cJgPYHWoM6SSUS',
 discovery::publish   value: '/ipfs/QmeDAWGRjbWx6fMCxtt95YTSgTgBhhtbk1qsGkteRXaEST' } +391ms
 ```
-You can just do this instead, but it will make it more difficult to debug...
-```
-$ colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
-```
-If everything is working smoothly, you will now start syncing the `content directory`
+
+If everything is working smoothly, you will now start syncing the `content directory`.
+
 Note that unless you run this is a [service](#run-storage-node-as-a-service), you now have to open a second terminal for the remaining steps.
 
 #### Check that you are syncing
@@ -364,19 +421,20 @@ After=network.target ipfs.service joystream-node.service
 
 [Service]
 User=root
-WorkingDirectory=/root/storage-node-joystream
+WorkingDirectory=/root/joystream/storage-node
 LimitNOFILE=8192
-Environment=DEBUG=*
-ExecStart=/usr/local/lib/nodejs/node-v12.16.1-linux-x64/bin/node \
-        packages/colossus/bin/cli.js \
-        --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>
+Environment=DEBUG=joystream:*,-joystream:util:ranges
+ExecStart=/usr/local/lib/nodejs/node-v12.18.2-linux-x64/bin/node packages/colossus/bin/cli.js \
+        --key-file <5YourStorageAddress.json> \
+        --public-url https://<your.cool.url \
+        --provider-id ID <your_storage-id>
 Restart=on-failure
 StartLimitInterval=600
 
 [Install]
 WantedBy=multi-user.target
 ```
-Save and exit. Close `colossus` if it's still running, then:
+Save and exit. Close the running `colossus` if it's still running, then:
 ```
 $ systemctl start storage-node
 # If everything works, you should get an output. Verify with:
@@ -386,21 +444,21 @@ $ systemctl status storage-node
 ● storage-node.service - Joystream Storage Node
    Loaded: loaded (/etc/systemd/system/storage-node.service; disabled; vendor preset: enabled)
    Active: active (running) since Day YYYY/MM/DD HH:NN:SS UTC; 6s ago
- Main PID: 10190 (colossus)
+ Main PID: <number> (colossus)
     Tasks: 11 (limit: 4915)
    CGroup: /system.slice/storage-node.service
            └─10190 colossus
 
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Filtered: 0
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Mapped []
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Matching events: []
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX Ready.
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX status: Broadcast
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Number of events: 0; subscribed to dataObjectStorageRegistry,DataObjectStorageRelationshipAdded
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Filtered: 0
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Mapped []
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Matching events: []
-Mon DD HH:NN:SS localhost node[10190]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX Broadcast.
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Filtered: 0
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Mapped []
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Matching events: []
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX Ready.
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX status: Broadcast
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Number of events: 0; subscribed to dataObjectStorageRegistry,DataObjectStorageRelationshipAdded
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Filtered: 0
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Mapped []
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Matching events: []
+Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX Broadcast.
 ---
 # To have colossus start automatically at reboot:
 $ systemctl enable storage-node
@@ -410,7 +468,7 @@ $ systemctl stop storage-node
 
 ### Verify everything is working
 
-In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org//#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, ie. what comes after the last `/`.
+In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org//#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, ie. whatever comes after the last `/`.
 
 Then paste the following in your browser:
 
@@ -423,39 +481,21 @@ If you had any issues setting it up, you may find your answer here!
 
 ## Port not set
 
-If you get this error:
+If you get an error like this:
 ```
-TypeError [ERR_INVALID_OPT_VALUE]: The value "{ port: true, host: '::' }" is invalid for option "options"
-    at Server.listen (net.js:1450:9)
-    at Promise (/root/storage-node-joystream/packages/colossus/bin/cli.js:129:12)
-    at new Promise (<anonymous>)
-    at start_express_app (/root/storage-node-joystream/packages/colossus/bin/cli.js:120:10)
-    at start_all_services (/root/storage-node-joystream/packages/colossus/bin/cli.js:138:10)
-    at Object.server (/root/storage-node-joystream/packages/colossus/bin/cli.js:328:11)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
+Error: listen EADDRINUSE: address already in use :::3000
 ```
 
-It most likely means your port is not set, (although it should default to 3000).
+It most likely means your port is blocked. This could mean your storage-node is already running (in which case you may want to kill it unless it's configured as a service), or that another program is using the port.
 
-```
-$ colossus --help
-# Should list the path to your current config file.
-$ cat /path/to/.config/configstore/@joystream/colossus.json
-# should return something like:
----
-{
- "port": 3000,
- "syncPeriod": 300000,
- "publicUrl": "https://<your.cool.url>",
- "keyFile": "/path/to/<5YourStorageAddress.json>"
-}
-```
-If `"port": <n>` is missing, or not a number, pass the:
-`-p <n> ` argument or edit your config file, where `<n>` could be 3000.
+In case of the latter, you can specify a new port (e.g. 3001) with the `--port 3001` flag.
+
+## No tokens in role account
+If you try to run the storage-node without tokens to pay the transaction fee, you may at some point have tried so many times your transaction gets "temporarily banned". In this case, you either have to wait for a while, or use the [CLI](/tools/cli/README.md#working-groups:updateRoleAccount) tool to change your "role account".
 
 ## Install yarn and node on linux
 
-Go [here](https://nodejs.org/en/download/) and find the newest (LTS) binary for your distro. This guide will assume 64-bit linux, and `node-v12.16.1`.
+Go [here](https://nodejs.org/en/download/) and find the newest (LTS) binary for your distro. This guide will assume 64-bit linux, and `node-v12.18.2`.
 
 If you want to install as `root`, so your user can use `npm` without `sudo` privileges, go [here](#install-as-root).
 
@@ -467,15 +507,15 @@ Alternatives such as [nvm](https://github.com/nvm-sh/nvm) or [nodesource](https:
 This section assumes you are installing as `root`. It also demonstrates how you can provide another user access without having to use `sudo`. It doesn't matter if user `joystream` has `sudo` privileges or not.
 
 ```
-$ wget https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz
+$ wget https://nodejs.org/dist/v12.18.2/node-v12.18.2-linux-x64.tar.xz
 $ mkdir -p /usr/local/lib/nodejs
-$ tar -xJvf node-v12.16.1-linux-x64.tar.xz -C /usr/local/lib/nodejs
+$ tar -xJvf node-v12.18.2-linux-x64.tar.xz -C /usr/local/lib/nodejs
 $ nano ~/.bash_profile
 ---
 Append the following lines:
 ---
 # Nodejs
-VERSION=v12.16.1
+VERSION=v12.18.2
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 ```
@@ -501,7 +541,7 @@ $ nano ~/.bash_profile
 Append the following lines:
 ---
 # Nodejs
-VERSION=v12.16.1
+VERSION=v12.18.2
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 ```
@@ -522,15 +562,15 @@ This section assumes the steps are performed as user `joystream` with `sudo` pri
 
 As `joystream`
 ```
-$ wget https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz
+$ wget https://nodejs.org/dist/v12.18.2/node-v12.18.2-linux-x64.tar.xz
 $ mkdir -p /usr/local/lib/nodejs
-$ tar -xJvf node-v12.16.1-linux-x64.tar.xz -C /usr/local/lib/nodejs
+$ tar -xJvf node-v12.18.2-linux-x64.tar.xz -C /usr/local/lib/nodejs
 $ nano ~/.bash_profile
 ---
 Append the following lines:
 ---
 # Nodejs
-VERSION=v12.16.1
+VERSION=v12.18.2
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 ```
@@ -556,7 +596,7 @@ $ nano ~/.bash_profile
 Append the following lines:
 ---
 # Nodejs
-VERSION=v12.16.1
+VERSION=v12.18.2
 DISTRO=linux-x64
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 ```
