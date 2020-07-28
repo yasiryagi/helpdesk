@@ -79,7 +79,9 @@ This simply sets the opening for Storage Lead to the "in review" status, meaning
 
 #### Fill Working Group Leader Opening
 
-This proposal allows the council to vote on a prospective candidate.
+If the Opening is in the "Review Stage", use this proposal to propose a specific Lead. The Council can now vote, and, if approved, this will be the new Lead.
+
+Note that there can be multiple proposals of this type at the same time, so multiple candidates can be considered simultaneously. However, once one is approved, the others will fail.
 
 #### Set Working Group Mint Capacity
 
