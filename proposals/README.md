@@ -18,6 +18,9 @@ Table of Content
       - [Decrease Working Group Leader Stake](#decrease-working-group-leader-stake)
       - [Set Working Group Leader Reward](#set-working-group-leader-reward)
       - [Terminate Working Group Leader Role](#terminate-working-group-leader-role)
+  - [Deprecated Proposals](#deprecated-proposals)
+      - [Evict Storage Provider](#evict-storage-provider)
+      - [Set Storage Role Parameters](#set-storage-role-parameters)
   - [Mechanics](#mechanics)
       - [Voting Kinds](#voting-kinds)
       - [States and Outcomes](#states-and-outcomes)
@@ -102,6 +105,14 @@ This proposal allows for changing the reward for the Storage Lead if it appears 
 #### Terminate Working Group Leader Role
 
 If for whatever reason the Storage Lead needs to be removed from their post (and potentially slashed), this is the proposal type which needs to be voted on.
+
+## Deprecated Proposals
+
+#### Evict Storage Provider
+This allows users to make a proposal to "fire" a Storage Provider that is not performing the role satisfactorily.
+
+#### Set Storage Role Parameters
+The Storage Provider will be paid by minting new tokens, effectively increasing the tJOY supply. The incentive will be to keep both the number of slots, and the size of the individual rewards, as low as possible while maintaining a sufficient service.
 
 ## Mechanics
 
