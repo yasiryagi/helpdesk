@@ -58,7 +58,7 @@
   - [Content Curators](#content-curators)
     - [Description](#description-3)
     - [Incentives](#incentives-4)
-- [Other Features and Future Roles](#other-features-and-future-roles)
+- [Other Features and Tools](#other-features-and-tools)
   - [On-Chain Forum](#on-chain-forum)
 <!-- TOC END -->
 
@@ -177,15 +177,19 @@ A detailed explanation of the election cycle and responsibilities can be found [
 
 ### Description
 
-You can't have a video platform without videos, so someone has to take the role of storing the data. In the future, this will be a highly specialized role, focusing on what is implied by the name of the role. For Rome, it will in practice also entail the future `Bandwidth Provider` role.
+You can't have a video platform without videos, so someone has to take the role of storing the data. In the future, this will be a highly specialized role, focusing on what is implied by the name of the role. Currently, it will in practice also entail the future `Bandwidth Provider` role.
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
 
+After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be its own working group, with a lead overseeing the day to day operations, while being governed by the Council.
+
 ### Incentives
 
-The incentives for the `Storage Providers` are controlled by the governance system, through proposals. Any member can propose to fire a `Storage Provider` for insufficient service, or propose changes to the number of available slots, fees or staking costs.
+After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be its own working group, with a lead overseeing the day to day operations, while being governed by the Council.
 
-The status of this role can be found [here](https://testnet.joystream.org/#/storage).
+The `Storage Lead` can only be hired (or fired) by the Council through the proposal system. The Lead should maintain sufficient storage and distribution capacity by employing `Storage Providers`, and paying them sufficiently. The Lead will also need to run a storage node themselves. Another important task is to keep an eye on the working groups financing.
+
+The current status of this role can be found [here](https://testnet.joystream.org/#/working-groups).
 
  <!---
 ## Content Creators
@@ -255,7 +259,7 @@ The contributor must include either their Joystream or monero address when submi
 --->
 
 
-# Other Features and Future Roles
+# Other Features and Tools
 
 This section covers other things you can do after [getting started](#getting-started), that isn't a paid role as of now.
 
