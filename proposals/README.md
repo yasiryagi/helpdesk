@@ -101,7 +101,7 @@ This proposal allows for changing the reward for the Storage Lead if it appears 
 
 #### Terminate Working Group Leader Role
 
-If for whatever reason the Storage Lead needs to be removed from their post, this is the proposal type which needs to be voted on.
+If for whatever reason the Storage Lead needs to be removed from their post (and potentially slashed), this is the proposal type which needs to be voted on.
 
 ## Mechanics
 
