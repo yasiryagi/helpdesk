@@ -2,7 +2,7 @@
 
 <div align="center">
   <h4>This is a guide to setting up your <a href="https://github.com/Joystream/joystream/tree/master/storage-node">storage node</a>, and getting started as a Storage Provider on the latest
-    <a href="https://testnet.joystream.org/">testnet</a>.</h4>
+    <a href="https://testnet.joystream.org/">testnet</a>.</h4><br>
 </div>
 
 
@@ -49,11 +49,11 @@ Note that this has been tested on a fresh images of `Ubuntu 20.04 LTS`.
 
 The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better (not an affiliate link).
 
-Please note that unless there are any openings for new storage providers (which you can check in [Pioneer](https://testnet.joystream.org/) under `Working Groups` -> `Opportunities`), you will not be able to join. Applying to the opening is easiest in Pioneer, but once hired, you no longer need it. Actions you may want to perform after getting hired is easiest to do with the [CLI](/tools/cli/README.md#working-groups). With this, you can configure things like:
-- change your reward destination address
-- change your role key
-- increase your stake
-- leave the role
+Please note that unless there are any openings for new storage providers (which you can check in [Pioneer](https://testnet.joystream.org/) under `Working Groups` -> `Opportunities`), you will not be able to join. Applying to the opening is easiest in Pioneer, but once hired, you no longer need it. Actions you may want to perform after getting hired are easiest to carry out with the [CLI](/tools/cli/README.md#working-groups). With this, you can configure things like:
+- changing your reward destination address
+- changing your role key
+- increasing your stake
+- leaving the role
 
 ## Initial setup
 First of all, you need to connect to a fully synced [Joystream full node](https://github.com/Joystream/joystream/releases). By default, the program assumes you are running a node on the same device. For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys before applying, and just install the software so it is ready to go.
@@ -123,7 +123,7 @@ $ systemctl stop ipfs
 ```
 
 ### Upgrade ipfs
-If you have previously ran a storage-node with an older version of ipfs, you should now upgrade, as there has been some stability issues with older versions on the the newest storage-node.
+If you have previously run a storage-node with an older version of ipfs, you should now upgrade, as there have been some stability issues with older versions on the the newest storage-node.
 
 ```
 # If you are running ipfs as a service:
@@ -254,7 +254,7 @@ $ systemctl stop caddy
 ## Install and Setup the Storage Node
 
 First, you need to clone the Joystream monorepo, which contains the storage software.
-Note that if you already have a storage-node installed (or running), go [here](#update-your-storage-node)
+Note that if you already have a storage-node installed (or running), go [here](#update-your-storage-node).
 
 ```
 $ git clone https://github.com/Joystream/joystream.git
@@ -283,7 +283,7 @@ $ yarn install
 $ yarn run colossus --help
 ```
 
-If you have been running a storage node before, and used `.bash_profile` to avoid the `yarn run` prefix, you need to:
+If you have been running a storage node previously, and used `.bash_profile` to avoid the `yarn run` prefix, you need to:
 `$ nano ~/.bash_profile`
 Then, uncomment or remove the lines below:
 ```
@@ -341,7 +341,7 @@ To check your `Storage ID`, you have two (easy) options:
 1. Use the [CLI](/tools/cli/README.md#working-groups:overview)
 2. Check [Pioneer](https://testnet.joystream.org/#/working-groups)
 
-**Note:** Make sure you send some tokens to your "role key"/`5YourStorageAddress.json` before proceeding! It needs tokens to send transactions, or it will be considered "down", and not be available to sync.
+**Note:** Make sure you send some tokens to your "role key"/`5YourStorageAddress.json` before proceeding! It needs tokens to send transactions, or it will be considered "down", and unavailable for syncing.
 
 ```
 # To make sure everything is running smoothly, it would be helpful to run with DEBUG.
@@ -486,7 +486,7 @@ If you get an error like this:
 Error: listen EADDRINUSE: address already in use :::3000
 ```
 
-It most likely means your port is blocked. This could mean your storage-node is already running (in which case you may want to kill it unless it's as a service), or that another program is using the port.
+It most likely means your port is blocked. This could mean your storage-node is already running (in which case you may want to kill it unless it's configured as a service), or that another program is using the port.
 
 In case of the latter, you can specify a new port (e.g. 3001) with the `--port 3001` flag.
 
