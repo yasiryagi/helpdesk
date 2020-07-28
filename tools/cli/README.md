@@ -41,12 +41,12 @@ Table of Content
 
 # Overview
 
-The CLI tool is currently quite rough, and it's main function is to let the Storage Provider Lead perform their duties in a more user friendly matter than the [extrinsics](https://testnet.joystream.org/#/extrinsics) tab. Hence this guide will focus primarily on that.
+The CLI tool is currently quite rough, and its main function is to let the Storage Provider Lead perform their duties in a more user-friendly manner than the [extrinsics](https://testnet.joystream.org/#/extrinsics) tab. For this reason, the guide will focus primarily on this side of the tool's functionality.
 
 
 ## Install
 
-To get the CLI up and running, on a mac or linux based system, you need `yarn`. On debian based linux, you will not have much success using `apt`, but you can check out [this guide](/roles/storage-providers/README.md#install-yarn-and-node-on-linux) for help.
+To get the CLI up and running, on a Mac or Linux based system, you need `yarn`. On Debian based Linux, you will not have much success using `apt`, but you can check out [this guide](/roles/storage-providers/README.md#install-yarn-and-node-on-linux) for help.
 
 ```
 $ cd ~/
@@ -59,7 +59,7 @@ $ yarn link
 Test that it's working...
 `$ joystream-cli help`
 
-..which should return the output below:
+...which should return the output below:
 
 ```
 Command Line Interface for Joystream community and governance activities
@@ -101,7 +101,7 @@ Note that your imports and setting are stored locally at:
 
 
 ## account
-These commands lets you do a variety of things related to accounts you create or import.
+These commands lets you perform a variety of functions related to accounts you create or import.
 For each command, try `--help` for info on `args` and `options`. Example: `joystream-cli account:choose --help`.
 
 ```
@@ -129,7 +129,7 @@ Note that all new accounts are created with `type ed25519`, and you will not be 
 ### account:transferTokens
 
 ## api
-These commands lets you choose your api endpoint, and can also be used to perform chain state queries.
+These commands lets you choose your API endpoint, and can also be used to perform chain state queries.
 For each command, try `--help` for info on `args` and `options`. Example: `joystream-cli api:getUri --help`.
 
 ```
