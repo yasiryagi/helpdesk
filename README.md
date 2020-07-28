@@ -181,13 +181,13 @@ You can't have a video platform without videos, so someone has to take the role 
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
 
-After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be its own working group, with a lead overseeing the day to day operations, while being governed by the Council.
+After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be within its own working group, with a lead overseeing the day to day operations, while being accountable to the Council.
 
 ### Incentives
 
 After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be its own working group, with a lead overseeing the day to day operations, while being governed by the Council.
 
-The `Storage Lead` can only be hired (or fired) by the Council through the proposal system. The Lead should maintain sufficient storage and distribution capacity by employing `Storage Providers`, and paying them sufficiently. The Lead will also need to run a storage node themselves. Another important task is to keep an eye on the working groups financing.
+The `Storage Lead` can only be hired (or fired) by the Council through the proposal system. The Lead should maintain sufficient storage and distribution capacity by employing `Storage Providers`, and paying them sufficiently. The Lead will also need to run a storage node themselves. Another important task is to keep an eye on the working group's financing.
 
 The current status of this role can be found [here](https://testnet.joystream.org/#/working-groups).
 
