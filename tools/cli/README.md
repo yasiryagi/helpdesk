@@ -51,7 +51,7 @@ The CLI tool is currently quite rough, and its main function is to let the Stora
 
 There are two ways of installing the CLI.
 
-If you are, or planning to, run a `storage-node`, build your own node/runtime, or host your own instance of `Pioneer` the CLI is bundled in the [joystream-monorepo](https://github.com/Joystream/joystream). In that case, go [here](#build-yourself). If not, you may have an easier time using the [NPM-package](#install-with-npm).
+If you are, or are planning to, run a `storage-node`, build your own node/runtime, or host your own instance of `Pioneer` the CLI is bundled in the [joystream-monorepo](https://github.com/Joystream/joystream). In that case, go [here](#build-yourself). If not, you may have an easier time using the [NPM-package](#install-with-npm).
 
 
 ### Install with NPM
