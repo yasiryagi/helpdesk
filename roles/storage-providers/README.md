@@ -49,7 +49,7 @@ Note that this has been tested on a fresh images of `Ubuntu 20.04 LTS`.
 
 The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better (not an affiliate link).
 
-Please note that unless there are any openings for new storage providers (which you can check in [Pioneer](https://testnet.joystream.org/) under `Working Groups` -> `Opportunities`), you will not be able to join. Applying to the an opening is easiest in Pioneer, but once hired, you no longer need it. Actions you may want to perform after getting hired is easiest to do with the [CLI](/tools/cli/README.md#working-groups). With this, you can configure things like:
+Please note that unless there are any openings for new storage providers (which you can check in [Pioneer](https://testnet.joystream.org/) under `Working Groups` -> `Opportunities`), you will not be able to join. Applying to the opening is easiest in Pioneer, but once hired, you no longer need it. Actions you may want to perform after getting hired is easiest to do with the [CLI](/tools/cli/README.md#working-groups). With this, you can configure things like:
 - change your reward destination address
 - change your role key
 - increase your stake
@@ -423,7 +423,7 @@ After=network.target ipfs.service joystream-node.service
 User=root
 WorkingDirectory=/root/joystream/storage-node
 LimitNOFILE=8192
-Environment=DEBUG=*
+Environment=DEBUG=joystream:*,-joystream:util:ranges
 ExecStart=/usr/local/lib/nodejs/node-v12.18.2-linux-x64/bin/node packages/colossus/bin/cli.js \
         --key-file <5YourStorageAddress.json> \
         --public-url https://<your.cool.url \
