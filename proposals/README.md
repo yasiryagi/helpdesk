@@ -93,7 +93,7 @@ To punish the Storage Lead for not performing their job correctly, they can be s
 
 #### Decrease Working Group Leader Stake
 
-This proposal type decreases the stake of the Storage Lead.
+This proposal type allows decreasing the stake of the Storage Lead.
 
 #### Set Working Group Leader Reward
 
