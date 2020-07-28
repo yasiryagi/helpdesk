@@ -89,7 +89,7 @@ This effectively acts as a budget for the working group (currently referring to 
 
 #### Slash Working Group Leader Stake
 
-To punish the Storage Lead for not performing their job correctly, they can be slashed using this proposal type.
+To punish or warn the Storage Lead for not performing their job correctly, they can be slashed partially or fully without firing them using this proposal type.
 
 #### Decrease Working Group Leader Stake
 
