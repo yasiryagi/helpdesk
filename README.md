@@ -59,6 +59,7 @@
     - [Description](#description-3)
     - [Incentives](#incentives-4)
 - [Other Features and Tools](#other-features-and-tools)
+  - [CLI](#cli)
   - [On-Chain Forum](#on-chain-forum)
 <!-- TOC END -->
 
@@ -262,6 +263,9 @@ The contributor must include either their Joystream or monero address when submi
 # Other Features and Tools
 
 This section covers other things you can do after [getting started](#getting-started), that isn't a paid role as of now.
+
+## CLI
+The CLI tool is under development, but is already needed for the [Storage Lead](/roles/storage-lead) and can be useful for [Storage Providers](/roles/storage-providers). Go [here](/tools/cli) for more information and guides.
 
 ## On-Chain Forum
 
