@@ -14,20 +14,21 @@ Table of Contents
 - [Overview](#overview)
 - [About The Storage Lead](#about-the-storage-lead)
 - [Hiring Storage Lead](#hiring-storage-lead)
-    - [Proposals](#proposals)
-      - [Create Opening](#create-opening)
-      - [Review Applications](#review-applications)
-      - [Processing Applications](#processing-applications)
+  - [Proposals](#proposals)
+    - [Create Opening](#create-opening)
+    - [Review Applications](#review-applications)
+    - [Processing Applications](#processing-applications)
 - [Hiring Storage Providers](#hiring-storage-providers)
   - [Using the CLI](#using-the-cli)
     - [Create Opening](#create-opening-1)
+      - [Application Parameters](#application-parameters)
+      - [Human Readable Information and Questions](#human-readable-information-and-questions)
+      - [Complete Example](#complete-example)
     - [Accepting Applications](#accepting-applications)
     - [Processing Applications](#processing-applications-1)
 - [Working As Storage Lead](#working-as-storage-lead)
-    - [Responsibilities](#responsibilities)
-    - [Useful Commands](#useful-commands)
-- [Troubleshooting](#troubleshooting)
-
+  - [Responsibilities](#responsibilities)
+  - [All Commands](#all-commands)
 <!-- TOC END -->
 
 # Overview
@@ -51,7 +52,7 @@ Within [Pioneer](https://testnet.joystream.org), navigate first to the proposals
 
 To create an opening, the `Add Working Group Leader Opening` proposal must be selected.
 
-Once selected, the proposer can decide on a number of variables which can be set as part of the proposal, including 
+Once selected, the proposer can decide on a number of variables which can be set as part of the proposal, including
 
 For the JSON schema, which reflects what applicants will see in the UI and what information they will have to submit, it is recommended to use a [JSON validator](https://jsonlint.com/) to ensure that the opening is valid.
 
@@ -81,37 +82,268 @@ To create an opening, the lead needs to run the `working-groups:createOpening` c
 There are some options for specific purposes which can be selected with this command, as shown below:
 ```
 OPTIONS
-  -c, --createDraftOnly      If provided - the extrinsic will not be executed. 
+  -c, --createDraftOnly      If provided - the extrinsic will not be executed.
                              Use this flag if you only want to create a draft.
 
   -d, --useDraft             Whether to create the opening from existing draft.
-                             If provided without --draftName - the list of 
+                             If provided without --draftName - the list of
                              choices will be displayed.
 
-  -g, --group=group          (required) [default: storageProviders] The working 
-                             group context in which the command should be 
+  -g, --group=group          (required) [default: storageProviders] The working
+                             group context in which the command should be
                              executed
                              Available values are: storageProviders.
 
   -n, --draftName=draftName  Name of the draft to create the opening from.
 
-  -s, --skipPrompts          Whether to skip all prompts when adding from draft 
+  -s, --skipPrompts          Whether to skip all prompts when adding from draft
                              (will use all default values)
 ```
-Once this command is run, the prompts to set up the opening are self-explanatory.
+Note that although some values are stated as `u128` or other confusing types, you should provide plaintext or numbers, and the CLI will convert them for you. Once this command is run, the prompts to set up the opening are *somewhat* self-explanatory.
+However, here are some pointers when creating an Opening.
+
+#### Application Parameters
+- `Choose value for activate_at:`
+  - Use `CurrentBlock` for allowing applications right away
+- `Do you want to provide the optional application_rationing_policy parameter?`
+  - This lets you set a max number of active applicants (`n`).
+  - Can be useful to avoid "spam", and combined with
+  - This lets you require an application stake from the Applicants
+  - Combined with setting `role/application_staking_policy`, and `at_least` for one or both, only the `n` applicants with the highest combined `role+application` stake will be considered.
+- `Provide value for max_review_period_length` should be high enough to allow you enough time to review. If the Review Period expires, the Opening closes, and no one is hired.
+- The various `*_unstaking_period_length` parameters means all take an argument `x` in blocks
+  - `crowded_out_unstaking_period_length` - "Application" and/or "Role" stake:
+    - If an applicant is crowded out due to the `number_of_applicants>n`, this lets you set an "unstaking period". May not make much sense, as they may want to re-apply with (a) higher stakes, and this will block them from re-using said stake(s) for `x` blocks.
+  - `review_period_expired_unstaking_period_length` - "Application" and/or "Role" stake:
+    - If the Opening expired with no one hired, this keeps their stake(s) locked for `x` blocks. May be overly harsh?
+  - `fill_opening_successful_applicant_application_stake_unstaking_period` - Only "Application" stake:
+    - If an Opening is ended with one or more Workers hired, `x`is the number of blocks until the hired Worker(s) Application stake is returned.
+  - `fill_opening_failed_applicant_*_stake_unstaking_period` - "Application" and/or "Role" stake:
+    - If an Opening is ended with one or more Workers hired, `x`is the number of blocks until the Application stake is returned to those that were not hired.
+  - `terminate_*_stake_unstaking_period` - "Application" and/or "Role" stake:
+    - If an Application was terminated, this keeps their stake(s) locked for `x` blocks. May be useful to stop spammers.
+    - If no one was hired, this keeps their Application stake locked for `x` blocks. May be overly harsh?
+  - `exit_role_*_stake_unstaking_period` - "Application" and/or "Role" stake:
+    - If a Worker exits their role, this keeps their stake(s) locked for `x` blocks.
+    - Should be used for the Role stake
+    - Maybe not so useful for the Application stake?
+
+#### Human Readable Information and Questions
+The second part is filling out a JSON schema, where you can set what information is provided to applicants and what details are collected as part of the application process. As mentioned above, you should consider creating a draft first, to review your input before broadcasting on-chain. Here are some pointers:
+- When prompted for a version, provide the value `1`.
+- When providing "type" for the `questions vector`, `text` means single line, whereas `text area` means a multi-line text area.
+
+#### Complete Example
+```
+? Your account's password [hidden]
+  Choose value for activate_at: CurrentBlock
+  Providing values for commitment struct:
+    Do you want to provide the optional application_rationing_policy parameter? Yes
+      Providing values for {
+        max_active_applicants:u32
+      } struct:
+        Provide value for max_active_applicants 3
+    Provide value for max_review_period_length 14400
+    Do you want to provide the optional application_staking_policy parameter? Yes
+      Providing values for {
+        amount:u128
+        amount_mode:{"_enum":["AtLeast","Exact"]}
+        crowded_out_unstaking_period_length:Option<u32>
+        review_period_expired_unstaking_period_length:Option<u32>
+      } struct:
+        Provide value for amount 1000
+        Choose value for amount_mode: AtLeast
+        Do you want to provide the optional crowded_out_unstaking_period_length parameter? Yes
+          Provide value for u32 1
+        Do you want to provide the optional review_period_expired_unstaking_period_length parameter? Yes
+          Provide value for u32 2
+    Do you want to provide the optional role_staking_policy parameter? Yes
+      Providing values for {
+        amount:u128
+        amount_mode:{"_enum":["AtLeast","Exact"]}
+        crowded_out_unstaking_period_length:Option<u32>
+        review_period_expired_unstaking_period_length:Option<u32>
+      } struct:
+        Provide value for amount 1001
+        Choose value for amount_mode: AtLeast
+        Do you want to provide the optional crowded_out_unstaking_period_length parameter? Yes
+          Provide value for u32 3
+        Do you want to provide the optional review_period_expired_unstaking_period_length parameter? Yes
+          Provide value for u32 4
+    Do you want to provide the optional fill_opening_successful_applicant_application_stake_unstaking_period parameter? Yes
+      Provide value for u32 5
+    Do you want to provide the optional fill_opening_failed_applicant_application_stake_unstaking_period parameter? Yes
+      Provide value for u32 6
+    Do you want to provide the optional fill_opening_failed_applicant_role_stake_unstaking_period parameter? Yes
+      Provide value for u32 7
+    Do you want to provide the optional terminate_application_stake_unstaking_period parameter? Yes
+      Provide value for u32 8
+    Do you want to provide the optional terminate_role_stake_unstaking_period parameter? Yes
+      Provide value for u32 9
+    Do you want to provide the optional exit_role_application_stake_unstaking_period parameter? Yes
+      Provide value for u32 10
+    Do you want to provide the optional exit_role_stake_unstaking_period parameter? Yes
+      Provide value for u32 11
+Providing values for human_readable_text struct:
+    Provide value for version 1
+    Provide value for headline Some Headline
+    Providing values for job struct:
+      Provide value for title Some Title
+      Provide value for description Some Description
+    Providing values for application struct:
+      Providing values for sections vector:
+        Do you want to add another entry to sections vector (currently: 0)? Yes
+        Providing values for {
+          title:Text
+          questions:Vec<{"title":"Text","type":"Text"}>
+        } struct:
+          Provide value for title Sections Title 0
+          Providing values for questions vector:
+            Do you want to add another entry to questions vector (currently: 0)? Yes
+            Providing values for {
+              title:Text
+              type:Text
+            } struct:
+              Provide value for title Questions Title 0
+              Provide value for type text area
+            Do you want to add another entry to questions vector (currently: 1)? Yes
+            Providing values for {
+              title:Text
+              type:Text
+            } struct:
+              Provide value for title Questions Title 1
+              Provide value for type text
+            Do you want to add another entry to questions vector (currently: 2)? Yes
+            Providing values for {
+              title:Text
+              type:Text
+            } struct:
+              Provide value for title Questions Title 2
+              Provide value for type text area
+            Do you want to add another entry to questions vector (currently: 3)? No
+        Do you want to add another entry to sections vector (currently: 1)? Yes
+        Providing values for {
+          title:Text
+          questions:Vec<{"title":"Text","type":"Text"}>
+        } struct:
+          Provide value for title Sections Title 1
+          Providing values for questions vector:
+            Do you want to add another entry to questions vector (currently: 0)? Yes
+            Providing values for {
+              title:Text
+              type:Text
+            } struct:
+              Provide value for title Questions Title 0 in Section 1
+              Provide value for type text
+            Do you want to add another entry to questions vector (currently: 1)? No
+        Do you want to add another entry to sections vector (currently: 2)? No
+    Provide value for reward x tJOY per n blocks
+    Providing values for creator struct:
+      Providing values for membership struct:
+        Provide value for handle Lead
+    Providing values for process struct:
+      Providing values for details vector:
+        Do you want to add another entry to details vector (currently: 0)? Yes
+        Provide value for Text Detail 0
+        Do you want to add another entry to details vector (currently: 1)? Yes
+        Provide value for Text Detail 1
+        Do you want to add another entry to details vector (currently: 2)? No
+```
+If successfully submitted, you can look at your Opening using the `working-groups:opening <WGOPENINGID>`, which returns:
+```
+Group: storageProviders
+
+______________ Human readable text _______________
+
+{
+    version: 1,
+    headline: "Some Headline",
+    job: {
+        title: "Some Title",
+        description: "Some Description"
+    },
+    application: {
+        sections: [
+            {
+                title: "Sections Title 0",
+                questions: [
+                    {
+                        title: "Questions Title 0",
+                        type: "text area"
+                    },
+                    {
+                        title: "Questions Title 1",
+                        type: "text"
+                    },
+                    {
+                        title: "Questions Title 2",
+                        type: "text area"
+                    }
+                ]
+            },
+            {
+                title: "Sections Title 1",
+                questions: [
+                    {
+                        title: "Questions Title 0 in Section 1",
+                        type: "text"
+                    }
+                ]
+            }
+        ]
+    },
+    reward: "x tJOY per n blocks",
+    creator: {
+        membership: {
+            handle: "Lead"
+        }
+    },
+    process: {
+        details: [
+            "Detail 0",
+            "Detail 1"
+        ]
+    }
+}
+
+________________ Opening details _________________
+
+WG Opening ID                 8                                
+Opening ID                    10                               
+Type                          Worker                           
+Stage                         Accepting Applications           
+Last status change            ~ 6:31:06 AM 7/29/2020 (#194118)
+Application stake             >= 1.000k JOY                    
+Role stake                    >= 1.001k JOY                    
+
+_______________ Unstaking periods ________________
+
+Crowded Out Application Stake Unstaking Period Length:                  1 blocks  
+Crowded Out Role Stake Unstaking Period Length:                         3 blocks  
+Exit Role Application Stake Unstaking Period:                           10 blocks
+Exit Role Stake Unstaking Period:                                       11 blocks
+Fill Opening Failed Applicant Application Stake Unstaking Period:       6 blocks  
+Fill Opening Failed Applicant Role Stake Unstaking Period:              7 blocks  
+Fill Opening Successful Applicant Application Stake Unstaking Period:   5 blocks  
+Review Period Expired Application Stake Unstaking Period Length:        2 blocks  
+Review Period Expired Role Stake Unstaking Period Length:               4 blocks  
+Terminate Application Stake Unstaking Period:                           8 blocks  
+Terminate Role Stake Unstaking Period:                                  9 blocks  
+```
+
 
 ### Accepting Applications
 
-Once enough applications have submitted, these can now be reviewed to decide who should be hired as a `Storage Provider`.
-The command to be used is the following: `working-groups:startReviewPeriod WGOPENINGID`.
+Once enough applications have been submitted, these can now be reviewed to decide who should be hired as a `Storage Provider`.
+The command to be used is the following: `working-groups:startReviewPeriod <WGOPENINGID>`.
 
 You can find the `WGOPENINGID` in the URL in Pioneer or through a chain state query of the currently active openings.
 
 ### Processing Applications
 
-As soon as the opening is in the `In Review` status, you can start hiring!
+As soon as the opening is in the `In Review` state, you can start hiring!
 
-Simply run `working-groups:fillOpening WGOPENINGID` where `WGOPENINGID` is the same as earlier, and you will be prompted to select the applicants you wish to hire (using a check-box dialog). The usernames of the candidates will be shown so you don't have to worry about numerical IDs for this part.
+Simply run `working-groups:fillOpening <WGOPENINGID>` where `<WGOPENINGID>` is the same as earlier, and you will be prompted to select the applicants you wish to hire (using a check-box dialog). The usernames of the candidates will be shown so you don't have to worry about numerical IDs for this part.
 
 # Working As Storage Lead
 
@@ -122,8 +354,11 @@ If a `Storage Provider` is not performing adequately it is up to you to decide t
 
 ## All Commands
 
-Within the CLI, all of the relevant commands for the Storage Lead can be found through the following query:<br>
-`working-groups --help`
+Within the CLI, all of the relevant commands for the Storage Lead can be found through the following query:
+```
+working-groups --help
+```
+More information on the usage can be found [here](/tools/cli)
 
 For convenience, the output of this command is listed below to give a sense of the powers and responsibilities of the Storage Lead:
 ```
@@ -175,8 +410,3 @@ For convenience, the output of this command is listed below to give a sense of t
                                              (amount only). Requires lead
                                              access.
 ```
-
----
-
-# Troubleshooting
-If you had any issues setting up this role, you may find your answer here!

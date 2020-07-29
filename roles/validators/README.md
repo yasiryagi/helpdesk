@@ -15,17 +15,40 @@ Table of Contents
 - [Instructions](#instructions)
 - [On Your Machine](#on-your-machine)
   - [Mac](#mac)
+      - [Setup Node](#setup-node)
+      - [Keys](#keys)
+      - [Final Step](#final-step)
   - [Linux](#linux)
+      - [Setup Node](#setup-node-1)
+      - [Keys](#keys-1)
+      - [Final Step](#final-step-1)
 - [In the Pioneer app (browser)](#in-the-pioneer-app-browser)
   - [Validator Setup](#validator-setup)
+      - [Generate your keys](#generate-your-keys)
+      - [Configure your validator keys](#configure-your-validator-keys)
 - [Advanced](#advanced)
   - [Run as a service](#run-as-a-service)
+      - [Configure the service](#configure-the-service)
+      - [Starting the service](#starting-the-service)
+      - [Errors](#errors)
   - [Rewards](#rewards)
     - [Dynamic Parameters](#dynamic-parameters)
     - [Fixed Parameters](#fixed-parameters)
+    - [Validator set and block production](#validator-set-and-block-production)
+    - [Total rewards calculation](#total-rewards-calculation)
+      - [Examples](#examples)
+      - [Example A](#example-a)
+      - [Example B](#example-b)
+      - [Example C](#example-c)
   - [Settings](#settings)
+      - [Bonding preferences](#bonding-preferences)
+      - [Validating preferences](#validating-preferences)
   - [Nominating](#nominating)
+      - [Generate your keys](#generate-your-keys-1)
+      - [Configure your validator keys](#configure-your-validator-keys-1)
 - [Troubleshooting](#troubleshooting)
+  - [Unstaking](#unstaking)
+    - [In Pioneer](#in-pioneer)
 <!-- TOC END -->
 
 
@@ -633,9 +656,12 @@ In order to be a `Nominator`, you need to stake. Note that you may have to refre
 # Troubleshooting
 If you had any issues setting it up, you may find your answer here!
 
-#### Unstaking
+## Unstaking
+Due to an unfortunate error in Pioneer which we are working to fix, unstaking requires either lots of patience, or using the chain state/extrinsics tab for certain tasks:
 
-If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `validator` set. If you know in advance (~1hr) you can do the following steps instead:
+### In Pioneer
+
+If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `Validator` set. If you know in advance (~1hr) you can do the following steps instead:
 
 First, make sure you have set `Fully Featured` interface in the `Settings` sidebar.
 
@@ -651,4 +677,36 @@ If you want to stop being a `validator` and move your tokens to other/better use
 
 After the transaction has gone through, you will see a new line below appearing, displaying `unbonding <amount> JOY` and an info icon.  Hovering over this with your cursor will tell you when your unbonding is complete, and you can go to the third and final step.
 
-3. Once the unbonding is complete, still in the `Validator -> Account Actions` tab, you will see a new line displaying `unbonding <amount> JOY` and a lock icon. Click on the icon to complete the unbonding. You can now spend your tokens.
+**Note**
+Pioneer will display the "wrong" time here. Regardless of what it says, it will be about 24h.
+
+To find out if you have completed your unbonding:
+- [chain state](https://testnet.joystream.org/#/chainstate) query of `ledger(AccountId): Option<StakingLedger>` with the controller. Output:
+```
+# If you have successfully initiated unstaking:
+{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,<act_bonded>:[{"value":<unbonding>,"era":<E_unbonded>}]}
+# If you have not successfully initiated unstaking, or it has already completed:
+{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,"<act_bonded>":[]}
+```
+- `<tot_bonded>` Is the total amount you have staked/bonded
+- `<act_bonded>` Is the amount of tokens that is not being unlocked
+- `<unbonding>` Is the amount of tokens that is in the process of being freed
+  * `<unbonding>` + `<act_bonded>` = `<tot_bonded>`
+- `<E_unbonded>` Is the `era` when your tokens will be "free" to transfer/bond/vote
+
+The `era` should only change every 600 blocks, but certain events may trigger a new era. To calculate when your funds are "free"
+- In `Chain State` -> `staking.currentEra()`. Let output be `<E_current>`
+
+If `<E_unbonded>` >= `<E_current>`, you can complete the unbonding.
+
+
+3. Once the unbonding is complete:
+- In `Extrinsics`, using the `controller`, select `staking.withdrawUnbonded()`
+
+You can now spend your tokens.
+
+If you have waited long enough, you can instead perform the action in Pioneer:
+- Go to the `Validator -> Account Actions` tab, you will see a new line displaying `unbonding <amount> JOY` and a lock icon.
+- Click on the icon to complete the unbonding.
+
+You can now spend your tokens.
