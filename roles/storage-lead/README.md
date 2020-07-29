@@ -129,7 +129,7 @@ However, here are some pointers when creating an Opening.
     - Maybe not so useful for the Application stake?
 
 #### Human Readable Information and Questions
-The second part is filling out a JSON schema, where you can set what information is provided and asked for by potential applicants. As stated above, you should consider creating a draft first, to review your input before broadcasting on-chain. Here are some pointers:
+The second part is filling out a JSON schema, where you can set what information is provided to applicants and what details are collected as part of the application process. As mentioned above, you should consider creating a draft first, to review your input before broadcasting on-chain. Here are some pointers:
 - When prompted for a version, provide the value `1`.
 - When providing "type" for the `questions vector`, `text` means single line, whereas `text area` means a multi-line text area.
 
@@ -249,7 +249,7 @@ Providing values for human_readable_text struct:
         Provide value for Text Detail 1
         Do you want to add another entry to details vector (currently: 2)? No
 ```
-If sent, upi can look at your Opening using the `working-groups:opening <WGOPENINGID>`, which returns:
+If successfully submitted, you can look at your Opening using the `working-groups:opening <WGOPENINGID>`, which returns:
 ```
 Group: storageProviders
 
@@ -334,14 +334,14 @@ Terminate Role Stake Unstaking Period:                                  9 blocks
 
 ### Accepting Applications
 
-Once enough applications have submitted, these can now be reviewed to decide who should be hired as a `Storage Provider`.
+Once enough applications have been submitted, these can now be reviewed to decide who should be hired as a `Storage Provider`.
 The command to be used is the following: `working-groups:startReviewPeriod <WGOPENINGID>`.
 
 You can find the `WGOPENINGID` in the URL in Pioneer or through a chain state query of the currently active openings.
 
 ### Processing Applications
 
-As soon as the opening is in the `In Review` status, you can start hiring!
+As soon as the opening is in the `In Review` state, you can start hiring!
 
 Simply run `working-groups:fillOpening <WGOPENINGID>` where `<WGOPENINGID>` is the same as earlier, and you will be prompted to select the applicants you wish to hire (using a check-box dialog). The usernames of the candidates will be shown so you don't have to worry about numerical IDs for this part.
 

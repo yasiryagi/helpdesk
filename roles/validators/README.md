@@ -657,11 +657,11 @@ In order to be a `Nominator`, you need to stake. Note that you may have to refre
 If you had any issues setting it up, you may find your answer here!
 
 ## Unstaking
-Due to an unfortunate error in Pioneer, unstaking requires either lots of patience, or using the chain state/extrinsics tab for certain tasks:
+Due to an unfortunate error in Pioneer which we are working to fix, unstaking requires either lots of patience, or using the chain state/extrinsics tab for certain tasks:
 
 ### In Pioneer
 
-If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `validator` set. If you know in advance (~1hr) you can do the following steps instead:
+If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `Validator` set. If you know in advance (~1hr) you can do the following steps instead:
 
 First, make sure you have set `Fully Featured` interface in the `Settings` sidebar.
 
