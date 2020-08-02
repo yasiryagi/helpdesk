@@ -34,6 +34,8 @@
   </h4>
 </div>
 
+</br>
+
 # Table of Contents
 
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
@@ -65,17 +67,17 @@
 
 
 # Overview
-This repo contains detailed guides and help for users to interact with our current [testnet](https://testnet.joystream.org/).
+This repo contains detailed guides to support users interacting with our current [testnet](https://testnet.joystream.org/).
 
 ## Contribute
-If you find something that is wrong or missing, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](#builders-and-bug-reporters). For more information on this, please see the [bounties repo](https://github.com/Joystream/bounties).
+If you find something that is wrong or missing, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve! It might even qualify for a [reward](/roles/builders). For more information on this, please see the [bounties repo](https://github.com/Joystream/bounties).
 
 ## Get Paid to Participate
 
-The Joystream testnet tokens (tJOY) are backed by a USD denominated fiat pool, and redeemable via monero. More information about how this works can be found below. If you want to find the current exchange rate, when the fiat pool is getting topped up, and verify pending exchanges, go [here](https://www.joystream.org/testnet).
+The Joystream Testnet Token (tJOY) is backed by a USD-denominated fiat pool, and currently redeemable via Monero. More information about how this works can be found below. If you want to find the current exchange rate, when the fiat pool is getting topped up, and track the status of pending exchanges, go [here](https://www.joystream.org/testnet).
 
 To exchange your tokens, follow these steps.
-1. In order for us to know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar:
+1. In order for us to know what address to pay, you must link your Joystream address to your Monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar:
 
 ```
 # Only the part in the line below goes in the memo:
@@ -88,44 +90,40 @@ To exchange your tokens, follow these steps.
 5CktGSAEApx6Z2fK5NnK3dZNwD3Hi1YHhna3aTDHULSAXGdg
 ```
 
-Once the tokens have been received to this address, the time, date, your address, your memo and the current tJOY/USD exchange rate is logged. Your tokens are then burned (reducing the tJOY issuance), and the USD amount is deducted from the fiat pool. This means that the exchange rate is not affected. Your monero should arrive within 24 hours, as we are batching the transactions. Also note that the XMR/USD exchange rate is at the time of the monero transfer.
-
-In order for us to know what address to pay, you must tie your Joystream address to your monero address. The easiest way to do this is in the `My memo` tab under the `My Keys` sidebar.
+Once the tokens have been received to this address, the time, date, your address, your memo and the current tJOY/USD exchange rate are logged. Your tokens are then burned (reducing the tJOY issuance), and the USD amount is deducted from the fiat pool. This means that the exchange rate is not affected. Your Monero should arrive within 72 hours, as we are batching the transactions. Also note that the XMR/USD exchange rate is at the time of the Monero transfer.
 
 # Get Started
-To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser [here](https://testnet.joystream.org).
+To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser on Pioneer [here](https://testnet.joystream.org).
 
 ## Generate Keys
-Click `My Keys` in the sidebar, and then select the `Create Keys` tab. The choices you make from here, depends a little on how you want to participate. If you just want to play around, you can just follow the defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
+Click `My Keys` in the sidebar, and then select the `Create Keys` tab. The choices you make from here depend to a certain degree on how you intend to participate. If you just want to play around, you can just follow the recommended defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
 
-In any event, the `Keys` will be stored in your browser for your convenience, but it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file. The `Mnemonic` can also be used to restore your `Keys`, but will not do you any good if you want to become a `Validator`.
+In any event, the `Keys` will be stored in your browser for your convenience, but it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file. The `Mnemonic` can also be used to restore your `Keys`, but keeping the .json file somewhere safe is recommended, as it is the preferred format used to import your key in to certain tools, such as the [CLI](/tools/cli).
 
 ## Get a Membership
-To become a `Member` of the platform, you need some tokens. Either click the `Free Tokens` link, or click [here](https://faucet.joystream.org/). After you solved the captcha, your tokens should be on their way.
+To become a `Member` of the platform, you will need some tokens. The `faucet` is closed at the moment due to abuse from Sybil attackers. Currently, the only way to get tokens is to join our [Telegram group](https://t.me/JoyStreamOfficial) and ask for some there. This group is also a great place to get support and discuss Joystream with other community members.
 
 **Note**
-All transactions (extrinsics) cost 1 Joy token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/#/forum).
+All transactions (extrinsics) cost 1 tJOY token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/#/forum).
 
 Now, click `Members` in the sidebar, and select the `Register` tab. Choose a `Handle/nickname`. Optionally, provide a link to an image file for your avatar, and fill in the markdown enabled `About` field.
 
 
 # Incentives
-The Joystreams testnets are incentivized, meaning users can earn real money for participating. There are many reasons for this, but the most important one is to build a community that understands the network. After the platform goes live on mainnet, Jsgenesis will not be around to run critical infrastructure, occupy the roles needed for the platform to work, or drive innovation.
+The Joystream testnets are incentivized, meaning users can earn real money for participating. There are many reasons we have chosen a system like this, but one of the main motivations is to build a community that understands the network. After the platform goes live on mainnet, Jsgenesis will not be around to run critical infrastructure, occupy the roles needed for the platform to work, or drive innovation.
 
-Previous testnets had weekly payouts for all roles, with the magnitude of rewards and slots decided by Jsgenesis. The old incentive scheme has worked in the sense that it has gotten a small group of users to participate and earn monero for their contribution. However, the testnet tokens (tJOY) has only been a means to an end. Users only needed a small amount to stake for roles, and get the recurring monero reward, without having to consider tJOY as an asset.
+Previous testnets had weekly payouts for all roles, with the magnitude of rewards and positions available decided by Jsgenesis. The old incentive scheme has worked in the sense that it has gotten a small group of users to participate and earn Monero for their contributions. However, the testnet tokens (tJOYs) have only been a means to an end. Users only needed a small amount to stake for roles, and get the recurring Monero reward, without having to consider tJOY as a valuable asset in its own right.
 
-When Joystream goes live on mainnet, there will be no one there to pay these (monero) rewards, and the platform must rely on JOY tokens as the single value carrier for maintaining critical infrastructure, continued development, governance, and incentives for content creators. In order to get a structure that reflects the mainnet incentives in a better way, we have decided to have the token issuance be backed by a fiat pool, where users can convert their tokens to cover their real costs, time and hardware. The basics of the new scheme is outlined below:
+When Joystream goes live on mainnet, there will be no one there to pay these (Monero) rewards, and the platform must rely on JOY tokens as the single value carrier for maintaining critical infrastructure, continued development, governance, and to provide incentives for content creators. In order to get a structure that reflects the mainnet incentives in a better way, we have decided to have the tJOY token issuance be backed by a fiat pool, where users can convert their tokens to cover their real costs, time and hardware. The basics of the new scheme is outlined below:
 
 -   At launch, the token issuance will be set/calculated, and an initial fiat pool will be created to back it.
 -   Each week, an amount of USD will be added to fiat pool, thus increasing the value of each token, if one were to assume the issuance would stay the constant.
--   However, all roles on the platform will be compensated by newly minted tJOY tokens, effictively inflating the supply.
+-   However, all roles on the platform will be compensated by newly minted tJOY tokens, effectively inflating the supply.
 -   In addition to a weekly replenishment, a set of KPIs (Key Performance Indicators), will be set by us, to ensure the network is working as intended.
--   If a KPI is reached, the fiat pool will increase by the amount computed based on the level success for each KPI, new tJOY will be minted proportionally, and distributed to the voters that elected the Council Members. As a consequence, this will not affect the value of token holders not participating in the governance.
--   Other ways both the tJOY supply, and the fiat pool can increase, is through bounties, competitions, spending proposals, etc.
+-   If a KPI is reached, the fiat pool will increase by the amount computed based on the level success for each KPI, new tJOY will be minted proportionally, and these will be distributed to the voters that elected the `Council Members`. As a consequence, this will not affect the value of token holders not participating in the governance.
+-   Other ways that the tJOY supply and the fiat pool can increase include through bounties, competitions, spending proposals, etc.
 
 An overview on how the new incentive scheme works, and how it interacts with the new proposal model that gives far more power and responsibility to users via the council, can be found [here](/tokenomics).
-
-The specifics on what will happen with the upgrade from `Rome` (old incentive scheme) to `Constantinople` (new incentive scheme) is outlined [here](/testnets/constantinople). A broader guide on how the incentives will work
 
 # Active Roles
 
@@ -145,11 +143,11 @@ A detailed guide to setting up the `Validator` node and settings can be found [h
 Active `Validators` are rewarded in tJOY every new `era` (600 blocks). The size of the reward for each `Validator` depends on a couple of variables:
 
 - The number of `Validators`
-  - The total amount rewarded are independent of the number of active `Validators`. This means that the individual tJOY reward is the total reward divided by the number of `Validators` in the last `era`.
+  - The total amount awarded is independent of the number of active `Validators`. This means that the individual tJOY reward is the total reward divided by the number of `Validators` in the last `era`.
 - The total supply of tJOY
   - The rewards for `Validators` are calculated as a percentage of the total tJOY issuance.
 - The ratio of tokens at stake for the `Validator` set compared to the issuance
-  - By summing up the stake of the individual `Validators` and their `Nominators`, you get the amount at stake.
+  - By summing up the stake of the individual `Validators` and their `Nominators`, you get the total amount at stake.
   - Divide by the tJOY issuance and you get the ratio.
   - The ideal number (for the `Validators`) is 30%.
   - If this number is higher or lower, than 30%, the rewards "drop off"
@@ -163,7 +161,7 @@ If you want to exchange your tokens, you need to unbond them first. Check the gu
 
 ### Description
 
-`Council Members` are elected by the stakeholders in the system to act in the interest of their constituency. The council is responsible for allocating the platform's resources, and hire executive personnel to run the day-to-day operations.
+`Council Members` are elected by the stakeholders in the system to act in the interest of their constituency. The `Council` is responsible for allocating resources, and hiring executive personnel to run the platform's day-to-day operations.
 
 An overview of the proposal system can be found [here](/proposals)
 A detailed explanation of the election cycle and responsibilities can be found [here](/roles/council-members).
@@ -182,13 +180,11 @@ You can't have a video platform without videos, so someone has to take the role 
 
 Unlike `Validators` that can come and go without too much friction (at least for now), a new `Storage Provider` will currently need to replicate the entire content directory. As a consequence, the platform needs some stability for this role to avoid providing a poor user experience, or worse, loss of data.
 
-After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be within its own working group, with a lead overseeing the day to day operations, while being accountable to the Council.
+After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be within its own working group, with a lead overseeing the day-to-day operations, while being accountable to the Council.
 
 ### Incentives
 
-After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be its own working group, with a lead overseeing the day to day operations, while being governed by the Council.
-
-The `Storage Lead` can only be hired (or fired) by the Council through the proposal system. The Lead should maintain sufficient storage and distribution capacity by employing `Storage Providers`, and paying them sufficiently. The Lead will also need to run a storage node themselves. Another important task is to keep an eye on the working group's financing.
+The `Storage Lead` can only be hired (or fired) by the Council through the proposal system. The Lead should maintain sufficient storage and distribution capacity by employing `Storage Providers`, and paying them sufficiently. The Lead will also need to run a storage node themselves. Another important task is to keep an eye on the working group's financing (deciding how much each `Storage Provider` should be paid etc.).
 
 The current status of this role can be found [here](https://testnet.joystream.org/#/working-groups).
 
@@ -223,18 +219,16 @@ When making a new "Set (Curator) Lead" proposal, one can propose to
 - hire a lead if there are currently none
 - fire the current lead, without setting a new one.
 
- The lead will initially be a member of the Jsgenesis team, but the `Council` will have to find a replacement. This can be done by making a proposal to `Set Curator Lead`.
-
- <!---
+<!---
 ## Builders and Bug Reporters
 
 <p align="center""><img src="img/bugreporters.svg" width="500"></p>
 
 ### Description
 
-Unlike the `Validators` and `Council Members`, the bug bounty payments will be somewhat subjective. Long term, such decisions will be resolved by the platform, so in future testnets these payouts will at least partially be made by the Council.
+Unlike the `Validators` and `Council Members`, bug bounty payments will be somewhat subjective. Long term, such decisions will be resolved by the platform, so in future testnets these payouts will at least partially be made by the Council.
 
-We have recently made a [bounties repo](https://github.com/Joystream/bounties) where you can find specific tasks and their rewards, and we will add more bounties and evolve the system as we grow. In addition to the bounties we propose, we are always looking for suggestions for bounties from the community.
+We have made a [bounties repo](https://github.com/Joystream/bounties) where you can find specific tasks and their rewards, and we will add more bounties and evolve the system as we grow. In addition to the bounties we propose, we are always looking for suggestions for bounties from the community.
 
 ### Incentives
 
@@ -242,7 +236,7 @@ If you find a bug, potential improvement, or just an idea, there are a couple of
 
 #### Report a software bug
 
-Go to the applicable technical repo(s), e.g. [node repo](https://github.com/Joystream/substrate-node-joystream), [Pioneer repo](https://github.com/Joystream/apps/tree/joystream), [storage node repo](https://github.com/Joystream/storage-node-joystream), [runtime-repo](https://github.com/Joystream/substrate-runtime-joystream), etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
+Go to the applicable technical repo(s), e.g. [monorepo](https://github.com/joystream/joystream) etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
 
 #### Errors in the helpdesk guides (or a non-code repo)
 
@@ -262,7 +256,7 @@ The contributor must include either their Joystream or monero address when submi
 
 # Other Features and Tools
 
-This section covers other things you can do after [getting started](#getting-started), that isn't a paid role as of now.
+This section covers other things you can do after [getting started](#get-started), that isn't a paid role as of now.
 
 ## CLI
 The CLI tool is under development, but is already needed for the [Storage Lead](/roles/storage-lead) and can be useful for [Storage Providers](/roles/storage-providers). Go [here](/tools/cli) for more information and guides.

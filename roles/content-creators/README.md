@@ -27,7 +27,7 @@ requires no extra software. Everything can be done in the browser, by going [her
 
 ## Get Started
 If you want to upload content as a `Content Creator`, you need to become a `Member`. Instructions for this
-can be found [here](https://github.com/JoyStream/helpdesk/#get-started).
+can be found [here](https://github.com/Joystream/helpdesk/#get-started).
 
 ## Uploading Content
 Once you are a member, it is extremely simple to get started uploading content to the platform.
@@ -37,7 +37,5 @@ first channel. Complete the form with the details for your channel.
 
 Your channel will be `Public` by default. To upload content simply navigate to your channel and click the `Upload Video` button. From there you can upload video files before filling in their metadata and submitting them into the content directory.
 
-<i>Please note: users have reported some issues with uploading on Chromium-based browsers. While we are currently working on a fix for this, for the moment it might be a good idea to use Firefox if you are a `Content Creator`.</i>
-
 ## Content Restrictions
-It is very important that you do not upload illegal or copyrighted content on our testnets. This will result in a disqualification from payouts. It will also result in the takedown of content, potentially slashing of funds, and the deletion of your channel. Multiple spam uploads which represent a burden to moderate for the `Content Curators` may also be penalized and result in deductions on payouts due for qualifying content uploads on your content creator profile.
+It is very important that you do not upload illegal or copyrighted content on our testnets. Firstly, this will result in a disqualification from payouts. It will also result in the takedown of content, potentially slashing of funds, and the deletion of your channel. Multiple spam uploads which represent a burden to moderate for the `Content Curators` may also be penalized and result in deductions on payouts due for qualifying content uploads on your content creator profile.

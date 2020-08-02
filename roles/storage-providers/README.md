@@ -13,25 +13,25 @@ Table of Contents
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
 - [Overview](#overview)
 - [Instructions](#instructions)
-  - [Initial setup](#initial-setup)
-  - [Install ipfs](#install-ipfs)
-    - [Run ipfs as a service](#run-ipfs-as-a-service)
-    - [Upgrade ipfs](#upgrade-ipfs)
+  - [Initial Setup](#initial-setup)
+  - [Install IPFS](#install-ipfs)
+    - [Run IPFS As A Service](#run-ipfs-as-a-service)
+    - [Upgrade IPFS](#upgrade-ipfs)
   - [Setup Hosting](#setup-hosting)
-    - [Run caddy as a service](#run-caddy-as-a-service)
-  - [Install and Setup the Storage Node](#install-and-setup-the-storage-node)
+    - [Run Caddy As A Service](#run-caddy-as-a-service)
+  - [Install And Setup The Storage Node](#install-and-setup-the-storage-node)
   - [Update Your Storage Node](#update-your-storage-node)
-    - [Applying for a Storage Provider opening](#applying-for-a-storage-provider-opening)
-    - [Setup and configure the storage node](#setup-and-configure-the-storage-node)
-      - [Check that you are syncing](#check-that-you-are-syncing)
-    - [Run storage node as a service](#run-storage-node-as-a-service)
-    - [Verify everything is working](#verify-everything-is-working)
+    - [Applying For A Storage Provider Opening](#applying-for-a-storage-provider-opening)
+    - [Setup And Configure The Storage Node](#setup-and-configure-the-storage-node)
+      - [Check That You Are Syncing](#check-that-you-are-syncing)
+    - [Run Storage Node As A Service](#run-storage-node-as-a-service)
+    - [Verify Everything Is Working](#verify-everything-is-working)
 - [Troubleshooting](#troubleshooting)
-  - [Port not set](#port-not-set)
-  - [No tokens in role account](#no-tokens-in-role-account)
-  - [Install yarn and node on linux](#install-yarn-and-node-on-linux)
-      - [Install as Root](#install-as-root)
-      - [Install as user with `sudo` privileges](#install-as-user-with-sudo-privileges)
+  - [Port Not Set](#port-not-set)
+  - [No Tokens In Role Account](#no-tokens-in-role-account)
+  - [Install Yarn And Node On Linux](#install-yarn-and-node-on-linux)
+      - [Install As Root](#install-as-root)
+      - [Install As User With `sudo` Privileges](#install-as-user-with-sudo-privileges)
 <!-- TOC END -->
 
 
@@ -69,8 +69,8 @@ $ apt-get install git build-essential libtool automake autoconf python
 $ apt-get install libcap2-bin
 ```
 
-## Install ipfs
-The new storage node uses [ipfs](https://ipfs.io/) as backend.
+## Install IPFS
+The new storage node uses [IPFS](https://ipfs.io/) as backend.
 ```
 $ wget https://github.com/ipfs/go-ipfs/releases/download/v0.6.0/go-ipfs_v0.6.0_linux-amd64.tar.gz
 $ tar -xvzf go-ipfs_v0.6.0_linux-amd64.tar.gz
@@ -122,8 +122,8 @@ $ systemctl enable ipfs
 $ systemctl stop ipfs
 ```
 
-### Upgrade ipfs
-If you have previously run a storage-node with an older version of ipfs, you should now upgrade, as there have been some stability issues with older versions on the the newest storage-node.
+### Upgrade IPFS
+If you have previously run a storage-node with an older version of IPFS, you should now upgrade, as there have been some stability issues with older versions on the the newest storage-node.
 
 ```
 # If you are running ipfs as a service:
