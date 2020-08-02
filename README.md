@@ -90,7 +90,7 @@ To exchange your tokens, follow these steps.
 5CktGSAEApx6Z2fK5NnK3dZNwD3Hi1YHhna3aTDHULSAXGdg
 ```
 
-Once the tokens have been received to this address, the time, date, your address, your memo and the current tJOY/USD exchange rate are logged. Your tokens are then burned (reducing the tJOY issuance), and the USD amount is deducted from the fiat pool. This means that the exchange rate is not affected. Your Monero should arrive within 24 hours, as we are batching the transactions. Also note that the XMR/USD exchange rate is at the time of the Monero transfer.
+Once the tokens have been received to this address, the time, date, your address, your memo and the current tJOY/USD exchange rate are logged. Your tokens are then burned (reducing the tJOY issuance), and the USD amount is deducted from the fiat pool. This means that the exchange rate is not affected. Your Monero should arrive within 72 hours, as we are batching the transactions. Also note that the XMR/USD exchange rate is at the time of the Monero transfer.
 
 # Get Started
 To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser on Pioneer [here](https://testnet.joystream.org).
