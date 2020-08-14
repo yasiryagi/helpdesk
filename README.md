@@ -87,7 +87,7 @@ To exchange your tokens, follow these steps.
 2. Send your testnet tokens (tJOY) to the following address:
 
 ```
-5CktGSAEApx6Z2fK5NnK3dZNwD3Hi1YHhna3aTDHULSAXGdg
+5D5PhZQNJzcJXVBxwJxZcsutjKPqUPydrvpu6HeiBfMaeKQu
 ```
 
 Once the tokens have been received to this address, the time, date, your address, your memo and the current tJOY/USD exchange rate are logged. Your tokens are then burned (reducing the tJOY issuance), and the USD amount is deducted from the fiat pool. This means that the exchange rate is not affected. Your Monero should arrive within 72 hours, as we are batching the transactions. Also note that the XMR/USD exchange rate is at the time of the Monero transfer.
