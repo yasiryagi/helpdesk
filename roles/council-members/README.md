@@ -172,7 +172,7 @@ When you submit a Vote, a `Random salt` will be generated for you, and only a `H
 As soon as the `Voting` stage closes, the `Revealing` stage begins. As stated before, only when a vote is "revealed" will it become public, and count.
 
 #### How to Reveal
-**xxx**
+**FIX**
 
 #### End of Revealing
 At the end of the `Revealing` stage, the applicants are sorted and ranked by their total stake, ie. the sum of the stake(s) they bonded during the `Announcing` stage, and the sum of all **"revealed"** votes.
@@ -300,7 +300,7 @@ Unless these conditions are met, Jsgenesis reserves the right not to consider a 
 It is irrelevant whether the Council collaborates in producing the deliverable, it is made by a single CM, or procured from another Member or outsider. The only exceptions are if the deliverable:
 - includes a claim (optional) of its source that proves false
 - does not follow the license requirements of the repo, or violates any other license
-- contains anything violating the platform [ToS](**XXX**)
+- contains anything violating the platform [ToS](https://testnet.joystream.org/#/pages/tos)
 
 #### Chain Values
 The KPI will define whether the value in question shall be:
@@ -347,7 +347,7 @@ A good approach could be to agree on weekly budgets, and revise them on a per ne
     - replication requirement (the platform may wish to have sufficient backup in case workers quit or crash)
     - changes in hardware/VPS costs
   - The Content Curators Groups costs is mostly associated with their time:
-    - Verifying new content are in line with the [ToS](**XXX**)
+    - Verifying new content are in line with the [ToS](https://testnet.joystream.org/#/pages/tos)
     - Verifying the metadata of new and existing content
     - Running or creating tools for monitoring changes in the Content Directory or `dataDirectory`
 
