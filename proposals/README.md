@@ -3,8 +3,8 @@ Table of Contents
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
 - [Overview](#overview)
   - [Implemented Proposals](#implemented-proposals)
-      - [Text/signal Proposal](#textsignal-proposal)
-      - [Funding Requests](#funding-requests)
+      - [Text](#text)
+      - [Spending](#spending)
       - [Set Max Validator Count](#set-max-validator-count)
       - [Set Content Curator Lead](#set-content-curator-lead)
       - [Set Content Working Group Mint Capacity](#set-content-working-group-mint-capacity)
@@ -41,10 +41,14 @@ As the `Council` is meant to be be the executive arm of the Joystream governance
 
 The list below contains all the proposal types currently available.
 
-#### Text/signal Proposal
+#### Text
+Aka. "Signal Proposal"
+
 Although no action will happen if such a proposal is voted through, it provides a way for user to request changes, propose improvements, complaint about something, and in general voice their opinion on a matter. This will open a discussion, and Council Member can signal their approval or rejection through a vote. This can be used to notify the platform developers about key feature missing, highlight a topic of controversy, etc.
 
-#### Funding Requests
+#### Spending
+Aka. "Funding Request"
+
 In general, this proposal will include an amount, and a beneficiary. This can be used in to fund development, pay winners of competitions, bonus payments for a role, or anything else that requires minting new tokens to a specific individual or group.
 
 #### Set Max Validator Count

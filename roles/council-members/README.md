@@ -140,10 +140,10 @@ All of the applicants is sorted and ranked by their stake. The `Announcing` stag
 
 The applicants that did not make it to the `Voting` stage gets their stake back right away.
 
-##### Scenario B:
+##### Scenario C:
 If: `Applicants < Council Size`. Ie. the number of applicants is smaller than the `Council Size`.
 
-There are not enough applicants to fill the Council slots, and a new `Announcing` stage begins.
+There are not enough applicants to fill the Council slots, and a new `Announcing` stage begins, with all the applicants automatically re-entered.
 
 ### Voting
 As soon as the `Announcing` stage closes, anyone that is a Member and can stake more than the `Minimum Voting Stake`, can vote for any of the applicants for the entire duration of this stage.
