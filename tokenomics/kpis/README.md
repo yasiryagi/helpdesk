@@ -39,7 +39,7 @@ Examples of the system through the eyes of a user can be found [here](#tokenomic
 
 ## Token Issuance
 
-The issuance of new tJOY will in practice be a cost incurred for all holders of tJOY, both passive and active. Because of this, it is in the interest of all holders to ensure the platforms resources are well managed, and keep tabs on the [Council Members](../roles/council-members) spending. As this would lead to a situation where there was no rational reason whatsoever to reward any of the [roles](../roles/), Jsgenesis will try to mimic the market force of supply and demand, by rewarding good behavior through [KPIs](#kpis)
+The issuance of new tJOY will in practice be a cost incurred for all holders of tJOY, both passive and active. Because of this, it is in the interest of all holders to ensure the platform's resources are well managed, and keep tabs on the [Council Members'](../roles/council-members) spending. As this would lead to a situation where there was no rational reason whatsoever to reward any of the [roles](../roles/), Jsgenesis will try to mimic the market forces of supply and demand, by rewarding good behavior through [KPIs](#kpis).
 
 ### Inflationary Forces
 There are many inflationary forces in the network, but not all of them will impact the exchange rate. The main ones are recurring rewards, and other costs associated with achieving KPIs.
@@ -63,10 +63,10 @@ When an exchange takes place, the tokens are also burned, but this will have no 
 The fiat pool, denominated in USD, will start at a set value, but will change continuously.
 
 ### Weekly Replinshment
-Every week, an amount of USD will be added to the pool, without changing the tJOY issuance. The size of this will be determined the week before.
+Every week, an amount of USD will be added to the pool, without changing the tJOY issuance. The size of this will be determined the week before by Jsgenesis.
 
 ### KPI Payouts
-Every week, a new set of KPIs (Key Performance Indicators) are announced. The period of which they are active and evaluated can wary, but will mostly follow a single `Council` term, starting at 1 week. As outlined earlier, the purpose of the the KPI system is to incentivize the community, via the `Council`, to act in a responsible manner. The KPIs will initially focus on ensuring the network functionality, and maintain a good experience for users. However, the set of KPIs will soon grow in order to promote other desirable actions, both long and short term. These KPIs aim to be precise, so as to avoid confusion and room for interpretation in both objective and grading. A single KPI will come with a set of conditions, that determines what constitutes a success. Details and examples can be found [here](kpis).
+Every week, a new set of KPIs (Key Performance Indicators) are announced. The period over which they are active and evaluated can wary, but will mostly follow a single `Council` term, starting at 1 week. As outlined earlier, the purpose of the the KPI system is to incentivize the community, via the `Council`, to act in a responsible manner. The KPIs will initially focus on ensuring the network functionality, and maintain a good experience for users. However, the set of KPIs will soon grow in order to promote other desirable actions, both long and short term. These KPIs aim to be precise, so as to avoid confusion and room for interpretation in both objective and grading. A single KPI will come with a set of conditions that determines what constitutes a success. Details and examples can be found [here](kpis).
 
 KPIs are closely related to the new proposal system, so that the users can calculate the expected value of achieving individual KPIs, versus the anticipated (inflationary) cost of doing so.
 
@@ -91,7 +91,7 @@ A rational user will continuously consider their options, and try to maximize th
 
 Suppose there is `10,000 tJOY` in circulation, and `USD 1,000` represents the initial fiat pool. This means that the exchange rate is `0.1 tJOY/USD`.
 
-A user has `1,500 tJOY`, and after weighing their options and calculating the rate, they decide to cash in `500 tJOY`. They go to `<page>`, verify the exchange rate, and follow the instructions on how to cash in. After sumbitting and signing the transaction, a new pending exchange is displayed on the `<page>`:
+A user has `1,500 tJOY`, and after weighing their options and calculating the rate, they decide to cash in `500 tJOY`. They go to [this page](https://www.joystream.org/testnet/), verify the exchange rate, and follow the instructions on how to cash in. After sumbitting and signing the transaction, a new pending exchange is displayed on the [page](https://www.joystream.org/testnet/):
 
 The Joystream transaction locks in the USD value of the exchange. At regular intervals, all pending transactions will be paid out in Monero, with the prevailing XMR/USD rate at the time of payout.
 
@@ -138,7 +138,7 @@ Currently, the status of the roles and rewards are:
 -   Rewards are `5 tJOY/3600` blocks per slot for curators
 -   The lead earns `12tJOY/3600` blocks
 
-The user assume that on average, the KPIs will return 150 USD this week, and decides to calculate their EV for each option, assuming:
+The user assume that on average, the KPIs will return 150 USD this week, and decides to calculate their own expected return for each option, assuming:
 
 -   all slots fill up
 -   no tx fees included
