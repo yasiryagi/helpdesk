@@ -10,7 +10,7 @@ Table of Contents
     - [Inflationary Forces](#inflationary-forces)
     - [Deflationary Forces](#deflationary-forces)
   - [Fiat Pool](#fiat-pool)
-    - [Weekly Replinshment](#weekly-replinshment)
+    - [Weekly Replenishment](#weekly-replenishment)
 - [KPIs](#kpis)
   - [Council KPIs](#council-kpis)
   - [Community KPIs](#community-kpis)
@@ -33,7 +33,7 @@ At launch of a new testnet, the token (tJOY) issuance will be set/calculated, an
 - The exchange rate will simply be amount of tokens issued divided by the size of the fiat pool
 - When a user exchanges their tJOY for USD, the tokens will be burned immediately, thus **not affecting the exchange rate**
 - New tokens rewards are minted to pay for the various roles on the network
-- The fiat pool will be topped up weekly, without minting new tokens, effectively increasing the exchange (all else being equal)
+- The fiat pool will be topped up weekly, without minting new tokens, effectively increasing the exchange rate (all else being equal)
 - For every new Council term, Jsgenesis will create [Council KPIs](#council-kpis), each assigned a USD value. If the goals are achieved, Jsgenesis will reward the Council without affecting the exchange rate
 - Jsgenesis will also create [Community KPIs](#community-kpis), similar to bounties, but managed by the Council. These are also assigned a USD value, and if achieved, Jsgenesis will (indirectly) reward the individual or group that achieved the goals.
 
@@ -88,7 +88,7 @@ When an exchange takes place, the tokens are also burned, but this will have no 
 ## Fiat Pool
 The fiat pool, denominated in USD, will start at a set value, but will change continuously.
 
-### Weekly Replinshment
+### Weekly Replenishment
 Every week, an amount of USD will be added to the pool, without changing the tJOY issuance. The size of this will be determined the week before.
 
 # KPIs
@@ -109,7 +109,7 @@ Each individual KPI in the set will:
 - (usually) last during the entire Term of the Council
 - be graded (individually) a few days after the end of said Term
 
-The sum of the rewards earned will be given directly to the individual Council Members, without affecting the overall exchange rate, by topping up the [Fiat Pool](#fiat-pool) and minting new tokens.
+The sum of the rewards earned will be given directly to the individual Council Members and those that voted for them, without affecting the overall exchange rate, by topping up the [Fiat Pool](#fiat-pool) and minting new tokens.
 
 As the Council KPIs only apply to prospective Council Members, the full details can be found under their role section [here](/roles/council-members/README.md#council-kpis).
 

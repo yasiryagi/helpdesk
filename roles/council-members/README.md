@@ -186,7 +186,7 @@ The applicants ranked within the number equal to the `Council Size` will become 
 The applicants that did not get elected will get their stake back immediately. Same goes for those that voted for them, and those that did not reveal their vote.
 
 ### Term
-On the block that marks the end of the `Revealing` stage, the elected CMs will automatically be given their new privileges. Namely, the right to vote on [Proposals](#proposals), and be assigned a [Recurring Reward](#recurring-rewards).
+On the block that marks the end of the `Revealing` stage, the elected CMs will automatically be given their new privileges. Namely, the right to vote on [Proposals](#proposals), and be assigned an on-chain [Recurring Reward](#recurring-rewards).
 
 The CMs stakes will be not only be held until the `Term Duration` expires, but until a new Council is elected. The same applies to those that voted for them.
 

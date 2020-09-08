@@ -55,7 +55,7 @@ Examples of other costs for achieving KPIs can be to [Content Creators](../roles
 Tokens will also be minted for other purposes, such as faucets, competitions, [bounties](../roles/builders), etc. If the system is changed, some of these can impact the exchange rate in the future, but users will be warned in due time.
 
 ### Deflationary Forces
-Tokens that are slashed, e.g. for not performing in their roles, malicious or "spammy" proposals or undesirable behavior, will simply be burned, and increasing the exchange rate for everyone else. Transaction fees and role application costs are also burned.
+Tokens that are slashed, e.g. for not performing in their roles, malicious or "spammy" proposals or undesirable behavior, will simply be burned, thus increasing the exchange rate (redemption value of tokens) for everyone else. Transaction fees and role application costs are also burned.
 
 When an exchange takes place, the tokens are also burned, but this will have no impact on the exchange rate as the fiat pool will decrease simultaneously.
 
