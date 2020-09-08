@@ -46,17 +46,17 @@ Examples of the system through the eyes of a user can be found [here](#tokenomic
 
 ## Token Issuance
 
-The issuance of new tJOY will in practice be a cost incurred for all holders of tJOY, both passive and active (with the exception of tokens minted for [KPIs](#kpis) achieved). Because of this, it is in the interest of all holders to ensure the platforms resources are well managed, and keep tabs on the [Council Members](../roles/council-members) spending.
+The issuance of new tJOY will in practice be a cost incurred for all holders of tJOY, both passive and active (with the exception of tokens minted for [KPIs](#kpis) achieved). Because of this, it is in the interest of all holders to ensure the platforms resources are well managed, and keep tabs on the [Council Members'](../roles/council-members) spending.
 
-Jsgenesis will try to mimic the market force of supply and demand, by rewarding good behavior through [KPIs](#kpis), to ensure participants have incentives to keep the platform and services running.
+Jsgenesis will try to mimic the market forces of supply and demand, by rewarding good behavior through [KPIs](#kpis), to ensure participants have incentives to keep the platform and associated infrastructure running.
 
 ### Inflationary Forces
 There are many inflationary forces in the network, but not all of them will impact the exchange rate. The main ones are recurring rewards, and other costs associated with achieving KPIs.
 
 - Recurring rewards, currently paid to:
-  - [Council Members](/roles/council-members) for running and managing the platforms day to day operations
+  - [Council Members](/roles/council-members) for running and managing the platform's day to day operations
   - [Storage Providers](/roles/storage-providers) for receiving, storing and serving content files
-  - [Content Curators](/roles/content-curators) for monitoring and curating said content and channels
+  - [Content Curators](/roles/content-curators) for monitoring and curating content and channels
 - Automatic rewards, to [Validators](/roles/validators) and [Nominators](/roles/validators/README.md#nominating) are minted as rewards for finding blocks, and keeping the network up and running
 - [Spending Proposals](/proposals/README.md#spending) that gets "approved" and executed
 
@@ -72,10 +72,10 @@ Tokens are slashed and/or burned for a variety of reasons, thus reducing supply 
   - Users may need/choose to set a higher fee for priority
   - Users, or Jsgenesis, may set high fees to intentionally burn tokens
 - Creating [Proposals](/proposals) requires the creator to put up [Stake](/proposals/README.md#stake) (the size depends on the perceived "severity" of the Proposal type). Unless the Proposal gets [Approved](/proposals/README.md#approved), the full amount will not be returned to the "creator":
-  - A [Slashed Proposals](/proposals/README.md#slashed) means slashing and burning the entire Stake of the "creator"
-  - A [Cancelled Proposals](/proposals/README.md#slashed) means a fixed amount of the Stake is burned
-  - A [Rejected Proposals](/proposals/README.md#rejected) means a smaller, fixed amount of the Stake is slashed and burned
-  - An [Expired Proposals](/proposals/README.md#expired) counts as "rejected"
+  - A [Slashed Proposal](/proposals/README.md#slashed) means slashing and burning the entire Stake of the "creator"
+  - A [Cancelled Proposal](/proposals/README.md#slashed) means a fixed amount of the Stake is burned
+  - A [Rejected Proposal](/proposals/README.md#rejected) means a smaller, fixed amount of the Stake is slashed and burned
+  - An [Expired Proposal](/proposals/README.md#expired) counts as "rejected"
 - Slashing Staked [workers](/roles). The mechanism of these slashes depends on the role, but in all cases, the tokens are burned.
   - [Validators](/roles/validators) (and their [Nominators](/roles/validators/README.md#nominating)) gets slashed automatically by the chain if they go offline, or responds too slowly, without first stopping.
   - [Storage Providers](/roles/storage-providers) can get their stakes slashed by their Lead.
@@ -96,18 +96,18 @@ Jsgenesis will regularly release new Key Performance Indicators ("KPIs") as a wa
 
 **FIX**
 
-The KPI scheme has changed a bit over time, and further changes in the future should be expected.
+The KPI scheme has evolved over time, and further changes in the future should be expected.
 
-Currently, the KPIs is divided in to two different types, [Council KPIs](#council-kpis) and [Community KPIs](#community-kpis), both with a unique structure, frequency, scope, and reward mechanism.
+Currently, the KPIs is divided in to two different types, [Council KPIs](#council-kpis) and [Community KPIs](#community-kpis), each with a distinct structure, frequency, scope, and reward mechanism.
 
 ## Council KPIs
-For each new Council elected, a new set of Council KPIs are published by Jsgenesis. These KPIs will mainly serve to incentivize the Council Members to manage the platform, pay attention to the Tokenomics, monitor the network and respond to proposals and other requests.
+For each new Council elected, a fresh set of Council KPIs are published by Jsgenesis. These KPIs will mainly serve to incentivize the Council Members to manage the platform, pay attention to the Tokenomics, monitor the network and respond to proposals and other requests.
 
 Each individual KPI in the set will:
 - contain some defined tasks or conditions for the Council to address or deliver
 - have a specific maximum reward assigned to it (in USD)
 - (usually) last during the entire Term of the Council
-- graded (individually) a few days after the end of said Term
+- be graded (individually) a few days after the end of said Term
 
 The sum of the rewards earned will be given directly to the individual Council Members, without affecting the overall exchange rate, by topping up the [Fiat Pool](#fiat-pool) and minting new tokens.
 
