@@ -7,9 +7,9 @@
 
 Overview
 ===
-This page contains a detailed guide about how the governance system works on the current Joystream testnet, and how you can participate. This page will focus primarily on those wanting to become, or already is, a Council Member ("CM") themselves.
+This page contains a detailed guide about how the governance system works on the current Joystream testnet, and how you can participate. This page is intended primarily for those wanting to become, or who already are Council Members ("CMs").
 
-However, if you are interested in the Joystream project and/or want to become a part of the community now or in the future, there is lots of information in here that will help you understand the project and the governance of the platform.
+Nonetheless, if you are interested in the Joystream project more generally and/or want to become a part of the community now or in the future, there is lots of information in here that will help you understand the project and the governance of the platform at a higher level.
 
 Table of Contents
 ---
@@ -59,12 +59,12 @@ Table of Contents
 
 
 # Why Become a Council Member
-As the governance of the platform is the most important part of the platform on mainnet, we are relying on testnets to train and build a strong group of community members that can perform the tasks required of them.
+As the governance system is arguably the most important component of the platform on mainnet, we are relying on testnets to train and build up an experienced and highly competent group of initial community members that can perform the tasks required of them once we reach the mainnet stage.
 
-A "good" Council needs CMs that all have a strong understanding of both the platforms token economics (["tokenomics"](/tokenomics)) and each of the individual Working Groups and the roles each play in making the platform function. Additionally the composition of each Council should ensure that the group has expertise in every domain, and some CMs with low-level technical understanding.
+A "good" Council needs CMs that all have a strong understanding of both the platform's token economics (["tokenomics"](/tokenomics)) and each of the individual Working Groups and the roles each of these play in making the platform function. Additionally, the composition of each Council should ensure that the group has expertise in every domain, and some CMs with low-level technical understanding will likely be required to provide guidance on other aspects of the project (marketing, legal, strategy etc.).
 
 ## Rewards and Incentives
-During the Constantinople testnet, Jsgenesis realized we need to put a lot more effort in to attracting, training and retaining these people. CMs will now be a well paid role on the platform, and in the new KPI scheme, also see direct rewards for doing a good job.
+During the Constantinople testnet, Jsgenesis realized we need to put a lot more effort in to attracting, training and retaining these high-quality people. CMs will now be a generously paid role on the platform, and in the new KPI scheme, also see direct rewards for those Councils doing a good job.
 
 Consequently, Jsgenesis will take an active role in the elections. More information on how to apply, and increase your chances of getting elected can be found [here](#council-election-cycle).
 
@@ -75,15 +75,15 @@ Consequently, Jsgenesis will take an active role in the elections. More informat
 ## Get Started
 Unlike most of the other current and future roles on the Joystream Platform, most of the information and actions required by participants in the governance system is available in our UI - named [Pioneer](https://testnet.joystream.org). For elected CMs, some familiarity with [GitHub](https://github.com/Joystream/community-repo/) is required, and at any time, a subset of the CMs must be able to use git, and basic coding review skills. As the project grows, new skills and more advanced skills may be required.
 
-If you want to get elected as a CM or vote on the platform, you need to be a Member. Instructions for this can be found [here](https://github.com/JoyStream/helpdesk/#get-started).
+If you want to get elected as a CM or vote on the platform, you need to be a Member. Instructions for registration can be found [here](https://github.com/JoyStream/helpdesk/#get-started).
 
 **Note**
 After introducing `Memberships` to the platform, we found it to be confusing to have a concept of both `Accounts` and `Memberships`. We are in the process of renaming the `Accounts` to the `Keys`, but there are still traces of `Accounts` showing up.
 
 # Council Elections
-A new Council of CMs are elected at regular intervals. The election is decided by selecting the applicants that has the highest total "stake" backing them. Staking here means "locking" up your tokens, making them unusable for transfers or staking in other ways, thus forcing participants to put "skin in the game". The total stake is the sum of the applicants own stake required to put themselves up for election, and the stake of any voters voting on them.
+A new Council of CMs are elected at regular intervals. The election is decided by selecting the applicants that has the highest total "stake" backing them. Staking here means "locking" up your tokens, making them unusable for transfers or staking in other ways, thus forcing participants to put "skin in the game". The total stake is the sum of the applicant's own stake required to put themselves up for election, and the stake of any voters voting for them.
 
-The terms of a these election are defined by some parameters. Although these can be changed either by the [Proposal system](/proposals), or by `sudo`, the parameter changes should be both infrequent and small.
+The terms of these elections are defined by some parameters. Although these can be changed either by the [Proposal system](/proposals), or by `sudo`, the parameter changes should be both infrequent and small.
 
 The current set of parameters, as well as the status and stage of the [Council/election cycle](#council-election-cycle) can be found [here](https://testnet.joystream.org/#/council).
 
@@ -107,7 +107,7 @@ The election cycle consists four stages. Currently, the length of each are:
 4. [Term](#term) - lasts 144,400 blocks (~10days)
 
 ### Announcing
-During the entire `Announcing` stage, anyone that is a Member and can stake tokens than the `Minimum Council Stake`, can apply to become a CM.
+During the entire `Announcing` stage, anyone that is a Member and can stake a greater number of tokens than the `Minimum Council Stake`, can apply to become a CM.
 
 #### How to Announce
 With your membership key:
@@ -172,12 +172,16 @@ When you submit a Vote, a `Random salt` will be generated for you, and only a `H
 As soon as the `Voting` stage closes, the `Revealing` stage begins. As stated before, only when a vote is "revealed" will it become public, and count.
 
 #### How to Reveal
-**FIX**
+With your membership key (used to vote on the candidates):
+- select "Council" in the sidebar
+- click the "Votes" tab
+- you should see the votes you have already made on this page
+- click the "Reveal" button next to the votes you wish to reveal and confirm
 
 #### End of Revealing
 At the end of the `Revealing` stage, the applicants are sorted and ranked by their total stake, ie. the sum of the stake(s) they bonded during the `Announcing` stage, and the sum of all **"revealed"** votes.
 
-The applicants ranked within the number equal to the `Council Size`, will become CMs.
+The applicants ranked within the number equal to the `Council Size` will become CMs.
 
 The applicants that did not get elected will get their stake back immediately. Same goes for those that voted for them, and those that did not reveal their vote.
 
@@ -191,10 +195,10 @@ The Recurring Rewards however, will only be paid during the `Term Duration`.
 Note that the next `Announcing` stage will start at the exact block the `Term Duration` expires.
 
 # How to Get Elected
-Unless you have sufficient tokens to get (re-)elected without any extra voters, you are unlikely to get any votes without making an effort to do so. As Jsgenesis has a large part of the voting power, and community members are unlikely to vote for random people without a proven track record, there are some steps you can take to greatly increase your probability of getting votes:
+Unless you have sufficient tokens to get (re-)elected without any extra voters, you are unlikely to get any votes without making an effort to do so. As Jsgenesis represents a large proportion of the voting power, and community members are unlikely to vote for unknown actors without a proven track record, there are some steps you can take to greatly increase your probability of getting votes:
 
 ## Announce on the Forum
-Before a new `Announcing` stage begins, a new thread will be made on the on-chain [forum](https://testnet.joystream.org/#/forum). Regardless of whether you are a new to the project, been following it from a distance, an active member or an experienced CM, make a post or two explaining why you deserve getting voted in. Some suggestions of what to include are:
+Before a new `Announcing` stage begins, a new thread will be made on the on-chain [forum](https://testnet.joystream.org/#/forum). Regardless of whether you are a new to the project, have been following it from a distance, are an active member or an experienced CM, make a post or two explaining why you deserve getting voted in. Some suggestions of what to include are:
 - All
   - A little bit about yourself (no need to dox yourself)
   - Handles on other platforms, such as github, tlgrm, keybase (again, no need to dox yourself)
@@ -229,7 +233,7 @@ Before a new `Announcing` stage begins, a new thread will be made on the on-chai
     - Proposal voting history
     - Council KPIs performed
 
-As you are likely to get some follow up questions, you should check in at regular intervals to answer and/or assist.
+As you are likely to get some follow up questions, it is a good idea to check in at regular intervals to answer these.
 
 # Elected Council Members
 The CMs have a variety of [tasks](#tasks-overview). Some are pro-active, others are re-active. Some are recurring and predictable, others will require on the spot problem solving.
@@ -243,16 +247,16 @@ The CMs will be evaluated based on how well they perform these tasks. They are f
 
 The list below contains a high level overview of their responsibilities:
 - Elect a [Council Secretary](#council-secretary), to be the "official" point of contact between the Council and Jsgenesis
-- Pay attention to the forum and telegram, to assist and answer questions when appropriate
+- Pay attention to the forum and Telegram group, to assist and answer questions when appropriate
 - Pay attention to incoming Proposals, discuss and make informed votes
 - Monitor the performance on the [Working Groups](#managing-the-working-groups) and, if necessary, take action
-- Monitor, communicate, fund and report on the [forum sudo](/README.md#on-chain-forum)
-- Monitor the platforms infrastructure, and report or perform the appropriate action(s)
+- Monitor, communicate with, fund and report on the [forum sudo](/README.md#on-chain-forum)
+- Monitor the platform's infrastructure, and report issues or perform the appropriate action(s)
   - endpoint nodes (does blocks come in on hosted pioneer)
   - pioneer (any sites not responding as expected)
   - storage system (is media served)
   - [status-server](https://status.joystream.org/status)
-- Monitor the platforms spending and resource allocation
+- Monitor the platform's spending and resource allocation
 - Perform and/or delegate the required tasks related to the [Council KPIs](#council-kpis)
 - Perform the required tasks related to the [Community KPIs](#community-kpis)
 
@@ -318,10 +322,10 @@ Each Council will be prompted to submit deliverables reporting on things like:
 ### Council Secretary
 The Council Secretary is an informal role, where the Council themselves are given some flexibility in deciding on compensation and extending their Scope of Work, outside of what is defined in the Council KPI.
 
-The following bullets point should be expected as the `Success Events` for the KPI:
+The following bullet points should be expected as the `Success Events` for the KPI:
 - A text [Proposal](#proposals) electing an active CM is "approved" within 24h of a new Term
   - An optional deputy can be chosen
-- The Secretary provides a github handle, which will be granted ["Triage"](https://docs.github.com/en/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization) permission to the [community-repo](#https://github.com/Joystream/community-repo/)
+- The Secretary provides a GitHub handle, which will be granted ["Triage"](https://docs.github.com/en/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization) permission to the [community-repo](#https://github.com/Joystream/community-repo/)
 - Secretary uses their permission to perform the tasks listed [here](#council-deliverables) and [here](#council-deliverables).
 
 ### Managing the Working Groups
@@ -329,24 +333,24 @@ Currently, there are two Working Groups on the network:
 - [Storage Providers](/roles/storage-providers)
 - [Content Curators](/roles/content-curators)
 
-The role of the Council is not to control these themselves, but rather ensure they are being well ran by their respective Leads. What is considered "well ran" is of course open to a wide interpretation, so specific quantitive and qualitative targets would be defined in the [Council KPIs](#council-kpis).
+The role of the Council is not to control these directly, but rather ensure they are being well run by their respective Leads. What is considered "well run" is of course open to a wide interpretation, so specific quantitive and qualitative targets would be defined in the [Council KPIs](#council-kpis).
 
 However, to understand what these targets could entail, how to monitor them, and perhaps even stay ahead of the curve, one should be familiar with some indicators of what to look for.
 
-Finally, a CM must understand what the Councils options are for dealing with a Working Group that is underperforming.
+Finally, a CM must understand what the Council's options are for dealing with a Working Group that is underperforming.
 
 #### Cost Control
 How the Council chooses to approach this is up to them. It is up to the Lead of each group themselves, to create [Proposals](#proposals) for replenishing the Working Groups mint, but it's up to the Council to approve or reject these requests.
 
-A good approach could be to agree on weekly budgets, and revise them on a per need basis. How to set these budgets would depend on a variety of factors such as:
+A good approach could be to agree on weekly budgets, and revise them on an as-needed basis. How to set these budgets would depend on a variety of factors such as:
 - Changes in the exchange rate
 - Increased costs and/or workload
-  - The Storage Provider Groups real costs depend on:
+  - The Storage Provider Group's real costs depend on:
     - size of the `dataDirectory`
     - bandwidth due to frequent uploads, downloads and playbacks
     - replication requirement (the platform may wish to have sufficient backup in case workers quit or crash)
     - changes in hardware/VPS costs
-  - The Content Curators Groups costs is mostly associated with their time:
+  - The Content Curators Group's costs is mostly associated with their time:
     - Verifying new content are in line with the [ToS](https://testnet.joystream.org/#/pages/tos)
     - Verifying the metadata of new and existing content
     - Running or creating tools for monitoring changes in the Content Directory or `dataDirectory`
@@ -354,11 +358,10 @@ A good approach could be to agree on weekly budgets, and revise them on a per ne
 #### General Performance
 In addition to the bottom line costs, there are some nuances to the distribution of said costs, and the general quality of the service each Working Group Provides.
 
-The points below includes an over
 
 **Storage Providers**
 - Quality of service
-  - Are the Storage Providers uptime acceptable and consistent
+  - Is the Storage Providers' uptime acceptable and consistent
   - Are uploads interrupted or failing at an unacceptable rate
   - Is the content replicated to an acceptable level
 - Speed of service
@@ -367,9 +370,9 @@ The points below includes an over
 
 **Content Curators**
 - Quality of service
-  - Is good getting content featured or promoted
+  - Is good at getting content featured or promoted
   - Are quality channels getting `verified`
-  - Is the curation actions made accurate and reliable
+  - Are the curation actions made accurately and reliably
 - Speed of service
   - Are the points listed above dealt with in a reasonable time
   - Are the curators responsive to requests/complaints/questions made
@@ -378,21 +381,21 @@ The points below includes an over
 Are the Leads doing their jobs, in terms of:
 - Managing workers
   - slashing and/or firing non-performing workers
-  - keeping the "right" workers, when a general downsizing is needed
+  - keeping the "right" workers, when a cut to the number of workers is required
   - creating and completing new openings quickly and professionally
   - hiring/firing too many/few workers
 - Professionally Conduct
   - reacting swiftly to requests/complaints/questions made
   - failing to report their actions as/if required
-  - responding to the Councils directives
+  - responding to the Council's directives
 - Economics
-  - ensuring the workers stakes and unstaking terms are reasonable
+  - ensuring the workers' stakes and unstaking terms are reasonable
   - creating the proposals to replenish their mints in time
 
 #### Council Actions
-In some cases, the Council may wish to take an action towards the Lead of a Working Group.
+In some cases, the Council may wish to take some action in relation to the Lead of a Working Group.
 
-If a Working Group is not performing, the first course of action, may simply be to give an informal warning to the Lead in question.
+If a Working Group is not performing adequately, the first course of action may simply be to give an informal warning to the Lead in question.
 
 The main way of dealing with Leads is through the [proposal system](#proposals). Unfortunately, there are currently limited ways of dealing with the Curator Lead. For the Storage Lead, there are more options, but only one that is not punishing:
 **Content Curator Lead**
@@ -406,7 +409,7 @@ The main way of dealing with Leads is through the [proposal system](#proposals).
 - decrease the stake of a Lead (in case the exchange rate has made the stake bigger than "justifiable")
 
 ### Managing Community KPIs
-The concept and examples of Community KPIs is explained [here](/community-kpis), so this section will rather focus on the Councils role in them as Project Managers. What this entails exactly will vary depending on the type, complexity, and stage of the active Community KPIs themselves, but "good" Project Management will be rewarded through the [Council KPIs](#council-kpis).
+The concept and some examples of Community KPIs are explained [here](/community-kpis), so this section will rather focus on the Council's role in these as Project Managers. What this entails exactly will vary depending on the type, complexity, and stage of the active Community KPIs themselves, but "good" Project Management will be rewarded through the [Council KPIs](#council-kpis).
 
 A Community KPI will in general be graded based on deliverables, with conditions similar to what is described [here](#council-deliverables).
 
@@ -425,10 +428,10 @@ For a KPI that requires investing lots of time and/or other resources, it may be
 For smaller, and perhaps more creative and subjective KPIs, it may make more sense to leave it as a "free for all". In this case, the Council sets a deadline, picks the best Deliverable(s), and rewards the Submitter(s) as per the rules.
 
 ##### First Come, First Served
-For smaller, perhaps more time sensitive KPIs, one could choose a format where anyone can enter, but each Submitters Deliverable is reviewed by the chronological order they are submitted. The first acceptable Deliverable(s) is granted the reward(s).
+For smaller, perhaps more time sensitive KPIs, one could choose a format where anyone can enter, but each Submitter's Deliverable is reviewed by the chronological order they are submitted. The first acceptable Deliverable(s) is granted the reward(s).
 
 ##### Other
-In addition the varieties outlined, other formats can be defined and chosen if they are more appropriate for a specific KPI.
+In addition to the varieties outlined, other formats can be defined and chosen if they are more appropriate for a specific KPI.
 
 A "new" Council must honor any agreements and rules set by their predecessors, for as long as the rules say so.
 
@@ -467,10 +470,10 @@ If the Deliverable is to be submitted to the [community-repo](https://github.com
 
 Jsgenesis will then review and grade the Deliverable as such. This can result in a reward anywhere between nothing (failed), or everything (full score), and the fiat pool will be increased accordingly.
 
-It may be that this reward is smaller than what was rewarded to the Submitter. This will cost the token holders, and one would expect the Council to be punished.
+It may be that this reward is smaller than that which was rewarded to the Submitter. This will cost the token holders, and one would expect the Council to be punished.
 
 #### Councils Role
-As seen in the workflow, the Councils role in the Community KPIs is substantial. They will work as the Project Managers, and are at the end held accountable for the quality of the Deliverable they submit for grading. These tasks may be a part of the Councils KPI directly, but the efficiency, creativity, rules, workflow, speed and outcome of the process will anyway be part of the Jsgenesis Council voting process.
+As seen in the workflow, the Council's role in the Community KPIs is substantial. They will work as the Project Managers, and are at the end held accountable for the quality of the Deliverable they submit for grading. These tasks may be a formal part of the Councils KPI directly, but the efficiency, creativity, rules, workflow, speed and outcome of the process will anyway be part of the Jsgenesis Council voting process.
 
 To avoid making this longer than necessary, and hopefully let a system emerge naturally, no examples are included.
 
