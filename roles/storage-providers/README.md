@@ -10,28 +10,28 @@
 Table of Contents
 ==
 
-<!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
+<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Overview](#overview)
 - [Instructions](#instructions)
-  - [Initial Setup](#initial-setup)
+  - [Initial setup](#initial-setup)
   - [Install IPFS](#install-ipfs)
-    - [Run IPFS As A Service](#run-ipfs-as-a-service)
-    - [Upgrade IPFS](#upgrade-ipfs)
+    - [Configure IPFS](#configure-ipfs)
+    - [Run IPFS as a service](#run-ipfs-as-a-service)
   - [Setup Hosting](#setup-hosting)
-    - [Run Caddy As A Service](#run-caddy-as-a-service)
-  - [Install And Setup The Storage Node](#install-and-setup-the-storage-node)
+    - [Instructions](#instructions-1)
+    - [Run caddy as a service](#run-caddy-as-a-service)
+  - [Install and Setup the Storage Node](#install-and-setup-the-storage-node)
   - [Update Your Storage Node](#update-your-storage-node)
-    - [Applying For A Storage Provider Opening](#applying-for-a-storage-provider-opening)
-    - [Setup And Configure The Storage Node](#setup-and-configure-the-storage-node)
-      - [Check That You Are Syncing](#check-that-you-are-syncing)
-    - [Run Storage Node As A Service](#run-storage-node-as-a-service)
-    - [Verify Everything Is Working](#verify-everything-is-working)
+    - [Applying for a Storage Provider opening](#applying-for-a-storage-provider-opening)
+    - [Setup and configure the storage node](#setup-and-configure-the-storage-node)
+    - [Run storage node as a service](#run-storage-node-as-a-service)
+    - [Verify everything is working](#verify-everything-is-working)
 - [Troubleshooting](#troubleshooting)
-  - [Port Not Set](#port-not-set)
-  - [No Tokens In Role Account](#no-tokens-in-role-account)
-  - [Install Yarn And Node On Linux](#install-yarn-and-node-on-linux)
-      - [Install As Root](#install-as-root)
-      - [Install As User With `sudo` Privileges](#install-as-user-with-sudo-privileges)
+  - [Port not set](#port-not-set)
+  - [No tokens in role account](#no-tokens-in-role-account)
+  - [Install yarn and node on linux](#install-yarn-and-node-on-linux)
+  - [Caddy v1 (deprecated)](#caddy-v1-deprecated)
+    - [Run caddy as a service](#run-caddy-as-a-service-1)
 <!-- TOC END -->
 
 
@@ -45,9 +45,9 @@ The guide for the `Storage Provider Lead` can be found [here](/roles/storage-lea
 
 The instructions below will assume you are running as `root`. This makes the instructions somewhat easier, but less safe and robust.
 
-Note that this has been tested on a fresh images of `Ubuntu 20.04 LTS`.
+Note that this has been tested on a fresh images of `Ubuntu 20.04 LTS` and `Debian 10`.
 
-The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing?msclkid=eaa12e00529310e4665c730d6b01b014&utm_source=bing&utm_medium=cpc&utm_campaign=Linode%20-%20Brand%20-%20Search%20-%20LowGeo&utm_term=linode&utm_content=Linode) or better (not an affiliate link).
+The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing/) or better (not an affiliate link).
 
 Please note that unless there are any openings for new storage providers (which you can check in [Pioneer](https://testnet.joystream.org/) under `Working Groups` -> `Opportunities`), you will not be able to join. Applying to the opening is easiest in Pioneer, but once hired, you no longer need it. Actions you may want to perform after getting hired are easiest to carry out with the [CLI](/tools/cli/README.md#working-groups). With this, you can configure things like:
 - changing your reward destination address
@@ -56,8 +56,8 @@ Please note that unless there are any openings for new storage providers (which 
 - leaving the role
 
 ## Initial setup
-First of all, you need to connect to a fully synced [Joystream full node](https://github.com/Joystream/joystream/releases). By default, the program assumes you are running a node on the same device. For instructions on how to set this up, go [here](../validators). Note that you can disregard all the parts about keys before applying, and just install the software so it is ready to go.
-We strongly encourage that you run both the [node](../validators#run-as-a-service) and the other software below as a service.
+First of all, you need to connect to a fully synced [Joystream full node](https://github.com/Joystream/joystream/releases). By default, the program assumes you are running a node on the same device. For instructions on how to set this up, go [here](/roles/validators). Note that you can disregard all the parts about keys before applying, and just install the software so it is ready to go.
+We strongly encourage that you run both the [node](/roles/validators#run-as-a-service) and the other software below as a service.
 
 First, you need to setup `node`, `npm` and `yarn`. This is sometime troublesome to do with the `apt` package manager. Go [here](#install-yarn-and-node-on-linux) to do this if you are not confident in your abilities to navigate the rough seas.
 
@@ -65,12 +65,12 @@ Now, get the additional dependencies:
 ```
 $ apt-get update && apt-get upgrade -y
 $ apt-get install git build-essential libtool automake autoconf python
-# on debian 9
+# on debian 10
 $ apt-get install libcap2-bin
 ```
 
 ## Install IPFS
-The new storage node uses [IPFS](https://ipfs.io/) as backend.
+The storage node uses [IPFS](https://ipfs.io/) as backend.
 ```
 $ wget https://github.com/ipfs/go-ipfs/releases/download/v0.6.0/go-ipfs_v0.6.0_linux-amd64.tar.gz
 $ tar -xvzf go-ipfs_v0.6.0_linux-amd64.tar.gz
@@ -82,7 +82,20 @@ $ ipfs daemon
 ```
 If you see `Daemon is ready` at the end, you are good!
 
-### Run ipfs as a service
+### Configure IPFS
+Some of the default configurations needs to be changed, in order to get better performance:
+
+```
+# cuz xyz
+ipfs config --bool Swarm.DisableBandwidthMetrics true
+# Default only allows storing 10GB, so:
+ipfs config Datastore.StorageMax "50GB"
+# cuz xyz
+ipfs config --json Gateway.PublicGateways '{"localhost": null }'
+```
+
+
+### Run IPFS as a service
 
 To ensure high uptime, it's best to set the system up as a `service`.
 
@@ -102,7 +115,7 @@ User=root
 WorkingDirectory=/root
 LimitNOFILE=8192
 PIDFile=/var/run/ipfs/ipfs.pid
-ExecStart=/usr/local/bin/ipfs daemon
+ExecStart=/usr/local/bin/ipfs daemon --routing=dhtclient
 Restart=on-failure
 RestartSec=3
 StartLimitInterval=600
@@ -122,79 +135,59 @@ $ systemctl enable ipfs
 $ systemctl stop ipfs
 ```
 
-### Upgrade IPFS
-If you have previously run a storage-node with an older version of IPFS, you should now upgrade, as there have been some stability issues with older versions on the the newest storage-node.
-
-```
-# If you are running ipfs as a service:
-# systemctl stop ipfs
-# If you are running it in some other way, kill the process.
-# Then:
-$ wget https://github.com/ipfs/go-ipfs/releases/download/v0.6.0/go-ipfs_v0.6.0_linux-amd64.tar.gz
-$ tar -xvzf go-ipfs_v0.6.0_linux-amd64.tar.gz
-$ cd go-ipfs
-$ ./install.sh
-$ ipfs daemon
-# Which will return something like:
-Initializing daemon...
-go-ipfs version: 0.6.0
-Repo version: 10
-System version: amd64/linux
-Golang version: go1.14.4
-Found outdated fs-repo, migrations need to be run.
-Run migrations now? [y/N]
-# After confirming, you can restart ipfs
-```
 
 ## Setup Hosting
 In order to allow for users to upload and download, you have to setup hosting, with an actual domain as both Chrome and Firefox requires `https://`. If you have a "spare" domain or subdomain you don't mind using for this purpose, go to your domain registrar and point your domain to the IP you want. If you don't, you must unfortunately go purchase one.
 
 To configure SSL-certificates the easiest is to use [caddy](https://caddyserver.com/), but feel free to take a different approach. Note that if you are using caddy for commercial use, you need to acquire a license. Please check their terms and make sure you comply with what is considered personal use.
 
-The instructions below are designed for `Caddy Version 1` but this will of course work in a similar way for the latest version:
+Previously, this guide was using Caddy v1, but this has now been deprecated. As some of you may already have installed it, and may want to continue running it, the now deprecated instructions can be found in full [here](#caddy-v1).
 
+### Instructions
+For the best setup, you should use the "official" [documentation](https://caddyserver.com/docs/).
+
+The instructions below are for Caddy v2.1:
 ```
-$ curl https://getcaddy.com | bash -s personal
-# Allow caddy access to required ports:
-$ setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
-$ ulimit -n 8192
+$ wget https://github.com/caddyserver/caddy/releases/download/v2.1.1/caddy_2.1.1_linux_amd64.tar.gz
+$ tar -vxf caddy_2.1.1_linux_amd64.tar.gz
+$ mv caddy /usr/bin/
+# Test that it's working:
+$ caddy version
 ```
 
-Configure caddy with `nano ~/Caddyfile` and paste in the following:
-
+Configure the `Caddyfile`:
 ```
+$ nano ~/Caddyfile
+# Paste in everything below the stapled line
+---
 # Storage Node API
-https://<your.cool.url> {
-    proxy / localhost:3000 {
-        transparent
-    }
-    header / {
-        Access-Control-Allow-Origin  *
+<your.cool.url>/storage/ {
+    route /storage/* {
+    reverse_proxy localhost:3000
+    header /storage {
         Access-Control-Allow-Methods "GET, PUT, HEAD, OPTIONS"
     }
 }
 ```
+
 Now you can check if you configured correctly, with:
 ```
-$ /usr/local/bin/caddy --validate --conf ~/Caddyfile
+$ caddy validate ~/Caddyfile
 # Which should return:
-Caddyfile is valid
-
+--
+...
+Valid configuration
+--
 # You can now run caddy with:
-$ (screen) /usr/local/bin/caddy --agree --email <your_mail@some.domain> --conf ~/Caddyfile
-```
-After a short wait, you should see:
-```
-YYYY/MM/DD HH:NN:SS [INFO] [<your.cool.url>] Server responded with a certificate.
-done.
-
-Serving HTTPS on port 443
-https://<your.cool.url>
-
-
-Serving HTTP on port 80
-https://<your.cool.url>
-
+$ caddy run --config /root/Caddyfile
+# Which should return something like:
+--
+...
+... [INFO] [<your.cool.url>] The server validated our request
+... [INFO] [<your.cool.url>] acme: Validations succeeded; requesting certificates
+... [INFO] [<your.cool.url>] Server responded with a certificate.
+... [INFO][<your.cool.url>] Certificate obtained successfully
+... [INFO][<your.cool.url>] Obtain: Releasing lock
 ```
 
 ### Run caddy as a service
@@ -207,18 +200,20 @@ $ nano /etc/systemd/system/caddy.service
 # Paste in everything below the stapled line
 ---
 [Unit]
-Description=Reverse proxy for storage node
+Description=Caddy
+Documentation=https://caddyserver.com/docs/
 After=network.target
 
 [Service]
 User=root
-WorkingDirectory=/root
-LimitNOFILE=8192
-PIDFile=/var/run/caddy/caddy.pid
-ExecStart=/usr/local/bin/caddy -agree -email <your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
-Restart=on-failure
-StartLimitInterval=600
-
+ExecStart=/usr/bin/caddy run --config /root/Caddyfile
+ExecReload=/usr/bin/caddy reload --config /root/Caddyfile
+TimeoutStopSec=5s
+LimitNOFILE=1048576
+LimitNPROC=512
+PrivateTmp=true
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 [Install]
 WantedBy=multi-user.target
@@ -228,27 +223,13 @@ Save and exit. Close `caddy` if it's still running, then:
 $ systemctl start caddy
 # If everything works, you should get an output. Verify with:
 $ systemctl status caddy
-# Which should produce something like:
----
-● caddy.service - Reverse proxy for storage node
-   Loaded: loaded (/etc/systemd/system/caddy.service; disabled)
-   Active: active (running) since Day YYYY/MM/DD HH:NN:SS UTC; 6s ago
- Main PID: 9053 (caddy)
-   CGroup: /system.slice/caddy.service
-           9053 /usr/local/bin/caddy -agree email <your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
-
-Mon DD HH:NN:SS localhost systemd[1]: Started Reverse proxy for hosted apps.
-Mon DD HH:NN:SS localhost caddy[9053]: Activating privacy features... done.
-Mon DD HH:NN:SS localhost caddy[9053]: Serving HTTPS on port 443
-Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
-Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
-Mon DD HH:NN:SS localhost caddy[9053]: Serving HTTP on port 80
-Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
----
+# Which should produce something similar to the previous output.
 # To have caddy start automatically at reboot:
 $ systemctl enable caddy
-# If you want to stop caddy, either to edit the file or some other reason:
+# If you want to stop caddy:
 $ systemctl stop caddy
+# If you want to edit your Caddfile, edit it, then run:
+$ caddy reload
 ```
 
 ## Install and Setup the Storage Node
@@ -277,8 +258,8 @@ To update your storage-node from an old network, do the following steps:
 ```
 # If you are running as service (which you should)
 $ systemctl stop storage-node
-$ git clone https://github.com/Joystream/joystream.git
 $ cd joystream
+$ git pull origin master
 $ yarn install
 $ yarn run colossus --help
 ```
@@ -303,6 +284,13 @@ $ colossus --help
 ```
 It should now work globally.
 
+Note that you also need to reconfigure [IPFS](#configure-ipfs).
+For most users, it might be easiest to:
+```
+rm -rf ~/.ipfs
+```
+And go back to [re-install](#install-ipfs).
+
 ### Applying for a Storage Provider opening
 
 Click [here](https://testnet.joystream.org) to open the `Pioneer app` in your browser. Then follow instructions [here](https://github.com/Joystream/helpdesk#get-started) to generate a set of `Keys`, get tokens, and sign up for a `Membership`. This `key` will be referred to as the `member` key.
@@ -313,7 +301,7 @@ To check for current openings, visit [this page](https://testnet.joystream.org/#
 
 During this process you will be provided with a role key, which will be made available to download in the format `5YourStorageAddress.json`. If you set a password for this key, remember it :)
 
-The next steps (below) will only apply if you are a succesful applicant.
+The next steps (below) will only apply if you are a successful applicant.
 
 
 ### Setup and configure the storage node
@@ -346,21 +334,27 @@ To check your `Storage ID`, you have two (easy) options:
 ```
 # To make sure everything is running smoothly, it would be helpful to run with DEBUG.
 # If you used "yarn link":
-$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url> --provider-id ID <your_storage-id>
+$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
 
 # If not:
 $ cd ~/joystream
-$ DEBUG=* yarn run colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url> --provider-id ID <your_storage-id>
+$ DEBUG=* yarn run colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
 
 # If you set a passphrase for <5YourStorageAddress.json>:
-$ DEBUG=* (yarn run) colossus server --key-file <5YourStorageAddress.json> --passphrase <your_passphrase> --public-url https://<your.cool.url> --provider-id ID <your_storage-id>
+$ DEBUG=* (yarn run) colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id> --passphrase <your_passphrase>
 ```
 
-If you do this, you should see something like:
+If you do this, you should see (among other things) something like:
 
 ```
-discovery::publish { name: 'QmPwws576n3ByE6CQUvUt3dgmokk2XN2cJgPYHWoM6SSUS',
-discovery::publish   value: '/ipfs/QmeDAWGRjbWx6fMCxtt95YTSgTgBhhtbk1qsGkteRXaEST' } +391ms
+<timestamp> localhost node[36281]: <timestamp> joystream:discovery:publish {
+<timestamp> localhost node[36281]:   name: 'Qm...fF',
+<timestamp> localhost node[36281]:   value: '/ipfs/Qm...12'
+<timestamp> localhost node[36281]: }
+<timestamp> localhost node[36281]: <timestamp> joystream:runtime:base:tx Submitted: {"nonce":<n>,"txhash":"0xf7d...46fd","tx":"0x...46"}
+<timestamp> localhost node[36281]: <timestamp> joystream:runtime:base:tx Finalized {"nonce":<n>,"txhash":"0xf7d...46fd"}
+<timestamp> localhost node[36281]: <timestamp> joystream:colossus publishing complete, scheduling next update
+
 ```
 
 If everything is working smoothly, you will now start syncing the `content directory`.
@@ -380,7 +374,7 @@ QmfCbUsYhKBmrdop3yFrerqVKwBJvY5tbpV1cf9Cx3L1J8
 ```
 If you did this immediately after FIRST starting your storage node, the `wantlist` might be empty. Give it a minute, and it should contain at least the number of items in the content directory. You can also check what content you have stored by:
 ```
-ipfs refs local
+$ ipfs refs local
 ---
 # Output should be an even longer list of keys, eg.
 ---
@@ -390,20 +384,19 @@ Qmezum3AWdxkm1AtHe35DZGWdfhTQ4PVmmZatGwDL68RES
 QmfCCjC5w9wxTFoAaJ947ss2oc1jx6R2mM9xjU7Ccrq55M
 QmfCbUsYhKBmrdop3yFrerqVKwBJvY5tbpV1cf9Cx3L1J8
 ```
-
-In your first terminal (where) the storage node is running, you will soon enough see this:
+Another thing you can monitor:
 ```
-...
-joystream:runtime:base TX status: Finalized +7ms
-joystream:runtime:base TX Finalized. +1ms
-joystream:sync sync run complete +0ms
+$ ipfs stats repo
+---
+# Should return the size and objects, eg:
+---
+NumObjects: 98416
+RepoSize:   25544041095
+StorageMax: 50000000000
+RepoPath:   /root/.ipfs
+Version:    fs-repo@10
 ```
-
-In the second terminal:
-```
-$ ipfs refs local
-```
-Should return nothing.
+`RepoSize` will grow rapidly during sync.
 
 ### Run storage node as a service
 
@@ -426,8 +419,8 @@ LimitNOFILE=8192
 Environment=DEBUG=joystream:*,-joystream:util:ranges
 ExecStart=/usr/local/lib/nodejs/node-v12.18.2-linux-x64/bin/node packages/colossus/bin/cli.js \
         --key-file <5YourStorageAddress.json> \
-        --public-url https://<your.cool.url \
-        --provider-id ID <your_storage-id>
+        --public-url https://<your.cool.url>/storage/ \
+        --provider-id <your_storage-id>
 Restart=on-failure
 StartLimitInterval=600
 
@@ -442,23 +435,13 @@ $ systemctl status storage-node
 # Which should produce something like:
 ---
 ● storage-node.service - Joystream Storage Node
-   Loaded: loaded (/etc/systemd/system/storage-node.service; disabled; vendor preset: enabled)
-   Active: active (running) since Day YYYY/MM/DD HH:NN:SS UTC; 6s ago
- Main PID: <number> (colossus)
-    Tasks: 11 (limit: 4915)
-   CGroup: /system.slice/storage-node.service
-           └─10190 colossus
+...
 
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Filtered: 0
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Mapped []
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Matching events: []
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX Ready.
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX status: Broadcast
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Number of events: 0; subscribed to dataObjectStorageRegistry,DataObjectStorageRelationshipAdded
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Filtered: 0
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Mapped []
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base Matching events: []
-Mon DD HH:NN:SS localhost node[<number>]: Day, DD Mon YYYY HH:MM:SS GMT joystream:runtime:base TX Broadcast.
+<timestamp> localhost node[36281]: <timestamp> joystream:sync Starting sync run...
+<timestamp> localhost node[36281]: <timestamp> joystream:sync sync run complete
+<timestamp> localhost node[36281]: <timestamp> joystream:sync Starting sync run...
+<timestamp> localhost node[36281]: <timestamp> joystream:sync sync run complete
+...
 ---
 # To have colossus start automatically at reboot:
 $ systemctl enable storage-node
@@ -471,9 +454,12 @@ $ systemctl stop storage-node
 In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org//#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, ie. whatever comes after the last `/`.
 
 Then paste the following in your browser:
+`https://<your.cool.url>/storage/swagger.json`
+Which should return a json.
 
-`https://<your.cool.url>/asset/v0/<content-id>`.
-
+And:
+`https://<your.cool.url>/storage/asset/v0/<content-id>`.
+(eg. `5GPhGYaGumtdpFYowMHY15hsdZVZUyEUe2trgh2vq7zGcFKx`)
 If the content starts playing, that means you are good!
 
 # Troubleshooting
@@ -489,6 +475,7 @@ Error: listen EADDRINUSE: address already in use :::3000
 It most likely means your port is blocked. This could mean your storage-node is already running (in which case you may want to kill it unless it's configured as a service), or that another program is using the port.
 
 In case of the latter, you can specify a new port (e.g. 3001) with the `--port 3001` flag.
+Note that you have to modify the `Caddyfile` as well...
 
 ## No tokens in role account
 If you try to run the storage-node without tokens to pay the transaction fee, you may at some point have tried so many times your transaction gets "temporarily banned". In this case, you either have to wait for a while, or use the [CLI](/tools/cli/README.md#working-groups:updateRoleAccount) tool to change your "role account".
@@ -605,3 +592,106 @@ Save and exit, then:
 `$ source ~/.bash_profile`
 
 You have now successfully installed the newest (LTS) versions of `npm`, `node` and `yarn`.
+
+
+## Caddy v1 (deprecated)
+
+These instructions below are for Caddy v1. If you don't already have it installed, it will not work. The instructions are only kept in case you happen to have installed it on your computer/VPS already.
+
+```
+$ curl https://getcaddy.com | bash -s personal
+# Allow caddy access to required ports:
+$ setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
+$ ulimit -n 8192
+```
+
+Configure caddy with `nano ~/Caddyfile` and paste in the following:
+
+```
+# Storage Node API
+https://<your.cool.url> {
+    proxy / localhost:3000 {
+        transparent
+    }
+    header / {
+        Access-Control-Allow-Origin  *
+        Access-Control-Allow-Methods "GET, PUT, HEAD, OPTIONS"
+    }
+}
+```
+Now you can check if you configured correctly, with:
+```
+$ /usr/local/bin/caddy --validate --conf ~/Caddyfile
+# Which should return:
+Caddyfile is valid
+
+# You can now run caddy with:
+$ (screen) /usr/local/bin/caddy --agree --email <your_mail@some.domain> --conf ~/Caddyfile
+```
+After a short wait, you should see:
+```
+YYYY/MM/DD HH:NN:SS [INFO] [<your.cool.url>] Server responded with a certificate.
+done.
+
+Serving HTTPS on port 443
+https://<your.cool.url>
+
+
+Serving HTTP on port 80
+https://<your.cool.url>
+
+```
+
+### Run caddy as a service
+To ensure high uptime, it's best to set the system up as a `service`.
+
+Example file below:
+
+```
+$ nano /etc/systemd/system/caddy.service
+# Paste in everything below the stapled line
+---
+[Unit]
+Description=Reverse proxy for storage node
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root
+LimitNOFILE=8192
+PIDFile=/var/run/caddy/caddy.pid
+ExecStart=/usr/local/bin/caddy -agree -email <your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
+Restart=on-failure
+StartLimitInterval=600
+
+
+[Install]
+WantedBy=multi-user.target
+```
+Save and exit. Close `caddy` if it's still running, then:
+```
+$ systemctl start caddy
+# If everything works, you should get an output. Verify with:
+$ systemctl status caddy
+# Which should produce something like:
+---
+● caddy.service - Reverse proxy for storage node
+   Loaded: loaded (/etc/systemd/system/caddy.service; disabled)
+   Active: active (running) since Day YYYY/MM/DD HH:NN:SS UTC; 6s ago
+ Main PID: 9053 (caddy)
+   CGroup: /system.slice/caddy.service
+           9053 /usr/local/bin/caddy -agree email <your_mail@some.domain> -pidfile /var/run/caddy/caddy.pid -conf /root/Caddyfile
+
+Mon DD HH:NN:SS localhost systemd[1]: Started Reverse proxy for hosted apps.
+Mon DD HH:NN:SS localhost caddy[9053]: Activating privacy features... done.
+Mon DD HH:NN:SS localhost caddy[9053]: Serving HTTPS on port 443
+Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
+Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
+Mon DD HH:NN:SS localhost caddy[9053]: Serving HTTP on port 80
+Mon DD HH:NN:SS localhost caddy[9053]: https://<your.cool.url>
+---
+# To have caddy start automatically at reboot:
+$ systemctl enable caddy
+# If you want to stop caddy, either to edit the file or some other reason:
+$ systemctl stop caddy
+```
