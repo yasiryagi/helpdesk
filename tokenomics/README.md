@@ -11,15 +11,15 @@ Table of Contents
     - [Deflationary Forces](#deflationary-forces)
   - [Fiat Pool](#fiat-pool)
     - [Weekly Replenishment](#weekly-replenishment)
-- [KPIs](#kpis)
+- [KPIs and Bounties](#kpis-and-bounties)
   - [Council KPIs](#council-kpis)
-  - [Community KPIs](#community-kpis)
+  - [Community Bounties](#community-bounties)
     - [Types of Tasks](#types-of-tasks)
     - [Structure Example](#structure-example)
   - [Tokenomics Examples](#tokenomics-examples)
     - [Example A](#example-a)
     - [Example B](#example-b)
-  - [KPIs](#kpis-1)
+  - [KPIs](#kpis)
     - [Structure](#structure)
     - [Example KPIs](#example-kpis)
 <!-- TOC END -->
@@ -35,11 +35,7 @@ At launch of a new testnet, the token (tJOY) issuance will be set/calculated, an
 - New tokens rewards are minted to pay for the various roles on the network
 - The fiat pool will be topped up weekly, without minting new tokens, effectively increasing the exchange rate (all else being equal)
 - For every new Council term, Jsgenesis will create [Council KPIs](#council-kpis), each assigned a USD value. If the goals are achieved, Jsgenesis will reward the Council without affecting the exchange rate
-- Jsgenesis will also create [Community KPIs](#community-kpis), similar to bounties, but managed by the Council. These are also assigned a USD value, and if achieved, Jsgenesis will (indirectly) reward the individual or group that achieved the goals.
-
-The overall value flows can be summarized by the figure below:
-
-<p align="center"><img src="../img/flows.png" width="1000"></p>
+- Jsgenesis will also create [Community Bounties](#community-bounties), similar to bounties, but managed by the Council. These are also assigned a USD value, and if achieved, Jsgenesis will (indirectly) reward the individual or group that achieved the goals.
 
 Examples of the system through the eyes of a user can be found [here](#tokenomics-examples). In order for community members to get a grasp of the tokenomics, a [spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing) has been made.
 
@@ -91,14 +87,12 @@ The fiat pool, denominated in USD, will start at a set value, but will change co
 ### Weekly Replenishment
 Every week, an amount of USD will be added to the pool, without changing the tJOY issuance. The size of this will be determined the week before.
 
-# KPIs
-Jsgenesis will regularly release new Key Performance Indicators ("KPIs") as a way to incentivize the community and its participants to perform certain actions, maintain network functionality, produce reports, assets, code or other deliverables, etc.
-
-**FIX**
+# KPIs and Bounties
+Jsgenesis will regularly release new Key Performance Indicators ("KPIs") and Bounties as a way to incentivize the community and its participants to perform certain actions, maintain network functionality, produce reports, assets, code or other deliverables, etc.
 
 The KPI scheme has evolved over time, and further changes in the future should be expected.
 
-Currently, the KPIs is divided in to two different types, [Council KPIs](#council-kpis) and [Community KPIs](#community-kpis), each with a distinct structure, frequency, scope, and reward mechanism.
+Currently, we separate these as two different types, [Council KPIs](#council-kpis) and [Community Bounties](#community-bounties), each with a distinct structure, frequency, scope, and reward mechanism.
 
 ## Council KPIs
 For each new Council elected, a fresh set of Council KPIs are published by Jsgenesis. These KPIs will mainly serve to incentivize the Council Members to manage the platform, pay attention to the Tokenomics, monitor the network and respond to proposals and other requests.
@@ -113,15 +107,20 @@ The sum of the rewards earned will be given directly to the individual Council M
 
 As the Council KPIs only apply to prospective Council Members, the full details can be found under their role section [here](/roles/council-members/README.md#council-kpis).
 
-## Community KPIs
-The Community KPIs are meant to replace the Bounty system previously used by Jsgenesis.
+## Community Bounties
+The Community Bounties are meant to replace the "old" Bounty system previously used by Jsgenesis. In discussions with the community, these have been referred to as "Community KPIs", but we've chosen to use the term Community Bounties to properly distinguish them.
 
-Unlike the [Council KPIs](#council-kpis), Jsgenesis will not publish these at regular and predictable intervals, and the rewards for achieving them will not go to the Council Members. After they are published, the Council will however act as Project Managers, and serve as a bridge between Jsgenesis and the individual or group working on them.
+Jsgenesis will publish these in a format similar to that of a [Council KPI](#council-kpis), but with some key differences:
+- They will not be published at the same regular and predictable intervals
+- They will not necessarily have deadlines
+- Jsgenesis will rarely get involved in managing or assigning them
+
+The last part is key, as the Council will act as Project Managers, and serve as a bridge between Jsgenesis and the individual or group working on them.
 
 ### Types of Tasks
-The tasks associated with these KPIs will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community.
+The tasks associated with these Community Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community.
 
-Over time KPIs should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort:
+Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort:
 - Coding
   - Telegram bots
   - Scripts
@@ -146,10 +145,10 @@ Over time KPIs should allow people with different skillsets and interests to par
   - All of the above
 
 ### Structure Example
-An example of structure for a Community KPI, as published by Jsgenesis.
+An example of structure for a Community Bounty, as published by Jsgenesis.
 
 - `id:` - A unique identifier (eg. `5`)
-- `Title:` - The title of the KPI
+- `Title:` - The title of the Community Bounty
 - `Reward:` - The maximum reward paid, assuming all `Success Events` are delivered and graded complete
 - `Description:` - A description of the problem solved if all `Success Events` are complete
 - `Success Events:`
@@ -157,7 +156,7 @@ An example of structure for a Community KPI, as published by Jsgenesis.
   - `2.` - A precise definition of subtask `2.`
   - ...
   - `n.` - A precise definition of subtask `n.`
-- `Annihilation:` - A precise definition of something that, if it occurs, would result in the entire KPI `Reward` getting lost, even in the event all the `Success Events` are fully completed
+- `Annihilation:` - A precise definition of something that, if it occurs, would result in the entire `Reward` getting lost, even in the event all the `Success Events` are fully completed
 - `Conditions` - Any conditions that must be met, in addition to the `Success Events` themselves
 - `Review period:` - A period of time for which Jsgenesis review and grade the deliverable, after it being "officially" submitted to them.
 
@@ -166,17 +165,11 @@ In addition to these, there are some other information that may or may not be in
   - Specifying the [Format](#format)
   - Specifying the [Worfklow](#workflow)
   - Assigning, or "reserving" the rights for one or more community members to work on the KPI for some period of time
-- `Deadline:` - In some cases, a Community KPI could have a deadline for the when the deliverable must be made. Although Jsgenesis reserves the right not to grade or reward any submissions made after the deadline, it doesn't necessarily mean any work will be in vain:
+- `Deadline:` - In some cases, a Community Bounty could have a deadline for the when the deliverable must be made. Although Jsgenesis reserves the right not to grade or reward any submissions made after the deadline, it doesn't necessarily mean any work will be in vain:
   - Late submissions may still be accepted, with full or partial rewards
     - especially if the delay can be attributed to the Council
   - It may be slightly modified, and re-published under a different `ID`
   - It may renewed with a new deadline under a different `ID`
-
-
-
-Every week, a new set of KPIs (Key Performance Indicators) are announced. The period of which they are active and evaluated can wary, but will mostly follow a single `Council` term, starting at 1 week. As outlined earlier, the purpose of the the KPI system is to incentivize the community, via the `Council`, to act in a responsible manner. The KPIs will initially focus on ensuring the network functionality, and maintain a good experience for users. However, the set of KPIs will soon grow in order to promote other desirable actions, both long and short term. These KPIs aim to be precise, so as to avoid confusion and room for interpretation in both objective and grading. A single KPI will come with a set of conditions, that determines what constitutes a success. Details and examples can be found [here](kpis).
-
-KPIs are closely related to the new proposal system, so that the users can calculate the expected value of achieving individual KPIs, versus the anticipated (inflationary) cost of doing so.
 
 ## Tokenomics Examples
 
