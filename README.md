@@ -116,7 +116,7 @@ Previous testnets had weekly payouts for all roles, with the magnitude of reward
 
 When Joystream goes live on mainnet, there will be no one there to pay these (Monero) rewards, and the platform must rely on JOY tokens as the single value carrier for maintaining critical infrastructure, continued development, governance, and to provide incentives for content creators. In order to get a structure that reflects the mainnet incentives in a better way, we have decided to have the tJOY token issuance be backed by a fiat pool, where users can convert their tokens to cover their real costs, time and hardware. The basics of the new scheme is outlined below:
 
--   At launch, the token issuance will be set/calculated, and an initial fiat pool will be created to back it.
+-   At launch of a new network, the token issuance will be migrated from the previous network, and the existing fiat pool will be "transferred" to the new network.
 -   For each Council Term (currently 2 weeks), an amount of USD will be added to fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance would stay the constant.
 -   However, all roles on the platform will be compensated by newly minted tJOY tokens, effectively inflating the supply.
 -   In addition to a weekly replenishment, a set of Council KPIs (Key Performance Indicators), will be set by us, to ensure the network is working as intended.
