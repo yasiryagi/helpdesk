@@ -119,7 +119,7 @@ When Joystream goes live on mainnet, there will be no one there to pay these (Mo
 -   At launch of a new network, the token issuance will be migrated from the previous network, and the existing fiat pool will be "transferred" to the new network.
 -   For each Council Term (currently 2 weeks), an amount of USD will be added to fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance would stay the constant.
 -   However, all roles on the platform will be compensated by newly minted tJOY tokens, effectively inflating the supply.
--   In addition to a weekly replenishment, a set of Council KPIs (Key Performance Indicators), will be set by us, to ensure the network is working as intended.
+-   In addition to the recurring replenishment, a set of Council KPIs (Key Performance Indicators), will be set by us, to ensure the network is working as intended.
 -   If a KPI is reached, the fiat pool will increase by the amount computed based on the level success for each KPI, new tJOY will be minted proportionally, and these will be distributed to the voters that elected the `Council Members` and the `Council Members` themselves. As a consequence, this will not affect the value of token holders not participating in the governance.
 -   Other ways that the tJOY supply and the fiat pool can increase include through community bounties, competitions, spending proposals, etc.
 
