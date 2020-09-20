@@ -104,7 +104,7 @@ In any event, the `Keys` will be stored in your browser storage for your conveni
 To become a `Member` of the platform, you will need some tokens. The `faucet` is closed at the moment due to abuse from Sybil attackers. Currently, the only way to get tokens is to join our [Telegram group](https://t.me/JoyStreamOfficial) and ask for some there. This group is also a great place to get support and discuss Joystream with other community members.
 
 **Note:**
-~All transactions (extrinsics) cost 1 tJOY token, so you should always keep a little in reserve, as this also applies to such actions as voting, unstaking, and posting in the new [forum](https://testnet.joystream.org/#/forum).~ There are currently no fees associated with most transactions.
+There are currently no fees associated with most transactions, but some parts of the Pioneer will still require you to have at least 1 tJOY to allow you to initiate it.
 
 Now, click `Membership` in the sidebar, and select the `Register` tab. Choose a `Handle/nickname`. Optionally, provide a link to an image file for your avatar, and fill in the markdown-enabled `About` field.
 
