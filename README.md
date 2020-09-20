@@ -167,7 +167,7 @@ However, you have two weeks to claim your rewards, so, for example, if you forge
 
 `Council Members` are elected by the stakeholders in the system to act in the long-term interest of the platform. The `Council` is responsible for allocating resources, and hiring executive personnel to run the platform's day-to-day operations.
 
-An overview of the proposal system can be found [here](/proposals)
+An overview of the proposal system can be found [here](/proposals).
 A detailed explanation of the election cycle and responsibilities can be found [here](/roles/council-members).
 
 ### Incentives
