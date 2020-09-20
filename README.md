@@ -188,6 +188,8 @@ Unlike `Validators` that can come and go without too much friction (at least for
 
 After an upgrade of the `Constantinople` network, the `Storage Provider` role will now be within its own working group, with a lead overseeing the day-to-day operations, while being accountable to the Council.
 
+A detailed guide on being a Storage Provider and the associated responsibilities can be found [here](/roles/storage-providers).
+
 ### Incentives
 
 The `Storage Lead` can only be hired (or fired) by the Council through the proposal system. The Lead should maintain sufficient storage and distribution capacity by employing `Storage Providers`, and paying them sufficiently. The Lead will also need to run a storage node themselves. Another important task is to keep an eye on the working group's financing (deciding how much each `Storage Provider` should be paid etc.).
@@ -211,6 +213,8 @@ When the Joystream mainnet is live, `Content Creators` will be responsible for c
 ### Description
 
 `Content Curators` will one day be essential for ensuring that the petabytes of media items uploaded to Joystream are formatted correctly and comprehensively monitored and moderated. Our upcoming testnet allows this content monitoring to take place by giving users who are selected for the role administrative access to the Joystream content directory to make changes where necessary.
+
+A detailed guide on being a Content Curator and the associated responsibilities can be found [here](/roles/content-curators).
 
 ### Incentives
 
