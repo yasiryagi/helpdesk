@@ -152,7 +152,7 @@ Active `Validators` are rewarded in tJOY every new `era` (600 blocks). The size 
   - The ideal number (for the `Validators`) is 25%.
   - If this number is higher or lower, than 25%, the rewards "drop off"
 
-The rewards for the last `era` will show up as an event, and can be seen in the [explorer](https://testnet.joystream.org/#/explorer), if you keep a window open. Fairly precise estimates can be found using the [tokenomics spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing).
+The rewards for the last `era` will show up as an event, and can be seen in the [explorer](https://testnet.joystream.org/#/explorer), if you keep a window open. Fairly precise estimates can be found on the [Tokenomics page](https://testnet.joystream.org/#/tokenomics) in Pioneer, or (in most cases) by looking at the "last reward" in [here](https://testnet.joystream.org/#/staking/targets).
 If you want to exchange your tokens, you need to unbond them first. Check the guide for instructions on how to do this.
 
 A change to note introduced in the Alexandria testnet is the fact that payouts to validators are no longer paid automatically.
