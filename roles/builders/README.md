@@ -7,27 +7,31 @@
 
 
 
-# Table of Contents
-
+Table of Contents
+==
+<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Overview](#overview)
-- [Bug Reporters](#bug-reporters)
-    - [Instructions](#instructions)
-- [Builders](#builders)
-    - [Instructions](#instructions-1)
+  - [Bugs and Improvements](#bugs-and-improvements)
+    - [Reporting Issues](#reporting-issues)
+    - [Making Contributions](#making-contributions)
+  - [Community Bounties](#community-bounties)
+    - [Types of Tasks](#types-of-tasks)
+    - [Structure Example](#structure-example)
+    - [Workflow](#workflow)
+<!-- TOC END -->
 
 
-## Overview
-This page contains information on how you can contribute to building the Joystream platform. You can help out either through reporting [bugs and issues](#bug-reporters), or by becoming a [builder](#builders) and contributing code.
+# Overview
+This page contains information on how you can contribute to building the Joystream platform. We are also happy to see community members [contribute](#bugs-and-improvements) unprompted, and will always evaluate whether these warrants a bounty.
 
----
+This guide however, will mainly focus on incentivized contributions through [Community Bounties](#community-bounties).
 
-## Bug Reporters
-As with all software, and especially the early versions, there will be plenty of bugs, missing features and enhancements required. Both to improve as we go, and to "train" a group of testers and developers for our autonomous platform, we want _outsiders_ to start contributing as soon as possible.
+## Bugs and Improvements
 
-#### Instructions
-If you find a bug in any of our software, reporting them as `Issues` in the correct repo will allow us to address this. In some cases, reports might also qualify for a bounty. If you find an error, something unclear or just missing in the guides in this repo, the [same concept applies](https://github.com/Joystream/bounties/issues/3).
+As with all software, and especially the early versions, there will be plenty of bugs, missing features and enhancements required. Both to improve as we go, and to "train" a group of testers and developers for our autonomous platform, we want outsiders to start contributing as soon as possible.
 
-As a general note, in addition to the severity of the bug, the more details you include in the `Issue`, the bigger the reward will be. Example of a detailed `Issue`:
+### Reporting Issues
+If you find a bug in any of our software, reporting them as `Issues` in the main [Joystream repo](https://github.com/Joystream/joystream) is always helpful. Depending on the severity of the bug, and the more details you include in the `Issue`, the bigger your chances for a reward will be. Example of a detailed `Issue`:
 * For nodes and software ran on your computer
   * Logs and crash reports (from one of the nodes)
   * Steps to reproduce
@@ -38,16 +42,105 @@ As a general note, in addition to the severity of the bug, the more details you 
   * What were you trying to do?
   * What is your address?
   * What is your balance?
-  * What is the type of `key` (ie. `Schnorrkel` or `Edwards`)?
+  * What is the type of `key` (ie. `Schnorrkel`, `Edwards` or `ECDSA`)?
   * Are you a `Member`?
   * Is the `key` used for another role?
   * etc.
 
-If you want to go the extra mile and try to resolve the issue yourself for a bigger bounty, click [here](#instructions-1).
-
----
-
-#### Instructions
+### Making Contributions
 As an open sourced project, we try to follow the standard conventions and workflow.
 
-If you find a bug, or want to improve or add something in the code, documentations or guides, locate the correct repo from the organization [index](https://github.com/Joystream). Fork the repo, make the changes you want to address, and create a `Pull request`. For our mutual convenience, it would be nice if you raised an `Issue` first, so we can agree on the scope, the size of the bounty and make sure this is something we want/need.
+If you find a bug, or want to improve or add something in the code, documentations or guides, go to the [our Github organization](https://github.com/Joystream) and find the "correct" repo.
+
+Fork it, make the changes you want to address, and create a `Pull request`. For our mutual convenience, it would be nice if you made an [Issue](#reporting-issues) first, so we can address whether your work would qualify for a Bounty.
+
+## Community Bounties
+The Community Bounties are meant to replace the "old" [Bounty](https://github.com/Joystream/bounties) system previously used by Jsgenesis. In discussions with the community, these have been referred to as "Community KPIs", but we've chosen to use the term Community Bounties to properly distinguish them.
+
+Jsgenesis will publish these on our [website](https://www.joystream.org/testnet/) in a format similar to that of a [Council KPI](/tokenomics/README.md#council-kpis), but with some key differences:
+- They will not be published at the same regular and predictable intervals
+- They will not necessarily have deadlines
+- Jsgenesis will rarely get involved in managing or assigning them
+
+The last part is key, as the [Council will act as Project Managers](/roles/council-members/README.md#managing-community-bounties), and serve as a bridge between Jsgenesis and the individual or group working on them.
+
+Because of this, you should always checkout the [on-chain forum](testnet.joystream.org/#/forum), and the [Community Repo](https://github.com/Joystream/community-repo) to stay updated on the status and progress of these before you jump in to action.
+
+### Types of Tasks
+The tasks associated with these Community Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community.
+
+Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort:
+- Coding
+  - Telegram bots
+  - Scripts
+  - Enhance the UI
+  - Improve infrastructure
+- Writing
+  - Documentation
+  - Marketing material
+  - Explainers
+  - Translations
+- Creative
+  - Videos
+  - Artwork
+  - Gifs
+  - Memes
+- Research, testing and sourcing
+  - Source/upload freely licensed media
+  - Testing and benchmarking tools
+  - Research interesting projects
+  - Tokenomics research
+- Reviewing
+  - All of the above
+
+More details about Community Bounties can be found [here](/roles/builders).
+
+### Structure Example
+An example of structure for a Community Bounty, as published by Jsgenesis.
+
+- `id:` - A unique identifier (eg. `5`)
+- `Title:` - The title of the Community Bounty
+- `Reward:` - The maximum reward paid, assuming all `Success Events` are delivered and graded complete
+- `Description:` - A description of the problem solved if all `Success Events` are complete
+- `Success Events:`
+  - `1.` - A precise definition of subtask `1.`
+  - `2.` - A precise definition of subtask `2.`
+  - ...
+  - `n.` - A precise definition of subtask `n.`
+- `Annihilation:` - A precise definition of something that, if it occurs, would result in the entire `Reward` getting lost, even in the event all the `Success Events` are fully completed
+- `Conditions` - Any conditions that must be met, in addition to the `Success Events` themselves
+- `Review period:` - A period of time for which Jsgenesis review and grade the deliverable, after it being "officially" submitted to them.
+
+In addition to these, there are some other information that may or may not be included:
+- `Rules:` - Although it will usually be up to the Council the define the [rules](#rules), Jsgenesis may in some circumstances choose to set them themselves. Examples of this could be:
+  - Specifying a [format](#format) and workflow
+  - Assigning, or "reserving" the rights for one or more community members to work on the KPI for some period of time
+- `Deadline:` - In some cases, a Community Bounty could have a deadline for the when the deliverable must be made. Although Jsgenesis reserves the right not to grade or reward any submissions made after the deadline, it doesn't necessarily mean any work will be in vain:
+  - Late submissions may still be accepted, with full or partial rewards
+    - especially if the delay can be attributed to the Council
+  - It may be slightly modified, and re-published under a different `ID`
+  - It may renewed with a new deadline under a different `ID`
+
+### Workflow
+As the Council are responsible for establishing the rules, format and workflow, we again advise to lookup the specifics for a particular Bounty using the [on-chain forum](testnet.joystream.org/#/forum).
+
+
+#### Reward Distribution
+The Council decides how much of the total Bounty reward will go to the Submitter, if the rewards should or can be split, and so forth.
+
+#### Format
+The format should try to optimize for the time, quality, risk and cost, associated with each Bounty. The  [Closed](#closed), [Free For All](#free-for-all) and [First Come, First Served](#first-come-first-served) formats presented are just suggestions.
+
+##### Closed
+For a Bounty that requires investing lots of time and/or other resources, it may be reasonable to guarantee one or more Appliers that gets Assigned some time to complete all, or some, of the work, without having someone come in and "snipe" the reward.
+
+##### Free For All
+For smaller, and perhaps more creative and subjective Bounty, it may make more sense to leave it as a "free for all". In this case, the Council sets a deadline, picks the best Deliverable(s), and rewards the Submitter(s) as per the rules.
+
+##### First Come, First Served
+For smaller, perhaps more time sensitive Bounty, one could choose a format where anyone can enter, but each Submitter's Deliverable is reviewed by the chronological order they are submitted. The first acceptable Deliverable(s) is granted the reward(s).
+
+##### Other
+In addition to the varieties outlined, other formats can be defined and chosen if they are more appropriate for a specific Bounty.
+
+A "new" Council must honor any agreements and rules set by their predecessors, for as long as the rules say so.
