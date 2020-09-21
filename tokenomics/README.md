@@ -1,5 +1,6 @@
 Overview
 ===
+
 This page will explain the token economy ("tokenomics") of the Joystream testnets, and how this applies to the individual actors, and platform as a whole.
 
 Table of Contents

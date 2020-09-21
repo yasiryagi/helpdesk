@@ -161,7 +161,7 @@ $ nano ~/Caddyfile
 # Paste in everything below the stapled line
 ---
 # Storage Node API
-<your.cool.url>/storage/ {
+<your.cool.url> {
     route /storage/* {
     reverse_proxy localhost:3000
     header /storage {
