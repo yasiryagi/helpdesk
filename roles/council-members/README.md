@@ -18,6 +18,7 @@ Table of Contents
   - [Rewards and Incentives](#rewards-and-incentives)
     - [Recurring Rewards](#recurring-rewards)
     - [KPI Rewards](#kpi-rewards)
+      - [Example](#example)
   - [Get Started](#get-started)
 - [Council Elections](#council-elections)
   - [Parameters](#parameters)
@@ -45,7 +46,7 @@ Table of Contents
       - [Cost Control](#cost-control)
       - [General Performance](#general-performance)
       - [Council Actions](#council-actions)
-    - [Managing Community KPIs](#managing-community-kpis)
+    - [Managing Community Bounties](#managing-community-bounties)
       - [Reward Distribution](#reward-distribution)
       - [Format](#format)
       - [Workflow](#workflow)
@@ -69,8 +70,52 @@ During the Constantinople testnet, Jsgenesis realized we need to put a lot more 
 Consequently, Jsgenesis will take an active role in the elections. More information on how to apply, and increase your chances of getting elected can be found [here](#council-election-cycle).
 
 ### Recurring Rewards
+A newly elected Council, will automatically be assigned a recurring reward, that automatically pays out tokens every `n`th block. The magnitude of this reward may change over time, but can be monitored in the [Tokenomics page](https://testnet.joystream.org/#/tokenomics).
 
 ### KPI Rewards
+The KPI rewards will depend on the Council performance. Jsgenesis will provide a new set of [Council KPIs](#council-kpis) for each new term, with some variability in terms of scope and maximum rewards. They will also share part of the their rewards with their Voters, as seen in the example below, where:
+
+- `CM_n` is Council Member `n`
+- `V_i` is Voter `i`
+
+**Note:**
+Jsgenesis votes will not "count" when calculating these rewards.
+
+#### Example
+Suppose the recurring reward for each CM this term was USD 60.
+The Council election had the following "own" `stakes` and `votes`, excluding Jsgenesis votes:
+- CM_1: 5k
+  - own: 2k
+  - V_1: 3k
+- CM_2: 5k
+  - own: 5k
+- CM_3: 11k
+  - own: 4k
+  - V_1: 2.5k
+  - V_2: 4.5k
+CM_4,5,6=CM_X
+- CM_X: 3k
+  - own: 3k
+Total: 30k
+
+At the end of their term, the KPI payout was USD 300. Half of that is split equally (150/6=25), half is divided by stake.
+
+- CM_1: `(60+25+(150*2/30))=95`
+- CM_2: `(60+25+(150*5/30))=110`
+- CM_3: `(60+25+(150*4/30))=105`
+- CM_X: `(60+25+(150*3/30))=100`
+- V_1:  `150*(3+2.5)/30=27.5`
+- V_1:  `150*4.5/30=22.5`
+-> USD 660
+
+---
+
+Note that the KPI rewards will be based on the exchange rate at the **START** of the Councils term.
+The weekly "Recurring Rewards", will thus act as a constraint on the Councils budget.
+
+If they overspend, their KPI rewards will go down in value. Assuming the exchange rate drops 20%, the KPI reward of USD300 will instead be USD240.
+
+When a KPI is paid out (in tJOY), the equivalent amount will be added to the fiat pool.
 
 ## Get Started
 Unlike most of the other current and future roles on the Joystream Platform, most of the information and actions required by participants in the governance system is available in our UI - named [Pioneer](https://testnet.joystream.org). For elected CMs, some familiarity with [GitHub](https://github.com/Joystream/community-repo/) is required, and at any time, a subset of the CMs must be able to use git, and basic coding review skills. As the project grows, new skills and more advanced skills may be required.
@@ -258,7 +303,7 @@ The list below contains a high level overview of their responsibilities:
   - [status-server](https://status.joystream.org/status)
 - Monitor the platform's spending and resource allocation
 - Perform and/or delegate the required tasks related to the [Council KPIs](#council-kpis)
-- Perform the required tasks related to the [Community KPIs](#community-kpis)
+- Perform the required tasks related to the [Community Bounties](#community-bounties)
 
 ## Council KPIs
 For each Council Term, a set of Council KPIs will be released. These will contain tasks that the Council, or individual CMs acting on behalf of the Council, should try to fulfill. Although the tasks and actions required by the Council will vary, the structure of the Council KPIs are fixed.
@@ -408,50 +453,50 @@ The main way of dealing with Leads is through the [proposal system](#proposals).
 - fire and slash all or parts of the Leads stake
 - decrease the stake of a Lead (in case the exchange rate has made the stake bigger than "justifiable")
 
-### Managing Community KPIs
-The concept and some examples of Community KPIs are explained [here](/community-kpis), so this section will rather focus on the Council's role in these as Project Managers. What this entails exactly will vary depending on the type, complexity, and stage of the active Community KPIs themselves, but "good" Project Management will be rewarded through the [Council KPIs](#council-kpis).
+### Managing Community Bounties
+The concept and some examples of Community Bounties (previously referred to as "Community KPIs") are explained [here](/community-bounties), so this section will rather focus on the Council's role in these as Project Managers. What this entails exactly will vary depending on the type, complexity, and stage of the active Community Bounties themselves, but "good" Project Management will be rewarded through the [Council KPIs](#council-kpis).
 
-A Community KPI will in general be graded based on deliverables, with conditions similar to what is described [here](#council-deliverables).
+A Community Bounty will in general be graded based on deliverables, with conditions similar to what is described [here](#council-deliverables).
 
 Unlike the Council KPIs, the rewards for fulfilling them will not go directly to the CMs, but rather increase the [Fiat Pool](/tokenomics/README.md#fiat-pool), thus increasing the value of all the token holders. However, it's assumed that most, if not all, of these rewards will be directed at the group or individual that made the deliverable.
 
 #### Reward Distribution
-The Council decides how much of the total KPI reward will go to the Submitter, if the rewards should or can be split, and so forth.
+The Council decides how much of the total Bounty reward will go to the Submitter, if the rewards should or can be split, and so forth.
 
 #### Format
-The format should try to optimize for the time, quality, risk and cost, associated with each KPI. The  [Closed](#closed), [Free For All](#free-for-all) and [First Come, First Served](#first-come-first-served) formats presented are just suggestions.
+The format should try to optimize for the time, quality, risk and cost, associated with each Bounty. The  [Closed](#closed), [Free For All](#free-for-all) and [First Come, First Served](#first-come-first-served) formats presented are just suggestions.
 
 ##### Closed
-For a KPI that requires investing lots of time and/or other resources, it may be reasonable to guarantee one or more Appliers that gets Assigned some time to complete all, or some, of the work, without having someone come in and "snipe" the reward.
+For a Bounty that requires investing lots of time and/or other resources, it may be reasonable to guarantee one or more Appliers that gets Assigned some time to complete all, or some, of the work, without having someone come in and "snipe" the reward.
 
 ##### Free For All
-For smaller, and perhaps more creative and subjective KPIs, it may make more sense to leave it as a "free for all". In this case, the Council sets a deadline, picks the best Deliverable(s), and rewards the Submitter(s) as per the rules.
+For smaller, and perhaps more creative and subjective Bounty, it may make more sense to leave it as a "free for all". In this case, the Council sets a deadline, picks the best Deliverable(s), and rewards the Submitter(s) as per the rules.
 
 ##### First Come, First Served
-For smaller, perhaps more time sensitive KPIs, one could choose a format where anyone can enter, but each Submitter's Deliverable is reviewed by the chronological order they are submitted. The first acceptable Deliverable(s) is granted the reward(s).
+For smaller, perhaps more time sensitive Bounty, one could choose a format where anyone can enter, but each Submitter's Deliverable is reviewed by the chronological order they are submitted. The first acceptable Deliverable(s) is granted the reward(s).
 
 ##### Other
-In addition to the varieties outlined, other formats can be defined and chosen if they are more appropriate for a specific KPI.
+In addition to the varieties outlined, other formats can be defined and chosen if they are more appropriate for a specific Bounty.
 
 A "new" Council must honor any agreements and rules set by their predecessors, for as long as the rules say so.
 
 #### Workflow
 The workflow will depend both on the [Reward Distribution](#reward-distribution) and the [Format](#format), and must be established beforehand.
 
-- For "Closed" formats, an Applier must present a bid why they should be assigned the given KPI. This should include detailed terms, such as time needed, costs, etc. If approved, this makes the terms valid.
-- In some cases, it may make sense to break a KPI up in to milestones, with partial rewards at each stage. This builds trust as the Council can see the progress being made, and the Assignee can get chunks of the reward along the way.
+- For "Closed" formats, an Applier must present a bid why they should be assigned the given Bounty. This should include detailed terms, such as time needed, costs, etc. If approved, this makes the terms valid.
+- In some cases, it may make sense to break a Bounty up in to milestones, with partial rewards at each stage. This builds trust as the Council can see the progress being made, and the Assignee can get chunks of the reward along the way.
 - In other cases, the person may need some initial funding to get started.
 - For "Closed" formats, the specifics of the workflow could be part of the Applier's application for participation.
 
 #### Steps
 
-##### 1. New KPIs Made
-Although the Council decides on the rules and reward distribution, they listen for input from others in the platform forum and on Telegram. Within a reasonable time (as stated in the Council KPI), the rules for the KPI are presented in Text Proposal, voted through, and published on GitHub.
+##### 1. New Bounty Made
+Although the Council decides on the rules and reward distribution, they listen for input from others in the platform forum and on Telegram. Within a reasonable time (as stated in the Council KPI), the rules for the Bounty are presented in Text Proposal, voted through, and published on GitHub.
 
 ##### 1.5. Work is Assigned
 Depending on the rules chosen, there may be a step to assign the work to one or more Assignees.
 
-This will require some back and forth through multiple Proposals, and should thus be avoided for less complex KPIs.
+This will require some back and forth through multiple Proposals, and should thus be avoided for less complex Bounties.
 
 ##### 2. Work Happens
 For a "Closed" format, it can mean a series of Text and Funding Proposals, waiting, and ongoing communication between the Assigned/Assignees, and the CMs.
@@ -470,10 +515,10 @@ If the Deliverable is to be submitted to the [community-repo](https://github.com
 
 Jsgenesis will then review and grade the Deliverable as such. This can result in a reward anywhere between nothing (failed), or everything (full score), and the fiat pool will be increased accordingly.
 
-It may be that this reward is smaller than that which was rewarded to the Submitter. This will cost the token holders, and one would expect the Council to be punished.
+It may be that this reward is smaller than that which was rewarded to the Submitter. This will in some cases cost the token holders, and in other cases be deducted from the Councils KPI rewards. Regardless, the Council will likely be punished.
 
 #### Councils Role
-As seen in the workflow, the Council's role in the Community KPIs is substantial. They will work as the Project Managers, and are at the end held accountable for the quality of the Deliverable they submit for grading. These tasks may be a formal part of the Councils KPI directly, but the efficiency, creativity, rules, workflow, speed and outcome of the process will anyway be part of the Jsgenesis Council voting process.
+As seen in the workflow, the Council's role in the Community Bounties is substantial. They will work as the Project Managers, and are at the end held accountable for the quality of the Deliverable they submit for grading. These tasks may be a formal part of the Councils KPI directly, but the efficiency, creativity, rules, workflow, speed and outcome of the process will anyway be part of the Jsgenesis Council voting process.
 
 To avoid making this longer than necessary, and hopefully let a system emerge naturally, no examples are included.
 
