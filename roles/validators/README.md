@@ -9,7 +9,6 @@
 
 Table of Contents
 ==
-
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Overview](#overview)
 - [Instructions](#instructions)
@@ -26,6 +25,7 @@ Table of Contents
   - [Validator Setup](#validator-setup)
     - [Generate your keys](#generate-your-keys)
     - [Configure your validator keys](#configure-your-validator-keys)
+    - [Stop Validating](#stop-validating)
 - [Advanced](#advanced)
   - [Run as a service](#run-as-a-service)
     - [Configure the service](#configure-the-service)
@@ -41,18 +41,24 @@ Table of Contents
 - [Rewards](#rewards)
   - [Claiming Rewards](#claiming-rewards)
     - [Claiming in Bulk](#claiming-in-bulk)
-    - [Claiming one at the Time](#claiming-one-at-the-time)
+    - [Claiming one `era` at the Time](#claiming-one-era-at-the-time)
+    - [Check claims made](#check-claims-made)
   - [Rewards on Joystream](#rewards-on-joystream)
     - [Dynamic Parameters](#dynamic-parameters)
     - [Fixed Parameters](#fixed-parameters)
     - [Validator set and block production](#validator-set-and-block-production)
     - [Total rewards calculation](#total-rewards-calculation)
     - [Examples](#examples)
+- [Slashing](#slashing)
+  - [Offline](#offline)
+    - [Offline Example](#offline-example)
+    - [Offline Slashing Size](#offline-slashing-size)
 - [Troubleshooting](#troubleshooting)
   - [Unstaking](#unstaking)
     - [In Pioneer](#in-pioneer)
     - [Using Extrinsics](#using-extrinsics)
 <!-- TOC END -->
+
 
 # Overview
 
@@ -62,7 +68,7 @@ If you want to earn more `Joy` tokens, but for some reason can't or won't become
 
 # Instructions
 
-The instructions below covers Mac and Linux (64 bit and armv7). Windows binaries are currently not available. As a general note, remember to use your `stash` key when setting the `memo` to qualify for the monero rewards, not controller this time!
+The instructions below covers Mac and Linux (64 bit and armv7). Windows binaries are currently not available.
 
 **Note**
 If you are just running a node, and don't want to be a `Validator`, you can skip the flags
@@ -89,15 +95,15 @@ Open the terminal (Applications->Utilities):
 
 ```
 $ cd ~/
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/alexandria-testnet.json
+$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joy-testnet-4.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
 # Assuming it gets saved in your ~/Downloads folder:
-$ mv ~/Downloads/joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz ~/
+$ mv ~/Downloads/joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz ~/
 ---
-$ tar -vxf joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
-$ ./joystream-node --chain alexandria-testnet.json --pruning archive --validator
+$ tar -vxf joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz
+$ ./joystream-node --chain joy-testnet-4.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
 - If you want to get a more verbose log output, add the flag `<nodename> --log runtime`
@@ -106,7 +112,7 @@ Your node should now start syncing the blockchain. The output should look like t
 ```
 Joystream Node
   version "Version"-"your_OS"
-  by Joystream, 2019
+  by Joystream, 2019-2020
 Chain specification: "Joystream Version"
 Node name: "nodename"
 Roles: AUTHORITY
@@ -157,14 +163,12 @@ Open the terminal:
 ```
 $ cd ~/
 # 64 bit debian based Linux
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-2.1.2-441c04b-x86_64-linux-gnu.tar.gz
-$ tar -vxf joystream-node-2.1.2-441c04b-x86_64-linux-gnu.tar.gz
-# armv7 (raspberry pi)
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-armv7-linux-gnueabihf.tar.gz
-$ tar -joystream-node-armv7-linux-gnueabihf.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joystream-node-3.3.0-fdb75f5ec-x86_64-linux-gnu.tar.gz
+$ tar -vxf joystream-node-3.3.0-fdb75f5ec-x86_64-linux-gnu.tar.gz
+# armv7 (raspberry pi) - not yet release
 # For both
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/alexandria-testnet.json
-$ $ ./joystream-node --chain alexandria-testnet.json --pruning archive --validator
+$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joy-testnet-4.json
+$ $ ./joystream-node --chain joy-testnet-4.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
 - If you want to get a more verbose log output, add the flag `<nodename> --log runtime`
@@ -265,6 +269,13 @@ curl: (7) Failed to connect to localhost port 9933: Connection refused
 
 Refresh your browser, and select the `Waiting` tab. If your account shows under `intentions`, wait for the next `era`, and you will be moved to the `validators` list (in the `Staking Overview` tab).
 
+### Stop Validating
+Unless you want to risk getting slashed, you need to "gracefully" stop validating.
+This can be done easily in [Pioneer](testnet.joystream.org/)
+1. Click `Validators` in the sidebar, then choose the `Account actions` tab.
+2. Click the "Stop" button to the right, and confirm.
+3. Once you are dropped from the Validator set (can take up to 70min), you can safely stop your node.
+
 # Advanced
 
 ## Run as a service
@@ -303,7 +314,7 @@ Type=simple
 User=joystream
 WorkingDirectory=/home/joystream/
 ExecStart=/home/joystream/joystream-node \
-        --chain alexandria-testnet.json \
+        --chain joy-testnet-4.json \
         --pruning archive \
         --validator \
         --name <nodename>
@@ -332,7 +343,7 @@ Type=simple
 User=root
 WorkingDirectory=/root/
 ExecStart=/root/joystream-node \
-        --chain alexandria-testnet.json \
+        --chain joy-testnet-4.json \
         --pruning archive \
         --validator \
         --name <nodename>
@@ -503,7 +514,7 @@ This was not a voluntary decision from Jsgenesis, but part of the new staking mo
 Claiming rewards for a specific Validator can be done by anyone, not just the Validator themselves. However, only the Validator (and Nominator) can batch up multiple claims in one [bulk](#claiming-in-bulk).
 
 ### Claiming in Bulk
-This can only be done if you have the Validators or Nominators keys:
+This can only be done if you have the keys for the Validator or Nominator you want to claim for:
 In the UI, Validators can claim rewards in "bulks" of 40 `eras` at the time:
 1. In [Pioneer](testnet.joystream.org/), click `Validators` in the sidebar, and then the `Payouts` tab
 2. Make sure the `Max, x eras` are selected
@@ -514,12 +525,36 @@ In the UI, Validators can claim rewards in "bulks" of 40 `eras` at the time:
 4. Click the `Payout` button at the right end of the row, and confirm to claim the "oldest" 40 `era` rewards for you, and any potential [Nominators](#nominating) that has claim to some of your rewards
 5. If you have more than 40 `eras`, you can repeat this after the first transaction is complete
 
-### Claiming one at the Time
+**Note:**
+- If a Validator had any Nominator(s) in the `eras` for which they claim rewards, the Nominator(s) will automatically get their rewards for said `eras`
+- A Nominator that claims rewards for multiple `eras`, the Validator(s) they nominated in said `eras` will automatically also get their rewards.
+
+### Claiming one `era` at the Time
 This can be done by *any* account:
 1. Go to the [extrinsics](https://testnet.joystream.org/#/extrinsics) tab
 2. Select `staking.payoutStakers(validator_stash, era)`
 3. Select/paste the address of the `stash` account you want to claim on behalf of/for
 4. Type in the `era` you want to claim for, and submit
+
+### Check claims made
+To find out if a "stash" have claimed reward(s) from `era(s)`:
+- [chain state](https://testnet.joystream.org/#/chainstate) query of `ledger(AccountId): Option<StakingLedger>` with the *any* current, or "historic" controller. Output:
+```
+{
+  stash: 5YourStashAddress,
+  total: <tot_bonded> JOY,
+  active: <act_bonded> JOY,
+  unlocking: [],
+  claimedRewards: [
+    <era_a>,
+    <era_b>,
+    ...
+    <era_i>,
+  ]
+}
+```
+**Note:**
+To understand what `unlocking` means, go [here](#using-extrinsics).
 
 ## Rewards on Joystream
 For Substrate based blockchains, the validator rewards depends on some [dynamic parameters](#dynamic-parameters), that will change continuously, and some [fixed parameters](#fixed-parameters) in the chain spec.
@@ -652,6 +687,87 @@ As seen above, the difference from staking 5% more or less than the ideal, is qu
 
 More information on the staking, rewards and slashing mechanics can be found on the web3 foundations research papers [here](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html).
 
+# Slashing
+Just as the Validators are rewarded for producing, propagating and securing the network, they are punished for misbehaving. The slashing mechanics are more complex, so it will not be covered as detailed as the [rewards](#rewards).
+
+Although there are other reasons for getting slashed as a Validator, the reasons that stem from intentional malicious behavior will not be covered here. If you want to learn more about the details of slashing, visit this guide from the [Polkadot](https://github.com/paritytech/polkadot) wiki guide on [slashing (and staking)](https://wiki.polkadot.network/docs/en/learn-staking#slashing).
+
+## Offline
+The by far most likely way a Validator will get slash, is by going offline without first [stopping](#stop-validating) gracefully.
+
+If `n` Validators go offline, there will be an two "events" at the end of that `session`:
+1. `imOnline:SomeOffline`
+2. `offences.Offence`
+
+### Offline Example
+Suppose we have two Validators offline, - `v_0` and `v_1`. `v_1` has one nominator `n_1` (all `accountId`/address of their "stash"):
+By selecting the block the event occured in the [explorer](https://testnet.joystream.org/#/explorer), it will appear like so:
+
+**1** `imOnline:SomeOffline`:
+```
+At the end of the session, at least one validator was found to be offline.
+  Vec<IdentificationTuple>
+
+    0: IdentificationTuple: IdentificationTuple
+    [
+      <v_0>,
+      {
+        total: <v_0 stake> JOY,
+        own: <v_0 stake> JOY,
+        others: []
+      }
+    ]
+
+    1: IdentificationTuple: IdentificationTuple
+    [
+      <v_1>,
+      {
+        total: <v_1+n_1 stake> JOY,
+        own: <v_1> JOY,
+        others: [
+          {
+            who: <n_1>,
+            value: <n_1 stake> JOY,
+          }
+        ]
+      }
+    ]
+```
+This identities which valididators are reported "offline".
+
+
+**2** `offences.Offence`:
+```
+There is an offence reported of the given `kind` happened at the `session_index` and (kind-specific) time slot. This event is not deposited for duplicate slashes. last element indicates of the offence was applied (true) or queued (false).
+
+  Kind
+  im-online:offlin
+
+  OpaqueTimeSlot
+  0xsomething
+
+  bool
+  <Yes> or <No>
+```
+The key here is whether `bool` is `Yes` (`true`) or `No` (`false`).
+- If `Yes/true`, this means a slash will be applied.
+- If `No/false`, this means no slash will be applied.
+
+### Offline Slashing Size
+The magnitude of the slash (and whether one will be applied at all), depends on the max number of Validator slots allowed (`V_max`), and the number of Validators reported offline `V_off`.
+- If `V_off / V_max` < 1/10
+  - No slash will be applied
+- If `V_off / V_max` > 1/3
+  - A max slash of 7% is initiated `*`
+
+The exact formulae, from the comment in the codebase, is presented below (with variables changed for clarity):
+```
+		// the formula is min((3 * (V_off - (V_max / 10 + 1))) / V_max, 1) * 0.07
+		// basically, 10% can be offline with no slash, but after that, it linearly climbs up to 7%
+		// when 13/30 are offline (around 5% when 1/3 are offline).
+```
+
+`*` A single `Offence` adds an entry to the Validators `slash span`. The actual slashing (burning) of tokens will happen ~24h hours later. For more info, we again refer to the [Polkadot Wiki](https://wiki.polkadot.network/docs/en/learn-staking#slashing-across-eras)
 
 ---
 
@@ -663,9 +779,9 @@ Due to an unfortunate error in Pioneer which we are working to fix, unstaking re
 
 ### In Pioneer
 
-If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `Validator` set. If you know in advance (~1hr) you can do the following steps instead:
+If you stop validating by killing your node before unstaking, you will get slashed and kicked from the `Validator` set. If you know in advance (it can take up to 70min) you can do the following steps instead:
 
-1. In `Validator -> Account Actions`, click `Stop Validating`.
+1. In `Validator -> Account Actions`, click `Stop`.
 
 If you are just pausing the `validator` and intend to start it up later, you can stop here. When you are ready to start again, fire up your node, go to `Validator Staking`, and click `Validate`.
 
@@ -673,11 +789,17 @@ If you want to stop being a `validator` and move your tokens to other/better use
 
 ---
 
-2. Next you must unbond. In the same window (`Validator -> Account Actions`), next to your keypair, click the rightmost triple dotted `settings` button, select `Unbond funds`, and choose the amount you wish to unbond.
+2. Next you must unbond. In the same window (`Validator -> Account Actions`), next to your keypair, click the rightmost triple dotted "settings" button, select `Unbond funds`, and choose the amount you wish to unbond.
 
-After the transaction has gone through, you will see a new line appearing in the `bonded` column, showing the amount and a clock icon. Hovering over this with your cursor will tell you when your unbonding is complete (~24h or 14,400 blocks), and you can go to the third and final step.
+After the transaction has gone through, you will see a new line appearing in the `bonded` column, showing the amount and a "clock" icon. Hovering over this with your cursor will tell you when your unbonding is complete ( starts at <24h / <14,400 blocks), and you can go to the third and final step.
 
-3. Within 24h, the tokens should be unbonded, and you can claim them by clicking **FIX**
+3. Within 24h, the tokens should be unbonded, and you will see a new line appearing in the `bonded` column, showing the amount you can claim and a blue "lock" button. Click the button to finalize the unbonding, and your tokens will be "free" to spend from your "stash".
+
+**Notes:**
+- If you have performed multiple unbondings, in different `eras`:
+  - hovering over the "clock" will show multiple entries, eg. `<amount>, <time_left>, <block_left>`
+  - you may also have both the "clock" and "lock" button, if some of your unbondings are completed
+  - if you have any pending [slashes](#slashing), these will be deducted when you perform step 3.
 
 
 ### Using Extrinsics
@@ -691,8 +813,8 @@ First, make sure you have set `Fully Featured` interface in the `Settings` sideb
   - `sum <unbonding_n>` + `<act_bonded>` = `<tot_bonded>`
 - `<era_unbonded_n>` Is the `era` when your `n`th `Unbond funds` request tokens will be "free" to transfer/bond/vote
 
-To find out if you have started/completed your unbonding(s):
-- [chain state](https://testnet.joystream.org/#/chainstate) query of `ledger(AccountId): Option<StakingLedger>` with the controller. Output:
+To find out if you have started/completed your `n` unbonding(s):
+1. [chain state](https://testnet.joystream.org/#/chainstate) query of `ledger(AccountId): Option<StakingLedger>` with the controller. Output:
 ```
 # If you have successfully initiated unbonding, but the tokens are not unlocked:
 {
@@ -708,33 +830,30 @@ To find out if you have started/completed your unbonding(s):
       value: <unbonding_1> JOY,
       era: <era_unbonded_1>
     },
-#   ...
+    ...
     {
       value: <unbonding_n> JOY,
       era: <era_unbonded_n>
     }
   ],
   claimedRewards: [
-    <m>,
+    <era_a>,
+    <era_b>,
     ...
-    <m+i>,
+    <era_i>,
   ]
 }
-
-# If you have not successfully initiated unstaking, or it has already completed:
-{"stash":"5YourStashAddress","total":<tot_bonded>,"active":,"<act_bonded>":[]}
 ```
+**Note:**
+To understand what `claimedRewards` means, go [here](#check-claims-made).
 
 
-The `era` should only change every 600 blocks, but certain events may trigger a new era. To calculate when your funds are "free"
-- In `Chain State` -> `staking.currentEra()`. Let output be `<era_current>`
+2. The `era` should only change every 600 blocks, but certain events may trigger a new era. To calculate when your funds are "free" In `Chain State` -> `staking.currentEra()`. Let output be `<era_current>`
 
-If `<era_unbonded_n>` >= `<era_current_n>`, you can complete the unbonding.
+If `<era_unbonded_n>` >= `<era_current_n>`, you can claim the unbonded funds in step 3..
 
+3. Once the unbonding is complete, go to [extrinsics](https://testnet.joystream.org/#/extrinsics), with the `controller`, select `staking.withdrawUnbonded(num_slashing_spans)`
 
-3. Once the unbonding is complete:
 **Note:** If you have any "pending" slashes, this will require some more [chain state](https://testnet.joystream.org/#/chainstate) queries, to find the input `num_slashing_spans`.
 
-- In [extrinsics](https://testnet.joystream.org/#/extrinsics), using the `controller`, select `staking.withdrawUnbonded(num_slashing_spans)`
-
-You can now spend your tokens.
+Your tokens will be "free" to spend from your "stash".

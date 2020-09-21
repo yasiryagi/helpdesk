@@ -9,8 +9,7 @@
 
 Table of Contents
 ==
-
-<!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
+<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Overview](#overview)
 - [About The Storage Lead](#about-the-storage-lead)
 - [Hiring Storage Lead](#hiring-storage-lead)
@@ -21,15 +20,13 @@ Table of Contents
 - [Hiring Storage Providers](#hiring-storage-providers)
   - [Using the CLI](#using-the-cli)
     - [Create Opening](#create-opening-1)
-      - [Application Parameters](#application-parameters)
-      - [Human Readable Information and Questions](#human-readable-information-and-questions)
-      - [Complete Example](#complete-example)
     - [Accepting Applications](#accepting-applications)
     - [Processing Applications](#processing-applications-1)
 - [Working As Storage Lead](#working-as-storage-lead)
   - [Responsibilities](#responsibilities)
   - [All Commands](#all-commands)
 <!-- TOC END -->
+
 
 # Overview
 

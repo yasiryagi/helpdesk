@@ -1,5 +1,6 @@
 Overview
 ===
+
 This page will explain the token economy ("tokenomics") of the Joystream testnets, and how this applies to the individual actors, and platform as a whole.
 
 Table of Contents
@@ -10,18 +11,13 @@ Table of Contents
     - [Inflationary Forces](#inflationary-forces)
     - [Deflationary Forces](#deflationary-forces)
   - [Fiat Pool](#fiat-pool)
-    - [Weekly Replenishment](#weekly-replenishment)
-- [KPIs](#kpis)
-  - [Council KPIs](#council-kpis)
-  - [Community KPIs](#community-kpis)
-    - [Types of Tasks](#types-of-tasks)
-    - [Structure Example](#structure-example)
+    - [Regular Replenishments](#regular-replenishments)
+  - [KPIs and Bounties](#kpis-and-bounties)
+    - [Council KPIs](#council-kpis)
+    - [Community Bounties](#community-bounties)
   - [Tokenomics Examples](#tokenomics-examples)
     - [Example A](#example-a)
     - [Example B](#example-b)
-  - [KPIs](#kpis-1)
-    - [Structure](#structure)
-    - [Example KPIs](#example-kpis)
 <!-- TOC END -->
 
 # Tokenomics
@@ -33,13 +29,9 @@ At launch of a new testnet, the token (tJOY) issuance will be set/calculated, an
 - The exchange rate will simply be amount of tokens issued divided by the size of the fiat pool
 - When a user exchanges their tJOY for USD, the tokens will be burned immediately, thus **not affecting the exchange rate**
 - New tokens rewards are minted to pay for the various roles on the network
-- The fiat pool will be topped up weekly, without minting new tokens, effectively increasing the exchange rate (all else being equal)
+- The fiat pool will be topped up regularly for every new Council Term, without minting new tokens, effectively increasing the exchange rate (all else being equal)
 - For every new Council term, Jsgenesis will create [Council KPIs](#council-kpis), each assigned a USD value. If the goals are achieved, Jsgenesis will reward the Council without affecting the exchange rate
-- Jsgenesis will also create [Community KPIs](#community-kpis), similar to bounties, but managed by the Council. These are also assigned a USD value, and if achieved, Jsgenesis will (indirectly) reward the individual or group that achieved the goals.
-
-The overall value flows can be summarized by the figure below:
-
-<p align="center"><img src="../img/flows.png" width="1000"></p>
+- Jsgenesis will also create [Community Bounties](#community-bounties), similar to bounties, but managed by the Council. These are also assigned a USD value, and if achieved, Jsgenesis will (indirectly) reward the individual or group that achieved the goals.
 
 Examples of the system through the eyes of a user can be found [here](#tokenomics-examples). In order for community members to get a grasp of the tokenomics, a [spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing) has been made.
 
@@ -68,7 +60,7 @@ If the system is changed, some of these can impact the exchange rate in the futu
 Tokens are slashed and/or burned for a variety of reasons, thus reducing supply and increasing the exchange rate.
 
 - Transactions (aka. extrinsics) fees, are burned
-  - All extrinsics cost at least 1tJOY
+  - Extrinsics are now in most cases free, but
   - Users may need/choose to set a higher fee for priority
   - Users, or Jsgenesis, may set high fees to intentionally burn tokens
 - Creating [Proposals](/proposals) requires the creator to put up [Stake](/proposals/README.md#stake) (the size depends on the perceived "severity" of the Proposal type). Unless the Proposal gets [Approved](/proposals/README.md#approved), the full amount will not be returned to the "creator":
@@ -80,7 +72,7 @@ Tokens are slashed and/or burned for a variety of reasons, thus reducing supply 
   - [Validators](/roles/validators) (and their [Nominators](/roles/validators/README.md#nominating)) gets slashed automatically by the chain if they go offline, or responds too slowly, without first stopping.
   - [Storage Providers](/roles/storage-providers) can get their stakes slashed by their Lead.
   - The [Storage Lead](/roles/storage-lead) can get their stakes slashed by the Council through a [Proposal](/proposals/README.md#slash-working-group-leader-stake).
-  - [Content Curators](/roles/storage-providers) can get their stakes slashed by their Lead.
+  - [Content Curators](/roles/content-curators) can get their stakes slashed by their Lead.
 
 
 When an exchange takes place, the tokens are also burned, but this will have no impact on the exchange rate as the fiat pool will decrease proportionally.
@@ -88,19 +80,17 @@ When an exchange takes place, the tokens are also burned, but this will have no 
 ## Fiat Pool
 The fiat pool, denominated in USD, will start at a set value, but will change continuously.
 
-### Weekly Replenishment
-Every week, an amount of USD will be added to the pool, without changing the tJOY issuance. The size of this will be determined the week before.
+### Regular Replenishments
+For each Council Term (currently 2 weeks), an amount of USD will be added to fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance would stay the constant.
 
-# KPIs
-Jsgenesis will regularly release new Key Performance Indicators ("KPIs") as a way to incentivize the community and its participants to perform certain actions, maintain network functionality, produce reports, assets, code or other deliverables, etc.
-
-**FIX**
+## KPIs and Bounties
+Jsgenesis will regularly release new Key Performance Indicators ("KPIs") and Bounties as a way to incentivize the community and its participants to perform certain actions, maintain network functionality, produce reports, assets, code or other deliverables, etc.
 
 The KPI scheme has evolved over time, and further changes in the future should be expected.
 
-Currently, the KPIs is divided in to two different types, [Council KPIs](#council-kpis) and [Community KPIs](#community-kpis), each with a distinct structure, frequency, scope, and reward mechanism.
+Currently, we separate these as two different types, [Council KPIs](#council-kpis) and [Community Bounties](#community-bounties), each with a distinct structure, frequency, scope, and reward mechanism.
 
-## Council KPIs
+### Council KPIs
 For each new Council elected, a fresh set of Council KPIs are published by Jsgenesis. These KPIs will mainly serve to incentivize the Council Members to manage the platform, pay attention to the Tokenomics, monitor the network and respond to proposals and other requests.
 
 Each individual KPI in the set will:
@@ -111,17 +101,22 @@ Each individual KPI in the set will:
 
 The sum of the rewards earned will be given directly to the individual Council Members and those that voted for them, without affecting the overall exchange rate, by topping up the [Fiat Pool](#fiat-pool) and minting new tokens.
 
-As the Council KPIs only apply to prospective Council Members, the full details can be found under their role section [here](/roles/council-members/README.md#council-kpis).
+As the Council KPIs mainly apply to prospective Council Members, the full details can be found under their role section [here](/roles/council-members/README.md#council-kpis).
 
-## Community KPIs
-The Community KPIs are meant to replace the Bounty system previously used by Jsgenesis.
+### Community Bounties
+The Community Bounties are meant to replace the "old" Bounty system previously used by Jsgenesis. In discussions with the community, these have been referred to as "Community KPIs", but we've chosen to use the term Community Bounties to properly distinguish them.
 
-Unlike the [Council KPIs](#council-kpis), Jsgenesis will not publish these at regular and predictable intervals, and the rewards for achieving them will not go to the Council Members. After they are published, the Council will however act as Project Managers, and serve as a bridge between Jsgenesis and the individual or group working on them.
+Jsgenesis will publish these in a format similar to that of a [Council KPI](#council-kpis), but with some key differences:
+- They will not be published at the same regular and predictable intervals
+- They will not necessarily have deadlines
+- Jsgenesis will rarely get involved in managing or assigning them
 
-### Types of Tasks
-The tasks associated with these KPIs will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community.
+The last part is key, as the Council will act as Project Managers, and serve as a bridge between Jsgenesis and the individual or group working on them.
 
-Over time KPIs should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort:
+#### Types of Tasks
+The tasks associated with these Community Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community.
+
+Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort:
 - Coding
   - Telegram bots
   - Scripts
@@ -145,38 +140,8 @@ Over time KPIs should allow people with different skillsets and interests to par
 - Reviewing
   - All of the above
 
-### Structure Example
-An example of structure for a Community KPI, as published by Jsgenesis.
+More details about Community Bounties can be found [here](/roles/builders).
 
-- `id:` - A unique identifier (eg. `5`)
-- `Title:` - The title of the KPI
-- `Reward:` - The maximum reward paid, assuming all `Success Events` are delivered and graded complete
-- `Description:` - A description of the problem solved if all `Success Events` are complete
-- `Success Events:`
-  - `1.` - A precise definition of subtask `1.`
-  - `2.` - A precise definition of subtask `2.`
-  - ...
-  - `n.` - A precise definition of subtask `n.`
-- `Annihilation:` - A precise definition of something that, if it occurs, would result in the entire KPI `Reward` getting lost, even in the event all the `Success Events` are fully completed
-- `Conditions` - Any conditions that must be met, in addition to the `Success Events` themselves
-- `Review period:` - A period of time for which Jsgenesis review and grade the deliverable, after it being "officially" submitted to them.
-
-In addition to these, there are some other information that may or may not be included:
-- `Rules:` - Although it will usually be up to the Council the define the [Rules](#rules), Jsgenesis may in some circumstances choose to set them themselves. Examples of this could be:
-  - Specifying the [Format](#format)
-  - Specifying the [Worfklow](#workflow)
-  - Assigning, or "reserving" the rights for one or more community members to work on the KPI for some period of time
-- `Deadline:` - In some cases, a Community KPI could have a deadline for the when the deliverable must be made. Although Jsgenesis reserves the right not to grade or reward any submissions made after the deadline, it doesn't necessarily mean any work will be in vain:
-  - Late submissions may still be accepted, with full or partial rewards
-    - especially if the delay can be attributed to the Council
-  - It may be slightly modified, and re-published under a different `ID`
-  - It may renewed with a new deadline under a different `ID`
-
-
-
-Every week, a new set of KPIs (Key Performance Indicators) are announced. The period of which they are active and evaluated can wary, but will mostly follow a single `Council` term, starting at 1 week. As outlined earlier, the purpose of the the KPI system is to incentivize the community, via the `Council`, to act in a responsible manner. The KPIs will initially focus on ensuring the network functionality, and maintain a good experience for users. However, the set of KPIs will soon grow in order to promote other desirable actions, both long and short term. These KPIs aim to be precise, so as to avoid confusion and room for interpretation in both objective and grading. A single KPI will come with a set of conditions, that determines what constitutes a success. Details and examples can be found [here](kpis).
-
-KPIs are closely related to the new proposal system, so that the users can calculate the expected value of achieving individual KPIs, versus the anticipated (inflationary) cost of doing so.
 
 ## Tokenomics Examples
 
@@ -255,87 +220,3 @@ The user assume that on average, the KPIs will return 150 USD this week, and dec
 At first glance it appears as if then `Storage Provider` is the most lucrative role. However, with a second look, one can see that you can instead try to become both a `Curator` and a `Validator`, as the up front stake and cost for the former totals `3,700 tJOY`, whereas the latter two totals just `3,000 tJOY`.
 
 There are still a lot of factors that should be considered, such as time spent, transaction fees, risk of not getting or keeping your role, tokens being locked in for staking, reputation and knowledge building, etc. When all these are weighed against each other, one must assume that the various roles will be ranked differently depending on ones skills, costs, risk tolerance and other preferences.
-
-
-## KPIs
-
-### Structure
-All KPIs will be defined in a manner similar to the one below:
-
-**Purpose**:
-In order to have a reliable network, a KPI focusing on block production and validator stability is required. Timestamp of each block can be found using the block explorer.
-
-- Text:
-  - `average block time < 6.02s, maintain 10 validators`
-- Measurement period:
-  - `7 days`
-- Active from:
-  - Time and date: `dd:mm:yy - hh:mm GMT`
-  - Blocknumber: `n`
-- Success event 1:
-  - `<timestamp_block n+100465> must be smaller than <timestamp_block n>+604,800,000`
-- Success event 2:
-  - `maintain at least 10 validators throughout the Measurement period`
-- Annihilation:
-  - `Block finalization lags more than 600 blocks behind head at any point throughout the Measurement period`  
-- Max reward:
-  - `$100`
-- Grading:
-  - `dd:mm:yy - hh:mm GMT *`
-
-`*` + 8 days
-
-In this case, the specifics of the success events may be a little hard to read. This is to ensure objective interpretation of the grading.
-
-Unless noted otherwise, each success event that is achieved triggers an increase of the fiat pool corresponding to the "Max reward" divided by the number of "Success events". If the "Annihilation" event occurs, there will be no rewards regardless of the outcomes of the "Success events", and there may even be punishment (leading to a decrease in the fiat pool) if specified.
-
-### Example KPIs
-
-High level examples of KPIs which may be introduced include:
-
-##### Network Stability
-
-Maintain stability in block production and networking performance, as measured by:
-
--   block production
--   number of validators
--   network peers
--   etc.
-
-##### Storage Benchmark
-
-Keep the storage system robust, as measured by:
-
--   upload/download speed
--   high uptime
--   few lost connections
--   etc.
-
-##### Proposal Clearance
-
-A responsive and effective council, as measured by:
-
--   proposals made being dealt with in an appropriate, swift and effective manner
--   ensure the maximum number of open proposals (5) will not stop new proposals being made
--   etc.
-
-##### Content Publication
-
-In order for the platform to gain traction, it needs to get some amount of high quality content available, as measured by:
-
--   engagement with content by users
--   views
--   length of videos
--   etc.
-
-##### Content Curation
-
--   rapid response to content which violates our terms of use
--   regularly setting "featured" content in order to highlight some of the best uploads to the platform
--   etc.
-
-##### Attract, Fund and Complete Projects
-
--   in-depth discussions on the merits of projects and initiatives proposed by community members
--   funding proportional to requirements of project
--   etc.

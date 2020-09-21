@@ -26,20 +26,20 @@
     <a href="/roles/content-creators">
       Content Creators
     </a>
+    --->
     <span> | </span>
     <a href="/roles/builders">
-      Bug Reporters
+      Builders
     </a>
-    --->
   </h4>
 </div>
 
 </br>
 
-# Table of Contents
+Table of Contents
+---
 
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
-- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
   - [Contribute](#contribute)
   - [Get Paid to Participate](#get-paid-to-participate)
@@ -60,17 +60,19 @@
   - [Content Curators](#content-curators)
     - [Description](#description-3)
     - [Incentives](#incentives-4)
+  - [Builders](#builders)
+    - [Description](#description-4)
+    - [Incentives](#incentives-5)
 - [Other Features and Tools](#other-features-and-tools)
   - [CLI](#cli)
   - [On-Chain Forum](#on-chain-forum)
 <!-- TOC END -->
 
-
 # Overview
 This repo contains detailed guides to support users interacting with our current [testnet](https://testnet.joystream.org/).
 
 ## Contribute
-If you find something that is wrong or missing, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve!
+If you find something that is wrong or missing in these guides, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve!
 
 ## Get Paid to Participate
 
@@ -156,7 +158,7 @@ The rewards for the last `era` will show up as an event, and can be seen in the 
 If you want to exchange your tokens, you need to unbond them first. Check the guide for instructions on how to do this.
 
 A change to note introduced in the Alexandria testnet is the fact that payouts to validators are no longer paid automatically.
-However, you have two weeks to claim your rewards, so, for example, if you forget for 15 days, you'll only "lose" a day of earnings. 
+However, you have two weeks to claim your rewards, so, for example, if you forget for 15 days, you'll only "lose" a day of earnings.
 (Also, anyone can claim for anyone, so a nominator will not suffer if the validator forgets)
 
 ## Council Members
@@ -172,7 +174,7 @@ A detailed explanation of the election cycle and responsibilities can be found [
 
 ### Incentives
 
-`Council Members` receive recurring rewards in tJOY. Unlike the other recurring rewards for roles, this is not something the `Council` can vote on, as it could lead to some unfortunate outcomes. The size of the reward can be found can be found in the chain state. 
+`Council Members` receive recurring rewards in tJOY. Unlike the other recurring rewards for roles, this is not something the `Council` can vote on, as it could lead to some unfortunate outcomes. The size of the reward can be found can be found in the chain state.
 
 Council Members also receive [Council KPI rewards](/tokenomics/README.md#council-kpis) on top of the recurring rewards.
 
@@ -229,36 +231,21 @@ When making a new "Set (Curator) Lead" proposal, one can propose to
 - hire a lead if there are currently none
 - fire the current lead, without setting a new one.
 
-<!---
-## Builders and Bug Reporters
+
+## Builders
 
 <p align="center""><img src="img/bugreporters.svg" width="500"></p>
 
 ### Description
+Unlike the other roles, `Builders` are not a formal role, with automatic on-chain rewards. Instead, Jsgenesis will create "Community Bounties", with specified tasks, conditions and rewards.
 
-Unlike the `Validators` and `Council Members`, bug bounty payments will be somewhat subjective. Long term, such decisions will be resolved by the platform, so in future testnets these payouts will at least partially be made by the Council.
+The tasks associated with these Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community. In some cases, the source of a Bounty may be a request from the Council or the community themselves.
 
-We have made a [bounties repo](https://github.com/Joystream/bounties) where you can find specific tasks and their rewards, and we will add more bounties and evolve the system as we grow. In addition to the bounties we propose, we are always looking for suggestions for bounties from the community.
+Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort. To learn more about Community Bounties, go to the `Builders` section [here](/roles/builders)
 
 ### Incentives
 
-If you find a bug, potential improvement, or just an idea, there are a couple of ways to earn your reward:
-
-#### Report a software bug
-
-Go to the applicable technical repo(s), e.g. [monorepo](https://github.com/joystream/joystream) etc. and make an `Issue`. You will be compensated based on the importance and "quality", the latter of which is measured from the level of details in general, like how to reproduce, pasted log outputs, etc.
-
-#### Errors in the helpdesk guides (or a non-code repo)
-
-If you find something missing, inaccurate or poorly described, either report an `Issue`, or even better, make a `Pull request`.
-You can also let us know in our official [Telegram group](https://t.me/JoyStreamOfficial).
-
-#### Fix a software bug, or add/improve a feature
-
-If you want, you can just make a PR directly, and your contribution might be compensated by Jsgenesis. If it's an extensive job though, it would be best for all parties if you made a spending proposal on the testnet in advance to fund your work. We could then agree on terms in advance, so no one will be left disappointed.
-
---->
-
+The incentives will be to claim all, or parts, of the reward associated with the Bounty.
 
 # Other Features and Tools
 
