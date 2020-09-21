@@ -95,15 +95,15 @@ Open the terminal (Applications->Utilities):
 
 ```
 $ cd ~/
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-testnet-v4.json
+$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joy-testnet-4.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
 # Assuming it gets saved in your ~/Downloads folder:
-$ mv ~/Downloads/joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz ~/
+$ mv ~/Downloads/joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz ~/
 ---
-$ tar -vxf joystream-node-2.1.2-441c04b-x86_64-macos.tar.gz
-$ ./joystream-node --chain joystream-testnet-v4.json --pruning archive --validator
+$ tar -vxf joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz
+$ ./joystream-node --chain joy-testnet-4.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
 - If you want to get a more verbose log output, add the flag `<nodename> --log runtime`
@@ -112,7 +112,7 @@ Your node should now start syncing the blockchain. The output should look like t
 ```
 Joystream Node
   version "Version"-"your_OS"
-  by Joystream, 2019
+  by Joystream, 2019-2020
 Chain specification: "Joystream Version"
 Node name: "nodename"
 Roles: AUTHORITY
@@ -163,14 +163,12 @@ Open the terminal:
 ```
 $ cd ~/
 # 64 bit debian based Linux
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-2.1.2-441c04b-x86_64-linux-gnu.tar.gz
-$ tar -vxf joystream-node-2.1.2-441c04b-x86_64-linux-gnu.tar.gz
-# armv7 (raspberry pi)
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-node-armv7-linux-gnueabihf.tar.gz
-$ tar -joystream-node-armv7-linux-gnueabihf.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joystream-node-3.3.0-fdb75f5ec-x86_64-linux-gnu.tar.gz
+$ tar -vxf joystream-node-3.3.0-fdb75f5ec-x86_64-linux-gnu.tar.gz
+# armv7 (raspberry pi) - not yet release
 # For both
-$ wget https://github.com/Joystream/substrate-node-joystream/releases/download/v2.1.2/joystream-testnet-v4.json
-$ $ ./joystream-node --chain joystream-testnet-v4.json --pruning archive --validator
+$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joy-testnet-4.json
+$ $ ./joystream-node --chain joy-testnet-4.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag `--name <nodename>`
 - If you want to get a more verbose log output, add the flag `<nodename> --log runtime`
@@ -316,7 +314,7 @@ Type=simple
 User=joystream
 WorkingDirectory=/home/joystream/
 ExecStart=/home/joystream/joystream-node \
-        --chain joystream-testnet-v4.json \
+        --chain joy-testnet-4.json \
         --pruning archive \
         --validator \
         --name <nodename>
@@ -345,7 +343,7 @@ Type=simple
 User=root
 WorkingDirectory=/root/
 ExecStart=/root/joystream-node \
-        --chain joystream-testnet-v4.json \
+        --chain joy-testnet-4.json \
         --pruning archive \
         --validator \
         --name <nodename>
