@@ -1,7 +1,7 @@
 Overview
 ===
 
-This page will explain the token economy ("tokenomics") of the Joystream testnets, and how this applies to the individual actors, and platform as a whole.
+This page will explain the token economics ("tokenomics") of the Joystream testnets, and how this applies to the individual actors, and platform as a whole.
 
 Table of Contents
 ---
@@ -24,7 +24,7 @@ Table of Contents
 At launch of a new testnet, the token (tJOY) issuance will be set/calculated, and an initial USD denominated fiat pool will be created to back it. The key concept is outlined below:
 
 - All roles will be rewarded directly in tJOY
-- tJOY will be backed by a USD fiat pool, and redeemable via monero at the convenience of participants
+- tJOY will be backed by a USD fiat pool and redeemable via monero at the convenience of participants
 - This means that tJOY - only needed for staking and fees on the previous testnet - will now function more like the mainnet token
 - The exchange rate will simply be amount of tokens issued divided by the size of the fiat pool
 - When a user exchanges their tJOY for USD, the tokens will be burned immediately, thus **not affecting the exchange rate**
@@ -38,7 +38,7 @@ Examples of the system through the eyes of a user can be found [here](#tokenomic
 
 ## Token Issuance
 
-The issuance of new tJOY will in practice be a cost incurred for all holders of tJOY, both passive and active (with the exception of tokens minted for [KPIs](#kpis) achieved). Because of this, it is in the interest of all holders to ensure the platforms resources are well managed, and keep tabs on the [Council Members'](../roles/council-members) spending.
+The issuance of new tJOY will in practice be a cost incurred for all holders of tJOY, both passive and active (with the exception of tokens minted for [KPIs](#kpis) achieved). Because of this, it is in the interest of all holders to ensure the platform's resources are well managed, and keep tabs on the [Council Members'](../roles/council-members) spending.
 
 Jsgenesis will try to mimic the market forces of supply and demand, by rewarding good behavior through [KPIs](#kpis), to ensure participants have incentives to keep the platform and associated infrastructure running.
 
@@ -50,18 +50,18 @@ There are many inflationary forces in the network, but not all of them will impa
   - [Storage Providers](/roles/storage-providers) for receiving, storing and serving content files
   - [Content Curators](/roles/content-curators) for monitoring and curating content and channels
 - Automatic rewards, to [Validators](/roles/validators) and [Nominators](/roles/validators/README.md#nominating) are minted as rewards for finding blocks, and keeping the network up and running
-- [Spending Proposals](/proposals/README.md#spending) that gets "approved" and executed
+- [Spending Proposals](/proposals/README.md#spending) that are "approved" and executed
 
-Tokens will also be minted for other purposes, such as faucets, competitions, [KPIs](#kpis), etc. Unlike the costs listed above however, these will under normal circumstances be offset an equivalent increase of [Fiat Pool](#fiat-pool).
+Tokens will also be minted for other purposes, such as faucets, competitions, [KPIs](#kpis), etc. Unlike the costs listed above however, these will under normal circumstances be offset by an equivalent increase of [Fiat Pool](#fiat-pool).
 
-If the system is changed, some of these can impact the exchange rate in the future, but users will be warned in due time.
+If the system is changed, some of these can impact the exchange rate in the future, but users will be warned in advance.
 
 ### Deflationary Forces
 Tokens are slashed and/or burned for a variety of reasons, thus reducing supply and increasing the exchange rate.
 
 - Transactions (aka. extrinsics) fees, are burned
   - Extrinsics are now in most cases free, but
-  - Users may need/choose to set a higher fee for priority
+  - Users may need/choose to set a higher fee for transaction priority
   - Users, or Jsgenesis, may set high fees to intentionally burn tokens
 - Creating [Proposals](/proposals) requires the creator to put up [Stake](/proposals/README.md#stake) (the size depends on the perceived "severity" of the Proposal type). Unless the Proposal gets [Approved](/proposals/README.md#approved), the full amount will not be returned to the "creator":
   - A [Slashed Proposal](/proposals/README.md#slashed) means slashing and burning the entire Stake of the "creator"
@@ -69,7 +69,7 @@ Tokens are slashed and/or burned for a variety of reasons, thus reducing supply 
   - A [Rejected Proposal](/proposals/README.md#rejected) means a smaller, fixed amount of the Stake is slashed and burned
   - An [Expired Proposal](/proposals/README.md#expired) counts as "rejected"
 - Slashing Staked [workers](/roles). The mechanism of these slashes depends on the role, but in all cases, the tokens are burned.
-  - [Validators](/roles/validators) (and their [Nominators](/roles/validators/README.md#nominating)) gets slashed automatically by the chain if they go offline, or responds too slowly, without first stopping.
+  - [Validators](/roles/validators) (and their [Nominators](/roles/validators/README.md#nominating)) get slashed automatically by the chain if they go offline, or respond too slowly, without first stopping.
   - [Storage Providers](/roles/storage-providers) can get their stakes slashed by their Lead.
   - The [Storage Lead](/roles/storage-lead) can get their stakes slashed by the Council through a [Proposal](/proposals/README.md#slash-working-group-leader-stake).
   - [Content Curators](/roles/content-curators) can get their stakes slashed by their Lead.
@@ -81,7 +81,7 @@ When an exchange takes place, the tokens are also burned, but this will have no 
 The fiat pool, denominated in USD, will start at a set value, but will change continuously.
 
 ### Regular Replenishments
-For each Council Term (currently 2 weeks), an amount of USD will be added to fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance would stay the constant.
+For each Council Term (currently 2 weeks), an amount of USD will be added to the fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance would stay constant.
 
 ## KPIs and Bounties
 Jsgenesis will regularly release new Key Performance Indicators ("KPIs") and Bounties as a way to incentivize the community and its participants to perform certain actions, maintain network functionality, produce reports, assets, code or other deliverables, etc.
@@ -104,7 +104,7 @@ The sum of the rewards earned will be given directly to the individual Council M
 As the Council KPIs mainly apply to prospective Council Members, the full details can be found under their role section [here](/roles/council-members/README.md#council-kpis).
 
 ### Community Bounties
-The Community Bounties are meant to replace the "old" Bounty system previously used by Jsgenesis. In discussions with the community, these have been referred to as "Community KPIs", but we've chosen to use the term Community Bounties to properly distinguish them.
+The Community Bounties are meant to replace the "old" bounty system previously used by Jsgenesis. In discussions with the community, these have been referred to as "Community KPIs", but we've chosen to use the term Community Bounties to properly distinguish them.
 
 Jsgenesis will publish these in a format similar to that of a [Council KPI](#council-kpis), but with some key differences:
 - They will not be published at the same regular and predictable intervals
@@ -116,7 +116,7 @@ The last part is key, as the Council will act as Project Managers, and serve as 
 #### Types of Tasks
 The tasks associated with these Community Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community.
 
-Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort:
+Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you have some technical or creative skills, but in other situations it will simply require putting in some time and effort:
 - Coding
   - Telegram bots
   - Scripts
@@ -164,13 +164,13 @@ A rational user will continuously consider their options, and try to maximize th
 
 Suppose there is `10,000 tJOY` in circulation, and `USD 1,000` represents the initial fiat pool. This means that the exchange rate is `0.1 tJOY/USD`.
 
-A user has `1,500 tJOY`, and after weighing their options and calculating the rate, they decide to cash in `500 tJOY`. They go to `<page>`, verify the exchange rate, and follow the instructions on how to cash in. After sumbitting and signing the transaction, a new pending exchange is displayed on the `<page>`:
+A user has `1,500 tJOY`, and after weighing their options and calculating the rate, they decide to cash in `500 tJOY`. They go to `<page>`, verify the exchange rate, and follow the instructions on how to cash in. After submitting and signing the transaction, a new pending exchange is displayed on the `<page>`:
 
 The Joystream transaction locks in the USD value of the exchange. At regular intervals, all pending transactions will be paid out in Monero, with the prevailing XMR/USD rate at the time of payout.
 
 All else being equal, this will reduce the tJOY issuance from `10,000 to 9,500`, and the USD fiat pool from `1,000 to 950`. The exchange rate will therefore not be changed, and there is no incentive to start a run on the bank.
 
-Suppose further the user, after considering their skillset and rate of return, decided that the best option for them was to stake their remaining `1,000 tJOY` for the role of `Storage Provider`, and assume further that the payout for this role was `2 tJOY per 3600 blocks` (6 hours).
+Furthermore, suppose the user, after considering their skillset and rate of return, decided that the best option for them was to stake their remaining `1,000 tJOY` for the role of `Storage Provider`, and assume further that the payout for this role was `2 tJOY per 3600 blocks` (6 hours).
 
 Assuming again all else being equal, ie. the only token inflation on the network was the payout for *this* user, the payout stays the same, and our user performs their job satisfactory, they can expect to cash in `560 tJOY` every week. After the first week, the total issuance is now `10,060 tJOY`, and the fiat pool is now `$950 USD`. The user cash out their `560 tJOY`, and with a rate of `~0.094 tJOY/USD`, will receive `$52.9 USD` for their job.
 
@@ -211,7 +211,7 @@ Currently, the status of the roles and rewards are:
 -   Rewards are `5 tJOY/3600` blocks per slot for curators
 -   The lead earns `12tJOY/3600` blocks
 
-The user assume that on average, the KPIs will return 150 USD this week, and decides to calculate their EV for each option, assuming:
+The user assumes that on average, the KPIs will return 150 USD this week, and decides to calculate their estimated earnings for each option, assuming:
 
 -   all slots fill up
 -   no tx fees included
