@@ -1,7 +1,7 @@
 <p align="center"><img src="img/council-members_new.svg"></p>
 
 <div align="center">
-  <h4>This is a step-by-step guide through Joystream council election cycle, allowing users to take part in the governance system for the
+  <h4>This is a step-by-step guide on the Joystream Council, allowing users to take part in the governance system for the
   <a href="https://testnet.joystream.org/">Joystream Testnet</a>.<h4>
 </div>
 
@@ -60,7 +60,7 @@ Table of Contents
 
 
 # Why Become a Council Member
-As the governance system is arguably the most important component of the platform on mainnet, we are relying on testnets to train and build up an experienced and highly competent group of initial community members that can perform the tasks required of them once we reach the mainnet stage.
+As the governance system is arguably the most important component of the platform on mainnet, we are relying on testnets to train and build up an experienced and highly competent group of initial community members that can diligently perform the tasks required of them once we reach the mainnet stage.
 
 A "good" Council needs CMs that all have a strong understanding of both the platform's token economics (["tokenomics"](/tokenomics)) and each of the individual Working Groups and the roles each of these play in making the platform function. Additionally, the composition of each Council should ensure that the group has expertise in every domain, and some CMs with low-level technical understanding will likely be required to provide guidance on other aspects of the project (marketing, legal, strategy etc.).
 
@@ -70,10 +70,10 @@ During the Constantinople testnet, Jsgenesis realized we need to put a lot more 
 Consequently, Jsgenesis will take an active role in the elections. More information on how to apply, and increase your chances of getting elected can be found [here](#council-election-cycle).
 
 ### Recurring Rewards
-A newly elected Council, will automatically be assigned a recurring reward, that automatically pays out tokens every `n`th block. The magnitude of this reward may change over time, but can be monitored in the [Tokenomics page](https://testnet.joystream.org/#/tokenomics).
+A newly elected Council will automatically be assigned a recurring reward that automatically pays out tokens every `n`th block. The magnitude of this reward may change over time, but can be monitored on the [Tokenomics page](https://testnet.joystream.org/#/tokenomics).
 
 ### KPI Rewards
-The KPI rewards will depend on the Council performance. Jsgenesis will provide a new set of [Council KPIs](#council-kpis) for each new term, with some variability in terms of scope and maximum rewards. They will also share part of the their rewards with their Voters, as seen in the example below, where:
+The KPI rewards will depend on the Council's performance. Jsgenesis will provide a new set of [Council KPIs](#council-kpis) for each new term, with some variability in terms of scope and maximum rewards. They will also share part of their rewards with their Voters, as seen in the example below, where:
 
 - `CM_n` is Council Member `n`
 - `V_i` is Voter `i`
@@ -110,12 +110,12 @@ At the end of their term, the KPI payout was USD 300. Half of that is split equa
 
 ---
 
-Note that the KPI rewards will be based on the exchange rate at the **START** of the Councils term.
-The weekly "Recurring Rewards", will thus act as a constraint on the Councils budget.
+Note that the KPI rewards will be based on the exchange rate at the **START** of the Council's term.
+The weekly "Recurring Rewards", will thus act as a constraint on the Council's budget.
 
 If they overspend, their KPI rewards will go down in value. Assuming the exchange rate drops 20%, the KPI reward of USD300 will instead be USD240.
 
-When a KPI is paid out (in tJOY), the equivalent amount will be added to the fiat pool.
+When a KPI is paid out (in tJOY), the corresponding amount will be added to the fiat pool.
 
 ## Get Started
 Unlike most of the other current and future roles on the Joystream Platform, most of the information and actions required by participants in the governance system is available in our UI - named [Pioneer](https://testnet.joystream.org). For elected CMs, some familiarity with [GitHub](https://github.com/Joystream/community-repo/) is required, and at any time, a subset of the CMs must be able to use git, and basic coding review skills. As the project grows, new skills and more advanced skills may be required.
@@ -135,12 +135,12 @@ The current set of parameters, as well as the status and stage of the [Council/e
 ## Parameters
 In addition to the length (and definitions) of the election stages described below, the most important parameters are:
 - `Council Size`
-  - This is amount of CMs that will be elected. This is an absolute number, meaning neither less nor more CMs can be elected.
+  - This is the number of CMs that will be elected. This is a fixed value, meaning neither less nor more CMs can be elected.
 - `Candidacy Limit`
-  - This is the maximum number of applicants, that have [announced](#announcing) their candidacy, that are eligible to vote for in the [voting](#voting) stage. This number will always be bigger than the `Council Size`
+  - This is the maximum number of applicants, that have [announced](#announcing) their candidacy, that are eligible to be voted for in the [voting](#voting) stage. This number will always be bigger than the `Council Size`
 - `Minimum Council Stake`
 - `Minimum Voting Stake`
-  - The minimum stake that applicants and voters are required to put up, for running themselves and voting (for others or themselves) respectively.
+  - The minimum stake that applicants and voters are required to put up, for standing as a candidate and voting (for others or themselves) respectively.
 
 The full details of the election cycle will also expand upon these parameters.
 
@@ -181,9 +181,9 @@ The `Announcing` stage ends, with all the applicants proceeding to the `Voting` 
 ##### Scenario B:
 If: `Candidacy Limit < Applicants`. Ie. the number of applicants is greater than the `Candidacy Limit`.
 
-All of the applicants is sorted and ranked by their stake. The `Announcing` stage ends, and only those with a rank better than, or equal to, the `Candidacy Limit` will proceed to the `Voting` stage.
+All of the applicants are sorted and ranked by their stake. The `Announcing` stage ends, and only those with a rank better than, or equal to, the `Candidacy Limit` will proceed to the `Voting` stage.
 
-The applicants that did not make it to the `Voting` stage gets their stake back right away.
+The applicants that did not make it to the `Voting` stage get their stake back right away.
 
 ##### Scenario C:
 If: `Applicants < Council Size`. Ie. the number of applicants is smaller than the `Council Size`.
@@ -228,12 +228,12 @@ At the end of the `Revealing` stage, the applicants are sorted and ranked by the
 
 The applicants ranked within the number equal to the `Council Size` will become CMs.
 
-The applicants that did not get elected will get their stake back immediately. Same goes for those that voted for them, and those that did not reveal their vote.
+The applicants that did not get elected will get their stake back immediately. The same goes for those that voted for them, and those that did not reveal their votes.
 
 ### Term
 On the block that marks the end of the `Revealing` stage, the elected CMs will automatically be given their new privileges. Namely, the right to vote on [Proposals](#proposals), and be assigned an on-chain [Recurring Reward](#recurring-rewards).
 
-The CMs stakes will be not only be held until the `Term Duration` expires, but until a new Council is elected. The same applies to those that voted for them.
+The CMs' stakes will be not only be held until the `Term Duration` expires, but until a new Council is elected. The same applies to those that voted for them.
 
 The Recurring Rewards however, will only be paid during the `Term Duration`.
 
@@ -243,10 +243,10 @@ Note that the next `Announcing` stage will start at the exact block the `Term Du
 Unless you have sufficient tokens to get (re-)elected without any extra voters, you are unlikely to get any votes without making an effort to do so. As Jsgenesis represents a large proportion of the voting power, and community members are unlikely to vote for unknown actors without a proven track record, there are some steps you can take to greatly increase your probability of getting votes:
 
 ## Announce on the Forum
-Before a new `Announcing` stage begins, a new thread will be made on the on-chain [forum](https://testnet.joystream.org/#/forum). Regardless of whether you are a new to the project, have been following it from a distance, are an active member or an experienced CM, make a post or two explaining why you deserve getting voted in. Some suggestions of what to include are:
+Before a new `Announcing` stage begins, a new thread will be made on the on-chain [forum](https://testnet.joystream.org/#/forum). Regardless of whether you are a new to the project, have been following it from a distance, are an active member or an experienced CM, make a post or two explaining why you deserve to be voted in. Some suggestions of what to include are:
 - All
   - A little bit about yourself (no need to dox yourself)
-  - Handles on other platforms, such as github, tlgrm, keybase (again, no need to dox yourself)
+  - Handles on other platforms, such as GitHub, Telegram, Keybase (again, no need to dox yourself)
   - Why you want to be a CM
   - Interest in the project
   - Interest in the space (blockchain, media, both)
@@ -306,7 +306,7 @@ The list below contains a high level overview of their responsibilities:
 - Perform the required tasks related to the [Community Bounties](#community-bounties)
 
 ## Council KPIs
-For each Council Term, a set of Council KPIs will be released. These will contain tasks that the Council, or individual CMs acting on behalf of the Council, should try to fulfill. Although the tasks and actions required by the Council will vary, the structure of the Council KPIs are fixed.
+For each Council Term, a set of Council KPIs will be released. These will contain tasks that the Council, or individual CMs acting on behalf of the Council, should try to complete. Although the tasks and actions required by the Council will vary, the structure of the Council KPIs are fixed.
 
 ##### Structure Example
 An example of the structure for a single Council KPI is outlined below. Note that the number of KPIs, success events, individual and sum of the rewards, and complexity of the KPIs per term will vary.
@@ -339,14 +339,14 @@ Most KPIs will be graded based on one of two things:
 2. On-chain records and numbers
 
 #### Council Deliverables
-For a to deliverable count, and thus qualify, it must, unless noted otherwise:
-- Submitted as a pull request ("PR") to the [community-repo](#https://github.com/Joystream/community-repo/)
-- Either made by the [Council Secretary](#council-secretary) directly, or reviewed and "approved" by said person
-- Accompanied by a link to an "approved" [text Proposal](#proposals)
+For a deliverable to qualify, it must, unless noted otherwise:
+- Be submitted as a pull request ("PR") to the [community-repo](#https://github.com/Joystream/community-repo/)
+- Either be made by the [Council Secretary](#council-secretary) directly, or reviewed and "approved" by said person
+- Be Accompanied by a link to an "approved" [text Proposal](#proposals)
 
-Unless these conditions are met, Jsgenesis reserves the right not to consider a deliverable valid. However, exemptions can be made depending on the circumstances.
+Unless these conditions are met, Jsgenesis reserves the right to consider a deliverable invalid. However, exemptions can be made depending on the circumstances.
 
-It is irrelevant whether the Council collaborates in producing the deliverable, it is made by a single CM, or procured from another Member or outsider. The only exceptions are if the deliverable:
+It is irrelevant whether the Council collaborates in producing the deliverable, if it is made by a single CM, or procured from another Member or outsider. The only exceptions are if the deliverable:
 - includes a claim (optional) of its source that proves false
 - does not follow the license requirements of the repo, or violates any other license
 - contains anything violating the platform [ToS](https://testnet.joystream.org/#/pages/tos)
@@ -355,11 +355,11 @@ It is irrelevant whether the Council collaborates in producing the deliverable, 
 The KPI will define whether the value in question shall be:
 - maintained throughout some period of blocks
 - reached at some point during some period of blocks
-- the value from specific block height
+- the value from a specific block height
 
 ### Reports
 Each Council will be prompted to submit deliverables reporting on things like:
-- interesting events (such as Proposals history)
+- interesting events (such as Proposal history)
 - discussions that lead to decisions made (such as voting on said Proposals)
 - budgets and accounts
 - network statistics
@@ -368,7 +368,7 @@ Each Council will be prompted to submit deliverables reporting on things like:
 The Council Secretary is an informal role, where the Council themselves are given some flexibility in deciding on compensation and extending their Scope of Work, outside of what is defined in the Council KPI.
 
 The following bullet points should be expected as the `Success Events` for the KPI:
-- A text [Proposal](#proposals) electing an active CM is "approved" within 24h of a new Term
+- A Text [Proposal](#proposals) electing an active CM is "approved" within 24h of a new Term
   - An optional deputy can be chosen
 - The Secretary provides a GitHub handle, which will be granted ["Triage"](https://docs.github.com/en/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization) permission to the [community-repo](#https://github.com/Joystream/community-repo/)
 - Secretary uses their permission to perform the tasks listed [here](#council-deliverables) and [here](#council-deliverables).
@@ -378,14 +378,14 @@ Currently, there are two Working Groups on the network:
 - [Storage Providers](/roles/storage-providers)
 - [Content Curators](/roles/content-curators)
 
-The role of the Council is not to control these directly, but rather ensure they are being well run by their respective Leads. What is considered "well run" is of course open to a wide interpretation, so specific quantitive and qualitative targets would be defined in the [Council KPIs](#council-kpis).
+The role of the Council is not to control these directly, but rather ensure they are being well-run by their respective Leads. What is considered "well-run" is of course open to a wide interpretation, so specific quantitive and qualitative targets would be defined in the [Council KPIs](#council-kpis).
 
 However, to understand what these targets could entail, how to monitor them, and perhaps even stay ahead of the curve, one should be familiar with some indicators of what to look for.
 
 Finally, a CM must understand what the Council's options are for dealing with a Working Group that is underperforming.
 
 #### Cost Control
-How the Council chooses to approach this is up to them. It is up to the Lead of each group themselves, to create [Proposals](#proposals) for replenishing the Working Groups mint, but it's up to the Council to approve or reject these requests.
+How the Council chooses to approach this is up to them. It is up to the Lead of each group to create [Proposals](#proposals) for replenishing the Working Groups mint, but it's up to the Council to approve or reject these requests.
 
 A good approach could be to agree on weekly budgets, and revise them on an as-needed basis. How to set these budgets would depend on a variety of factors such as:
 - Changes in the exchange rate
@@ -442,15 +442,15 @@ In some cases, the Council may wish to take some action in relation to the Lead 
 
 If a Working Group is not performing adequately, the first course of action may simply be to give an informal warning to the Lead in question.
 
-The main way of dealing with Leads is through the [proposal system](#proposals). Unfortunately, there are currently limited ways of dealing with the Curator Lead. For the Storage Lead, there are more options, but only one that is not punishing:
+The main way of dealing with Leads is through the [proposal system](#proposals). Unfortunately, there are currently limited ways of dealing with the Curator Lead. For the Storage Lead, there are more options, but only one that is not a punishment:
 **Content Curator Lead**
-- reduce the groups mint
+- reduce the group's mint
 - fire the lead
 **Storage Provider Lead**
-- reduce the groups mint
-- slash all or parts of the Leads stake (without firing them)
+- reduce the group's mint
+- slash all or parts of the Lead's stake (without firing them)
 - fire the Lead (without slashing them)
-- fire and slash all or parts of the Leads stake
+- fire and slash all or parts of the Lead's stake
 - decrease the stake of a Lead (in case the exchange rate has made the stake bigger than "justifiable")
 
 ### Managing Community Bounties
@@ -469,8 +469,8 @@ The format should try to optimize for the time, quality, risk and cost, associat
 ##### Closed
 For a Bounty that requires investing lots of time and/or other resources, it may be reasonable to guarantee one or more Appliers that gets Assigned some time to complete all, or some, of the work, without having someone come in and "snipe" the reward.
 
-##### Free For All
-For smaller, and perhaps more creative and subjective Bounty, it may make more sense to leave it as a "free for all". In this case, the Council sets a deadline, picks the best Deliverable(s), and rewards the Submitter(s) as per the rules.
+##### Free-For-All
+For smaller, and perhaps more creative and subjective Bounty, it may make more sense to leave it as a "free-for-all". In this case, the Council sets a deadline, picks the best Deliverable(s), and rewards the Submitter(s) as per the rules.
 
 ##### First Come, First Served
 For smaller, perhaps more time sensitive Bounty, one could choose a format where anyone can enter, but each Submitter's Deliverable is reviewed by the chronological order they are submitted. The first acceptable Deliverable(s) is granted the reward(s).
@@ -509,7 +509,7 @@ Regardless of format, once an Assignee, or otherwise qualified Submitter, consid
 Once the Council considers the Deliverables complete, this final Spending Proposal is "approved" and successfully executed.
 
 ##### 4. Jsgenesis Grading
-After Step 3, the Submitter have received their reward, and their work now "belongs" to the platform.
+After Step 3, the Submitter has received their reward, and their work now "belongs" to the platform.
 
 If the Deliverable is to be submitted to the [community-repo](https://github.com/Joystream/community-repo/), the Council Secretary approves the pull request. Regardless, the Secretary must notify Jsgenesis.
 
@@ -559,7 +559,7 @@ To make a proposal:
 9. If everything has worked correctly, your proposal should now be `active` on the proposals page.
 
 ## Voting on Proposals
-While any member can make a proposal, only council members can vote!
+While any member can make a proposal, only Council Members can vote!
 
 The voting process is rather simple. The first step is to navigate to the proposals (`/proposals`) page and view the currently active proposals. Select the proposal you would like to vote on and simply click the button corresponding to your decision (based on discussion with other council members) on the merits of the proposal.
 
