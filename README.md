@@ -106,7 +106,7 @@ In any event, the `Keys` will be stored in your browser storage for your conveni
 To become a `Member` of the platform, you will need some tokens. The `faucet` is closed at the moment due to abuse from Sybil attackers. Currently, the only way to get tokens is to join our [Telegram group](https://t.me/JoyStreamOfficial) and ask for some there. This group is also a great place to get support and discuss Joystream with other community members.
 
 **Note:**
-There are currently no fees associated with most transactions, but some parts of the Pioneer will still require you to have at least 1 tJOY to allow you to initiate it.
+There are currently no fees associated with most transactions, but some parts of Pioneer will still require you to maintain a balance of at least 1 tJOY to allow you to perform certain actions.
 
 Now, click `Membership` in the sidebar, and select the `Register` tab. Choose a `Handle/nickname`. Optionally, provide a link to an image file for your avatar, and fill in the markdown-enabled `About` field.
 
@@ -119,10 +119,10 @@ Previous testnets had weekly payouts for all roles, with the magnitude of reward
 When Joystream goes live on mainnet, there will be no one there to pay these (Monero) rewards, and the platform must rely on JOY tokens as the single value carrier for maintaining critical infrastructure, continued development, governance, and to provide incentives for content creators. In order to get a structure that reflects the mainnet incentives in a better way, we have decided to have the tJOY token issuance be backed by a fiat pool, where users can convert their tokens to cover their real costs, time and hardware. The basics of the new scheme is outlined below:
 
 -   At launch of a new network, the token issuance will be migrated from the previous network, and the existing fiat pool will be "transferred" to the new network.
--   For each Council Term (currently 2 weeks), an amount of USD will be added to fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance would stay the constant.
+-   For each Council Term (currently 2 weeks), an amount of USD will be added to fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance stays constant.
 -   However, all roles on the platform will be compensated by newly minted tJOY tokens, effectively inflating the supply.
 -   In addition to the recurring replenishment, a set of Council KPIs (Key Performance Indicators), will be set by us, to ensure the network is working as intended.
--   If a KPI is reached, the fiat pool will increase by the amount computed based on the level success for each KPI, new tJOY will be minted proportionally, and these will be distributed to the voters that elected the `Council Members` and the `Council Members` themselves. As a consequence, this will not affect the value of token holders not participating in the governance.
+-   If a KPI is reached, the fiat pool will increase by the amount computed based on the level success for each KPI, new tJOY will be minted proportionally, and these will be distributed to both the `Council Members` and the voters that elected them. As a consequence, this will not affect the value of token holders not participating in the governance.
 -   Other ways that the tJOY supply and the fiat pool can increase include through community bounties, competitions, spending proposals, etc.
 
 An overview on how the new incentive scheme works, and how it interacts with the new proposal model that gives far more power and responsibility to users via the council, can be found [here](/tokenomics).
@@ -159,7 +159,7 @@ If you want to exchange your tokens, you need to unbond them first. Check the gu
 
 A change to note introduced in the Alexandria testnet is the fact that payouts to validators are no longer paid automatically.
 However, you have two weeks to claim your rewards, so, for example, if you forget for 15 days, you'll only "lose" a day of earnings.
-(Also, anyone can claim for anyone, so a nominator will not suffer if the validator forgets)
+(Also, anyone can claim for anyone, so a nominator will not suffer if the associated validator forgets)
 
 ## Council Members
 
@@ -239,9 +239,9 @@ When making a new "Set (Curator) Lead" proposal, one can propose to
 ### Description
 Unlike the other roles, `Builders` are not a formal role, with automatic on-chain rewards. Instead, Jsgenesis will create "Community Bounties", with specified tasks, conditions and rewards.
 
-The tasks associated with these Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community. In some cases, the source of a Bounty may be a request from the Council or the community themselves.
+The tasks associated with these Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community. In some cases, Bounties may be created as a result of requests from the Council or the community.
 
-Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort. To learn more about Community Bounties, go to the `Builders` section [here](/roles/builders)
+Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort. To learn more about Community Bounties, go to the `Builders` section [here](/roles/builders).
 
 ### Incentives
 
@@ -249,7 +249,7 @@ The incentives will be to claim all, or parts, of the reward associated with the
 
 # Other Features and Tools
 
-This section covers other things you can do after [getting started](#get-started), that isn't a paid role as of now.
+This section covers other things you can do after [getting started](#get-started), that aren't paid roles at the moment.
 
 ## CLI
 The CLI tool is under development, but is already needed for the [Storage Lead](/roles/storage-lead) and can be useful for [Storage Providers](/roles/storage-providers). Go [here](/tools/cli) for more information and guides.
