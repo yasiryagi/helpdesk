@@ -22,16 +22,16 @@ Table of Contents
 
 
 # Overview
-This page contains information on how you can contribute to building the Joystream platform. We are also happy to see community members [contribute](#bugs-and-improvements) unprompted, and will always evaluate whether these warrants a bounty.
+This page contains information on how you can contribute to building the Joystream platform. We are also happy to see community members [contribute](#bugs-and-improvements) unprompted, and will always evaluate whether these warrant a bounty.
 
-This guide however, will mainly focus on incentivized contributions through [Community Bounties](#community-bounties).
+In any case, this guide will mainly focus on incentivized contributions through formalized [Community Bounties](#community-bounties).
 
 ## Bugs and Improvements
 
-As with all software, and especially the early versions, there will be plenty of bugs, missing features and enhancements required. Both to improve as we go, and to "train" a group of testers and developers for our autonomous platform, we want outsiders to start contributing as soon as possible.
+As with all software, and especially the early versions, there will be plenty of bugs, missing features and enhancements required. Both to improve as we go, and to "train" a group of testers and developers for our autonomous platform, we are keen for "outsiders" to start contributing as soon as possible.
 
 ### Reporting Issues
-If you find a bug in any of our software, reporting them as `Issues` in the main [Joystream repo](https://github.com/Joystream/joystream) is always helpful. Depending on the severity of the bug, and the more details you include in the `Issue`, the bigger your chances for a reward will be. Example of a detailed `Issue`:
+If you find a bug in any of our software, reporting these as `Issues` in the main [Joystream repo](https://github.com/Joystream/joystream) is always helpful. Depending on the severity of the issue, and the quality of information provided in the `Issue` to allow us to evaluate and reproduce the bug, you may be eligible for a reward. Example of a detailed `Issue`:
 * For nodes and software ran on your computer
   * Logs and crash reports (from one of the nodes)
   * Steps to reproduce
@@ -48,14 +48,14 @@ If you find a bug in any of our software, reporting them as `Issues` in the main
   * etc.
 
 ### Making Contributions
-As an open sourced project, we try to follow the standard conventions and workflow.
+As an open source project, we try to follow the standard conventions and workflow.
 
-If you find a bug, or want to improve or add something in the code, documentations or guides, go to the [our Github organization](https://github.com/Joystream) and find the "correct" repo.
+If you find a bug or want to improve or add something in the code, documentation, or guides, go to [our Github organization](https://github.com/Joystream) and find the appropriate repo.
 
 Fork it, make the changes you want to address, and create a `Pull request`. For our mutual convenience, it would be nice if you made an [Issue](#reporting-issues) first, so we can address whether your work would qualify for a Bounty.
 
 ## Community Bounties
-The Community Bounties are meant to replace the "old" [Bounty](https://github.com/Joystream/bounties) system previously used by Jsgenesis. In discussions with the community, these have been referred to as "Community KPIs", but we've chosen to use the term Community Bounties to properly distinguish them.
+The Community Bounties are meant to replace the "old" [Bounty](https://github.com/Joystream/bounties) system previously used by Jsgenesis. In discussions with the community, these have been referred to as "Community KPIs", but we've chosen to use the term Community Bounties to properly distinguish them from "regular" [Council KPIs](/tokenomics/README.md#council-kpis).
 
 Jsgenesis will publish these on our [website](https://www.joystream.org/testnet/) in a format similar to that of a [Council KPI](/tokenomics/README.md#council-kpis), but with some key differences:
 - They will not be published at the same regular and predictable intervals
@@ -64,12 +64,12 @@ Jsgenesis will publish these on our [website](https://www.joystream.org/testnet/
 
 The last part is key, as the [Council will act as Project Managers](/roles/council-members/README.md#managing-community-bounties), and serve as a bridge between Jsgenesis and the individual or group working on them.
 
-Because of this, you should always checkout the [on-chain forum](testnet.joystream.org/#/forum), and the [Community Repo](https://github.com/Joystream/community-repo) to stay updated on the status and progress of these before you jump in to action.
+Because of this, you should regularly monitor the [on-chain forum](testnet.joystream.org/#/forum), and the [Community Repo](https://github.com/Joystream/community-repo) to stay updated on the status and progress of these before you jump in to action.
 
 ### Types of Tasks
 The tasks associated with these Community Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community.
 
-Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort:
+Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you have technical or creative skills, but in other situations it will simply require putting in some time and effort:
 - Coding
   - Telegram bots
   - Scripts
@@ -93,8 +93,6 @@ Over time, the tasks should allow people with different skillsets and interests 
 - Reviewing
   - All of the above
 
-More details about Community Bounties can be found [here](/roles/builders).
-
 ### Structure Example
 An example of structure for a Community Bounty, as published by Jsgenesis.
 
@@ -109,9 +107,9 @@ An example of structure for a Community Bounty, as published by Jsgenesis.
   - `n.` - A precise definition of subtask `n.`
 - `Annihilation:` - A precise definition of something that, if it occurs, would result in the entire `Reward` getting lost, even in the event all the `Success Events` are fully completed
 - `Conditions` - Any conditions that must be met, in addition to the `Success Events` themselves
-- `Review period:` - A period of time for which Jsgenesis review and grade the deliverable, after it being "officially" submitted to them.
+- `Review period:` - A period of time during which Jsgenesis review and grade the deliverable after it has been "officially" submitted to them.
 
-In addition to these, there are some other information that may or may not be included:
+In addition to these, there is some other information that may or may not be included:
 - `Rules:` - Although it will usually be up to the Council the define the [rules](#rules), Jsgenesis may in some circumstances choose to set them themselves. Examples of this could be:
   - Specifying a [format](#format) and workflow
   - Assigning, or "reserving" the rights for one or more community members to work on the KPI for some period of time
@@ -122,7 +120,7 @@ In addition to these, there are some other information that may or may not be in
   - It may renewed with a new deadline under a different `ID`
 
 ### Workflow
-As the Council are responsible for establishing the rules, format and workflow, we again advise to lookup the specifics for a particular Bounty using the [on-chain forum](testnet.joystream.org/#/forum).
+As the Council are responsible for establishing the rules, format and workflow, we again advise prospective participants to lookup the specifics for a particular Bounty using the [on-chain forum](testnet.joystream.org/#/forum).
 
 
 #### Reward Distribution
