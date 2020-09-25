@@ -3,7 +3,7 @@
 Alexandria was launched as a new chain on the 21st of September 2020, effectively deprecating [Constantinople](/testnets/constantinople).
 
 ## Migration
-A lot of the state was and "history" was migrated from Constantinople:
+A lot of the state and "history" was migrated from Constantinople:
 - All memberships
 - Most balances`*`:
   - all those associated with a membership `root` or `controller`
@@ -22,9 +22,9 @@ A lot of the state was and "history" was migrated from Constantinople:
 - The `Total Exported Issuance` was: 140539804 tJOY
 - "Lost" tokens: 13749789 tJOY
 
-If some of your tokens was "lost" in the transfer, users were/are able to "claim" until the end September 2020.
+If some of your tokens were "lost" in the transfer, you can "claim" these until the end September 2020.
 
 ## Changes
-After the upgrade, all roles, eg. `Validators`, `Storage Providers`, `Council Members` and `Curators` was fired from their position.
+After the upgrade, all roles, eg. `Validators`, `Storage Providers`, `Council Members` and `Curators` were fired from their position.
 
 In addition, the old KPI scheme was replaced by [Council KPIs](/tokenomics/README.md#council-kpis) and [Community Bounties](/tokenomics/README.md#community-bounties).
