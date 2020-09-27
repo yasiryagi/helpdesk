@@ -1,7 +1,7 @@
 <p align="center"><img src="img/validator_new.svg"></p>
 
 <div align="center">
-  <h4>This is a step-by-step guide to setup your <a href="https://github.com/Joystream/substrate-node-joystream">full node</a>, and get started as a Validator on the latest
+  <h4>This is a step-by-step guide for setting up your <a href="https://github.com/Joystream/substrate-node-joystream">full node</a>, and getting started as a Validator on the latest
   <a href="https://testnet.joystream.org/">Joystream Testnet</a>.<h4>
 </div>
 
@@ -64,11 +64,11 @@ Table of Contents
 
 This page contains all information on how to setup your node and becoming a `Validator` on the Joystream Testnets. It will be updated for improvements, and when something changes for new testnets.
 
-If you want to earn more `Joy` tokens, but for some reason can't or won't become a `Validator`, you can [`Nominate`](#nominating) instead.
+If you want to earn more `tJOY` tokens, but for some reason can't or won't become a `Validator`, you can [`Nominate`](#nominating) instead.
 
 # Instructions
 
-The instructions below covers Mac and Linux (64 bit and armv7). Windows binaries are currently not available.
+The instructions below cover Mac and Linux (64 bit and armv7). Windows binaries are currently not available.
 
 **Note**
 If you are just running a node, and don't want to be a `Validator`, you can skip the flags
@@ -83,7 +83,7 @@ If you are just running a node, and don't want to be a `Validator`, you can skip
 
 * Every time something is written in `<brackets>`, it means you have to replace this with your input, without the `<>`.
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
-* For terminal commands, `$` means you must type what comes after that on windows and mac respectively. `#` Means it's just a comment/explanation, and must not be typed.
+* For terminal commands, `$` means you must type what comes afterwards. `#` Means it's just a comment/explanation, and must not be typed.
 ```
 # This is just a comment, don't type or paste it in your terminal!
 $ cd ~/
@@ -149,7 +149,7 @@ Now it's time to configure your keys to start validating. Go [here](#configure-y
 * Every time something is written in `<brackets>`, this means you have to replace this with your input, without the `<>`.
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
 * For terminal commands:
-  * `$` means you must type what comes after that on windows and mac respectively
+  * `$` means you must type what comes afterwards
   * `#` Means it's just a comment/explanation for the readers convenience
 ```
 # This is just a comment, don't type or paste it in your terminal!
@@ -217,7 +217,7 @@ Now it's time to configure your keys to start validating. Go [here](#configure-y
 
 While the node is syncing, you can start the process of setting up the rest.
 
-1. Go to the [Pioneer App](https://testnet.joystream.org/), and select `My keys` in the sidebar. Click the `Create keys` tab.
+1. Go to the [Pioneer App](https://testnet.joystream.org/), and select `My Keys` in the sidebar. Click the `Add account` button.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
@@ -470,7 +470,7 @@ This might also come in handy if there are too many `validators` and you don't h
 
 ### Generate your keys
 
-1. Go to the [Pioneer App](https://testnet.joystream.org/), and select `My keys` in the sidebar. Click the `Create keys` tab.
+1. Go to the [Pioneer App](https://testnet.joystream.org/), and select `My keys` in the sidebar. Click the `Add account` button.
 
 Names are entirely optional, but the next steps will be easier if you follow the system suggested.
 
@@ -502,7 +502,7 @@ In order to be a `Nominator`, you need to stake. Note that you may have to refre
 7. Once submitted, you will start earning a share of the rewards.
 
 # Rewards
-Is the most critical part of any blockchains infrastructure, block production, whether it's from [Proof of Work](https://en.wikipedia.org/wiki/Proof_of_work) (miners, ref Bitcoin)  or [Proof of Stake](https://en.wikipedia.org/wiki/Proof_of_stake) (validators, like Joystream), Validators are rewarded for producing, propagating and securing the network.
+Rewards are the most critical part of any blockchains infrastructure, block production, whether it's from [Proof of Work](https://en.wikipedia.org/wiki/Proof_of_work) (using miners, e.g. Bitcoin)  or [Proof of Stake](https://en.wikipedia.org/wiki/Proof_of_stake) (using validators, like Joystream). Validators are rewarded for producing, propagating and securing the network.
 
 ## Claiming Rewards
 Rewards are no longer paid out automatically to the validators, and it must be done manually.
@@ -685,7 +685,7 @@ As seen above, the difference from staking 5% more or less than the ideal, is qu
 - By staking 5% less, the "loss" is only 18% (6,959tJOY vs 8,556tJOY)
 - By staking 5% more, the "loss" is instead 47% (4,563tJOY vs 8,556tJOY)
 
-More information on the staking, rewards and slashing mechanics can be found on the web3 foundations research papers [here](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html).
+More information on the staking, rewards and slashing mechanics can be found on the Web3 Foundation's research papers [here](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html).
 
 # Slashing
 Just as the Validators are rewarded for producing, propagating and securing the network, they are punished for misbehaving. The slashing mechanics are more complex, so it will not be covered as detailed as the [rewards](#rewards).
@@ -693,7 +693,7 @@ Just as the Validators are rewarded for producing, propagating and securing the 
 Although there are other reasons for getting slashed as a Validator, the reasons that stem from intentional malicious behavior will not be covered here. If you want to learn more about the details of slashing, visit this guide from the [Polkadot](https://github.com/paritytech/polkadot) wiki guide on [slashing (and staking)](https://wiki.polkadot.network/docs/en/learn-staking#slashing).
 
 ## Offline
-The by far most likely way a Validator will get slash, is by going offline without first [stopping](#stop-validating) gracefully.
+The most likely reason a Validator will get slashed is for going offline without first [stopping](#stop-validating) gracefully.
 
 If `n` Validators go offline, there will be an two "events" at the end of that `session`:
 1. `imOnline:SomeOffline`
@@ -760,7 +760,7 @@ The magnitude of the slash (and whether one will be applied at all), depends on 
 - If `V_off / V_max` > 1/3
   - A max slash of 7% is initiated `*`
 
-The exact formulae, from the comment in the codebase, is presented below (with variables changed for clarity):
+The exact formula, from the comment in the codebase, is presented below (with variables changed for clarity):
 ```
 		// the formula is min((3 * (V_off - (V_max / 10 + 1))) / V_max, 1) * 0.07
 		// basically, 10% can be offline with no slash, but after that, it linearly climbs up to 7%
