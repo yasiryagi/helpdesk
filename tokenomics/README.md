@@ -24,7 +24,7 @@ Table of Contents
 At launch of a new testnet, the token (tJOY) issuance will be set/calculated, and an initial USD denominated fiat pool will be created to back it. The key concept is outlined below:
 
 - All roles will be rewarded directly in tJOY
-- tJOY will be backed by a USD fiat pool and redeemable via monero at the convenience of participants
+- tJOY will be backed by a USD fiat pool and redeemable via Bitcoin Cash at the convenience of participants
 - This means that tJOY - only needed for staking and fees on the previous testnet - will now function more like the mainnet token
 - The exchange rate will simply be amount of tokens issued divided by the size of the fiat pool
 - When a user exchanges their tJOY for USD, the tokens will be burned immediately, thus **not affecting the exchange rate**
@@ -164,9 +164,9 @@ A rational user will continuously consider their options, and try to maximize th
 
 Suppose there is `10,000 tJOY` in circulation, and `USD 1,000` represents the initial fiat pool. This means that the exchange rate is `0.1 tJOY/USD`.
 
-A user has `1,500 tJOY`, and after weighing their options and calculating the rate, they decide to cash in `500 tJOY`. They go to `<page>`, verify the exchange rate, and follow the instructions on how to cash in. After submitting and signing the transaction, a new pending exchange is displayed on the `<page>`:
+A user has `1,500 tJOY`, and after weighing their options and calculating the rate, they decide to cash in `500 tJOY`. They go to [the incentives page](https://www.joystream.org/testnet), verify the exchange rate, and follow the instructions on how to cash in. After submitting and signing the transaction, a new pending exchange is displayed at the bottom of said [page](https://www.joystream.org/testnet):
 
-The Joystream transaction locks in the USD value of the exchange. At regular intervals, all pending transactions will be paid out in Monero, with the prevailing XMR/USD rate at the time of payout.
+The Joystream transaction locks in the USD value of the exchange. At regular intervals, all pending transactions will be paid out in Bitcoin Cash, with the prevailing BCH/USD rate at the time of payout.
 
 All else being equal, this will reduce the tJOY issuance from `10,000 to 9,500`, and the USD fiat pool from `1,000 to 950`. The exchange rate will therefore not be changed, and there is no incentive to start a run on the bank.
 

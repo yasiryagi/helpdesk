@@ -76,14 +76,14 @@ If you find something that is wrong or missing in these guides, please make an [
 
 ## Get Paid to Participate
 
-The Joystream Testnet Token (tJOY) is backed by a USD-denominated fiat pool, and currently redeemable via Monero. More information about how this works can be found below. If you want to find the current exchange rate, when the fiat pool is getting topped up, and track the status of pending exchanges, go [here](https://www.joystream.org/testnet).
+The Joystream Testnet Token (tJOY) is backed by a USD-denominated fiat pool, and currently redeemable via Bitcoin Cash. More information about how this works can be found below. If you want to find the current exchange rate, when the fiat pool is getting topped up, and track the status of pending exchanges, go [here](https://www.joystream.org/testnet).
 
 To exchange your tokens, follow these steps.
-1. In order for us to know what address to pay, you must link your Joystream address to your Monero address. The easiest way to do this is in the `My Memo` tab under the `My Keys` sidebar. Ensure that the correct account is selected (the one containing the tokens you wish to redeem) in the top right-hand corner of the Pioneer interface.
+1. In order for us to know what address to pay, you must link your Joystream address to your Bitcoin Cash address. The easiest way to do this is in the `My Memo` tab under the `My Keys` sidebar. Ensure that the correct account is selected (the one containing the tokens you wish to redeem) in the top right-hand corner of the Pioneer interface.
 
 ```
 # Only the part in the line below goes in the memo:
-4or8YourXmrAddressInDoubleQuotesAndNothingElse
+1OR3ORqORzYOURBBITCOINCASHADDRESS
 ```
 
 2. Send your testnet tokens (tJOY) to the following address:
@@ -92,7 +92,7 @@ To exchange your tokens, follow these steps.
 5D5PhZQNJzcJXVBxwJxZcsutjKPqUPydrvpu6HeiBfMaeKQu
 ```
 
-Once the tokens have been received to this address, the time, date, your address, your memo and the current tJOY/USD exchange rate are logged. Your tokens are then burned (reducing the tJOY issuance), and the USD amount is deducted from the fiat pool. This means that the exchange rate is not affected. Your Monero should arrive within 72 hours, as we are batching the transactions. Also note that the XMR/USD exchange rate is at the time of the Monero transfer.
+Once the tokens have been received to this address, the time, date, your address, your memo and the current tJOY/USD exchange rate are logged. Your tokens are then burned (reducing the tJOY issuance), and the USD amount is deducted from the fiat pool. This means that the exchange rate is not affected. Your Bitcoin Cash should arrive within 72 hours, as we are batching the transactions. Also note that the BCH/USD exchange rate is at the time of the Bitcoin Cash transfer.
 
 # Get Started
 To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser on Pioneer [here](https://testnet.joystream.org).
@@ -114,9 +114,9 @@ Now, click `Membership` in the sidebar, and select the `Register` tab. Choose a 
 # Incentives
 The Joystream testnets are incentivized, meaning users can earn real money for participating. There are many reasons we have chosen a system like this, but one of the main motivations is to build a community that understands the network. After the platform goes live on mainnet, Jsgenesis will not be around to run critical infrastructure, occupy the roles needed for the platform to work, or drive innovation.
 
-Previous testnets had weekly payouts for all roles, with the magnitude of rewards and positions available decided by Jsgenesis. The old incentive scheme has worked in the sense that it has gotten a small group of users to participate and earn Monero for their contributions. However, the testnet tokens (tJOYs) have only been a means to an end. Users only needed a small amount to stake for roles, and get the recurring Monero reward, without having to consider tJOY as a valuable asset in its own right.
+Previous testnets had weekly payouts for all roles, with the magnitude of rewards and positions available decided by Jsgenesis. The old incentive scheme has worked in the sense that it has gotten a small group of users to participate and earn Bitcoin Cash for their contributions. However, the testnet tokens (tJOYs) have only been a means to an end. Users only needed a small amount to stake for roles, and get the recurring Bitcoin Cash reward, without having to consider tJOY as a valuable asset in its own right.
 
-When Joystream goes live on mainnet, there will be no one there to pay these (Monero) rewards, and the platform must rely on JOY tokens as the single value carrier for maintaining critical infrastructure, continued development, governance, and to provide incentives for content creators. In order to get a structure that reflects the mainnet incentives in a better way, we have decided to have the tJOY token issuance be backed by a fiat pool, where users can convert their tokens to cover their real costs, time and hardware. The basics of the new scheme is outlined below:
+When Joystream goes live on mainnet, there will be no one there to pay these (Bitcoin Cash) rewards, and the platform must rely on JOY tokens as the single value carrier for maintaining critical infrastructure, continued development, governance, and to provide incentives for content creators. In order to get a structure that reflects the mainnet incentives in a better way, we have decided to have the tJOY token issuance be backed by a fiat pool, where users can convert their tokens to cover their real costs, time and hardware. The basics of the new scheme is outlined below:
 
 -   At launch of a new network, the token issuance will be migrated from the previous network, and the existing fiat pool will be "transferred" to the new network.
 -   For each Council Term (currently 2 weeks), an amount of USD will be added to fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance stays constant.
