@@ -21,19 +21,23 @@
     <a href="/roles/content-curators">
       Content Curators
     </a>
-     <!---
-    <span> | </span>
-    <a href="/roles/content-creators">
-      Content Creators
-    </a>
-    --->
     <span> | </span>
     <a href="/roles/builders">
       Builders
     </a>
   </h4>
 </div>
-
+<div align="center">
+  <h5>
+    <a href="/tools/cli">
+      CLI
+    </a>
+    <span> | </span>
+    <a href="/roles/content-creators">
+      Content Creators
+    </a>
+  </h5>
+</div>
 </br>
 
 Table of Contents
@@ -64,6 +68,8 @@ Table of Contents
     - [Description](#description-4)
     - [Incentives](#incentives-5)
 - [Other Features and Tools](#other-features-and-tools)
+  - [Content Creators](#content-creators)
+    - [Description](#description-5)
   - [CLI](#cli)
   - [On-Chain Forum](#on-chain-forum)
 <!-- TOC END -->
@@ -198,16 +204,6 @@ The `Storage Lead` can only be hired (or fired) by the Council through the propo
 
 The current status of this role can be found [here](https://testnet.joystream.org/#/working-groups).
 
- <!---
-## Content Creators
-
-<p align="center"><img src="img/contentcreators.svg" width="500"></p>
-
-### Description
-
-When the Joystream mainnet is live, `Content Creators` will be responsible for creating and uploading the enormous variety of different content types and genres which we believe will allow Joystream to grow into a successful decentralized media platform.
---->
-
 ## Content Curators
 
 <p align="center"><img src="img/contentcurators.svg" width="500"></p>
@@ -251,8 +247,16 @@ The incentives will be to claim all, or parts, of the reward associated with the
 
 This section covers other things you can do after [getting started](#get-started), that aren't paid roles at the moment.
 
+## Content Creators
+
+<p align="center"><img src="img/contentcreators.svg" width="500"></p>
+
+### Description
+
+When the Joystream mainnet is live, `Content Creators` will be responsible for creating and uploading the enormous variety of different content types and genres which we believe will allow Joystream to grow into a successful decentralized media platform.
+
 ## CLI
-The CLI tool is under development, but is already needed for the [Storage Lead](/roles/storage-lead) and can be useful for [Storage Providers](/roles/storage-providers). Go [here](/tools/cli) for more information and guides.
+The CLI tool is under development, but is already needed for the [Storage Lead](/roles/storage-lead), [Curators and Lead](/roles/content-curators), [Content Creators](/roles/content-curators), and can be useful for [Storage Providers](/roles/storage-providers). Go [here](/tools/cli) for more information and guides.
 
 ## On-Chain Forum
 
