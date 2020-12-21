@@ -47,11 +47,7 @@ Hiring the `Storage Lead` is the responsibility of the `Council` through the pro
 The first step from the Council's perspective is creating an opening where prospective `Storage Leads` can apply for the role.
 Within [Pioneer](https://testnet.joystream.org), navigate first to the proposals tab and select `New Proposal`.
 
-To create an opening, the `Add Working Group Leader Opening` proposal must be selected.
-
-Once selected, the proposer can decide on a number of variables which can be set as part of the proposal, including
-
-For the JSON schema, which reflects what applicants will see in the UI and what information they will have to submit, it is recommended to use a [JSON validator](https://jsonlint.com/) to ensure that the opening is valid.
+To create an opening, select `Add Working Group Leader Opening` and fill in the variables.
 
 ### Review Applications
 
@@ -78,24 +74,25 @@ To create an opening, the lead needs to run the `working-groups:createOpening` c
 
 There are some options for specific purposes which can be selected with this command, as shown below:
 ```
+Create working group opening (requires lead access)
+
+USAGE
+  $ joystream-cli working-groups:createOpening
+
 OPTIONS
-  -c, --createDraftOnly      If provided - the extrinsic will not be executed.
-                             Use this flag if you only want to create a draft.
+  -e, --edit                               If provided along with --input - launches in edit mode allowing to modify the input before sending the exstinsic
 
-  -d, --useDraft             Whether to create the opening from existing draft.
-                             If provided without --draftName - the list of
-                             choices will be displayed.
+  -g, --group=(storageProviders|curators)  The working group context in which the command should be executed
+                                           Available values are: storageProviders, curators.
 
-  -g, --group=group          (required) [default: storageProviders] The working
-                             group context in which the command should be
-                             executed
-                             Available values are: storageProviders.
+  -i, --input=input                        Path to JSON file to use as input (if not specified - the input can be provided interactively)
 
-  -n, --draftName=draftName  Name of the draft to create the opening from.
+  -o, --output=output                      Path to the file where the output JSON should be saved (this output can be then reused as input)
 
-  -s, --skipPrompts          Whether to skip all prompts when adding from draft
-                             (will use all default values)
+  --dryRun                                 If provided along with --output - skips sending the actual extrinsic(can be used to generate a "draft" which can be provided as input
+                                           later)
 ```
+
 Note that although some values are stated as `u128` or other confusing types, you should provide plaintext or numbers, and the CLI will convert them for you. Once this command is run, the prompts to set up the opening are *somewhat* self-explanatory.
 However, here are some pointers when creating an Opening.
 
@@ -359,51 +356,23 @@ More information on the usage can be found [here](/tools/cli)
 
 For convenience, the output of this command is listed below to give a sense of the powers and responsibilities of the Storage Lead:
 ```
-  working-groups:application                 Shows an overview of given
-                                             application by Working Group
-                                             Application ID
-  working-groups:createOpening               Create working group opening
-                                             (requires lead access)
-  working-groups:decreaseWorkerStake         Decreases given worker stake by an
-                                             amount that will be returned to the
-                                             worker role account. Requires lead
-                                             access.
-  working-groups:evictWorker                 Evicts given worker. Requires lead
-                                             access.
-  working-groups:fillOpening                 Allows filling working group
-                                             opening that's currently in review.
-                                             Requires lead access.
-  working-groups:increaseStake               Increases current role
-                                             (lead/worker) stake. Requires
-                                             active role account to be selected.
-  working-groups:leaveRole                   Leave the worker or lead role
-                                             associated with currently selected
-                                             account.
-  working-groups:opening                     Shows an overview of given working
-                                             group opening by Working Group
-                                             Opening ID
-  working-groups:openings                    Shows an overview of given working
-                                             group openings
-  working-groups:overview                    Shows an overview of given working
-                                             group (current lead and workers)
-  working-groups:slashWorker                 Slashes given worker stake.
-                                             Requires lead access.
-  working-groups:startAcceptingApplications  Changes the status of pending
-                                             opening to "Accepting
-                                             applications". Requires lead
-                                             access.
-  working-groups:startReviewPeriod           Changes the status of active
-                                             opening to "In review". Requires
-                                             lead access.
-  working-groups:terminateApplication        Terminates given working group
-                                             application. Requires lead access.
-  working-groups:updateRewardAccount         Updates the worker/lead reward
-                                             account (requires current role
-                                             account to be selected)
-  working-groups:updateRoleAccount           Updates the worker/lead role
-                                             account. Requires member controller
-                                             account to be selected
-  working-groups:updateWorkerReward          Change given worker's reward
-                                             (amount only). Requires lead
-                                             access.
+COMMANDS
+  working-groups:application                 Shows an overview of given application by Working Group Application ID
+  working-groups:createOpening               Create working group opening (requires lead access)
+  working-groups:decreaseWorkerStake         Decreases given worker stake by an amount that will be returned to the worker role account. Requires lead access.
+  working-groups:evictWorker                 Evicts given worker. Requires lead access.
+  working-groups:fillOpening                 Allows filling working group opening that's currently in review. Requires lead access.
+  working-groups:increaseStake               Increases current role (lead/worker) stake. Requires active role account to be selected.
+  working-groups:leaveRole                   Leave the worker or lead role associated with currently selected account.
+  working-groups:opening                     Shows an overview of given working group opening by Working Group Opening ID
+  working-groups:openings                    Shows an overview of given working group openings
+  working-groups:overview                    Shows an overview of given working group (current lead and workers)
+  working-groups:setDefaultGroup             Change the default group context for working-groups commands.
+  working-groups:slashWorker                 Slashes given worker stake. Requires lead access.
+  working-groups:startAcceptingApplications  Changes the status of pending opening to "Accepting applications". Requires lead access.
+  working-groups:startReviewPeriod           Changes the status of active opening to "In review". Requires lead access.
+  working-groups:terminateApplication        Terminates given working group application. Requires lead access.
+  working-groups:updateRewardAccount         Updates the worker/lead reward account (requires current role account to be selected)
+  working-groups:updateRoleAccount           Updates the worker/lead role account. Requires member controller account to be selected
+  working-groups:updateWorkerReward          Change given worker's reward (amount only). Requires lead access.
 ```
