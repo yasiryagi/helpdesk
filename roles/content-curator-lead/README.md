@@ -12,19 +12,23 @@ Table of Contents
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
 - [Overview](#overview)
 - [About The Curator Lead](#about-the-curator-lead)
-- [Hiring Content Curators](#hiring-content-curators)
+- [Hiring Curator Lead](#hiring-curator-lead)
+  - [Proposals](#proposals)
     - [Create Opening](#create-opening)
-    - [Accepting Applications](#accepting-applications)
+    - [Review Applications](#review-applications)
     - [Processing Applications](#processing-applications)
+- [Hiring Content Curators](#hiring-content-curators)
+  - [Using the CLI](#using-the-cli)
+    - [Create Opening](#create-opening-1)
+    - [Accepting Applications](#accepting-applications)
+    - [Processing Applications](#processing-applications-1)
 - [Working As Content Curator Lead](#working-as-content-curator-lead)
-    - [Responsibilities](#responsibilities)
+  - [Responsibilities](#responsibilities)
+    - [Curation](#curation)
     - [Firing Curators](#firing-curators)
     - [Content Working Group Mint](#content-working-group-mint)
-        - [Checking The Mint](#checking-the-mint)
-        - [Replenishing The Mint](#replenishing-the-mint)
-    - [Advanced Functions](#advanced-functions)
+      - [Replenishing The Mint](#replenishing-the-mint)
 - [Troubleshooting](#troubleshooting)
-
 <!-- TOC END -->
 
 # Overview
@@ -35,100 +39,165 @@ This page will contain all information on how to become `Content Curator Lead`, 
 
 Since the introduction of the proposals system for the Constantinople testnet, the `Council` has had the power to appoint a `Content Curator Lead` for the network.
 
-Whenever a position as `Content Curator Lead` is available, `Council Members` will let other testnet participants know through the relevant communication channels, including our Telegram Group and the testnet forum. A forum post or other application process will then be made available in order for the council to consider application from interested parties.
+# Hiring Curator Lead
 
-At the moment, being both a `Council Member` and `Content Curator Lead` at the same time is not supported.
+## Proposals
+
+Hiring the `Curator Lead` is the responsibility of the `Council` through the proposals system. Three new proposal types have been introduced to support the hiring process, and more have also been added to allow the `Council` to effectively manage the lead once "in office", through slashing, setting the mint capacity, decreasing stake and firing etc.
+
+### Create Opening
+
+The first step from the Council's perspective is creating an opening where prospective `Curator Leads` can apply for the role.
+Within [Pioneer](https://testnet.joystream.org), navigate first to the proposals tab and select `New Proposal`.
+
+To create an opening, select `Add Working Group Leader Opening` and fill in the variables.
+
+### Review Applications
+
+In order to formally "close" the opening to further applicants and inform the existing candidates that their submissions are currently being considered, the status of the opening must be changed to "In Review".
+
+This can be done very easily through the creation of another proposal by the `Council`, this time with the `Begin Review Working Group Leader Application` proposal type. The main thing to pay attention to here is the `Working Group Opening ID` created earlier. Helpfully there is a dropdown box for choosing among the currently active openings, in case you have forgotten the ID.
+
+### Processing Applications
+
+The final step in hiring the `Curator Lead` is to create a `Fill Working Group Leader Opening`. The requirements here simply to choose the relevant opening from the drop-down menu and choose betwen the candidate applications (in JSON format) shown on the page.
+
+Once a candidate has been chosen and the final proposal has passed, the focus is now on the new `Curator Lead`...
 
 # Hiring Content Curators
 
 As the person responsible for the platforms content curation, the Lead may find additional manpower is required, and can hire `Content Curators` to assist.
 
-Consequently, the `Content Curator Lead` must be a role filled by a highly trusted member of our community. If you are interested in becoming Lead, you can make a [proposal](/proposals#set-content-curator-lead) to hire yourself.
+## Using the CLI
+Our newly developed Command-Line Interface (CLI) is an essential tool for the Curator Lead, as it is by far the simplest way to hire and manage `Curator Providers` and applicants for this role. The program and its instructions for use can be found [here](https://github.com/Joystream/joystream/tree/master/cli).
 
-In order to be compensated in tJOY directly for their work, the Content Curator Lead must hire themselves.
+All of the useful commands which can be executed by the `Curator Lead` will require the lead to import their "role" key rather than their "member" key. Consequently, in the CLI the `account:import` and `account:choose` commands will need to be used.
 
-## Create Opening
-The first step towards hiring `Content Curators` is creating a role opening (opportunity) on the platform. You can do this through the Pioneer user interface.
+All the commands available for managing the workers are available by using the command `joystream-cli working-groups --help`, which returns:
+```
+Working group lead and worker actions
 
-(1) Navigate to the admin panel for `Content Curator Lead`: https://testnet.joystream.org/#/working-groups/admin <br>
-(2) Click `Create new opening...` and select the template you would like for the opening. You should probably communicate with the `Council` to determine the best balance of `application stake`, `role stake` and `applicant limit`. <br>
-(3) A pop-up window will appear. While the first section covering stakes required to apply is rather self-explanatory, care must be taken with the application form design for curators (structured as a JSON). <br>
-(4) To ensure your application form will work, you must validate the JSON against the schema [here](https://github.com/yourheropaul/pioneer/blob/feature/hiring-flow/packages/joy-types/src/hiring/schemas/role.schema.json).
-You can use a JSON schema validator tool to do this (e.g. https://www.jsonschemavalidator.net/)
+USAGE
+  $ joystream-cli working-groups:COMMAND
 
-<br>
-An example form could be structured as follows:
-<br>
+COMMANDS
+  working-groups:application                 Shows an overview of given application by Working Group Application ID
+  working-groups:createOpening               Create working group opening (requires lead access)
+  working-groups:decreaseWorkerStake         Decreases given worker stake by an amount that will be returned to the worker role account. Requires lead access.
+  working-groups:evictWorker                 Evicts given worker. Requires lead access.
+  working-groups:fillOpening                 Allows filling working group opening that's currently in review. Requires lead access.
+  working-groups:increaseStake               Increases current role (lead/worker) stake. Requires active role account to be selected.
+  working-groups:leaveRole                   Leave the worker or lead role associated with currently selected account.
+  working-groups:opening                     Shows an overview of given working group opening by Working Group Opening ID
+  working-groups:openings                    Shows an overview of given working group openings
+  working-groups:overview                    Shows an overview of given working group (current lead and workers)
+  working-groups:setDefaultGroup             Change the default group context for working-groups commands.
+  working-groups:slashWorker                 Slashes given worker stake. Requires lead access.
+  working-groups:startAcceptingApplications  Changes the status of pending opening to "Accepting applications". Requires lead access.
+  working-groups:startReviewPeriod           Changes the status of active opening to "In review". Requires lead access.
+  working-groups:terminateApplication        Terminates given working group application. Requires lead access.
+  working-groups:updateRewardAccount         Updates the worker/lead reward account (requires current role account to be selected)
+  working-groups:updateRoleAccount           Updates the worker/lead role account. Requires member controller account to be selected
+  working-groups:updateWorkerReward          Change given worker's reward (amount only). Requires lead access.
+  ```
+
+### Create Opening
+
+To create an opening, the lead needs to run the `working-groups:createOpening -g curators` command using their role key.
+
+There are some options for specific purposes which can be selected with this command, as shown below:
+```
+Create working group opening (requires lead access)
+
+USAGE
+  $ joystream-cli working-groups:createOpening
+
+OPTIONS
+  -e, --edit                               If provided along with --input - launches in edit mode allowing to modify the input before sending the exstinsic
+
+  -g, --group=(CuratorProviders|curators)  The working group context in which the command should be executed
+                                           Available values are: CuratorProviders, curators.
+
+  -i, --input=input                        Path to JSON file to use as input (if not specified - the input can be provided interactively)
+
+  -o, --output=output                      Path to the file where the output JSON should be saved (this output can be then reused as input)
+
+  --dryRun                                 If provided along with --output - skips sending the actual extrinsic(can be used to generate a "draft" which can be provided as input
+                                           later)
+```
+
+Note that although some values are stated as `u128` or other confusing types, you should provide plaintext or numbers, and the CLI will convert them for you. Once this command is run, the prompts to set up the opening are *somewhat* self-explanatory. Feel free to ask, or give it a try with a --dryRun first :)
+
+
+If successfully submitted, you can look at your Opening using the `working-groups:opening <WGOPENINGID> -g curators`, which returns something like:
 
 ```
+urrent Group: curators
+
+______________ Human readable text _______________
+
 {
-    "version": 1,
-    "headline": "Become A Content Curator",
-    "job": {
-      "title": "Seeking Content Curators",
-      "description": "Content Curators will one day be essential for ensuring that the petabytes of media items uploaded to Joystream are formatted correctly and comprehensively monitored and moderated. Our upcoming testnet allows this content monitoring to take place by giving users who are selected for the role administrative access to the Joystream content directory to make changes where necessary.",
+    version: 1,
+    headline: "Curator application",
+    job: {
+        title: "Curators",
+        description: "You can become a curator!"
     },
-    "application": {
-      "sections": [
-        {
-          "title": "About you",
-          "questions": [
-            {
-              "title": "How can we get in touch with you? (Telegram/Keybase/Riot/Email...)",
-              "type": "text",
-            }
-          ]
-        },
-        {
-          "title": "Qualifications And Motivations",
-          "questions": [
-            {
-              "title": "Why do you want to be a content curator?",
-              "type": "text area",
-            }
-          ]
+    application: {
+        sections: null
+    },
+    reward: "10 tJOY per 600 blocks",
+    creator: {
+        membership: {
+            handle: "yourHandle"
         }
-      ]
     },
-    "reward": "1 JOY per block",
-    "creator": {
-      "membership": {
-        "handle": "ben",
-      }
-    },
-    "process": {
-      "details": [
-        "Visit our GitHub repository to find out more about the technical requirements needed to participate in this role.",
-        "This is the first time we have offered the content curator role, so this is an exciting opportunity to find out how it works and gain experience on our testnet.",
-      ]
+    process: {
+        details: [
+
+        ]
     }
-  }
+}
+
+________________ Opening details _________________
+
+WG Opening ID                 1                                   
+Opening ID                    22                                  
+Type                          Worker                              
+Stage                         Complete                            
+Last status change            ~ 10:12:54 AM 12/10/2020 (#1251432)
+Application stake             == 500.000 JOY                      
+Role stake                    == 500.000 JOY                      
+
+_______________ Unstaking periods ________________
+
+Crowded Out Application Stake Unstaking Period Length:                  0 blocks
+Crowded Out Role Stake Unstaking Period Length:                         0 blocks
+Exit Role Application Stake Unstaking Period:                           0 blocks
+Exit Role Stake Unstaking Period:                                       0 blocks
+Fill Opening Failed Applicant Application Stake Unstaking Period:       0 blocks
+Fill Opening Failed Applicant Role Stake Unstaking Period:              0 blocks
+Fill Opening Successful Applicant Application Stake Unstaking Period:   0 blocks
+Review Period Expired Application Stake Unstaking Period Length:        0 blocks
+Review Period Expired Role Stake Unstaking Period Length:               0 blocks
+Terminate Application Stake Unstaking Period:                           0 blocks
+Terminate Role Stake Unstaking Period:                                  0 blocks
+
+________________ Applications (0) ________________        
 ```
-(5) Click `Create opening` and your opening should appear on the admin panel.
 
+### Accepting Applications
 
-## Accepting Applications
-Now that you have succesfully created an opening, the next step is to allow application from testnet participants. To do this, view your listing in the admin panel and click on the `Set stage` button at the bottom of the listing.
+Once enough applications have been submitted, these can now be reviewed to decide who should be hired as a `Curator Provider`.
+The command to be used is the following: `working-groups:startReviewPeriod <WGOPENINGID> -g curators`.
 
-You should already have agreed with the council the number of applications you will accept and the deadline for receiving these.
+You can find the `WGOPENINGID` in the URL in Pioneer or using the CLI command `working-groups:openings -g curators`
 
-Once these requirements have been met, or at your discretion as lead, you can begin processing the applications you have received. Decide on the applicants you will hire, and move on to the next step!
+### Processing Applications
 
-## Processing Applications
+As soon as the opening is in the `In Review` state, you can start hiring!
 
-The first step in the processing of applications is to close the opening to any further applicants. You can do this by viewing your listing in the admin panel and clicking on the `Begin applicant review` button at the bottom of the listing.
-
-You should then gather the `WG IDs` of the applicants you would like to hire (visible in the admin panel).
-
-Unfortunately, the admin panel currently doesn't allow for setting a "reward policy" in the UI. To do this, the Lead needs to use an extrinsic.
-
-1. You must then clone [this repo](https://github.com/Joystream/joystream-api-examples), and follow the build instructions.
-2. After building, the file `lib/tohex.js` will appear.
-3. The instructions in the comments will show you how to add the `WG ID`s as inputs, and copy the `0x...` output.
-4. In the Extrinsics sidebar, select: `contentWorkingGroup -> fillCuratorOpening`
-5. Find the `curator_opening_id` in the admin panel, paste the output from 3. as `successful_curator_application_ids`,  and set a `reward_policy`.
-
-Once submitted, you have completed the hiring!
+Simply run `working-groups:fillOpening <WGOPENINGID> -g curators` where `<WGOPENINGID>` is the same as earlier, and you will be prompted to select the applicants you wish to hire (using a check-box dialog). The usernames of the candidates will be shown so you don't have to worry about numerical IDs for this part.
 
 # Working As Content Curator Lead
 
@@ -140,29 +209,44 @@ If necessary, upon discussing with the council, the `Content Curator Lead` can a
 
 Most of the time however, the responsibilities of the `Content Curator Lead` will be very similar to those of a standard `Content Curator`. You can read about these responsibilities in [this section](../roles/content-curators#content) of the guide for `Content Curators`.
 
+### Curation
+The main task of the `Curators` is curating the content on chain.
 
-## Firing Curators
+The easiest way is to simply "hide" content by using the `curateContent` command. However, the Curator Lead must first enable curation:
+```
+# Create a new group:
+$ joystream-cli content-directory:createCuratorGroup
+
+# Add curator to the group:
+$ joystream-cli content-directory:addCuratorToGroup <GROUPID> <CURATORID>
+
+# Give the group class privileges, (it's most useful to add classes "Channel" and "Video"):
+$ joystream-cli content-directory:addMaintainerToClass <CLASSNAME> <GROUPID>
+
+# Make the group active:
+$ joystream-cli content-directory:setCuratorGroupStatus <GROUPID>
+
+# Overview of the group(s)
+$ joystream-cli content-directory:curatorGroups
+```
+
+By creating more groups, the Lead can choose which `Curators` you want to give maintainer status across the individual classes. The Lead should include themselves access to each class.
+
+### Firing Curators
 Unfortunately, it may sometimes be necessary to fire curators who are not doing their jobs correctly.
 
-This process requries submitting an extrinsic: `contentWorkingGroup -> terminateCuratorRole`. You must include the `curatorId` of the curator you would like to fire alongside a short hex-encoded message explaining why the person was fired.
+Use the command `joystream-cli working-groups:evictWorker <WORKERID> -g curators` and follow the instructions.
 
-There are a number of [online tools](https://www.online-toolz.com/tools/text-hex-convertor.php) which make it easy to encode messages into hex.
-
-## Content Working Group Mint
-
-### Checking The Mint
+### Content Working Group Mint
 To check the details of the current Content Working Group Mint:
 
-(1) Use the following chain state query to determine the current mint ID: `contentWorkingGroup -> mint`.<br>
+(1) Use the following chain state query to determine the current mint ID: `contentDirectoryWorkingGroup -> mint`.<br>
 (2) Check the details of the mint using the following query: `minting -> mints`.
 
-### Replenishing The Mint
-It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a `Set Content Working Group Mint Capacity` proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the council in order to take effect. For this reason it is best to discuss these sorts of proposals with the council before making them.
-
-## Advanced Functions
-If you need help with some of the more advanced operations associated with being the `Content Curator Lead` (e.g. maintaining the versioned store), please simply ask for help in the [Telegram group](https://t.me/JoyStreamOfficial) or get in touch with one of the Jsgenesis team directly.
+#### Replenishing The Mint
+It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a `Set Working Group Mint Capacity` proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the council in order to take effect. For this reason it is best to discuss these sorts of proposals with the council before making them.
 
 ---
 
 # Troubleshooting
-If you had any issues setting up this role, you may find your answer here!
+If you need help with some of the more advanced operations associated with being the `Content Curator Lead` (e.g. maintaining the versioned store), please simply ask for help in the [Telegram group](https://t.me/JoyStreamOfficial) or get in touch with one of the Jsgenesis team directly.
