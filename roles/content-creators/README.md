@@ -27,12 +27,12 @@ Table of Contents
 This page will contain all information on how to act as a `Content Creator`, and how to create a channel, upload videos, and managing your content.
 
 # Instructions
-After the Babylon release, content is no longer managed or consumed with [pioneer](https://testnet.joystream.org). Viewing content is now done in our new consumer app hosted [here](https://play.joystream.org), whereas channel and content management (eg. registration of channels, uploading, editing, curation, etc.), requires usage of the [Joystream-CLI](https://www.npmjs.com/package/@joystream/cli). The CLI can also be built following the instructions [here](/tools/cli/README.md).
+After the Babylon release, content is no longer managed or consumed with [Pioneer](https://testnet.joystream.org). Viewing content is now done in our new consumer app hosted [here](https://play.joystream.org), whereas channel and content management (eg. registration of channels, uploading, editing, curation, etc.) require the [Joystream-CLI](https://www.npmjs.com/package/@joystream/cli). The CLI can also be built following the instructions [here](/tools/cli/README.md).
 
 ## Get Started
 If you want to upload content as a `Content Creator`, you need to become a `Member`. Instructions for this can be found [here](https://github.com/Joystream/helpdesk/#get-started).
 
-Once you are a member, you need to fire up your CLI, import your membership key, and connect it to the chain. To get it setup properly, follow the instruction [here](/tools/cli/README.md).
+Once you are a member, you need to fire up your CLI, import your membership key, and connect it to the chain. To get it set up properly, follow the instructions [here](/tools/cli/README.md).
 
 All commands needed for managing content are under the `joystream-cli media` command. This command will show all available subcommands. `joystream-cli media:subCommand --help` will show how to use them.
 
@@ -51,7 +51,7 @@ $ joystream-cli media:updateChannel
 And follow the instructions.
 
 ### Upload a Video
-Each member can, by default, create 100 videos across their channels. If you "need" more, you can ask the `Curator Lead`.
+Each member can, by default, upload a maximum of 100 videos across their channels. If you "need" more, you can ask the `Curator Lead`.
 To create one:
 ```
 $ joystream-cli media:uploadVideo /path/to/your/videoFile.ext
@@ -68,7 +68,7 @@ And follow the instructions.
 It is very important that you do not upload illegal or copyrighted content on our testnets. Firstly, this will result in a disqualification from payouts. It will also result in the takedown of content, potentially slashing of funds, and the deletion of your channel. Multiple spam uploads which represent a burden to moderate for the `Content Curators` may also be penalized and result in deductions on payouts due for qualifying content uploads on your content creator profile.
 
 ## Advanced
-If you want to create multiple channels, or upload multiple videos in one go, you can pass the information in a json file, and use a script to automate the process.
+If you want to create multiple channels, or upload multiple videos in one go, you can pass the information in a JSON file, and use a script to automate the process.
 
 ### Create Channels
 When you create your first channel:
@@ -126,7 +126,7 @@ The format for the input json:
   }
 }
 ```
-Assume you saved this file as `/path/to/input.json`, and wants to publish to channel 1 (which you own):
+Assuming you saved this file as `/path/to/input.json`, and want to publish to `channel 1` (which you own):
 
 ```
 joystream-cli media:uploadVideo /path/to/your/videoFile.ext -c 1 -i /path/to/input.json --confirm

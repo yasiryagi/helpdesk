@@ -123,7 +123,7 @@ These rules are not clearly defined in all cases, so it's important that curator
 - Theodore Roosevelt
 
 ## Curation
-Curation can mean either censoring, updating or altogether removing content.
+Curation can mean either censoring, updating or altogether removing content. It can also involve putting content in a "featured" state on the platform.
 
 A key part of understanding Curation is to understand the basics of the Content Directory using the [CLI](https://github.com/Joystream/joystream/tree/master/cli). Examples:
 
@@ -142,14 +142,14 @@ $ joystream-cli content-directory:entities <CLASSNAME|CLASSID>
 ```
 
 ### Censoring
-The first step to perform if a video or channel is not in line with the Terms is to censor it.
+The first step to perform if a video or channel is not in line with the testnet Terms of Service is to censor it.
 
-If the Curator has "Maintainer" permsission for a Channel or Video, this is done by the following [CLI](https://github.com/Joystream/joystream/tree/master/cli) command `joystream-cli media:curateContent`. Suppose you want to censor a Video with `entityId` 300:
+If the Curator has "Maintainer" permission for a Channel or Video, this is done by the following [CLI](https://github.com/Joystream/joystream/tree/master/cli) command `joystream-cli media:curateContent`. Suppose you want to censor a Video with `entityId` 300:
 ```
 $ joystream-cli media:curateContent --className 10 --status Censored --id 300
 ```
 
-If it's a small infraction, you can try to reach out to the creator, and have them make the modification required. If the issue gets resolved, you can reverse the censoring by:
+If it's a minor issue, you can try to reach out to the creator, and have them make the modification required. If the issue gets resolved, you can reverse the censoring by:
 
 ```
 $ joystream-cli media:curateContent --className 10 --status Accepted --id 300
