@@ -60,7 +60,7 @@ This can be done very easily through the creation of another proposal by the `Co
 
 ### Processing Applications
 
-The final step in hiring the `Curator Lead` is to create a `Fill Working Group Leader Opening`. The requirements here simply to choose the relevant opening from the drop-down menu and choose betwen the candidate applications (in JSON format) shown on the page.
+The final step in hiring the `Curator Lead` is to create a `Fill Working Group Leader Opening`. The requirements here are simply to choose the relevant opening from the drop-down menu and choose betwen the candidate applications (in JSON format) shown on the page.
 
 Once a candidate has been chosen and the final proposal has passed, the focus is now on the new `Curator Lead`...
 
@@ -188,7 +188,7 @@ ________________ Applications (0) ________________
 
 ### Accepting Applications
 
-Once enough applications have been submitted, these can now be reviewed to decide who should be hired as a `Curator Provider`.
+Once enough applications have been submitted, these can now be reviewed to decide who should be hired as a `Content Curator`.
 The command to be used is the following: `working-groups:startReviewPeriod <WGOPENINGID> -g curators`.
 
 You can find the `WGOPENINGID` in the URL in Pioneer or using the CLI command `working-groups:openings -g curators`
@@ -244,7 +244,7 @@ To check the details of the current Content Working Group Mint:
 (2) Check the details of the mint using the following query: `minting -> mints`.
 
 #### Replenishing The Mint
-It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a `Set Working Group Mint Capacity` proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the council in order to take effect. For this reason it is best to discuss these sorts of proposals with the council before making them.
+It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a `Set Working Group Mint Capacity` proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the Council in order to take effect. For this reason it is best to discuss these sorts of proposals with the Council before making them.
 
 ---
 
