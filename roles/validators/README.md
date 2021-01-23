@@ -687,7 +687,7 @@ As seen above, the difference from staking 5% more or less than the ideal, is qu
 - By staking 5% less, the "loss" is only 18% (6,959tJOY vs 8,556tJOY)
 - By staking 5% more, the "loss" is instead 47% (4,563tJOY vs 8,556tJOY)
 
-More information on the staking, rewards and slashing mechanics can be found on the Web3 Foundation's research papers [here](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html).
+More information on the staking, rewards and slashing mechanics can be found on the Web3 Foundation's research papers [here](https://research.web3.foundation/en/latest/polkadot/economics/1-token-economics.html).
 
 # Slashing
 Just as the Validators are rewarded for producing, propagating and securing the network, they are punished for misbehaving. The slashing mechanics are more complex, so it will not be covered as detailed as the [rewards](#rewards).
