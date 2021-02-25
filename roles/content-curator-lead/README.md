@@ -249,4 +249,4 @@ It will sometimes be necessary to replenish the Content Working Group Mint. This
 ---
 
 # Troubleshooting
-If you need help with some of the more advanced operations associated with being the `Content Curator Lead` (e.g. maintaining the versioned store), please simply ask for help in the [Telegram group](https://t.me/JoyStreamOfficial) or get in touch with one of the Jsgenesis team directly.
+If you need help with some of the more advanced operations associated with being the `Content Curator Lead` (e.g. maintaining the versioned store), please simply ask for help in the [Discord group](https://discord.gg/DE9UN3YpRP) or get in touch with one of the Jsgenesis team directly.

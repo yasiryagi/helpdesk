@@ -71,7 +71,7 @@ The tasks associated with these Community Bounties will ideally try to solve som
 
 Over time, the tasks should allow people with different skillsets and interests to participate. Most challenges will be easier if you have technical or creative skills, but in other situations it will simply require putting in some time and effort:
 - Coding
-  - Telegram bots
+  - Discord/Telegram bots
   - Scripts
   - Enhance the UI
   - Improve infrastructure

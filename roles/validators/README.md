@@ -235,7 +235,7 @@ You should now have two sets of keys, namely:
 - the "stash" key that will stake your funds
 - the "controller" key that you will use to operate your validator
 
-5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, ask in the telegram chat, and you shall receive :)
+5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, ask in the [Discord chat](https://discord.gg/DE9UN3YpRP), and you shall receive :)
 
 6. Send at least 1 token to your "controller".
 
@@ -488,7 +488,7 @@ You should now have two sets of keys, namely:
 - the "stash" key that will stake your funds
 - the "controller" key that you will use to operate your validator
 
-5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, ask in the telegram chat, and you shall receive :)
+5. If you already have tokens, transfer the bulk to your "stash" account. If you don't yet have any tokens, ask in the [Discord chat](https://discord.gg/DE9UN3YpRP), and you shall receive :)
 
 6. Send at least 1 token to your "controller".
 

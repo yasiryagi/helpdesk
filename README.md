@@ -51,6 +51,7 @@ Table of Contents
   - [Generate Keys](#generate-keys)
   - [Get a Membership](#get-a-membership)
 - [Incentives](#incentives)
+- [Founding Member Program](#founding-member-program)
 - [Active Roles](#active-roles)
   - [Validators](#validators)
     - [Description](#description)
@@ -78,14 +79,14 @@ Table of Contents
 This repo contains detailed guides to support users interacting with our current [testnet](https://testnet.joystream.org/).
 
 ## Contribute
-If you find something that is wrong or missing in these guides, please make an [Issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve!
+If you find something that is wrong or missing in these guides, please make an [issue](https://github.com/Joystream/helpdesk/issues), or better yet, fork the repo and make a [PR](https://github.com/Joystream/helpdesk/pulls) to help us improve!
 
 ## Get Paid to Participate
 
 The Joystream Testnet Token (tJOY) is backed by a USD-denominated fiat pool, and currently redeemable via Bitcoin Cash. More information about how this works can be found below. If you want to find the current exchange rate, when the fiat pool is getting topped up, and track the status of pending exchanges, go [here](https://www.joystream.org/testnet).
 
 To exchange your tokens, follow these steps.
-1. In order for us to know what address to pay, you must link your Joystream address to your Bitcoin Cash address. The easiest way to do this is in the `My Memo` tab under the `My Keys` sidebar. Ensure that the correct account is selected (the one containing the tokens you wish to redeem) in the top right-hand corner of the Pioneer interface.
+1. In order for us to know what address to pay, you must link your Joystream address to your Bitcoin Cash address. The easiest way to do this is in the `My Memo` tab under the `My Keys` sidebar. Ensure that the correct account is selected (the one containing the tokens you wish to redeem) in the drop-down located in the top right-hand corner of the Pioneer interface.
 
 ```
 # Only the part in the line below goes in the memo:
@@ -104,12 +105,12 @@ Once the tokens have been received to this address, the time, date, your address
 To get started and participate on the Joystream testnets, you must first generate `Key(s)`, and sign up for a `Membership`. This requires no software or downloads, and can be done in your browser on Pioneer [here](https://testnet.joystream.org).
 
 ## Generate Keys
-Click `My Keys` in the sidebar, and then click the `Add account` button. The choices you make from here depend to a certain degree on how you intend to participate. If you just want to play around, you can just follow the recommended defaults. If you have a specific role in mind, you might want to follow the links to the instructions in the header, or access them via [Active Roles](#active-roles).
+Click `My Keys` in the sidebar, and then click the `Add account` button. The choices you make from here depend to a certain degree on how you intend to participate. If you just want to play around, you can follow the recommended defaults. If you have a specific role in mind, you may instead want to follow the links to the instructions in the [header of this document](#guides-to-get-started-on-our-current-testnet-in-links-below), or compare them in more detail [here](#active-roles).
 
-In any event, the `Keys` will be stored in your browser storage for your convenience, but it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file. The `Mnemonic` can also be used to restore your `Keys`, but keeping the .json file somewhere safe is recommended, as it is the preferred format used to import your key in to certain tools, such as the [CLI](/tools/cli).
+In any event, the `Keys` will be automatically stored in your browser storage for your convenience, but even so it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file associated with the key. The `Mnemonic` can also be used to restore your `Keys`, but keeping the .json file somewhere safe is recommended, as it is the preferred format used to import your key in to certain tools, such as the [CLI](/tools/cli).
 
 ## Get a Membership
-To become a `Member` of the platform, you will need some tokens. The `faucet` is closed at the moment due to abuse from Sybil attackers. Currently, the only way to get tokens is to join our [Telegram group](https://t.me/JoyStreamOfficial) and ask for some there. This group is also a great place to get support and discuss Joystream with other community members.
+To become a `Member` of the platform, you will need some tokens. The `faucet` is closed at the moment due to abuse from Sybil attackers though we are working on a frictional faucet which we hope to release soon. Currently, the only way to get tokens is to join our [Discord server](https://discord.gg/DE9UN3YpRP) and ask for some there. This group is also a great place to get support and discuss Joystream with other community members.
 
 **Note:**
 There are currently no fees associated with most transactions, but some parts of Pioneer will still require you to maintain a balance of at least 1 tJOY to allow you to perform certain actions.
@@ -132,6 +133,14 @@ When Joystream goes live on mainnet, there will be no one there to pay these (Bi
 -   Other ways that the tJOY supply and the fiat pool can increase include through community bounties, competitions, spending proposals, etc.
 
 An overview on how the new incentive scheme works, and how it interacts with the new proposal model that gives far more power and responsibility to users via the council, can be found [here](/tokenomics).
+
+# Founding Member Program
+
+Alongside the testnet incentive structure associated with earning tJOY (redeemable for BCH) from participation, we are also rewarding high-quality project contributors with allocations of mainnet JOY tokens through our new Founding Member Program.
+
+We have launched this program to ensure that a sufficiently large, effective and motivated community of users is ready to occupy all the different roles required to run, evolve and grow the platform on mainnet.
+
+You can read more about the program in the [dedicated GitHub repo](https://github.com/joystream/founding-members), or on our [website](https://www.joystream.org/founding-members/).
 
 # Active Roles
 
@@ -260,4 +269,4 @@ The CLI tool is under development, but is already needed for the [Storage Lead](
 
 ## On-Chain Forum
 
-This is the first step in providing users, infrastructure role participants, `Council Members` and future stakeholders a way to communicate and coordinate. Hopefully, this method of interaction will further help develop a strong community around Joystream. Note that you have to be a `member` to post, and only the forum moderator (forum sudo) can create categories.
+This is the first step in providing users, infrastructure role participants, `Council Members` and future stakeholders a way to communicate and coordinate. Hopefully, this method of interaction will further help in developing a strong community around Joystream. Note that you have to be a `member` to post, and only the forum moderator (forum sudo) can create categories.
