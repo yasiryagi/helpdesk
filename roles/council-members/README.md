@@ -246,7 +246,7 @@ Unless you have sufficient tokens to get (re-)elected without any extra voters, 
 Before a new `Announcing` stage begins, a new thread will be made on the on-chain [forum](https://testnet.joystream.org/#/forum). Regardless of whether you are a new to the project, have been following it from a distance, are an active member or an experienced CM, make a post or two explaining why you deserve to be voted in. Some suggestions of what to include are:
 - All
   - A little bit about yourself (no need to dox yourself)
-  - Handles on other platforms, such as GitHub, Telegram, Keybase (again, no need to dox yourself)
+  - Handles on other platforms, such as GitHub, Telegram, Discord, Keybase (again, no need to dox yourself)
   - Why you want to be a CM
   - Interest in the project
   - Interest in the space (blockchain, media, both)
@@ -272,7 +272,7 @@ Before a new `Announcing` stage begins, a new thread will be made on the on-chai
     - Roles you had
     - Contributions (bounties, KPIs, etc.)
     - Proposals made
-    - Participation on discussions on telegram, forum, github, proposals
+    - Participation on discussions on telegram, discord, forum, github, proposals
   - CM "record"
     - Election history
     - Proposal voting history
@@ -292,7 +292,7 @@ The CMs will be evaluated based on how well they perform these tasks. They are f
 
 The list below contains a high level overview of their responsibilities:
 - Elect a [Council Secretary](#council-secretary), to be the "official" point of contact between the Council and Jsgenesis
-- Pay attention to the forum and Telegram group, to assist and answer questions when appropriate
+- Pay attention to the forum and [Discord group](https://discord.gg/DE9UN3YpRP), to assist and answer questions when appropriate
 - Pay attention to incoming Proposals, discuss and make informed votes
 - Monitor the performance on the [Working Groups](#managing-the-working-groups) and, if necessary, take action
 - Monitor, communicate with, fund and report on the [forum sudo](/README.md#on-chain-forum)
@@ -491,7 +491,7 @@ The workflow will depend both on the [Reward Distribution](#reward-distribution)
 #### Steps
 
 ##### 1. New Bounty Made
-Although the Council decides on the rules and reward distribution, they listen for input from others in the platform forum and on Telegram. Within a reasonable time (as stated in the Council KPI), the rules for the Bounty are presented in Text Proposal, voted through, and published on GitHub.
+Although the Council decides on the rules and reward distribution, they listen for input from others in the platform forum and on Discord. Within a reasonable time (as stated in the Council KPI), the rules for the Bounty are presented in Text Proposal, voted through, and published on GitHub.
 
 ##### 1.5. Work is Assigned
 Depending on the rules chosen, there may be a step to assign the work to one or more Assignees.
@@ -501,7 +501,7 @@ This will require some back and forth through multiple Proposals, and should thu
 ##### 2. Work Happens
 For a "Closed" format, it can mean a series of Text and Funding Proposals, waiting, and ongoing communication between the Assigned/Assignees, and the CMs.
 
-For a "Free for All", it can be mean reviewing submitted Deliverables as they come in, or waiting for the deadline. How a Submitter should make the CMs aware of their Deliverable once ready (GitHub, Telegram, forum or Proposal) must be defined in the rules. A "First Come First Served" format will be similar to the "Free for All". Once one or more Deliverables are approved, the Submitter(s) should be considered as Assigned in Step 3.
+For a "Free for All", it can be mean reviewing submitted Deliverables as they come in, or waiting for the deadline. How a Submitter should make the CMs aware of their Deliverable once ready (GitHub, Discord, forum or Proposal) must be defined in the rules. A "First Come First Served" format will be similar to the "Free for All". Once one or more Deliverables are approved, the Submitter(s) should be considered as Assigned in Step 3.
 
 ##### 3. The Work is Submitted to the Council
 Regardless of format, once an Assignee, or otherwise qualified Submitter, considers their work done, they create a (final) Spending Proposal, which in total rewards them the agreed amount, links to all relevant discussion and rules, and a link to their work.
