@@ -470,7 +470,7 @@ Note that the target audience for this is not the participants themselves, but r
 - Council Member (CM) - a (current) member of the Joystream Council
 - Council Secretary - a CM elected by the other CMs to be the "main" representative of the Council towards Jsgenesis
 - Bounty Manager (BM) - a Community Member (can be a CM as well) elected by the Council to be responsible for managing all Bounties for some period of time, or "just" this specific Bounty. Defaults to the Council Secretary if no other person is chosen
-- Forum - the on chain [Joystream](https://testnet.joystream.org/#/forum/) forum
+- Forum - the on-chain [Joystream](https://testnet.joystream.org/#/forum/) forum
 
 #### Councils Role
 As seen in below, the amount of work managing a Bounty will in some cases be substantial. Previously, it was intended that the Council should perform this work as group, but it has become clear that hiring a single (or small group) to act as Bounty Manager(s), either for all open Bounties, or individual ones, is needed for the system to work.
@@ -485,7 +485,7 @@ In the end, the Council will still be responsible for the work the BM does, so t
 Jsgenesis creates a Bounty Issue in the Community Repo with a new Bounty. This Bounty Issue is meant for the Council first and foremost, and ideally, the person(s) attempting, or successfully manages, to solve the Bounty should not even *need* to read this.
 
 In this Bounty Issue, Jsgenesis will explain/outline:
-- what the bounties is for
+- what the bounty is for
 - success events and their associated rewards
 - some restrictions/requirements
 - how the final submission should be made before it is graded by Jsgenesis
