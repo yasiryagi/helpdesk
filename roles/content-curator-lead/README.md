@@ -208,7 +208,7 @@ Other than the hiring aspect of the role as `Content Curator Lead`, the lead sho
 
 If necessary, upon discussing with the council, the `Content Curator Lead` can also decide to fire curators who are not performing their jobs adequately.
 
-Most of the time however, the responsibilities of the `Content Curator Lead` will be very similar to those of a standard `Content Curator`. You can read about these responsibilities in [this section](/roles/content-curators#content) of the guide for `Content Curators`, but note that the Lead also has the ultimate responsibility for the work performed by their team and associated reporting requirements.
+Most of the time however, the responsibilities of the `Content Curator Lead` will be very similar to those of a standard `Content Curator`. You can read about these responsibilities in [this section](/roles/content-curators#curation-policy) of the guide for `Content Curators`, but note that the Lead also has the ultimate responsibility for the work performed by their team and associated reporting requirements.
 
 ### Curation
 The main task of the `Curators` is curating the content on chain.
