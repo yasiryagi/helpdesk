@@ -28,6 +28,7 @@ Table of Contents
     - [Firing Curators](#firing-curators)
     - [Content Working Group Mint](#content-working-group-mint)
       - [Replenishing The Mint](#replenishing-the-mint)
+    - [Increasing (or Decreasing) Limits for Members](#increasing-or-decreasing-limits-for-members)
 - [Troubleshooting](#troubleshooting)
 <!-- TOC END -->
 
@@ -207,7 +208,7 @@ Other than the hiring aspect of the role as `Content Curator Lead`, the lead sho
 
 If necessary, upon discussing with the council, the `Content Curator Lead` can also decide to fire curators who are not performing their jobs adequately.
 
-Most of the time however, the responsibilities of the `Content Curator Lead` will be very similar to those of a standard `Content Curator`. You can read about these responsibilities in [this section](../roles/content-curators#content) of the guide for `Content Curators`.
+Most of the time however, the responsibilities of the `Content Curator Lead` will be very similar to those of a standard `Content Curator`. You can read about these responsibilities in [this section](/roles/content-curators#content) of the guide for `Content Curators`, but will in the end be held responsible for the reporting and work performed by their team.
 
 ### Curation
 The main task of the `Curators` is curating the content on chain.
@@ -245,6 +246,22 @@ To check the details of the current Content Working Group Mint:
 
 #### Replenishing The Mint
 It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a `Set Working Group Mint Capacity` proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the Council in order to take effect. For this reason it is best to discuss these sorts of proposals with the Council before making them.
+
+### Increasing (or Decreasing) Limits for Members
+By default, a member can "only" create a total of 100 video (class 10) entities, and 25 channel (class 1) entities. This is not visible before a member creates their first (presumably channel) entity, but their "status" can then be tracked in the [Chain State](https://testnet.joystream.org/#/chainstate), through `contentDirectory.entityCreationVouchers`. Set `EntityController` to `Member` and fill in `MemberId`.
+
+If a member creates quality content, their limit can be raised. If a member continuously makes uploads that requires curation, their limit can be set to 0.
+
+This is done using [Extrinsics](https://testnet.joystream.org/#/extrinsics), with `contentDirectory.updateEntityCreationVoucher`.
+Example:
+If member `1` is to be given the right to make 200 vidoes:
+`class_id`: 10
+`controller`: Member
+`Member`: 1
+`maximum_entities_count`: 200
+
+Only the Leads "role" key can perform this transaction, and any other origin will be rejected.
+
 
 ---
 

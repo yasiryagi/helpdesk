@@ -22,9 +22,14 @@ Table of Contents
       - [Track the status of your application](#track-the-status-of-your-application-1)
   - [Hiring complete](#hiring-complete)
 - [Working as a curator](#working-as-a-curator)
-  - [Rules](#rules)
-    - [Content](#content)
-    - [Channels](#channels)
+  - [Curation Policy](#curation-policy)
+    - [Regular Checks](#regular-checks)
+      - [Example](#example)
+    - [Council Reports](#council-reports)
+      - [Example](#example-1)
+    - [Policy](#policy)
+      - [Videos](#videos)
+      - [Channels](#channels)
     - [Discretion](#discretion)
   - [Curation](#curation)
     - [Censoring](#censoring)
@@ -96,27 +101,189 @@ If your application was successful, you will now be able to curate content on th
 
 The main job for curators is to regularly check the content directory and channels, and checking that rules and guidelines are being followed.
 
-## Rules
-The basic rules are stated below.
+## Curation Policy
+Due to the large influx of users, and incentives for video curation, we need a formal workflow for the `Content Curators`, and a curation policy.
 
-### Content
+Note that parts of this policy only applies to this testnet.
 
-Curators are responsible for ensuring the following:
-1. Content is not in violation of the platform [ToS](https://testnet.joystream.org/#/pages/tos), meaning
-  - illicit content should be `censored`, and marked for a takedown
-  - content must be given assigned the appropriate license and, if required, attribution
-  - explicit content must be marked as such
-2. Content is resolving and playing as intended
-  - content that is not playable should be marked as unlisted, and a heads up should be given to the channel owner in the forum
-3. Metadata is correct
-  - incorrect metadata should be corrected, unless the mistake requires more severe consequences (see 1.)
+The exact intervals and delegation procedure should be agreed upon by the Council and the Lead, and the Lead and the Curators respectively.
 
-### Channels
-Channels should be treated the same way as content, and the following basic rules should be enforced:
-- Channels that consistently violate the rules for [content](#content), should be censored.
+The "Regular Checks", in lack of a better term, are critical. Although discussions can be had around the exact format, something very close to this is required.
+
+The "Council Reports" are a lot more comprehensive and challenging. Unlike the "Regular Checks", these are primarily meant for the Council, and the format and scope here may be reduced somewhat.
+
+### Regular Checks
+At some defined (minimum) frequency, the Curator reviews all new videos and channels uploaded.
+
+To avoid everyone stepping on each others toes, the Lead should consider splitting the workload between the team, eg. by day/time and if required, also by language, category, etc.
+
+Each review of this kind should be reported in a designated thread on the Forum, for both the Council and Channel Owners on the Forum.
+
+#### Example
+- *Date:* `<dd.mm.yy>`
+- *Snapshot:* `block #number`
+- *Last report:* `<link.to.previous.post>`
+- *Author:* `<ID/Handle/WorkerId>`
+- *Overall Statistics:*
+  - *Total entities:* `2974`
+  - *Total channel entities:* `149`
+  - *Total video entities:* `535`
+- *Since Last Report:*
+  - *Total new entities:* `12`
+  - *Total new channel entities:* `2`
+  - *Total new video entities:* `2`
+
+##### New Entities Since Last Report
+|Entity ID |Class/ID      |Owner [memberId/Handle]|Title                          |Curator Status                                  |Reference        |
+|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:---------------:|
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Censored - requires attribution -`1`            |`#<number>`      |
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Approved                                        |NA               |
+|`<ID>`    |Channel/1     |`<ID>/<handle>`        |`<title>`                      |Hidden - Missing Avatar                         |`#<number>`      |
+|`<ID>`    |Channel/1     |`<ID>/<handle>`        |`<title>`                      |Approved                                        |NA               |
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Poor thumbnail, improve by `#<number>` - `2`    |NA               |
+
+1. All licenses of this kind requires attribution.
+2. The thumbnail is misleading, and in low resolution.
+
+---
+
+In the table, the "Entity Id" refers to the video or channel `entityId`, where the former also includes the other (4-5) entities created when a video is uploaded.
+The "owner" and "title" is also included, to make it easier for the uploader to find out what the status of their channel is.
+
+The "curator status" should indicate either `Approved`, or what action, if any, was taken. In that case, a reference to the block height where the transaction change occurred.
+
+The Curator team should also monitor this thread, as it would be where the channel owner reports back to them if they made change(s) requested, disagrees with some action taken, or simply has any questions.
+
+### Council Reports
+At some agreed interval, assumed to be at least once for each Council Term, _all_ videos and channels must be "checked in" on. There could be many reasons why  to verify that they are still acceptable. In some cases, some details may have been overlooked in previous "check ups", but there is also the chance that a Channel owner or a (rogue) Curator makes a change that requires an action.
+
+To avoid having to go through thousands of entities every time, the Lead, or some other curator could perhaps deploy a script that checks for certain types of transaction that makes changes to the content directory.
+
+To avoid everyone stepping on each others toes, the Lead should consider splitting the workload between the team, eg. by language, category, etc.
+
+The results from this check in should be reported to the Council and the Channel Owners on the Forum.
+
+#### Example
+
+##### Introduction
+- *Report ID:* `<ID>`
+- *Date:* `<dd.mm.yy>`
+- *Snapshot:* `block #number`
+- *Last report:* `<link.to.previous.post>`
+- *Author:* `<ID/Handle/WorkerId>`
+- *Overall Statistics:*
+  - *Total entities:* `2974`
+  - *Total channel entities:* `149`
+  - *Total video entities:* `535`
+- *Changes Since Last Report:*
+  - *Total new entities:* `200`
+  - *Total new channel entities:* `10`
+  - *Total new video entities:* `38`
+
+##### Changes Made Since Last Report - Owner
+|Entity ID |Class/ID      |Owner [memberId/Handle]|Title                          |Changed                 |Consequence            |Reference (block/post)    |
+|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------:|----------------------:|:------------------------:|
+|`<ID>`    |Channel/1     |`<ID>/<handle>`        |`<title>`                      |Updated banner          |NA                     |`#<number>`               |
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Changed thumbnail       |No longer censored     |`#<number>/<postId>`      |
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Added thumbnail         |No longer hidden       |`#<number>/<postId>`      |
+
+##### Changes Made Since Last Report - Curators
+|Entity ID |Class/ID      |Owner [memberId/Handle]|Title                          |Curator Status                                  |Reference (block/post)    |
+|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:------------------------:|
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Attribution added, no longer censored           |`#<number>/<postId>`      |
+|`<ID>`    |Channel/1     |`<ID>/<handle>`        |`<title>`                      |Hidden - Missing Avatar                         |`#<number>/<postId>`      |
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Censored - requires attribution                 |`#<number>/<postId>`      |
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Changed thumbnail, no longer censored           |`#<number>/<postId>`      |
+|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Added thumbnail, no longer hidden               |`#<number>/<postId>`      |
+
+##### All Non-Playable Videos
+|Entity ID |Channel ID    |Owner [memberId/Handle]|Title                          |Reason                                          |Reference (block/post)    |
+|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:------------------------:|
+|`1834`    |`1829`        |`<ID>/<handle>`        |`<title>`                      |Text Property too long at creation              |`#2175058/NA`             |
+|`1839`    |`1829`        |`<ID>/<handle>`        |`<title>`                      |Video deleted by owner                          |`#2175164/NA`             |
+|`<ID>`    |`<title>`     |`<ID>/<handle>`        |`<title>`                      |Censored, Copyright                             |`#<number>/<postId>`      |
+|`<ID>`    |`<ID>`        |`<ID>/<handle>`        |`<title>`                      |Set as not public by owner                      |`#<number>/<postId>`      |
+|`<ID>`    |`<ID>`        |`<ID>/<handle>`        |`<title>`                      |Censored - requires attribution                 |`#<number>/<postId>`      |
+|`2402`    |`2396`        |`<ID>/<handle>`        |`<title>`                      |Added to "empty" channels                       |`#2215006/NA`             |
+
+##### All Non-Visible Channels
+|Entity ID |Videos        |Owner [memberId/Handle]|Title                          |Reason                                          |Reference (block/post)    |
+|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:------------------------:|
+|`1840`    |`2402`        |`<ID>/<handle>`        |`<title>`                      |Rejected - channel name not unique              |`#2214830/NA`             |
+|`<ID>`    |`<ID,ID,ID>`  |`<ID>/<handle>`        |`<title>`                      |Hidden - Missing Avatar                         |`#<number>/<postId>`      |
+|`<ID>`    |-             |`<ID>/<handle>`        |`<title>`                      |No videos in channels                           |`#<number>/<postId>`      |
+|`2396`    |`<ID,ID,ID>`  |`<ID>/<handle>`        |`<title>`                      |Rejected - Text property (title?) too long      |`#2175058/NA`             |
+
+##### Notes
+Some notes from the curator.
+
+---
+
+This may look like a _lot_ of work, but all the data needed can be found using a script that checks all blocks from `n` to `m`, and looks at all events with `event.section == contentDirectory`, and returns these blocks (or the full data). A basic version of this will be made available in the [community repo](https://github.com/Joystream/community-repo).
+
+- The CLI can be used to find all video, `content-directory:entities <10|Video>` and channel, `content-directory:entities <1|Channel>` entities in the content directory.
+- The data in "Changes Made Since Last Report - Owner" can be found by said script.
+- The data in "Changes Made Since Last Report - Curators" can be found using the same script, in addition to copy/pasting data the from the [Regular Checks](#regular-checks) - which _should_ be correct if all actions were reported there..
+- "All Non-Playable Videos" and "All Non-Visible Channels" should be extractable from older reports, and data already filled in.
+
+### Policy
+
+`warning`
+Means posting a note in the forum, as part of the [Regular Checks](#regular-checks), that something has to be corrected within a certain time period
+
+`hidden`
+Means updating the status (`isPublic`) for a video from `true` to `false`. Note that this can be changed back to `true` by the owner!
+
+`censor`
+Means updating the status (`isCensored`) for a video from `true` to `false`. Unlike `hidden`, this can not be changed back by anyone but another curator.
+
+#### Videos
+**When to (only) issue a `warning`:**
+- Missing artwork
+  - If the thumbnail is missing, or just really poor, the video can be `hidden`, or issued a `warning` (Council decides u.n.o.).
+- Suspicious license
+  - If the Curator suspects, but is not able to ensure, a video is incorrectly licensed, a `warning` can be issued, leaving the channel owner some defined deadline to respond.
+
+**When to make a video `hidden`:**
+- The content must be as "advertised"
+  - If the title, description, category and thumbnail implies a baking video, the video should not be a documentary about Bitcoin
+- Missing artwork
+  - If thumbnail is missing, or just really poor, the the video can be hidden, or given a warning (Council decides u.n.o.)
+- Poor quality
+  - If the video quality is "unreasonably" low
+
+**When to `censor` a video:**
+- License requires attribution
+  - If the selected license requires attribution, but non is given the, or attribution is incorrect
+- Suspected copyright violation
+  - If it's not clear that the video is in violation, but this is strongly suspected by the Curator
+- Status change by owner without resolving issue
+  - If a video is `hidden` by a curator, and the channel owner makes it public again without correcting the issue described by the curators
+- Terms of Service violation
+  - If the video is in violation of other parts of the [ToS](https://testnet.joystream.org/#/pages/tos)
+
+#### Channels
+**When to (only) issue a `warning`:**
+- Missing artwork
+  - If the avatar or cover is missing, or just really poor, the channel can be `hidden`, or issued a `warning` (Council decides u.n.o.).
+
+**When to make a channel `hidden`:**
+- No videos
+  - If there are no videos, that is *not* `censored` or `hidden`, or simply no uploads to a channel that wasn't made very recently
+- Multiple infractions
+  - If multiple videos are currently `censored` or `hidden`, and the owner has made no efforts to fix this
+- Recurring infractions
+  - The channel owner continuously uploads new videos requiring curation
+
+**When to `censor` a channel:**
+- Multiple or recurring *serious* infractions
+  - If multiple videos are currently `censored` and the owner has made no efforts to fix this
+
+In this case, `limiting` the channel owners right to create new channels/videos may be required.
+As only the [Lead](/roles/content-curator-lead/README.md#increasing-or-decreasing-limits-for-members) can do this.
+
 
 ### Discretion
-
 These rules are not clearly defined in all cases, so it's important that curators are able to use discretion. In many cases, it's preferable to try and get in touch with the channel owner first, rather than immediately pull the trigger. If in doubt, contact the `Lead` first. In other cases, immediate action may be required.
 
 "Speak softly, and carry a big stick"
