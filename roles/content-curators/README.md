@@ -104,7 +104,7 @@ The main job for curators is to regularly check the content directory and channe
 ## Curation Policy
 Due to the large influx of users, and incentives for video curation, we need a formal workflow for the `Content Curators`, and a curation policy.
 
-Note that parts of this policy only applies to this testnet.
+Note that parts of this policy only applies to this testnet (Babylon).
 
 The exact intervals and delegation procedure should be agreed upon by the Council and the Lead, and the Lead and the Curators respectively.
 
@@ -242,7 +242,7 @@ Means updating the status (`isCensored`) for a video from `true` to `false`. Unl
 - Missing artwork
   - If the thumbnail is missing, or just really poor, the video can be `hidden`, or issued a `warning` (Council decides u.n.o.).
 - Suspicious license
-  - If the Curator suspects, but is not able to ensure, a video is incorrectly licensed, a `warning` can be issued, leaving the channel owner some defined deadline to respond.
+  - If the Curator suspects, but is not able to verify that a video is incorrectly licensed, a `warning` can be issued, leaving the channel owner some defined deadline to respond and provide more information or evidence.
 
 **When to make a video `hidden`:**
 - The content must be as "advertised"
@@ -254,7 +254,7 @@ Means updating the status (`isCensored`) for a video from `true` to `false`. Unl
 
 **When to `censor` a video:**
 - License requires attribution
-  - If the selected license requires attribution, but non is given the, or attribution is incorrect
+  - If the selected license requires attribution, but none is given the, or attribution is incorrect
 - Suspected copyright violation
   - If it's not clear that the video is in violation, but this is strongly suspected by the Curator
 - Status change by owner without resolving issue
@@ -265,7 +265,7 @@ Means updating the status (`isCensored`) for a video from `true` to `false`. Unl
 #### Channels
 **When to (only) issue a `warning`:**
 - Missing artwork
-  - If the avatar or cover is missing, or just really poor, the channel can be `hidden`, or issued a `warning` (Council decides u.n.o.).
+  - If the avatar or cover is missing, or just really poor, the channel can be `hidden`, or issued a `warning` (Council decides).
 
 **When to make a channel `hidden`:**
 - No videos

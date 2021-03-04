@@ -208,7 +208,7 @@ Other than the hiring aspect of the role as `Content Curator Lead`, the lead sho
 
 If necessary, upon discussing with the council, the `Content Curator Lead` can also decide to fire curators who are not performing their jobs adequately.
 
-Most of the time however, the responsibilities of the `Content Curator Lead` will be very similar to those of a standard `Content Curator`. You can read about these responsibilities in [this section](/roles/content-curators#content) of the guide for `Content Curators`, but will in the end be held responsible for the reporting and work performed by their team.
+Most of the time however, the responsibilities of the `Content Curator Lead` will be very similar to those of a standard `Content Curator`. You can read about these responsibilities in [this section](/roles/content-curators#content) of the guide for `Content Curators`, but note that the Lead also has the ultimate responsibility for the work performed by their team and associated reporting requirements.
 
 ### Curation
 The main task of the `Curators` is curating the content on chain.
@@ -260,7 +260,7 @@ If member `1` is to be given the right to make 200 vidoes:
 `Member`: 1
 `maximum_entities_count`: 200
 
-Only the Leads "role" key can perform this transaction, and any other origin will be rejected.
+Only the Lead's "role" key can perform this transaction, and any other origin will be rejected.
 
 
 ---
