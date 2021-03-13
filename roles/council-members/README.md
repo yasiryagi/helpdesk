@@ -73,10 +73,10 @@ Consequently, Jsgenesis will take an active role in the elections. More informat
 A newly elected Council will automatically be assigned a recurring reward that automatically pays out tokens every `n`th block. The magnitude of this reward may change over time, but can be monitored on the [Tokenomics page](https://testnet.joystream.org/#/tokenomics).
 
 ### KPI Rewards
-The KPI rewards will depend on the Council's performance. Jsgenesis will provide a new set of [Council KPIs](#council-kpis) for each new term, with some variability in terms of scope and maximum rewards. They will also share part of their rewards with their Voters, as seen in the example below, where:
+The KPI rewards will depend on the Council's performance. Jsgenesis will provide a new set of [Council KPIs](#council-kpis) for each new term, with some variability in terms of scope and maximum rewards. They will also share part of their rewards with their Voters, as seen in the example below, in which there are:
 
-- `CM_n` is Council Member `n`
-- `V_i` is Voter `i`
+- two voters
+- six council member candidates
 
 **Note:**
 Jsgenesis votes will not "count" when calculating these rewards.
@@ -84,29 +84,48 @@ Jsgenesis votes will not "count" when calculating these rewards.
 #### Example
 Suppose the recurring reward for each CM this term was USD 60.
 The Council election had the following "own" `stakes` and `votes`, excluding Jsgenesis votes:
-- CM_1: 5k
-  - own: 2k
-  - V_1: 3k
-- CM_2: 5k
-  - own: 5k
-- CM_3: 11k
-  - own: 4k
-  - V_1: 2.5k
-  - V_2: 4.5k
-CM_4,5,6=CM_X
-- CM_X: 3k
-  - own: 3k
-Total: 30k
 
-At the end of their term, the KPI payout was USD 300. Half of that is split equally (150/6=25), half is divided by stake.
+|              	| Candidate 1 	| Candidate 2 	| Candidate 3  	| Candidate 4 	| Candidate 5 	| Candidate 6 	|
+|:------------:	|:-----------:	|:-----------:	|:------------:	|:-----------:	|:-----------:	|:-----------:	|
+| Candidate 1  	|           2k 	|             	|              	|             	|             	|             	|
+| Candidate 2  	|             	|           5k 	|              	|             	|             	|             	|
+| Candidate 3  	|             	|             	|            4k 	|             	|             	|             	|
+| Candidate 4  	|             	|             	|              	|           3k 	|             	|             	|
+| Candidate 5  	|             	|             	|              	|             	|           3k 	|             	|
+| Candidate 6  	|             	|             	|              	|             	|             	|           3k 	|
+| Voter 1      	|           3k 	|             	|          2.5k 	|             	|             	|             	|
+| Voter 2      	|             	|             	|          4.5k 	|             	|             	|             	|
+| **Total:**       	|           **5k** 	|           **5k** 	|           **11k** 	|           **3k** 	|           **3k** 	|           **3k** 	|
 
-- CM_1: `(60+25+(150*2/30))=95`
-- CM_2: `(60+25+(150*5/30))=110`
-- CM_3: `(60+25+(150*4/30))=105`
-- CM_X: `(60+25+(150*3/30))=100`
-- V_1:  `150*(3+2.5)/30=27.5`
-- V_1:  `150*4.5/30=22.5`
--> USD 660
+Total amount staked: 30k tJOY
+
+At the end of their term, the KPI payout was USD 300. Half of that is split equally (150/6=25), half is divided by stake. So, the distribution of rewards was as follows: 
+
+|              	| Recurring reward, USD	| 50% of KPI, USD 	| KPI weighted formula 	| KPI weighted, USD 	| Total reward, USD|
+|--------------	|:---------:	|:----------:	|:--------------------:	|:-------------------:	|:------------:	|
+| Candidate 1  	|        60 	|         25 	| =(300/2)/30*2        	|                  10 	|           95 	|
+| Candidate 2  	|        60 	|         25 	| =(300/2)/30)*5       	|                  25 	|          110 	|
+| Candidate 3  	|        60 	|         25 	| =(300/2)/30)*4       	|                  20 	|          105 	|
+| Candidate 4  	|        60 	|         25 	| =(300/2)/30)*3       	|                  15 	|          100 	|
+| Candidate 5  	|        60 	|         25 	| =(300/2)/30)*3       	|                  15 	|          100 	|
+| Candidate 6  	|        60 	|         25 	| =(300/2)/30*3        	|                  15 	|          100 	|
+| Voter 1      	|         0 	|          0 	| =(300/2)/30*(2.5+3)  	|                27.5 	|         27.5 	|
+| Voter 2      	|         0 	|          0 	| =(300/2)/30*4.5      	|                22.5 	|         22.5 	|
+| **Total:**       	|       **360** 	|        **150** 	|                      	|                 **150** 	|          **660** 	|
+
+So, the rewards totalled 660 USD. Finally, if we take the exchange rate from the [Tokenomics page](https://testnet.joystream.org/#/tokenomics), we can calculate the payouts in tJOY. Assume the rate was 42.09 USD for 1M tJOY, or 1 USD for 23758.61 tJOY. Then, the rewards structure was as follows: 
+
+|              	| Total USD 	|   Total tJOY  	|
+|--------------	|:---------:	|:-------------:	|
+| Candidate 1  	|        95 	|  2,257,068.19 	|
+| Candidate 2  	|       110 	|  2,613,447.37 	|
+| Candidate 3  	|       105 	|  2,494,654.31 	|
+| Candidate 4  	|       100 	|  2,375,861.25 	|
+| Candidate 5  	|       100 	|  2,375,861.25 	|
+| Candidate 6  	|       100 	|  2,375,861.25 	|
+| Voter 1      	|      27.5 	|    653,361.84 	|
+| Voter 2      	|      22.5 	|    534,568.78 	|
+| Total:       	|       660 	| 15,680,684.25 	|
 
 ---
 
