@@ -46,12 +46,12 @@ Table of Contents
       - [Cost Control](#cost-control)
       - [General Performance](#general-performance)
       - [Council Actions](#council-actions)
-    - [Managing Community Bounties](#managing-community-bounties)
-      - [Reward Distribution](#reward-distribution)
-      - [Format](#format)
-      - [Workflow](#workflow)
-      - [Steps](#steps)
+    - [Managing Bounties](#managing-bounties) 
+      - [Definitions of terms](#definitions-of-terms)
       - [Councils Role](#councils-role)
+      - [General steps](#general-steps)
+      - [Bounty formats](#bounty-formats)
+      - [Workflow](#workflow)
 - [Governance](#governance)
   - [Proposals](#proposals)
   - [Voting on Proposals](#voting-on-proposals)
@@ -148,7 +148,7 @@ The full details of the election cycle will also expand upon these parameters.
 The election cycle consists four stages. Currently, the length of each are:
 1. [Announcing](#announcing) - lasts 28,800 blocks (~48h)
 2. [Voting](#voting) - lasts 14,400 blocks (~24h)
-3. [Revealing](#reveal) - lasts 14,400 blocks (~24h)
+3. [Revealing](#revealing) - lasts 14,400 blocks (~24h)
 4. [Term](#term) - lasts 144,400 blocks (~10days)
 
 ### Announcing
@@ -454,7 +454,7 @@ The main way of dealing with Leads is through the [proposal system](#proposals).
 - decrease the stake of a Lead (in case the exchange rate has made the stake bigger than "justifiable")
 
 ### Managing Bounties
-The concept and some examples of (Community) Bounties (previously referred to as "Community KPIs") are explained [here](/community-bounties), so this section will rather focus on the Council's role in these as Project Managers. What this entails exactly will vary depending on the type, complexity, and stage of the active Bounties themselves, but "good" Project Management will be rewarded through the [Council KPIs](#council-kpis).
+The concept and some examples of (Community) Bounties (previously referred to as "Community KPIs") are explained [here](https://github.com/Joystream/community-repo/tree/master/bounties-overview/README.md), so this section will rather focus on the Council's role in these as Project Managers. What this entails exactly will vary depending on the type, complexity, and stage of the active Bounties themselves, but "good" Project Management will be rewarded through the [Council KPIs](#council-kpis).
 
 A Community Bounty will in general be graded based on deliverables, with conditions similar to what is described [here](#council-deliverables).
 
@@ -652,7 +652,7 @@ In addition to the varieties outlined, other formats can be defined and chosen i
 A "new" Council must honor any agreements and rules set by their predecessors, for as long as the rules say so.
 
 #### Workflow
-The workflow will depend both on the [Reward Distribution](#reward-distribution) and the [Format](#format), and must be established beforehand.
+The workflow will depend both on the Reward Distribution and the [Format](#format), and must be established beforehand.
 
 - For "Closed" formats, an Applier must present a bid why they should be assigned the given Bounty. This should include detailed terms, such as time needed, costs, etc. If approved, this makes the terms valid.
 - In some cases, it may make sense to break a Bounty up in to milestones, with partial rewards at each stage. This builds trust as the Council can see the progress being made, and the Assignee can get chunks of the reward along the way.
