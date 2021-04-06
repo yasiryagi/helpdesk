@@ -6,8 +6,6 @@ Table of Contents
       - [Text](#text)
       - [Spending](#spending)
       - [Set Max Validator Count](#set-max-validator-count)
-      - [Set Content Curator Lead](#set-content-curator-lead)
-      - [Set Content Working Group Mint Capacity](#set-content-working-group-mint-capacity)
       - [Set Election Parameters](#set-election-parameters)
       - [Runtime Upgrade](#runtime-upgrade)
       - [Add Working Group Leader Opening](#add-working-group-leader-opening)
@@ -21,6 +19,8 @@ Table of Contents
   - [Deprecated Proposals](#deprecated-proposals)
       - [Evict Storage Provider](#evict-storage-provider)
       - [Set Storage Role Parameters](#set-storage-role-parameters)
+      - [Set Content Curator Lead](#set-content-curator-lead)
+      - [Set Content Working Group Mint Capacity](#set-content-working-group-mint-capacity)
   - [Mechanics](#mechanics)
       - [Voting Kinds](#voting-kinds)
       - [States and Outcomes](#states-and-outcomes)
@@ -54,6 +54,54 @@ In general, this proposal will include an amount, and a beneficiary. This can be
 #### Set Max Validator Count
 The Validators are rewarded for producing blocks, and will share the rewards that are minted each era (target 3600 blocks). This reward is calculated based on the total issuance, and the amount of tJOY staked by the pool of Validators relative to the total issuance. A higher number means smaller rewards for each individual Validator, but set to low and the network grinds to a halt.
 
+#### Set Election Parameters
+As the Council will see a significantly increased workload, there may be need to change the some of the Election cycle parameters. This proposal allows the Council to vote on expanding the Council seats, increase or decrease the length of the Voting process, or the minimum stakes required to participate. If this proposal is voted through, a change of these parameters will not be activated until the next election cycle, to avoid the current Council making changes benefitting themselves.
+
+#### Runtime Upgrade
+As before, upgrading the runtime can be proposed by any member, and voted in by the Council. This is a critical proposal that, if a "bad" runtime is proposed and voted in, can kill the blockchain.
+
+#### Add Working Group Leader Opening
+
+This proposal allows an opening for a Working Group Lead to be created. When editing the "Opening schema", you must ensure your changes still returns a valid JSON schema. This determines what information is collected from candidates. Note that the reward specified is not binding, and is only determined when the [Fill Working Group Leader Opening](#fill-working-group-leader-opening) proposal is made (and approved).
+
+#### Begin Review Working Group Leader Application
+
+This simply sets the opening for Working Group Lead to the "in review" status, meaning no further applications can be accepted. It is required to move on to the `Fill Working Group Leader Opening` proposal.
+
+#### Fill Working Group Leader Opening
+
+If the Opening is in the "Review Stage", use this proposal to propose a specific Lead. The Council can now vote, and, if approved, this will be the new Lead.
+
+Note that there can be multiple proposals of this type at the same time, so multiple candidates can be considered simultaneously. However, once one is approved, the others will fail.
+
+#### Set Working Group Mint Capacity
+
+This effectively acts as a budget for a Working Group; the Lead and Worker payments are taken from this mint. The Working Group Lead will be unable to spend more than the limit established by this proposal. This proposal also does not add tokens to any residual funds remaining in the mint, it sets the mints capacity to exactly what is entered in the proposal once it is approved.
+
+#### Slash Working Group Leader Stake
+
+To punish or warn the Lead of a Working Group for not performing their job correctly, they can be slashed partially or fully without firing them using this proposal type.
+
+#### Decrease Working Group Leader Stake
+
+This proposal type allows decreasing the stake of a Working Group Lead.
+
+#### Set Working Group Leader Reward
+
+This proposal allows for changing the reward for the Lead of a working group if it appears too little or too much. Note that only the amount can be changed, not the frequency.
+
+#### Terminate Working Group Leader Role
+
+If for whatever reason the Working Group Lead needs to be removed from their post (and potentially slashed), this is the proposal type which needs to be voted on.
+
+## Deprecated Proposals
+
+#### Evict Storage Provider
+This allows users to make a proposal to "fire" a Storage Provider that is not performing the role satisfactorily.
+
+#### Set Storage Role Parameters
+The Storage Provider will be paid by minting new tokens, effectively increasing the tJOY supply. The incentive will be to keep both the number of slots, and the size of the individual rewards, as low as possible while maintaining a sufficient service.
+
 #### Set Content Curator Lead
 The Content Curator Lead is the first implementation of the concept of Group Leads on the platform. These will in general be responsible for hiring, firing, rewarding and training the group they are leading. They are hired by the council, and will be given a budget to perform their role satisfactory, without inflating the supply more than necessary.
 
@@ -69,54 +117,6 @@ If the proposal is voted through, the change will occur immediately.
 To avoid the Lead paying themselves too much, or frivolous spending in general, the Lead can only spend as much as the Mint Capacity. Effectively, a budget for their spending. Once the Mint runs out, recurring rewards for the Content Curators (including themselves) will be frozen.
 
 If the Lead, or anyone else, wants to replenish or drain the existing Mint, a proposal can be made. If voted in, the new Capacity proposed will be set immediately.
-
-#### Set Election Parameters
-As the Council will see a significantly increased workload, there may be need to change the some of the Election cycle parameters. This proposal allows the Council to vote on expanding the Council seats, increase or decrease the length of the Voting process, or the minimum stakes required to participate. If this proposal is voted through, a change of these parameters will not be activated until the next election cycle, to avoid the current Council making changes benefitting themselves.
-
-#### Runtime Upgrade
-As before, upgrading the runtime can be proposed by any member, and voted in by the Council. This is a critical proposal that, if a "bad" runtime is proposed and voted in, can kill the blockchain.
-
-#### Add Working Group Leader Opening
-
-This proposal allows an opening for a Storage Lead to be created. When editing the "Opening schema", you must ensure your changes still returns a valid JSON schema. This determines what information is collected from candidates. Note that the reward specified is not binding, and is only determined when the [Fill Working Group Leader Opening](#fill-working-group-leader-opening) proposal is made (and approved).
-
-#### Begin Review Working Group Leader Application
-
-This simply sets the opening for Storage Lead to the "in review" status, meaning no further applications can be accepted. It is required to move on to the `Fill Working Group Leader Opening` proposal.
-
-#### Fill Working Group Leader Opening
-
-If the Opening is in the "Review Stage", use this proposal to propose a specific Lead. The Council can now vote, and, if approved, this will be the new Lead.
-
-Note that there can be multiple proposals of this type at the same time, so multiple candidates can be considered simultaneously. However, once one is approved, the others will fail.
-
-#### Set Working Group Mint Capacity
-
-This effectively acts as a budget for the working group (currently referring to the Storage Working Group). The Storage Lead will be unable to spend more than the limit established by this proposal.
-
-#### Slash Working Group Leader Stake
-
-To punish or warn the Storage Lead for not performing their job correctly, they can be slashed partially or fully without firing them using this proposal type.
-
-#### Decrease Working Group Leader Stake
-
-This proposal type allows decreasing the stake of the Storage Lead.
-
-#### Set Working Group Leader Reward
-
-This proposal allows for changing the reward for the Storage Lead if it appears too little or too much. Note that only the amount can be changed, not the frequency.
-
-#### Terminate Working Group Leader Role
-
-If for whatever reason the Storage Lead needs to be removed from their post (and potentially slashed), this is the proposal type which needs to be voted on.
-
-## Deprecated Proposals
-
-#### Evict Storage Provider
-This allows users to make a proposal to "fire" a Storage Provider that is not performing the role satisfactorily.
-
-#### Set Storage Role Parameters
-The Storage Provider will be paid by minting new tokens, effectively increasing the tJOY supply. The incentive will be to keep both the number of slots, and the size of the individual rewards, as low as possible while maintaining a sufficient service.
 
 ## Mechanics
 
