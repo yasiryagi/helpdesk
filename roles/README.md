@@ -16,8 +16,8 @@ This page contains links to the guides for the currently active roles, and a lis
 - [Validators](validators)
 - [Council Members](council-members)
 - [Storage Providers](storage-providers)
-- [Content Creator](content-creator)
-- [Content Curator](content-curator)
+- [Content Creators](content-creators)
+- [Content Curators](content-curators)
 - [Builders and Bug Reporters](builders)
 
 # Future Roles
