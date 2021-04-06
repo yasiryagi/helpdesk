@@ -9,7 +9,8 @@ Table of Contents
 <!-- TOC END -->
 
 ## Current Testnet
-[Alexandria](/testnets/alexandria)
+[Antioch](/testnets/antioch)
 
 ## Past Testnets
 [Constantinople](/testnets/constantinople)
+[Alexandria](/testnets/alexandria)
