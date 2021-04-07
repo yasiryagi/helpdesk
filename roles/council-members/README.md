@@ -82,7 +82,7 @@ The new structure can be summarized as follows:
 - The Council will be presented with a longer list of KPIs, each with designated amounts assigned to each of them
 - At the end of the term, the CM must write a forum post explaining exactly what they achieved, with links and references where applicable
 - A CM that "solves" a KPI singlehandedly will earn the entire reward for themselves. If they co-operate, or if two people solve it independently (equally well, and at the same time), they will split the reward between them [1](#1)
-- The reward will be paid it in tJOY, and Jsgenesis will publish this in the KPI page on our blog
+- The reward will be paid in tJOY, and Jsgenesis will publish this in the KPI page on our blog
 
 More details about the KPI rewards can be found [here](#kpi-rewards).
 
