@@ -22,7 +22,7 @@ A lot of the state and "history" was migrated from Babylon:
 - The `Total Exported Issuance` was: 440615492 tJOY
 - "Lost" tokens: 1827352 tJOY ~ 0.41%
 
-If some of your tokens were "lost" in the transfer, you can "claim" these until the end September 2020.
+If some of your tokens were "lost" in the transfer, you can "claim" these until the end of April 2021.
 
 ## Changes
 After the upgrade, all roles, eg. `Validators`, `Storage Providers` and `Curators` were fired from their position. The Council that was elected prior to the chain split was set by `sudo` for the first term.
