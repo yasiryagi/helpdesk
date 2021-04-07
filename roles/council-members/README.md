@@ -65,7 +65,7 @@ Table of Contents
 
 
 # Antioch
-Starting with the launch of `Antioch`, there will be some changes to the Council Member incentives scheme. There are two reasons for this:
+Starting with the launch of the `Antioch` network, some changes to the Council Member incentive scheme will take effect. There are two main reasons for this:
 1. To account for the (still present) "tragedy of the commons" problem
 2. Making it easier for newcomers to join, learn and earn through the very important Council Member role.
 
