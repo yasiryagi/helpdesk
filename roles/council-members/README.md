@@ -66,18 +66,18 @@ Table of Contents
 
 # Antioch
 Starting with the launch of the `Antioch` network, some changes to the Council Member incentive scheme will take effect. There are two main reasons for this:
-1. To account for the (still present) "tragedy of the commons" problem
-2. Making it easier for newcomers to join, learn and earn through the very important Council Member role.
+1. To account for the (unfortunately still present) "tragedy of the commons" problem
+2. In order to make easier for newcomers to join, learn and earn through participation in the very important Council Member role.
 
-With the last "iteration" of the KPI rewards scheme, we saw a marked improvement in tackling sometimes difficult KPIs. Despite the individual KPI rewards for the Council Members being independent of their actual contribution, the CMs solved the problem by creating spending proposals for the reward of that KPI - effectively granting themselves reward. Although this is a relatively good solution, it still creates a strong incentive for a "whale" to vote themselves in each term and earning a good buck with no further effort.
+With the last "iteration" of the KPI rewards scheme, we saw a marked improvement in the achievement of sometimes difficult KPIs. Despite the individual KPI rewards for the Council Members being independent of their actual contribution, the CMs solved the problem by creating spending proposals for the reward of that KPI - effectively granting themselves rewards. Although this is a relatively good solution, it still creates a strong incentive for a "whale" to vote themselves in each term and earn the associated rewards with no further effort.
 
-This last point overlaps neatly with the second point - namely the difficulty for new users to earn their slot on the Council. Jsgenesis countered this by voting themselves, and making sure at least some newcomers got their change, but we are now targeting a more "aggressive" rotation. At launch, we will be targeting something a healthy mix of newcomers and more seasoned Council Members.
+This last point overlaps neatly with the second point - namely the difficulty for new users to earn their slot on the Council. Jsgenesis countered this by voting themselves, and making sure at least some newcomers got their opportunity, but we are now targeting a more "aggressive" rotation. At launch, we will be targeting a healthy mix of newcomers and more seasoned Council Members.
 
 ## New Structure
-The new structure can be summarized to:
+The new structure can be summarized as follows:
 - More members on each Council, and shorter terms
 - The "Announcing" stage will start almost immediately after a new Council is elected, meaning you will be able to announce your candidacy for most of the term (except during "Voting" and "Revealing")
-- In addition to announcing your candidacy by making the transaction, you should (still) write a blog post about yourself - as Jsgenesis will vote
+- In addition to announcing your candidacy by making the transaction, you should also make sure to write a forum post about yourself - as Jsgenesis will vote for those that explain why they would make a good Council Member.
 - The "recurring rewards" will be quite low, and almost all of the rewards will be associated with KPIs, and general voting participation
 - The Council will be presented with a longer list of KPIs, each with designated amounts assigned to each of them
 - At the end of the term, the CM must write a forum post explaining exactly what they achieved, with links and references where applicable
@@ -104,7 +104,7 @@ The KPI rewards will depend on the Council's performance. Jsgenesis will provide
 
 Each individual KPI will be have a reward assigned to it, which can be achieved if the task is fully completed, and graded as such by Jsgenesis. If the task is considered 20% completed, the reward will be set to 20% of this (unless something else is specified in the KPI).
 
-Unlike previous versions of the KPI reward scheme, these will not be shared (equally) by all CMs, and no rewards will fall to the Voters. The reward can be awarded to a single CM, or divided by a group of CMs. This means the Council is incentivized to co-operate, and distribute tasks between them based on whatever metric they choose.
+Unlike previous versions of the KPI reward scheme, these will not be shared (equally) by all CMs, and no rewards will be distributed to the Voters. The reward can be awarded to a single CM, or divided by a group of CMs. This means the Council is incentivized to co-operate, and distribute tasks between them based on whatever metric they choose.
 
 If they are able to agree on a distribution up front, this should be posted in a new thread on the forum, which the individual CMs will (at the end of the term) use to outline what they did during the term. This information will then be public, and used for three different purposes:
 
@@ -112,7 +112,7 @@ If they are able to agree on a distribution up front, this should be posted in a
 2. Distributing [Founding Member](https://github.com/Joystream/founding-members) points
 3. For Jsgenesis to vote on future Council elections
 
-We will focus on the first point.
+Below we will expand further on that first point.
 
 #### Grading of KPI Rewards
 In general, Jsgenesis will only use what is included in the forum post, and results/deliveries when grading KPIs. This means that any agreement made between two CMs in other channels will not be considered in case of disputes.

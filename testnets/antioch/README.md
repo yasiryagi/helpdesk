@@ -1,9 +1,9 @@
 # Launch of Antioch
 
-Alexandria was launched as a new chain on the 7th of April 2021, after the chain split became the "end" of [Alexandria](/testnets/alexandria).
+Antioch was launched as a new chain on the 7th of April 2021, after a chain split bug resulted in the "fall" of [Babylon](/testnets/babylon).
 
 ## Migration
-A lot of the state and "history" was migrated from Constantinople:
+A lot of the state and "history" was migrated from Babylon:
 - All memberships (as of block #2718912)
 - Most balances`*`:
   - all those associated with a membership `root` or `controller`
