@@ -28,6 +28,25 @@ If you have [NPM](https://www.npmjs.com/get-npm) installed:
 ```
 $ npm install -g @joystream/cli
 ```
+Depending on your `npm` source, this might return some errors:
+```
+...
+sh: 1: cannot create index.browser.js: Permission denied
+...
+```
+This can be resolved in by:
+```
+$ nano ~/.npmrc
+# Append the line below
+prefix = ${HOME}/.npm-packages
+# save and exit
+. ~/.npmrc
+```
+And try again.
+If this doesn't work, you don't want to try another `npm` source, you're the only one using this computer, you still shouldn't do it, but:
+```
+$ npm install -g @joystream/cli --unsafe-perm
+```
 
 ### Build Yourself
 
