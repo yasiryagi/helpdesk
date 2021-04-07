@@ -5,7 +5,7 @@ Antioch was launched as a new chain on the 7th of April 2021, after a chain spli
 ## Migration
 A lot of the state and "history" was migrated from Babylon:
 - All memberships (as of block #2718912)
-- Most balances`*`:
+- Most balances`*` (as of block #2528244):
   - all those associated with a membership `root` or `controller`
   - all tokens staked for [Council Members](/roles/council-members) and their voters, but as "free" balance
   - all tokens staked for (as "free" balance), and the balance of the "role" key of, active [Content Curators](/roles/content-curators) and [Storage Providers](/roles/storage-provider)

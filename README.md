@@ -166,8 +166,8 @@ Active `Validators` are rewarded in tJOY every new `era` (600 blocks). The size 
 - The ratio of tokens at stake for the `Validator` set compared to the total token issuance on the network
   - By summing up the stake of the individual `Validators` and their `Nominators`, you get the total amount at stake.
   - Divide by the tJOY issuance and you get the ratio.
-  - The ideal number (for the `Validators`) is 40%.
-  - If this number is higher or lower, than 40%, the rewards "drop off"
+  - The ideal number (for the `Validators`) is 30%.
+  - If this number is higher or lower, than 30%, the rewards "drop off"
 
 The rewards for the last `era` will show up as an event, and can be seen in the [explorer](https://testnet.joystream.org/#/explorer), if you keep a window open. Fairly precise estimates can be found on the [Tokenomics page](https://testnet.joystream.org/#/tokenomics) in Pioneer, or (in most cases) by looking at the "last reward" in [here](https://testnet.joystream.org/#/staking/targets).
 If you want to exchange your tokens, you need to unbond them first. Check the guide for instructions on how to do this.
