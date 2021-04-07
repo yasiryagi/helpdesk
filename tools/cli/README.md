@@ -5,6 +5,7 @@ Table of Content
   - [Install](#install)
     - [Install with NPM](#install-with-npm)
     - [Build Yourself](#build-yourself)
+    - [Update](#update)
     - [Both](#both)
   - [Getting Started](#getting-started)
 <!-- TOC END -->
@@ -27,6 +28,29 @@ If you have [NPM](https://www.npmjs.com/get-npm) installed:
 ```
 $ npm install -g @joystream/cli
 ```
+Depending on your `npm` source, this might return some errors.
+
+This can be resolved in by:
+
+1. Try without -g:
+```
+$ npm install @joystream/cli
+```
+2. Configure npm:
+```
+$ nano ~/.npmrc
+# Append the line below
+prefix = ${HOME}/.npm-packages
+# save and exit
+```
+And then (again without -g):
+```
+npm install @joystream/cli
+```
+3. If none of the above works, you are in a rush, you don't want to try another `npm` source, you're the only one using this computer - you still shouldn't do it, but:
+```
+$ npm install -g @joystream/cli --unsafe-perm
+```
 
 ### Build Yourself
 
@@ -36,7 +60,32 @@ To get the CLI up and running, on a Mac or Linux based system, you need `yarn`. 
 $ cd ~/
 $ git clone https://github.com/Joystream/joystream.git
 $ cd joystream
-$ yarn install
+$ ./setup.sh
+# this requires you to start a new session. if you are using a vps:
+$ exit
+$ ssh user@ipOrURL
+# on your local machine, just close the terminal and open a new one
+$ yarn build:packages
+$ cd cli
+$ yarn link
+```
+
+### Update
+```
+$ cd joystream
+$ cd cli
+$ yarn unlink
+$ cd bin
+$ yarn unlink
+$ cd ~/joystream
+$ rm -rf node modules
+$ yarn cache clean
+$ ./setup.sh
+# this requires you to start a new session. if you are using a vps:
+$ exit
+$ ssh user@ipOrURL
+# on your local machine, just close the terminal and open a new one
+$ yarn build:packages
 $ cd cli
 $ yarn link
 ```
@@ -52,7 +101,7 @@ Which should return the output below:
 Command Line Interface for Joystream community and governance activities
 
 VERSION
-  @joystream/cli/0.3.0 linux-x64 node-v12.18.
+  @joystream/cli/0.4.0 linux-x64 node-v12.18.2
 
 USAGE
   $ joystream-cli [COMMAND]

@@ -95,18 +95,20 @@ Open the terminal (Applications->Utilities):
 
 ```
 $ cd ~/
-$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz
-$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joy-testnet-4.json
+$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joy-testnet-5.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
 # Assuming it gets saved in your ~/Downloads folder:
-$ mv ~/Downloads/joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz ~/
+$ mv ~/Downloads/joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz ~/
 ---
-$ tar -vxf joystream-node-3.3.0-fdb75f5ec-x86_64-macos.tar.gz
-$ ./joystream-node --chain joy-testnet-4.json --pruning archive --validator
+$ tar -vxf joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz
+$ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
 ```
-- If you want your node to have a non-random identifier, add the flag `--name <nodename>`
-- If you want to get a more verbose log output, add the flag `<nodename> --log runtime`
+- If you want your node to have a non-random identifier, add the flag:
+  - `--name <nodename>`
+- If you want to get a more verbose log output, add the flag:
+  - `--log runtime,txpool,transaction-pool,trace=sync`
 
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -163,17 +165,19 @@ Open the terminal:
 ```
 $ cd ~/
 # 64 bit debian based Linux
-$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joystream-node-3.3.0-fdb75f5ec-x86_64-linux-gnu.tar.gz
-$ tar -vxf joystream-node-3.3.0-fdb75f5ec-x86_64-linux-gnu.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joystream-node-5.1.0-9d9e77751-x86_64-linux-gnu.tar.gz
+$ tar -vxf joystream-node-5.1.0-9d9e77751-x86_64-linux-gnu.tar.gz
 # armv7 (eg. raspberry pi)
-$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joystream-node-3.3.1-arm-v7.tar.gz
-$ tar -vxf joystream-node-3.3.1-arm-v7.tar.gz
+$ wget TBD
+$ tar -vxf TBD
 # For both
-$ wget https://github.com/Joystream/joystream/releases/download/v7.5.0/joy-testnet-4.json
-$ $ ./joystream-node --chain joy-testnet-4.json --pruning archive --validator
+$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joy-testnet-5.json
+$ $ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
 ```
-- If you want your node to have a non-random identifier, add the flag `--name <nodename>`
-- If you want to get a more verbose log output, add the flag `<nodename> --log runtime`
+- If you want your node to have a non-random identifier, add the flag:
+  - `--name <nodename>`
+- If you want to get a more verbose log output, add the flag:
+  - `--log runtime,txpool,transaction-pool,trace=sync`
 
 Your node should now start syncing the blockchain. The output should look like this:
 ```
@@ -243,7 +247,7 @@ You should now have two sets of keys, namely:
 
 In order to be a `Validator`, you need to stake. Note that you may have to refresh your browser if you're not seeing the options right away.
 
-**IMPORTANT:** Read step 6. carefully. Your node needs to be fully synced, before proceeding to step 7.
+**IMPORTANT:** Your node needs to be fully synced, before proceeding to step 7.
 1. In a terminal window on the machine/VPS your node is running, paste the following:
 ```
 curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9933
@@ -267,7 +271,7 @@ curl: (7) Failed to connect to localhost port 9933: Connection refused
 4. In the third field, enter the amount you want to stake (the maximum amount is the tokens in the account -1).
 5. In the bottom dropdown, select the payment destination. Your selection here depends on your [preferences](#bonding-preferences).
 6. If the transaction goes through, you should now see a `Set Session Key` button next to your "stash" and "controller" keys in this window. Click it, paste in your `0xa0very0long0hex0string` in the field, and confirm.
-7. If the transaction goes through, you should now see a `Validate` button instead. Click it, and set your `reward commission percentage`, a number between 0 and 100. Your input here depends on your preferences. A "high" number means you are less likely to get [Nominators](#nominating).
+7. If the transaction goes through you should now see a `Validate` button instead. IF your node is fully synced click it, and set your `reward commission percentage`, a number between 0 and 100. Your input here depends on your preferences. A "high" number means you are less likely to get [Nominators](#nominating).
 
 Refresh your browser, and select the `Waiting` tab. If your account shows under `intentions`, wait for the next `era`, and you will be moved to the `validators` list (in the `Staking Overview` tab).
 
@@ -302,9 +306,9 @@ $ nano joystream-node.service
 #### Example with user joystream
 
 The example below assumes the following:
-- You want to restart your node every 24h (`86400`s)
 - You have setup a user `joystream` to run the node
 - The path to the `joystream-node` binary is `/home/joystream/joystream-node`
+  - This can be confirmed by typing `pwd` in the directory you downloaded the binary to
 
 ```
 [Unit]
@@ -316,13 +320,14 @@ Type=simple
 User=joystream
 WorkingDirectory=/home/joystream/
 ExecStart=/home/joystream/joystream-node \
-        --chain joy-testnet-4.json \
+        --chain joy-testnet-5.json \
         --pruning archive \
         --validator \
-        --name <nodename>
+        --name <nodename> \
+        --log runtime,txpool,transaction-pool,trace=sync
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=8192
+LimitNOFILE=10000
 
 [Install]
 WantedBy=multi-user.target
@@ -331,9 +336,9 @@ WantedBy=multi-user.target
 #### Example as root
 
 The example below assumes the following:
-- You want to restart your node every 24h (`86400`s)
 - You have setup a user `root` to run the node
 - The path to the `joystream-node` binary is `/root/joystream-node`
+  - This can be confirmed by typing `pwd` in the directory you downloaded the binary to
 
 ```
 [Unit]
@@ -345,13 +350,14 @@ Type=simple
 User=root
 WorkingDirectory=/root/
 ExecStart=/root/joystream-node \
-        --chain joy-testnet-4.json \
+        --chain joy-testnet-5.json \
         --pruning archive \
         --validator \
-        --name <nodename>
+        --name <nodename> \
+        --log runtime,txpool,transaction-pool,trace=sync
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=8192
+LimitNOFILE=10000
 
 [Install]
 WantedBy=multi-user.target
@@ -583,7 +589,7 @@ For Substrate based blockchains, the validator rewards depends on some [dynamic 
 7. Maximum inflation, `I_max` - the max yearly inflation distributed to validators.
   - This number is currently set to `75%`.
 8. Ideal staking ratio, `S_v,ir` - the ideal ratio of effective stake over issuance for maximum validator rewards.
-  - This number is currently set to `25%`.
+  - This number is currently set to `30%`.
 9. Falloff, `F_v` - how quickly the validator rewards drop when the actual staking rate `S_v,ar` exceeds the ideal staking rate `S_v,ir`.
   - This number is currently set to `5%`.
 10. Sessions, `session_l` - each `session` (or `epoch`) should last ~10 minutes / 100 blocks `*`
@@ -624,7 +630,7 @@ R_v,te = I * (I_min + (I_max - I_min) * 2^((S_v,ir − S_v,ar) / F_v)) * era_l /
 The tJOY rewards for the validators can be calculated using this [spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing). The examples below should assist in using it:
 
 #### Example A
-In addition to the fixed parameters above, suppose:
+In addition to the fixed parameters above (except `S_v,ir` = `25%`), suppose:
 ```
 V_a = 20
 I = 100,000,000tJOY

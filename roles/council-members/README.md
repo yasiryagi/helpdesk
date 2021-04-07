@@ -14,11 +14,13 @@ Nonetheless, if you are interested in the Joystream project more generally and/o
 Table of Contents
 ---
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
+- [Antioch](#antioch)
+  - [New Structure](#new-structure)
 - [Why Become a Council Member](#why-become-a-council-member)
   - [Rewards and Incentives](#rewards-and-incentives)
     - [Recurring Rewards](#recurring-rewards)
     - [KPI Rewards](#kpi-rewards)
-      - [Example](#example)
+      - [Grading of KPI Rewards](#grading-of-kpi-rewards)
   - [Get Started](#get-started)
 - [Council Elections](#council-elections)
   - [Parameters](#parameters)
@@ -46,11 +48,15 @@ Table of Contents
       - [Cost Control](#cost-control)
       - [General Performance](#general-performance)
       - [Council Actions](#council-actions)
-    - [Managing Bounties](#managing-bounties) 
-      - [Definitions of terms](#definitions-of-terms)
+    - [Managing Bounties](#managing-bounties)
+      - [Definitions of Terms](#definitions-of-terms)
       - [Councils Role](#councils-role)
-      - [General steps](#general-steps)
-      - [Bounty formats](#bounty-formats)
+      - [General Steps](#general-steps)
+      - [Bounty Formats](#bounty-formats)
+      - [Open Format](#open-format)
+      - [Free for All Format](#free-for-all-format)
+      - [Closed Format](#closed-format)
+      - [Other](#other)
       - [Workflow](#workflow)
 - [Governance](#governance)
   - [Proposals](#proposals)
@@ -58,6 +64,27 @@ Table of Contents
 <!-- TOC END -->
 
 
+# Antioch
+Starting with the launch of the `Antioch` network, some changes to the Council Member incentive scheme will take effect. There are two main reasons for this:
+1. To account for the (unfortunately still present) "tragedy of the commons" problem
+2. In order to make easier for newcomers to join, learn and earn through participation in the very important Council Member role.
+
+With the last "iteration" of the KPI rewards scheme, we saw a marked improvement in the achievement of sometimes difficult KPIs. Despite the individual KPI rewards for the Council Members being independent of their actual contribution, the CMs solved the problem by creating spending proposals for the reward of that KPI - effectively granting themselves rewards. Although this is a relatively good solution, it still creates a strong incentive for a "whale" to vote themselves in each term and earn the associated rewards with no further effort.
+
+This last point overlaps neatly with the second point - namely the difficulty for new users to earn their slot on the Council. Jsgenesis countered this by voting themselves, and making sure at least some newcomers got their opportunity, but we are now targeting a more "aggressive" rotation. At launch, we will be targeting a healthy mix of newcomers and more seasoned Council Members.
+
+## New Structure
+The new structure can be summarized as follows:
+- More members on each Council, and shorter terms
+- The "Announcing" stage will start almost immediately after a new Council is elected, meaning you will be able to announce your candidacy for most of the term (except during "Voting" and "Revealing")
+- In addition to announcing your candidacy by making the transaction, you should also make sure to write a forum post about yourself - as Jsgenesis will vote for those that explain why they would make a good Council Member.
+- The "recurring rewards" will be quite low, and almost all of the rewards will be associated with KPIs, and general voting participation
+- The Council will be presented with a longer list of KPIs, each with designated amounts assigned to each of them
+- At the end of the term, the CM must write a forum post explaining exactly what they achieved, with links and references where applicable
+- A CM that "solves" a KPI singlehandedly will earn the entire reward for themselves. If they co-operate, or if two people solve it independently (equally well, and at the same time), they will split the reward between them [1](#1)
+- The reward will be paid in tJOY, and Jsgenesis will publish this in the KPI page on our blog
+
+More details about the KPI rewards can be found [here](#kpi-rewards).
 
 # Why Become a Council Member
 As the governance system is arguably the most important component of the platform on mainnet, we are relying on testnets to train and build up an experienced and highly competent group of initial community members that can diligently perform the tasks required of them once we reach the mainnet stage.
@@ -65,76 +92,32 @@ As the governance system is arguably the most important component of the platfor
 A "good" Council needs CMs that all have a strong understanding of both the platform's token economics (["tokenomics"](/tokenomics)) and each of the individual Working Groups and the roles each of these play in making the platform function. Additionally, the composition of each Council should ensure that the group has expertise in every domain, and some CMs with low-level technical understanding will likely be required to provide guidance on other aspects of the project (marketing, legal, strategy etc.).
 
 ## Rewards and Incentives
-During the Constantinople testnet, Jsgenesis realized we need to put a lot more effort in to attracting, training and retaining these high-quality people. CMs will now be a generously paid role on the platform, and in the new KPI scheme, also see direct rewards for those Councils doing a good job.
+During the Constantinople testnet, Jsgenesis realized we need to put a lot more effort in to attracting, training and retaining these high-quality people. CMs will on a mainnet exclusively earn recurring rewards, similar to other roles. On our testnets however, where there is little incentives for users to diligently scrutinize each applicant and place votes, we have tried to mimic this through use of [KPIs](#council-kpis).
 
-Consequently, Jsgenesis will take an active role in the elections. More information on how to apply, and increase your chances of getting elected can be found [here](#council-election-cycle).
+Jsgenesis will also take an active role in the elections. More information on how to apply, and increase your chances of getting elected can be found [here](#council-election-cycle).
 
 ### Recurring Rewards
-A newly elected Council will automatically be assigned a recurring reward that automatically pays out tokens every `n`th block. The magnitude of this reward may change over time, but can be monitored on the [Tokenomics page](https://testnet.joystream.org/#/tokenomics).
+A newly elected Council will be assigned a recurring reward that automatically pays out tokens every `n`th block. The magnitude of this reward may change over time, but can be monitored on the [Tokenomics page](https://testnet.joystream.org/#/tokenomics).
 
 ### KPI Rewards
-The KPI rewards will depend on the Council's performance. Jsgenesis will provide a new set of [Council KPIs](#council-kpis) for each new term, with some variability in terms of scope and maximum rewards. They will also share part of their rewards with their Voters, as seen in the example below, in which there are:
+The KPI rewards will depend on the Council's performance. Jsgenesis will provide a new set of [Council KPIs](#council-kpis) for each new term, with some variability in terms of scope and maximum rewards.
 
-- two voters
-- six council member candidates
+Each individual KPI will be have a reward assigned to it, which can be achieved if the task is fully completed, and graded as such by Jsgenesis. If the task is considered 20% completed, the reward will be set to 20% of this (unless something else is specified in the KPI).
 
-**Note:**
-Jsgenesis votes will not "count" when calculating these rewards.
+Unlike previous versions of the KPI reward scheme, these will not be shared (equally) by all CMs, and no rewards will be distributed to the Voters. The reward can be awarded to a single CM, or divided by a group of CMs. This means the Council is incentivized to co-operate, and distribute tasks between them based on whatever metric they choose.
 
-#### Example
-Suppose the recurring reward for each CM this term was USD 60.
-The Council election had the following "own" `stakes` and `votes`, excluding Jsgenesis votes:
+If they are able to agree on a distribution up front, this should be posted in a new thread on the forum, which the individual CMs will (at the end of the term) use to outline what they did during the term. This information will then be public, and used for three different purposes:
 
-|              	| Candidate 1 	| Candidate 2 	| Candidate 3  	| Candidate 4 	| Candidate 5 	| Candidate 6 	|
-|:------------:	|:-----------:	|:-----------:	|:------------:	|:-----------:	|:-----------:	|:-----------:	|
-| Candidate 1  	|           2k 	|             	|              	|             	|             	|             	|
-| Candidate 2  	|             	|           5k 	|              	|             	|             	|             	|
-| Candidate 3  	|             	|             	|            4k 	|             	|             	|             	|
-| Candidate 4  	|             	|             	|              	|           3k 	|             	|             	|
-| Candidate 5  	|             	|             	|              	|             	|           3k 	|             	|
-| Candidate 6  	|             	|             	|              	|             	|             	|           3k 	|
-| Voter 1      	|           3k 	|             	|          2.5k 	|             	|             	|             	|
-| Voter 2      	|             	|             	|          4.5k 	|             	|             	|             	|
-| **Total:**       	|           **5k** 	|           **5k** 	|           **11k** 	|           **3k** 	|           **3k** 	|           **3k** 	|
+1. Grading the KPIs and calculating their individual KPI rewards
+2. Distributing [Founding Member](https://github.com/Joystream/founding-members) points
+3. For Jsgenesis to vote on future Council elections
 
-Total amount staked: 30k tJOY
+Below we will expand further on that first point.
 
-At the end of their term, the KPI payout was USD 300. Half of that is split equally (150/6=25), half is divided by stake. So, the distribution of rewards was as follows: 
+#### Grading of KPI Rewards
+In general, Jsgenesis will only use what is included in the forum post, and results/deliveries when grading KPIs. This means that any agreement made between two CMs in other channels will not be considered in case of disputes.
 
-|              	| Recurring reward, USD	| 50% of KPI, USD 	| KPI weighted formula 	| KPI weighted, USD 	| Total reward, USD|
-|--------------	|:---------:	|:----------:	|:--------------------:	|:-------------------:	|:------------:	|
-| Candidate 1  	|        60 	|         25 	| =(300/2)/30*2        	|                  10 	|           95 	|
-| Candidate 2  	|        60 	|         25 	| =(300/2)/30)*5       	|                  25 	|          110 	|
-| Candidate 3  	|        60 	|         25 	| =(300/2)/30)*4       	|                  20 	|          105 	|
-| Candidate 4  	|        60 	|         25 	| =(300/2)/30)*3       	|                  15 	|          100 	|
-| Candidate 5  	|        60 	|         25 	| =(300/2)/30)*3       	|                  15 	|          100 	|
-| Candidate 6  	|        60 	|         25 	| =(300/2)/30*3        	|                  15 	|          100 	|
-| Voter 1      	|         0 	|          0 	| =(300/2)/30*(2.5+3)  	|                27.5 	|         27.5 	|
-| Voter 2      	|         0 	|          0 	| =(300/2)/30*4.5      	|                22.5 	|         22.5 	|
-| **Total:**       	|       **360** 	|        **150** 	|                      	|                 **150** 	|          **660** 	|
-
-So, the rewards totalled 660 USD. Finally, if we take the exchange rate from the [Tokenomics page](https://testnet.joystream.org/#/tokenomics), we can calculate the payouts in tJOY. Assume the rate was 42.09 USD for 1M tJOY, or 1 USD for 23758.61 tJOY. Then, the rewards structure was as follows: 
-
-|              	| Total USD 	|   Total tJOY  	|
-|--------------	|:---------:	|:-------------:	|
-| Candidate 1  	|        95 	|  2,257,068.19 	|
-| Candidate 2  	|       110 	|  2,613,447.37 	|
-| Candidate 3  	|       105 	|  2,494,654.31 	|
-| Candidate 4  	|       100 	|  2,375,861.25 	|
-| Candidate 5  	|       100 	|  2,375,861.25 	|
-| Candidate 6  	|       100 	|  2,375,861.25 	|
-| Voter 1      	|      27.5 	|    653,361.84 	|
-| Voter 2      	|      22.5 	|    534,568.78 	|
-| Total:       	|       660 	| 15,680,684.25 	|
-
----
-
-Note that the KPI rewards will be based on the exchange rate at the **START** of the Council's term.
-The weekly "Recurring Rewards", will thus act as a constraint on the Council's budget.
-
-If they overspend, their KPI rewards will go down in value. Assuming the exchange rate drops 20%, the KPI reward of USD300 will instead be USD240.
-
-When a KPI is paid out (in tJOY), the corresponding amount will be added to the fiat pool.
+Before the grading deadline, Jsgenesis will not only grade the KPIs for quality, but also decide on who gets what portion of the rewards.
 
 ## Get Started
 Unlike most of the other current and future roles on the Joystream Platform, most of the information and actions required by participants in the governance system is available in our UI - named [Pioneer](https://testnet.joystream.org). For elected CMs, some familiarity with [GitHub](https://github.com/Joystream/community-repo/) is required, and at any time, a subset of the CMs must be able to use git, and basic coding review skills. As the project grows, new skills and more advanced skills may be required.
@@ -165,10 +148,10 @@ The full details of the election cycle will also expand upon these parameters.
 
 ## Council Election Cycle
 The election cycle consists four stages. Currently, the length of each are:
-1. [Announcing](#announcing) - lasts 28,800 blocks (~48h)
+1. [Announcing](#announcing) - lasts 57,600 blocks (~4 days)
 2. [Voting](#voting) - lasts 14,400 blocks (~24h)
 3. [Revealing](#revealing) - lasts 14,400 blocks (~24h)
-4. [Term](#term) - lasts 144,400 blocks (~10days)
+4. [Term](#term) - lasts 14,400 blocks (~24h)
 
 ### Announcing
 During the entire `Announcing` stage, anyone that is a Member and can stake a greater number of tokens than the `Minimum Council Stake`, can apply to become a CM.
@@ -307,8 +290,6 @@ To some extent, the same applies to their rewards. They receive a fixed (in tJOY
 A CM that is slacking off, or for other reasons unable or unwilling to perform their tasks will still receive their rewards for the term, but are unlikely to get re-elected in the near future.
 
 ## Tasks Overview
-The CMs will be evaluated based on how well they perform these tasks. They are free to organize themselves in order to tackle specific tasks, or monitor different parts of the platform. If so, they should disclose it publicly, so that voters can evaluate their performance.
-
 The list below contains a high level overview of their responsibilities:
 - Elect a [Council Secretary](#council-secretary), to be the "official" point of contact between the Council and Jsgenesis
 - Pay attention to the forum and [Discord group](https://discord.gg/DE9UN3YpRP), to assist and answer questions when appropriate
@@ -323,6 +304,8 @@ The list below contains a high level overview of their responsibilities:
 - Monitor the platform's spending and resource allocation
 - Perform and/or delegate the required tasks related to the [Council KPIs](#council-kpis)
 - Perform the required tasks related to the [Community Bounties](#community-bounties)
+
+Although only the Council KPIs will qualify for extra rewards in that particular term, other tasks will be rewarded through Founding Member points and increased probability of re-election.
 
 ## Council KPIs
 For each Council Term, a set of Council KPIs will be released. These will contain tasks that the Council, or individual CMs acting on behalf of the Council, should try to complete. Although the tasks and actions required by the Council will vary, the structure of the Council KPIs are fixed.

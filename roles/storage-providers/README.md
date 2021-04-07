@@ -240,7 +240,12 @@ Note that if you already have a storage-node installed (or running), go [here](#
 ```
 $ git clone https://github.com/Joystream/joystream.git
 $ cd joystream
-$ yarn install
+$ ./setup.sh
+# this requires you to start a new session. if you are using a vps:
+$ exit
+$ ssh user@ipOrURL
+# on your local machine, just close the terminal and open a new one
+$ yarn build:packages
 $ yarn run colossus --help
 ```
 You can set the PATH to avoid the `yarn run` prefix by:
@@ -258,10 +263,27 @@ To update your storage-node from an old network, do the following steps:
 ```
 # If you are running as service (which you should)
 $ systemctl stop storage-node
-$ cd joystream
+$ cd ~/joystream/storage-node/packages/colossus
+$ yarn unlink
+$ cd ~/joystream
 $ git pull origin master
-$ yarn install
+$ rm -rf node modules
+$ yarn cache clean
+$ ./setup.sh
+# this requires you to start a new session. if you are using a vps:
+$ exit
+$ ssh user@ipOrURL
+# on your local machine, just close the terminal and open a new one
+$ yarn build:packages
 $ yarn run colossus --help
+```
+You can set the PATH to avoid the `yarn run` prefix by:
+```
+$ cd ~/joystream/storage-node/packages/colossus
+$ yarn link
+# Test that it's working with:
+$ colossus --help
+# It should now work globally
 ```
 
 If you have been running a storage node previously, and used `.bash_profile` to avoid the `yarn run` prefix, you need to:
@@ -334,14 +356,14 @@ To check your `Storage ID`, you have two (easy) options:
 ```
 # To make sure everything is running smoothly, it would be helpful to run with DEBUG.
 # If you used "yarn link":
-$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
+$ DEBUG=joystream:* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
 
 # If not:
 $ cd ~/joystream
-$ DEBUG=* yarn run colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
+$ DEBUG=joystream:* yarn run colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
 
 # If you set a passphrase for <5YourStorageAddress.json>:
-$ DEBUG=* (yarn run) colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id> --passphrase <your_passphrase>
+$ DEBUG=joystream:* (yarn run) colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id> --passphrase <your_passphrase>
 ```
 
 If you do this, you should see (among other things) something like:

@@ -16,7 +16,6 @@ Table of Contents
     - [Making Contributions](#making-contributions)
   - [Community Bounties](#community-bounties)
     - [Types of Tasks](#types-of-tasks)
-    - [Structure Example](#structure-example)
     - [Workflow](#workflow)
 <!-- TOC END -->
 
