@@ -356,14 +356,14 @@ To check your `Storage ID`, you have two (easy) options:
 ```
 # To make sure everything is running smoothly, it would be helpful to run with DEBUG.
 # If you used "yarn link":
-$ DEBUG=* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
+$ DEBUG=joystream:* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
 
 # If not:
 $ cd ~/joystream
-$ DEBUG=* yarn run colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
+$ DEBUG=joystream:* yarn run colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
 
 # If you set a passphrase for <5YourStorageAddress.json>:
-$ DEBUG=* (yarn run) colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id> --passphrase <your_passphrase>
+$ DEBUG=joystream:* (yarn run) colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id> --passphrase <your_passphrase>
 ```
 
 If you do this, you should see (among other things) something like:
