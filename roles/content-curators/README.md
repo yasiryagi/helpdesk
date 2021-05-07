@@ -66,7 +66,7 @@ You will be able to complete the application process as long as you have generat
 - If you attempt to apply with insufficient stake.
 - If you try to stake more tokens than you can (note the application transaction costs 1 JOY)
 - If you apply for a role with a maximum number of slots, with fixed or no stake requirements, and the maximum application slots have been reached.
-- If you try to apply manually through the `Extrinsics` sidebar, you can fail for a variety of other reasons.
+- If you try to apply manually through the `Extrinsic` sidebar, you can fail for a variety of other reasons.
 
 ### Accepting applications
 
@@ -104,7 +104,7 @@ The main job for curators is to regularly check the content directory and channe
 ## Curation Policy
 Due to the large influx of users, and incentives for video curation, we need a formal workflow for the `Content Curators`, and a curation policy.
 
-Note that parts of this policy only applies to this testnet (Babylon).
+Note that parts of this policy only apply to this testnet (Babylon).
 
 The exact intervals and delegation procedure should be agreed upon by the Council and the Lead, and the Lead and the Curators respectively.
 
@@ -115,7 +115,7 @@ The "Council Reports" are a lot more comprehensive and challenging. Unlike the "
 ### Regular Checks
 At some defined (minimum) frequency, the Curator reviews all new videos and channels uploaded.
 
-To avoid everyone stepping on each others toes, the Lead should consider splitting the workload between the team, eg. by day/time and if required, also by language, category, etc.
+To avoid everyone stepping on each other’s toes, the Lead should consider splitting the workload between the team, e.g., by day/time and if required, also by language, category, etc.
 
 Each review of this kind should be reported in a designated thread on the Forum, for both the Council and Channel Owners on the Forum.
 
@@ -155,11 +155,11 @@ The "curator status" should indicate either `Approved`, or what action, if any, 
 The Curator team should also monitor this thread, as it would be where the channel owner reports back to them if they made change(s) requested, disagrees with some action taken, or simply has any questions.
 
 ### Council Reports
-At some agreed interval, assumed to be at least once for each Council Term, _all_ videos and channels must be "checked in" on. There could be many reasons why  to verify that they are still acceptable. In some cases, some details may have been overlooked in previous "check ups", but there is also the chance that a Channel owner or a (rogue) Curator makes a change that requires an action.
+At some agreed interval, assumed to be at least once for each Council Term, _all_ videos and channels must be "checked in" on. There could be many reasons why  to verify that they are still acceptable. In some cases, some details may have been overlooked in previous "checkups", but there is also the chance that a Channel owner or a (rogue) Curator makes a change that requires an action.
 
 To avoid having to go through thousands of entities every time, the Lead, or some other curator could perhaps deploy a script that checks for certain types of transaction that makes changes to the content directory.
 
-To avoid everyone stepping on each others toes, the Lead should consider splitting the workload between the team, eg. by language, category, etc.
+To avoid everyone stepping on each other’s toes, the Lead should consider splitting the workload between the team, e.g., by language, category, etc.
 
 The results from this check in should be reported to the Council and the Channel Owners on the Forum.
 
@@ -223,7 +223,7 @@ This may look like a _lot_ of work, but all the data needed can be found using a
 
 - The CLI can be used to find all video, `content-directory:entities <10|Video>` and channel, `content-directory:entities <1|Channel>` entities in the content directory.
 - The data in "Changes Made Since Last Report - Owner" can be found by said script.
-- The data in "Changes Made Since Last Report - Curators" can be found using the same script, in addition to copy/pasting data the from the [Regular Checks](#regular-checks) - which _should_ be correct if all actions were reported there..
+- The data in "Changes Made Since Last Report - Curators" can be found using the same script, in addition to copy/pasting data the from the [Regular Checks](#regular-checks) - which _should_ be correct if all actions were reported there.
 - "All Non-Playable Videos" and "All Non-Visible Channels" should be extractable from older reports, and data already filled in.
 
 ### Policy
@@ -235,7 +235,7 @@ Means posting a note in the forum, as part of the [Regular Checks](#regular-chec
 Means updating the status (`isPublic`) for a video from `true` to `false`. Note that this can be changed back to `true` by the owner!
 
 `censor`
-Means updating the status (`isCensored`) for a video from `true` to `false`. Unlike `hidden`, this can not be changed back by anyone but another curator.
+Means updating the status (`isCensored`) for a video from `true` to `false`. Unlike `hidden`, this cannot be changed back by anyone but another curator.
 
 #### Videos
 **When to (only) issue a `warning`:**
@@ -246,9 +246,9 @@ Means updating the status (`isCensored`) for a video from `true` to `false`. Unl
 
 **When to make a video `hidden`:**
 - The content must be as "advertised"
-  - If the title, description, category and thumbnail implies a baking video, the video should not be a documentary about Bitcoin
+  - If the title, description, category and thumbnail imply a baking video, the video should not be a documentary about Bitcoin
 - Missing artwork
-  - If thumbnail is missing, or just really poor, the the video can be hidden, or given a warning (Council decides u.n.o.)
+  - If thumbnail is missing, or just really poor, the video can be hidden, or given a warning (Council decides u.n.o.)
 - Poor quality
   - If the video quality is "unreasonably" low
 
@@ -256,7 +256,7 @@ Means updating the status (`isCensored`) for a video from `true` to `false`. Unl
 - License requires attribution
   - If the selected license requires attribution, but none is given the, or attribution is incorrect
 - Breach of license
-  - If the license has specific requirements with it (eg. "no derivates" if [CC_BY_NC_ND](https://creativecommons.org/licenses/by-nc-nd/4.0/))
+  - If the license has specific requirements with it (e.g., "no derivates" if [CC_BY_NC_ND](https://creativecommons.org/licenses/by-nc-nd/4.0/))
 - Suspected copyright violation
   - If it's not clear that the video is in violation, but this is strongly suspected by the Curator
 - Status change by owner without resolving issue
