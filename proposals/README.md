@@ -178,7 +178,7 @@ The votes come in, until we have:
 - 0 `Slash`
 - 0 `Abstain`
 
-At this point, the `Approval Quorum` parameter is fulfilled (100%>75% approval), but there are still to few votes cast toщ fulfill the `Approval Threshold` (at 30%<50%).
+At this point, the `Approval Quorum` parameter is fulfilled (100%>75% approval), but there are still to few votes cast to fulfill the `Approval Threshold` (at 30%<50%).
 
 A few more votes are cast:
 
