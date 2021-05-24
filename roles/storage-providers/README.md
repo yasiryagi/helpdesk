@@ -163,7 +163,9 @@ $ nano ~/Caddyfile
 # Storage Node API
 <your.cool.url> {
     route /storage/* {
-    reverse_proxy localhost:3000
+        uri strip_prefix /storage
+        reverse_proxy localhost:3000
+    }
     header /storage {
         Access-Control-Allow-Methods "GET, PUT, HEAD, OPTIONS"
     }
