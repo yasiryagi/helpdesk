@@ -123,7 +123,7 @@ However, here are some pointers when creating an Opening.
     - Maybe not so useful for the Application stake?
 
 #### Human Readable Information and Questions
-The second part is filling out a JSON schema, where you can set, what information is provided to applicants and what details are collected as part of the application process. As mentioned above, you should consider creating a draft first, to review your input before broadcasting on-chain. Here are some pointers:
+The second part is filling out a JSON schema, where you can set what information is provided to applicants and what details are collected as part of the application process. As mentioned above, you should consider creating a draft first, to review your input before broadcasting on-chain. Here are some pointers:
 - When prompted for a version, provide the value `1`.
 - When providing "type" for the `questions vector`, `text` means single line, whereas `text area` means a multi-line text area.
 
