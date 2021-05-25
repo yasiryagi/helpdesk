@@ -590,7 +590,7 @@ Involved parties, and their responsibilities:
   - etc.
 2. Entrants sees the Bounty, and creates banners.
 3. After doing so, they post in the bounties Forum post (and/or makes a draft PR to the Community Repo), with their work.
-4. The BM performs their reviews, and selects up to three Candidates (if there are fewer than three, the BM can choose to extend the deadline). These are encouraged to make spending proposals.
+4. The BM performs their reviews, and selects up to three Candidates (if there are fewer than three, the BM can choose to extend the deadline). These are each encouraged to make spending proposals.
 5. The Candidates (if they haven't already), opens PRs with their work to the Community Repo, and make their spending proposals - linking to the PRs, and the BMs approvals.
 6. If one or more is approved by the Council, the Candidates mark their PR ready for review, and the BM requests a review by Jsgenesis.
 8. Jsgenesis grades the work and adds the amount they see applicable to the Fiat Pool.
