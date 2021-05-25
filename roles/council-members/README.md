@@ -656,7 +656,7 @@ A "new" Council must honor any agreements and rules set by their predecessors, f
 #### Workflow
 The workflow will depend both on the Reward Distribution and the [Format](#format), and must be established beforehand.
 
-- For "Closed" formats, an Applier must present a bid because they should be assigned the given Bounty. This should include detailed terms, such as time needed, costs, etc. If approved, this makes the terms valid.
+- For "Closed" formats, an Applier must present a bid justifying why they ought to be assigned the given Bounty. This should include detailed terms, such as time needed, costs, etc. If approved, this makes the terms valid.
 - In some cases, it may make sense to break a Bounty up in to milestones, with partial rewards at each stage. This builds trust as the Council can see the progress being made, and the Assignee can get chunks of the reward along the way.
 - In other cases, the person may need some initial funding to get started.
 - For "Closed" formats, the specifics of the workflow could be part of the Applier's application for participation.
