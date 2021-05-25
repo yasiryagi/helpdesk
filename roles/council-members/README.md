@@ -632,7 +632,7 @@ Involved parties, and their responsibilities:
 2. Applicants apply for the Bounty. (They may also ask questions, and set some conditions if applicable.)
 3. After the application stage is over, the Bounty Manager either:
   - Assigns an Applicant themselves, or makes a text proposal to the Council proposing to assign one (depending on what was agreed in [initially](#general-steps))
-  - Extend the Application process - possible with some new terms (e.g., requesting more funding, longer deadlines, etc.)
+  - Extend the Application process - possible with some new terms (e.g. requesting more funding, longer deadlines, etc.)
 4. Assuming an Applicant is now Assigned, they start working with the following agreements:
   - Milestone 1 covers Success Events 1 and 2, will pay the full amount ($100) on completion, if submitted within blockheight `n+43200+72000` (five days) and fully accepted. If not submitted, a new Applicant may be Assigned, unless an agreement is made.
   - Milestone 2 covers Success Event 3, and will pay the full amount ($100) on completion, if submitted within blockheight `n+43200+72000+72000` (ten days) and fully accepted. If not submitted, a new Applicant may be chosen, unless an agreement is made.
