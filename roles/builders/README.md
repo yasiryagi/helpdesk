@@ -34,7 +34,7 @@ If you find a bug in any of our software, reporting these as `Issues` in the mai
 * For nodes and software ran on your computer
   * Logs and crash reports (from one of the nodes)
   * Steps to reproduce
-  * Your environment (e.g., operating system and version)
+  * Your environment (e.g. operating system and version)
   * etc.
 * If related to our `Pioneer` [testnet](https://testnet.joystream.org) app:
   * What (if any) error message did you see?
