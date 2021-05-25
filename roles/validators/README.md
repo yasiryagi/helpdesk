@@ -741,7 +741,7 @@ At the end of the session, at least one validator was found to be offline.
       }
     ]
 ```
-These identities which valididators are reported "offline".
+This identifies which valididators are reported "offline".
 
 
 **2** `offences.Offence`:
