@@ -805,7 +805,7 @@ After the transaction has gone through, you will see a new line appearing in the
 
 **Notes:**
 - If you have performed multiple unbondings, in different `eras`:
-  - hovering over the "clock" will show multiple entries, e.g., `<amount>, <time_left>, <block_left>`
+  - hovering over the "clock" will show multiple entries, e.g. `<amount>, <time_left>, <block_left>`
   - you may also have both the "clock" and "lock" button, if some of your unbondings are completed
   - if you have any pending [slashes](#slashing), these will be deducted when you perform step 3.
 
