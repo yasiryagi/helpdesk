@@ -41,7 +41,7 @@ If you find a bug in any of our software, reporting these as `Issues` in the mai
   * What were you trying to do?
   * What is your address?
   * What is your balance?
-  * What is the type of `key` (i.e., `Schnorrkel`, `Edwards` or `ECDSA`)?
+  * What is the type of `key` (i.e. `Schnorrkel`, `Edwards` or `ECDSA`)?
   * Are you a `Member`?
   * Is the `key` used for another role?
   * etc.
