@@ -27,7 +27,7 @@ Table of Contents
 This page will contain all information on how to act as a `Content Creator`, and how to create a channel, upload videos, and managing your content.
 
 # Instructions
-After the Babylon release, content is no longer managed or consumed with [Pioneer](https://testnet.joystream.org). Viewing content is now done in our new consumer app hosted [here](https://play.joystream.org), whereas channel and content management (e.g., registration of channels, uploading, editing, curation, etc.) require the [Joystream-CLI](https://www.npmjs.com/package/@joystream/cli). The CLI can also be built following the instructions [here](/tools/cli/README.md).
+After the Babylon release, content is no longer managed or consumed with [Pioneer](https://testnet.joystream.org). Viewing content is now done in our new consumer app hosted [here](https://play.joystream.org), whereas channel and content management (e.g. registration of channels, uploading, editing, curation, etc.) require the [Joystream-CLI](https://www.npmjs.com/package/@joystream/cli). The CLI can also be built following the instructions [here](/tools/cli/README.md).
 
 ## Get Started
 If you want to upload content as a `Content Creator`, you need to become a `Member`. Instructions for this can be found [here](https://github.com/Joystream/helpdesk/#get-started).
