@@ -481,7 +481,7 @@ Although the idea of forcing the Council to communicate and co-operate their way
 
 As managing the Bounties will be a significant part of their (potential) KPI rewards, they have some excess resources and incentives to hire the "right" people. They can either pay for this out of pocket, request funding for this through spending proposals, reserve some part of the Bounty reward for this purpose or by asking Jsgenesis for designated funding.
 
-In the end, the Council will still be responsible for the work the BM does, so they should still verify the spending and/or text proposals made, and seek feedback of the BMs performance (e.g., responsiveness and communication) from participants.
+In the end, the Council will still be responsible for the work the BM does, so they should still verify the spending and/or text proposals made, and seek feedback of the BM's performance (e.g. responsiveness and communication) from participants.
 
 #### General Steps
 Jsgenesis creates a Bounty Issue in the Community Repo with a new Bounty. This Bounty Issue is meant for the Council first and foremost, and ideally, the person(s) attempting, or successfully manages, to solve the Bounty should not even *need* to read this.
