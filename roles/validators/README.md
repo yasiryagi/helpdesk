@@ -703,7 +703,7 @@ Although there are other reasons for getting slashed as a Validator, the reasons
 ## Offline
 The most likely reason a Validator will get slashed is for going offline without first [stopping](#stop-validating) gracefully.
 
-If `n` Validators go offline, there will be a two "events" at the end of that `session`:
+If `n` Validators go offline, there will be two "events" at the end of that `session`:
 1. `imOnline:SomeOffline`
 2. `offences.Offence`
 
