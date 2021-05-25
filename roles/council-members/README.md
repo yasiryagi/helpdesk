@@ -314,7 +314,7 @@ For each Council Term, a set of Council KPIs will be released. These will contai
 An example of the structure for a single Council KPI is outlined below. Note that the number of KPIs, success events, individual and sum of the rewards, and complexity of the KPIs per term will vary.
 
 Council KPI - Term `X`
-- `id:` - The unique identifier (e.g., `X.1`)
+- `id:` - The unique identifier (e.g. `X.1`)
 - `Title:` - The title
 - `Reward:` - The maximum reward paid, assuming all `Success Events` are delivered and graded complete
 - `Description:` - A description of the problem solved if all `Success Events` are complete
