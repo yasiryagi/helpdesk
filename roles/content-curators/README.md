@@ -256,7 +256,7 @@ Means updating the status (`isCensored`) for a video from `true` to `false`. Unl
 - License requires attribution
   - If the selected license requires attribution, but none is given the, or attribution is incorrect
 - Breach of license
-  - If the license has specific requirements with it (e.g., "no derivates" if [CC_BY_NC_ND](https://creativecommons.org/licenses/by-nc-nd/4.0/))
+  - If the license has specific requirements with it (e.g. "no derivatives" if [CC_BY_NC_ND](https://creativecommons.org/licenses/by-nc-nd/4.0/))
 - Suspected copyright violation
   - If it's not clear that the video is in violation, but this is strongly suspected by the Curator
 - Status change by owner without resolving issue
