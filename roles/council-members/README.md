@@ -552,7 +552,7 @@ Involved parties, and their responsibilities:
 5. The Bounty Manager, when performing their weekly grading and reporting, can look through the Content Curators Forum thread, and see what has been approved or not. If a video/channel posted in 2. is not approved, it need not be graded. Once the BM has completed grading all (approved) entries, they create a report containing:
   - For each Entrant identified by their membershipId, membershipHandle and account
     - all channels and videos by their IDs
-    - with grading (i.e., reward) for each video ID
+    - with grading (i.e. reward) for each video ID
   - A summary of the rewards
   - A list of all videos/channels that was not approved by Curators
 6. This report is submitted as a PR to the Community Repo, along with a Spending Proposal equaling the sum of the Rewards (plus, if applicable, a payment for their own labor).
