@@ -501,7 +501,7 @@ After this, the BM, parses the Bounty Issue, and starts drafting what will be th
 
 If the BM needs clarity or more information than what is covered in the Bounty Issue, reply to it for clarity.
 
-Once the draft is completed, the BM creates a text or spending proposal (if funding is needed for their tasks) presenting a draft of the Forum post that will be made for the bounty. If the text is too long to fit in the proposal, a link the text is shared in its place.
+Once the draft is completed, the BM creates a text or spending proposal (if funding is needed for their tasks) presenting a draft of the Forum post that will be made for the bounty. If the text is too long to fit in the proposal, a link to the text is shared in its place.
 
 If the proposal is approved, with or without any agreed corrections, the Forum thread is created with the agreed content.
 
