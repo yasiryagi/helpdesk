@@ -181,7 +181,7 @@ If: `Council Size <= Applicants <= Candidacy Limit`. I.e. the number of applican
 The `Announcing` stage ends, with all the applicants proceeding to the `Voting` stage.
 
 ##### Scenario B:
-If: `Candidacy Limit < Applicants`. I.e., the number of applicants is greater than the `Candidacy Limit`.
+If: `Candidacy Limit < Applicants`. I.e. the number of applicants is greater than the `Candidacy Limit`.
 
 All of the applicants are sorted and ranked by their stake. The `Announcing` stage ends, and only those with a rank better than, or equal to, the `Candidacy Limit` will proceed to the `Voting` stage.
 
