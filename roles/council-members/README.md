@@ -584,7 +584,7 @@ Involved parties, and their responsibilities:
 1. The Bounty Manager sets some Bounty specific rules (in addition to the [General Steps](#general-steps)), such as:
   - Where and how a Banner should be submitted initially (e.g. the forum or Community Repo)
   - Exact specifications of a banner (e.g. file format(s), resolutions, etc.)
-  - Information on how to find resources (e.g., "blank canvas", fonts, preferred themes, etc.)
+  - Information on how to find resources (e.g. "blank canvas", fonts, preferred themes, etc.)
   - Deadline(s) for submissions
   - Reserves the right to extend deadlines under certain conditions
   - etc.
