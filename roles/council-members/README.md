@@ -213,7 +213,7 @@ When you submit a Vote, a `Random salt` will be generated for you, and only a `H
   - you use the same key, computer and browser - without clearing local storage.
   - if you save the `Random salt`, you only need the key
 - if you voted for one or more active CMs, you can "re-use" your voting stake from the last election cycle
-- this means that you if you staked 10k JOY voting a one or more current CMs, and have 5k "free" balance, you can stake 15k for voting
+- this means that you if you staked 10k JOY voting for one or more current CMs, and have 5k "free" balance, you can stake 15k for voting
 
 ### Revealing
 As soon as the `Voting` stage closes, the `Revealing` stage begins. As stated before, only when a vote is "revealed" will it become public, and count.
