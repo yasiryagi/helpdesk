@@ -176,7 +176,7 @@ At the end of the stage, there are three outcomes depending on:
 - the `Candidacy Limit`
 
 ##### Scenario A:
-If: `Council Size <= Applicants <= Candidacy Limit`. I.e., the number of applicants is between the `Council Size` and `Candidacy Limit`.
+If: `Council Size <= Applicants <= Candidacy Limit`. I.e. the number of applicants is between the `Council Size` and `Candidacy Limit`.
 
 The `Announcing` stage ends, with all the applicants proceeding to the `Voting` stage.
 
