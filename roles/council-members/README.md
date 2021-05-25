@@ -627,7 +627,7 @@ Involved parties, and their responsibilities:
     - Experience with using cryptocurrencies
     - Milestones and timelines
     - Brief explanation of why they should be Assigned the Bounty
-  - The BM is free to suggest or set parameters for milestones (e.g., 3), timelines (e.g., max two weeks for each), and other reporting requirements
+  - The BM is free to suggest or set parameters for milestones (e.g. 3), timelines (e.g. max two weeks for each), and other reporting requirements
     - A milestone implies some partial delivery at an agreed time, with some part of the compensations being paid out on completion.
 2. Applicants apply for the Bounty. (They may also ask questions, and set some conditions if applicable.)
 3. After the application stage is over, the Bounty Manager either:
