@@ -172,7 +172,7 @@ $ wget TBD
 $ tar -vxf TBD
 # For both
 $ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joy-testnet-5.json
-$ $ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
+$ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag:
   - `--name <nodename>`
@@ -455,7 +455,7 @@ r(1 - c) * n1/(v + n1 + n2)
 - after the end of the era, the total rewards are 25,000 tJOY
 
 ```
-# All validators gets an equal share, before sharing with nominators:
+# All validators get an equal share, before sharing with nominators:
 R_v = 25,000tJOY / 10 = 2,500tJOY
 
 # payout for validator 1
@@ -545,7 +545,7 @@ This can be done by *any* account:
 4. Type in the `era` you want to claim for, and submit
 
 ### Check claims made
-To find out if a "stash" have claimed reward(s) from `era(s)`:
+To find out if a "stash" claimed reward(s) from `era(s)`:
 - [chain state](https://testnet.joystream.org/#/chainstate) query of `ledger(AccountId): Option<StakingLedger>` with the *any* current, or "historic" controller. Output:
 ```
 {
@@ -565,7 +565,7 @@ To find out if a "stash" have claimed reward(s) from `era(s)`:
 To understand what `unlocking` means, go [here](#using-extrinsics).
 
 ## Rewards on Joystream
-For Substrate based blockchains, the validator rewards depends on some [dynamic parameters](#dynamic-parameters), that will change continuously, and some [fixed parameters](#fixed-parameters) in the chain spec.
+For Substrate based blockchains, the validator rewards depend on some [dynamic parameters](#dynamic-parameters), that will change continuously, and some [fixed parameters](#fixed-parameters) in the chain spec.
 
 ### Dynamic Parameters
 1. Active validators (`V_a`) - the number of `validators` currently running. This can be found:
@@ -598,7 +598,7 @@ For Substrate based blockchains, the validator rewards depends on some [dynamic 
 - `*` For a variety of reasons (such as latency, validators going down, etc.) an `era` can be as little as 1 `session` and a `session` can be a lot fewer blocks than 100.
 
 ### Validator set and block production
-At the end of each era, a new set of active validators `V_a` is determined by sorting all those that have declared their intention (eg. both the active and next up) by their stake, and selecting up to `V_i` in a descending order.
+At the end of each era, a new set of active validators `V_a` is determined by sorting all those that have declared their intention (e.g. both the active and next up) by their stake, and selecting up to `V_i` in a descending order.
 
 Those selected are treated as equals, and will have the same chance of being selected to produce blocks and thus get an equal share of the rewards. Slashes however, are applied as a percentage of stake, so a validator with more stake risks getting slashed more despite earning the same.
 
@@ -703,13 +703,13 @@ Although there are other reasons for getting slashed as a Validator, the reasons
 ## Offline
 The most likely reason a Validator will get slashed is for going offline without first [stopping](#stop-validating) gracefully.
 
-If `n` Validators go offline, there will be an two "events" at the end of that `session`:
+If `n` Validators go offline, there will be two "events" at the end of that `session`:
 1. `imOnline:SomeOffline`
 2. `offences.Offence`
 
 ### Offline Example
 Suppose we have two Validators offline, - `v_0` and `v_1`. `v_1` has one nominator `n_1` (all `accountId`/address of their "stash"):
-By selecting the block the event occured in the [explorer](https://testnet.joystream.org/#/explorer), it will appear like so:
+When selecting the block the event occurred in from the [explorer](https://testnet.joystream.org/#/explorer), it will appear like so:
 
 **1** `imOnline:SomeOffline`:
 ```
@@ -741,7 +741,7 @@ At the end of the session, at least one validator was found to be offline.
       }
     ]
 ```
-This identities which valididators are reported "offline".
+This identifies which valididators are reported "offline".
 
 
 **2** `offences.Offence`:
@@ -805,7 +805,7 @@ After the transaction has gone through, you will see a new line appearing in the
 
 **Notes:**
 - If you have performed multiple unbondings, in different `eras`:
-  - hovering over the "clock" will show multiple entries, eg. `<amount>, <time_left>, <block_left>`
+  - hovering over the "clock" will show multiple entries, e.g. `<amount>, <time_left>, <block_left>`
   - you may also have both the "clock" and "lock" button, if some of your unbondings are completed
   - if you have any pending [slashes](#slashing), these will be deducted when you perform step 3.
 

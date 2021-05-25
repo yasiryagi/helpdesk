@@ -176,19 +176,19 @@ At the end of the stage, there are three outcomes depending on:
 - the `Candidacy Limit`
 
 ##### Scenario A:
-If: `Council Size <= Applicants <= Candidacy Limit`. Ie. the number of applicants is between the `Council Size` and `Candidacy Limit`.
+If: `Council Size <= Applicants <= Candidacy Limit`. I.e. the number of applicants is between the `Council Size` and `Candidacy Limit`.
 
 The `Announcing` stage ends, with all the applicants proceeding to the `Voting` stage.
 
 ##### Scenario B:
-If: `Candidacy Limit < Applicants`. Ie. the number of applicants is greater than the `Candidacy Limit`.
+If: `Candidacy Limit < Applicants`. I.e. the number of applicants is greater than the `Candidacy Limit`.
 
 All of the applicants are sorted and ranked by their stake. The `Announcing` stage ends, and only those with a rank better than, or equal to, the `Candidacy Limit` will proceed to the `Voting` stage.
 
 The applicants that did not make it to the `Voting` stage get their stake back right away.
 
 ##### Scenario C:
-If: `Applicants < Council Size`. Ie. the number of applicants is smaller than the `Council Size`.
+If: `Applicants < Council Size`. I.e. the number of applicants is smaller than the `Council Size`.
 
 There are not enough applicants to fill the Council slots, and a new `Announcing` stage begins, with all the applicants automatically re-entered.
 
@@ -213,7 +213,7 @@ When you submit a Vote, a `Random salt` will be generated for you, and only a `H
   - you use the same key, computer and browser - without clearing local storage.
   - if you save the `Random salt`, you only need the key
 - if you voted for one or more active CMs, you can "re-use" your voting stake from the last election cycle
-- this means that you if you staked 10k JOY voting an one or more current CMs, and have 5k "free" balance, you can stake 15k for voting
+- this means that you if you staked 10k JOY voting for one or more current CMs, and have 5k "free" balance, you can stake 15k for voting
 
 ### Revealing
 As soon as the `Voting` stage closes, the `Revealing` stage begins. As stated before, only when a vote is "revealed" will it become public, and count.
@@ -226,7 +226,7 @@ With your membership key (used to vote on the candidates):
 - click the "Reveal" button next to the votes you wish to reveal and confirm
 
 #### End of Revealing
-At the end of the `Revealing` stage, the applicants are sorted and ranked by their total stake, ie. the sum of the stake(s) they bonded during the `Announcing` stage, and the sum of all **"revealed"** votes.
+At the end of the `Revealing` stage, the applicants are sorted and ranked by their total stake, i.e. the sum of the stake(s) they bonded during the `Announcing` stage, and the sum of all **"revealed"** votes.
 
 The applicants ranked within the number equal to the `Council Size` will become CMs.
 
@@ -269,12 +269,12 @@ Before a new `Announcing` stage begins, a new thread will be made on the on-chai
   - What you have done to prepare
   - Any questions about the role
   - etc.
-- Long time community members
+- Long-term community members
   - General Joystream "record", such as
     - Roles you had
     - Contributions (bounties, KPIs, etc.)
     - Proposals made
-    - Participation on discussions on telegram, discord, forum, github, proposals
+    - Participation on discussions on Telegram, Discord, Forum, GitHub, Proposals
   - CM "record"
     - Election history
     - Proposal voting history
@@ -290,7 +290,7 @@ To some extent, the same applies to their rewards. They receive a fixed (in tJOY
 A CM that is slacking off, or for other reasons unable or unwilling to perform their tasks will still receive their rewards for the term, but are unlikely to get re-elected in the near future.
 
 ## Tasks Overview
-The list below contains a high level overview of their responsibilities:
+The list below contains a high-level overview of their responsibilities:
 - Elect a [Council Secretary](#council-secretary), to be the "official" point of contact between the Council and Jsgenesis
 - Pay attention to the forum and [Discord group](https://discord.gg/DE9UN3YpRP), to assist and answer questions when appropriate
 - Pay attention to incoming Proposals, discuss and make informed votes
@@ -314,7 +314,7 @@ For each Council Term, a set of Council KPIs will be released. These will contai
 An example of the structure for a single Council KPI is outlined below. Note that the number of KPIs, success events, individual and sum of the rewards, and complexity of the KPIs per term will vary.
 
 Council KPI - Term `X`
-- `id:` - The unique identifier (eg. `X.1`)
+- `id:` - The unique identifier (e.g. `X.1`)
 - `Title:` - The title
 - `Reward:` - The maximum reward paid, assuming all `Success Events` are delivered and graded complete
 - `Description:` - A description of the problem solved if all `Success Events` are complete
@@ -403,7 +403,7 @@ A good approach could be to agree on weekly budgets, and revise them on an as-ne
     - Running or creating tools for monitoring changes in the Content Directory or `dataDirectory`
 
 #### General Performance
-In addition to the bottom line costs, there are some nuances to the distribution of said costs, and the general quality of the service each Working Group Provides.
+In addition to the bottom-line costs, there are some nuances to the distribution of said costs, and the general quality of the service each Working Group Provides.
 
 
 **Storage Providers**
@@ -467,8 +467,8 @@ This section contains examples with suggestions for the step-by-step workflow so
 Note that the target audience for this is not the participants themselves, but rather the Council Members.
 
 #### Definitions of Terms
-- Community Repo - this [Github repo](https://github.com/Joystream/community-repo/issues)
-- Bounty Issue - meaning a github issue made by `bwhm` or `blrhc` of Jsgenesis in the Community Repo
+- Community Repo - this [GitHub repo](https://github.com/Joystream/community-repo/issues)
+- Bounty Issue - meaning a GitHub issue made by `bwhm` or `blrhc` of Jsgenesis in the Community Repo
 - Council Member (CM) - a (current) member of the Joystream Council
 - Council Secretary - a CM elected by the other CMs to be the "main" representative of the Council towards Jsgenesis
 - Bounty Manager (BM) - a Community Member (can be a CM as well) elected by the Council to be responsible for managing all Bounties for some period of time, or "just" this specific Bounty. Defaults to the Council Secretary if no other person is chosen
@@ -481,7 +481,7 @@ Although the idea of forcing the Council to communicate and co-operate their way
 
 As managing the Bounties will be a significant part of their (potential) KPI rewards, they have some excess resources and incentives to hire the "right" people. They can either pay for this out of pocket, request funding for this through spending proposals, reserve some part of the Bounty reward for this purpose or by asking Jsgenesis for designated funding.
 
-In the end, the Council will still be responsible for the work the BM does, so they should still verify the spending and/or text proposals made, and seek feedback of the BMs performance (eg. responsiveness and communication) from participants.
+In the end, the Council will still be responsible for the work the BM does, so they should still verify the spending and/or text proposals made, and seek feedback of the BM's performance (e.g. responsiveness and communication) from participants.
 
 #### General Steps
 Jsgenesis creates a Bounty Issue in the Community Repo with a new Bounty. This Bounty Issue is meant for the Council first and foremost, and ideally, the person(s) attempting, or successfully manages, to solve the Bounty should not even *need* to read this.
@@ -501,7 +501,7 @@ After this, the BM, parses the Bounty Issue, and starts drafting what will be th
 
 If the BM needs clarity or more information than what is covered in the Bounty Issue, reply to it for clarity.
 
-Once the draft is completed, the BM creates a text or spending proposal (if funding is needed for their tasks) presenting a draft of the Forum post that will be made for the bounty. If the text is too long to fit in the proposal, a link the the text is shared in its place.
+Once the draft is completed, the BM creates a text or spending proposal (if funding is needed for their tasks) presenting a draft of the Forum post that will be made for the bounty. If the text is too long to fit in the proposal, a link to the text is shared in its place.
 
 If the proposal is approved, with or without any agreed corrections, the Forum thread is created with the agreed content.
 
@@ -552,7 +552,7 @@ Involved parties, and their responsibilities:
 5. The Bounty Manager, when performing their weekly grading and reporting, can look through the Content Curators Forum thread, and see what has been approved or not. If a video/channel posted in 2. is not approved, it need not be graded. Once the BM has completed grading all (approved) entries, they create a report containing:
   - For each Entrant identified by their membershipId, membershipHandle and account
     - all channels and videos by their IDs
-    - with grading (ie. reward) for each video ID
+    - with grading (i.e. reward) for each video ID
   - A summary of the rewards
   - A list of all videos/channels that was not approved by Curators
 6. This report is submitted as a PR to the Community Repo, along with a Spending Proposal equalling the sum of the Rewards (plus, if applicable, a payment for their own labour).
@@ -582,15 +582,15 @@ Involved parties, and their responsibilities:
   - entrants the BM picks as winners
 
 1. The Bounty Manager sets some Bounty specific rules (in addition to the [General Steps](#general-steps)), such as:
-  - Where and how a Banner should be submitted initially (eg. the forum or Community Repo)
-  - Exact specifications of a banner (eg. file format(s), resolutions, etc.)
-  - Information on how to find resources (eg. "blank canvas", fonts, preferred themes, etc.)
+  - Where and how a Banner should be submitted initially (e.g. the forum or Community Repo)
+  - Exact specifications of a banner (e.g. file format(s), resolutions, etc.)
+  - Information on how to find resources (e.g. "blank canvas", fonts, preferred themes, etc.)
   - Deadline(s) for submissions
   - Reserves the right to extend deadlines under certain conditions
   - etc.
 2. Entrants sees the Bounty, and creates banners.
 3. After doing so, they post in the bounties Forum post (and/or makes a draft PR to the Community Repo), with their work.
-4. The BM performs their reviews, and selects up to three Candidates (if there are fewer than three, the BM can choose to extend the deadline). These are encourage to make spending proposals.
+4. The BM performs their reviews, and selects up to three Candidates (if there are fewer than three, the BM can choose to extend the deadline). These are each encouraged to make spending proposals.
 5. The Candidates (if they haven't already), opens PRs with their work to the Community Repo, and make their spending proposals - linking to the PRs, and the BMs approvals.
 6. If one or more is approved by the Council, the Candidates mark their PR ready for review, and the BM requests a review by Jsgenesis.
 8. Jsgenesis grades the work and adds the amount they see applicable to the Fiat Pool.
@@ -598,7 +598,7 @@ Involved parties, and their responsibilities:
 #### Closed Format
 In Bounties that requires significant time and/or other resources to complete, and with only one "winner" in practice, Jsgenesis considers it fair to all parties to have an application process culminating in a single Community Member being assigned the Bounty for some agreed time.
 
-Most `coding` and `resarch` Bounties fits equally well as examples, but [#8 -  "Ledger for Joystream"](https://github.com/Joystream/community-repo/issues/86) seems most suitable due to its extensive scope.
+Most `coding` and `research` Bounties fits equally well as examples, but [#8 -  "Ledger for Joystream"](https://github.com/Joystream/community-repo/issues/86) seems most suitable due to its extensive scope.
 
 ##### Full Workflow
 Involved parties, and their responsibilities:
@@ -627,12 +627,12 @@ Involved parties, and their responsibilities:
     - Experience with using cryptocurrencies
     - Milestones and timelines
     - Brief explanation of why they should be Assigned the Bounty
-  - The BM is free to suggest or set parameters for milestones (eg. 3), timelines (eg. max two weeks for each), and other reporting requirements
+  - The BM is free to suggest or set parameters for milestones (e.g. 3), timelines (e.g. max two weeks for each), and other reporting requirements
     - A milestone implies some partial delivery at an agreed time, with some part of the compensations being paid out on completion.
 2. Applicants apply for the Bounty. (They may also ask questions, and set some conditions if applicable.)
 3. After the application stage is over, the Bounty Manager either:
   - Assigns an Applicant themselves, or makes a text proposal to the Council proposing to assign one (depending on what was agreed in [initially](#general-steps))
-  - Extend the Application process - possible with some new terms (eg. requesting more funding, longer deadlines, etc.)
+  - Extend the Application process - possible with some new terms (e.g. requesting more funding, longer deadlines, etc.)
 4. Assuming an Applicant is now Assigned, they start working with the following agreements:
   - Milestone 1 covers Success Events 1 and 2, will pay the full amount ($100) on completion, if submitted within blockheight `n+43200+72000` (five days) and fully accepted. If not submitted, a new Applicant may be Assigned, unless an agreement is made.
   - Milestone 2 covers Success Event 3, and will pay the full amount ($100) on completion, if submitted within blockheight `n+43200+72000+72000` (ten days) and fully accepted. If not submitted, a new Applicant may be chosen, unless an agreement is made.
@@ -656,7 +656,7 @@ A "new" Council must honor any agreements and rules set by their predecessors, f
 #### Workflow
 The workflow will depend both on the Reward Distribution and the [Format](#format), and must be established beforehand.
 
-- For "Closed" formats, an Applier must present a bid why they should be assigned the given Bounty. This should include detailed terms, such as time needed, costs, etc. If approved, this makes the terms valid.
+- For "Closed" formats, an Applier must present a bid justifying why they ought to be assigned the given Bounty. This should include detailed terms, such as time needed, costs, etc. If approved, this makes the terms valid.
 - In some cases, it may make sense to break a Bounty up in to milestones, with partial rewards at each stage. This builds trust as the Council can see the progress being made, and the Assignee can get chunks of the reward along the way.
 - In other cases, the person may need some initial funding to get started.
 - For "Closed" formats, the specifics of the workflow could be part of the Applier's application for participation.

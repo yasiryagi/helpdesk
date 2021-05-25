@@ -61,7 +61,7 @@ This can be done very easily through the creation of another proposal by the `Co
 
 ### Processing Applications
 
-The final step in hiring the `Curator Lead` is to create a `Fill Working Group Leader Opening`. The requirements here are simply to choose the relevant opening from the drop-down menu and choose betwen the candidate applications (in JSON format) shown on the page.
+The final step in hiring the `Curator Lead` is to create a `Fill Working Group Leader Opening`. The requirements here are simply to choose the relevant opening from the drop-down menu and choose between the candidate applications (in JSON format) shown on the page.
 
 Once a candidate has been chosen and the final proposal has passed, the focus is now on the new `Curator Lead`...
 
@@ -114,7 +114,7 @@ USAGE
   $ joystream-cli working-groups:createOpening
 
 OPTIONS
-  -e, --edit                               If provided along with --input - launches in edit mode allowing to modify the input before sending the exstinsic
+  -e, --edit                               If provided along with --input - launches in edit mode allowing to modify the input before sending the extrinsic
 
   -g, --group=(CuratorProviders|curators)  The working group context in which the command should be executed
                                            Available values are: CuratorProviders, curators.
@@ -123,7 +123,7 @@ OPTIONS
 
   -o, --output=output                      Path to the file where the output JSON should be saved (this output can be then reused as input)
 
-  --dryRun                                 If provided along with --output - skips sending the actual extrinsic(can be used to generate a "draft" which can be provided as input
+  --dryRun                                 If provided along with --output - skips sending the actual extrinsic (can be used to generate a "draft" which can be provided as input
                                            later)
 ```
 
@@ -133,7 +133,7 @@ Note that although some values are stated as `u128` or other confusing types, yo
 If successfully submitted, you can look at your Opening using the `working-groups:opening <WGOPENINGID> -g curators`, which returns something like:
 
 ```
-urrent Group: curators
+Current Group: curators
 
 ______________ Human readable text _______________
 
@@ -245,7 +245,7 @@ To check the details of the current Content Working Group Mint:
 (2) Check the details of the mint using the following query: `minting -> mints`.
 
 #### Replenishing The Mint
-It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a `Set Working Group Mint Capacity` proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the Council in order to take effect. For this reason it is best to discuss these sorts of proposals with the Council before making them.
+It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a `Set Working Group Mint Capacity` proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the Council in order to take effect. For this reason, it is best to discuss these sorts of proposals with the Council before making them.
 
 ### Increasing (or Decreasing) Limits for Members
 By default, a member can "only" create a total of 100 video (class 10) entities, and 25 channel (class 1) entities. This is not visible before a member creates their first (presumably channel) entity, but their "status" can then be tracked in the [Chain State](https://testnet.joystream.org/#/chainstate), through `contentDirectory.entityCreationVouchers`. Set `EntityController` to `Member` and fill in `MemberId`.
@@ -254,7 +254,7 @@ If a member creates quality content, their limit can be raised. If a member cont
 
 This is done using [Extrinsics](https://testnet.joystream.org/#/extrinsics), with `contentDirectory.updateEntityCreationVoucher`.
 Example:
-If member `1` is to be given the right to make 200 vidoes:
+If member `1` is to be given the right to make 200 videos:
 `class_id`: 10
 `controller`: Member
 `Member`: 1
@@ -266,4 +266,4 @@ Only the Lead's "role" key can perform this transaction, and any other origin wi
 ---
 
 # Troubleshooting
-If you need help with some of the more advanced operations associated with being the `Content Curator Lead` (e.g. maintaining the versioned store), please simply ask for help in the [Discord group](https://discord.gg/DE9UN3YpRP) or get in touch with one of the Jsgenesis team directly.
+If you need help with some of the more advanced operations associated with being the `Content Curator Lead` (e.g. maintaining the content directory), please simply ask for help in the [Discord group](https://discord.gg/DE9UN3YpRP) or get in touch with one of the Jsgenesis team directly.

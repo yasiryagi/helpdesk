@@ -57,7 +57,7 @@ This can be done very easily through the creation of another proposal by the `Co
 
 ### Processing Applications
 
-The final step in hiring the `Storage Lead` is to create a `Fill Working Group Leader Opening`. The requirements here simply to choose the relevant opening from the drop-down menu and choose betwen the candidate applications (in JSON format) shown on the page.
+The final step in hiring the `Storage Lead` is to create a `Fill Working Group Leader Opening`. The requirements here simply to choose the relevant opening from the drop-down menu and choose between the candidate applications (in JSON format) shown on the page.
 
 Once a candidate has been chosen and the final proposal has passed, the focus is now on the new `Storage Lead`...
 
@@ -80,7 +80,7 @@ USAGE
   $ joystream-cli working-groups:createOpening
 
 OPTIONS
-  -e, --edit                               If provided along with --input - launches in edit mode allowing to modify the input before sending the exstinsic
+  -e, --edit                               If provided along with --input - launches in edit mode allowing to modify the input before sending the extrinsic
 
   -g, --group=(storageProviders|curators)  The working group context in which the command should be executed
                                            Available values are: storageProviders, curators.
@@ -89,7 +89,7 @@ OPTIONS
 
   -o, --output=output                      Path to the file where the output JSON should be saved (this output can be then reused as input)
 
-  --dryRun                                 If provided along with --output - skips sending the actual extrinsic(can be used to generate a "draft" which can be provided as input
+  --dryRun                                 If provided along with --output - skips sending the actual extrinsic (can be used to generate a "draft" which can be provided as input
                                            later)
 ```
 
@@ -111,9 +111,9 @@ However, here are some pointers when creating an Opening.
   - `review_period_expired_unstaking_period_length` - "Application" and/or "Role" stake:
     - If the Opening expired with no one hired, this keeps their stake(s) locked for `x` blocks. May be overly harsh?
   - `fill_opening_successful_applicant_application_stake_unstaking_period` - Only "Application" stake:
-    - If an Opening is ended with one or more Workers hired, `x`is the number of blocks until the hired Worker(s) Application stake is returned.
+    - If an Opening is ended with one or more Workers hired, `x` is the number of blocks until the hired Worker(s) Application stake is returned.
   - `fill_opening_failed_applicant_*_stake_unstaking_period` - "Application" and/or "Role" stake:
-    - If an Opening is ended with one or more Workers hired, `x`is the number of blocks until the Application stake is returned to those that were not hired.
+    - If an Opening is ended with one or more Workers hired, `x` is the number of blocks until the Application stake is returned to those that were not hired.
   - `terminate_*_stake_unstaking_period` - "Application" and/or "Role" stake:
     - If an Application was terminated, this keeps their stake(s) locked for `x` blocks. May be useful to stop spammers.
     - If no one was hired, this keeps their Application stake locked for `x` blocks. May be overly harsh?
@@ -312,7 +312,7 @@ Role stake                    >= 1.001k JOY
 
 _______________ Unstaking periods ________________
 
-Crowded Out Application Stake Unstaking Period Length:                  1 blocks  
+Crowded Out Application Stake Unstaking Period Length:                  1 block  
 Crowded Out Role Stake Unstaking Period Length:                         3 blocks  
 Exit Role Application Stake Unstaking Period:                           10 blocks
 Exit Role Stake Unstaking Period:                                       11 blocks
@@ -344,7 +344,7 @@ Simply run `working-groups:fillOpening <WGOPENINGID>` where `<WGOPENINGID>` is t
 ## Responsibilities
 As the `Storage Lead` you are responsible for ensuring that `Storage Providers` are performing adequately. They must hold a complete and up-to-date copy of the content directory and ensure uptime in order to effectively serve testnet content consumers.
 
-If a `Storage Provider` is not performing adequately it is up to you to decide the sanctions for this, which may include slashing and, as a last resort, their eviction from the Storage Working Group.
+If a `Storage Provider` is not performing adequately, it is up to you to decide the sanctions for this, which may include slashing and, as a last resort, their eviction from the Storage Working Group.
 
 ## All Commands
 

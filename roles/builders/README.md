@@ -34,20 +34,20 @@ If you find a bug in any of our software, reporting these as `Issues` in the mai
 * For nodes and software ran on your computer
   * Logs and crash reports (from one of the nodes)
   * Steps to reproduce
-  * Your environment (eg. operating system and version)
+  * Your environment (e.g. operating system and version)
   * etc.
 * If related to our `Pioneer` [testnet](https://testnet.joystream.org) app:
   * What (if any) error message did you see?
   * What were you trying to do?
   * What is your address?
   * What is your balance?
-  * What is the type of `key` (ie. `Schnorrkel`, `Edwards` or `ECDSA`)?
+  * What is the type of `key` (i.e. `Schnorrkel`, `Edwards` or `ECDSA`)?
   * Are you a `Member`?
   * Is the `key` used for another role?
   * etc.
 
 ### Making Contributions
-As an open source project, we try to follow the standard conventions and workflow.
+As an open-source project, we try to follow the standard conventions and workflow.
 
 If you find a bug or want to improve or add something in the code, documentation, or guides, go to [our Github organization](https://github.com/Joystream) and find the appropriate repo.
 
@@ -56,7 +56,7 @@ Fork it, make the changes you want to address, and create a `Pull request`. For 
 ## Community Bounties
 The (Community) Bounties are meant to replace the "old" [Bounty](https://github.com/Joystream/bounties) system previously used by Jsgenesis. In discussions with the community, these have been referred to as "Community KPIs", but we've chosen to use the term Bounties to properly distinguish them from "regular" [Council KPIs](/tokenomics/README.md#council-kpis).
 
-Jsgenesis will publish these first as (Github) issues in the [Community Repo](https://github.com/Joystream/community-repo), before the Council makes a [forum post](https://testnet.joystream.org/#/forum). They can also be found through our [website](https://www.joystream.org/get-started/).
+Jsgenesis will publish these first as (GitHub) issues in the [Community Repo](https://github.com/Joystream/community-repo), before the Council makes a [forum post](https://testnet.joystream.org/#/forum). They can also be found through our [website](https://www.joystream.org/get-started/).
 Unlike Council KPIs,
 - They will not be published at the same regular and predictable intervals
 - They will not necessarily have deadlines
@@ -100,7 +100,7 @@ As the Council are responsible for establishing the rules, format and workflow, 
 The Council decides how much of the total Bounty reward will go to the Submitter, if the rewards should or can be split, and so forth.
 
 #### Format
-The format should try to optimize for the time, quality, risk and cost, associated with each Bounty. In most cases, this means either a ["Open"](#open-format), ["Free For All"](#free-for-all-format) and ["Closed"](#close-format) formats.
+The format should try to optimize for the time, quality, risk and cost, associated with each Bounty. In most cases, this means either an ["Open"](#open-format), ["Free For All"](#free-for-all-format) and ["Closed"](#close-format) formats.
 
 ##### Free For All Format
 For smaller, and perhaps more creative and subjective Bounty, it may make more sense to leave it as a "free for all". In this case, the Council sets a deadline, picks the best Deliverable(s), and rewards the Submitter(s) as per the rules, similar to a competition in many ways
