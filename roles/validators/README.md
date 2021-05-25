@@ -709,7 +709,7 @@ If `n` Validators go offline, there will be a two "events" at the end of that `s
 
 ### Offline Example
 Suppose we have two Validators offline, - `v_0` and `v_1`. `v_1` has one nominator `n_1` (all `accountId`/address of their "stash"):
-By selecting the block the event occurred in the [explorer](https://testnet.joystream.org/#/explorer), it will appear like so:
+When selecting the block the event occurred in from the [explorer](https://testnet.joystream.org/#/explorer), it will appear like so:
 
 **1** `imOnline:SomeOffline`:
 ```
