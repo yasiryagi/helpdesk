@@ -188,7 +188,7 @@ All of the applicants are sorted and ranked by their stake. The `Announcing` sta
 The applicants that did not make it to the `Voting` stage get their stake back right away.
 
 ##### Scenario C:
-If: `Applicants < Council Size`. I.e., the number of applicants is smaller than the `Council Size`.
+If: `Applicants < Council Size`. I.e. the number of applicants is smaller than the `Council Size`.
 
 There are not enough applicants to fill the Council slots, and a new `Announcing` stage begins, with all the applicants automatically re-entered.
 
