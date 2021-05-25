@@ -155,7 +155,7 @@ The "curator status" should indicate either `Approved`, or what action, if any, 
 The Curator team should also monitor this thread, as it would be where the channel owner reports back to them if they made change(s) requested, disagrees with some action taken, or simply has any questions.
 
 ### Council Reports
-At some agreed interval, assumed to be at least once for each Council Term, _all_ videos and channels must be "checked in" on. There could be many reasons why  to verify that they are still acceptable. In some cases, some details may have been overlooked in previous "checkups", but there is also the chance that a Channel owner or a (rogue) Curator makes a change that requires an action.
+At some agreed interval, assumed to be at least once for each Council Term, _all_ videos and channels must be "checked in" on. There could be many reasons why  to verify that they are still acceptable. In some cases, some details may have been overlooked in previous "check-ups", but there is also the chance that a Channel owner or a (rogue) Curator makes a change that requires an action.
 
 To avoid having to go through thousands of entities every time, the Lead, or some other curator could perhaps deploy a script that checks for certain types of transaction that makes changes to the content directory.
 
