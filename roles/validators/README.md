@@ -598,7 +598,7 @@ For Substrate based blockchains, the validator rewards depend on some [dynamic p
 - `*` For a variety of reasons (such as latency, validators going down, etc.) an `era` can be as little as 1 `session` and a `session` can be a lot fewer blocks than 100.
 
 ### Validator set and block production
-At the end of each era, a new set of active validators `V_a` is determined by sorting all those that have declared their intention (e.g., both the active and next up) by their stake, and selecting up to `V_i` in a descending order.
+At the end of each era, a new set of active validators `V_a` is determined by sorting all those that have declared their intention (e.g. both the active and next up) by their stake, and selecting up to `V_i` in a descending order.
 
 Those selected are treated as equals, and will have the same chance of being selected to produce blocks and thus get an equal share of the rewards. Slashes however, are applied as a percentage of stake, so a validator with more stake risks getting slashed more despite earning the same.
 
