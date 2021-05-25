@@ -115,7 +115,7 @@ The "Council Reports" are a lot more comprehensive and challenging. Unlike the "
 ### Regular Checks
 At some defined (minimum) frequency, the Curator reviews all new videos and channels uploaded.
 
-To avoid everyone stepping on each other’s toes, the Lead should consider splitting the workload between the team, e.g., by day/time and if required, also by language, category, etc.
+To avoid everyone stepping on each other’s toes, the Lead should consider splitting the workload between the team, e.g. by day/time and if required, also by language, category, etc.
 
 Each review of this kind should be reported in a designated thread on the Forum, for both the Council and Channel Owners on the Forum.
 
