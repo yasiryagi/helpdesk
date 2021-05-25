@@ -545,7 +545,7 @@ This can be done by *any* account:
 4. Type in the `era` you want to claim for, and submit
 
 ### Check claims made
-To find out if a "stash" had claimed reward(s) from `era(s)`:
+To find out if a "stash" claimed reward(s) from `era(s)`:
 - [chain state](https://testnet.joystream.org/#/chainstate) query of `ledger(AccountId): Option<StakingLedger>` with the *any* current, or "historic" controller. Output:
 ```
 {
