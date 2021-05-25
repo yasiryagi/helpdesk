@@ -21,7 +21,7 @@ Table of Contents
 
 
 # Overview
-This page contains information on how you can contribute to building the Joystream platform. We are also happy to see community members [contribute](#bugs-and-improvements) unprompted, and will always evaluate whether these warrants a bounty.
+This page contains information on how you can contribute to building the Joystream platform. We are also happy to see community members [contribute](#bugs-and-improvements) unprompted, and will always evaluate whether these warrant a bounty.
 
 In any case, this guide will mainly focus on incentivized contributions through formalized [Community Bounties](#community-bounties).
 
