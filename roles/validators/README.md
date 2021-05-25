@@ -510,7 +510,7 @@ In order to be a `Nominator`, you need to stake. Note that you may have to refre
 7. Once submitted, you will start earning a share of the rewards.
 
 # Rewards
-Rewards are the most critical part of any blockchains infrastructure, block production, whether it's from [Proof of Work](https://en.wikipedia.org/wiki/Proof_of_work) (using miners, e.g., Bitcoin)  or [Proof of Stake](https://en.wikipedia.org/wiki/Proof_of_stake) (using validators, like Joystream). Validators are rewarded for producing, propagating and securing the network.
+Rewards are the most critical part of any blockchains infrastructure, block production, whether it's from [Proof of Work](https://en.wikipedia.org/wiki/Proof_of_work) (using miners, e.g. Bitcoin)  or [Proof of Stake](https://en.wikipedia.org/wiki/Proof_of_stake) (using validators, like Joystream). Validators are rewarded for producing, propagating and securing the network.
 
 ## Claiming Rewards
 Rewards are no longer paid out automatically to the validators, and it must be done manually.
