@@ -32,7 +32,7 @@ Table of Contents
 
 # Overview
 
-When the `Council` was first introduced, it was only able to vote on whether or not a runtime upgrade should be implemented. This  rarely occurred, making the Council a rather insignificant part of the platform.
+When the `Council` was first introduced, it was only able to vote on whether or not a runtime upgrade should be implemented. This very rarely occurred, making the Council a rather insignificant part of the platform.
 
 As the `Council` is meant to be the executive arm of the Joystream governance system, we are adding a proposal system that will allow the users to control most of the day to day decision making on the platform.
 
