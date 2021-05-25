@@ -56,7 +56,7 @@ Table of Contents
 - [Troubleshooting](#troubleshooting)
   - [Unstaking](#unstaking)
     - [In Pioneer](#in-pioneer)
-    - [Using Extrinsic](#using-extrinsics)
+    - [Using Extrinsics](#using-extrinsics)
 <!-- TOC END -->
 
 
