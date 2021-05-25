@@ -248,7 +248,7 @@ Means updating the status (`isCensored`) for a video from `true` to `false`. Unl
 - The content must be as "advertised"
   - If the title, description, category and thumbnail imply a baking video, the video should not be a documentary about Bitcoin
 - Missing artwork
-  - If thumbnail is missing, or just really poor, the video can be hidden, or given a warning (Council decides u.n.o.)
+  - If thumbnail is missing, or just really poor, the video can be hidden, or given a warning.
 - Poor quality
   - If the video quality is "unreasonably" low
 
