@@ -555,7 +555,7 @@ Involved parties, and their responsibilities:
     - with grading (i.e. reward) for each video ID
   - A summary of the rewards
   - A list of all videos/channels that was not approved by Curators
-6. This report is submitted as a PR to the Community Repo, along with a Spending Proposal equaling the sum of the Rewards (plus, if applicable, a payment for their own labor).
+6. This report is submitted as a PR to the Community Repo, along with a Spending Proposal equalling the sum of the Rewards (plus, if applicable, a payment for their own labour).
 7. If approved by the Council, a review of the PR containing the report is requested by Jsgenesis, and the BM sends the funds minted by the Proposal to the rightful owners.
 8. Jsgenesis grades the report, (including some spot checks of the videos), and adds the amount they see applicable to the Fiat Pool.
 
