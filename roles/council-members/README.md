@@ -269,7 +269,7 @@ Before a new `Announcing` stage begins, a new thread will be made on the on-chai
   - What you have done to prepare
   - Any questions about the role
   - etc.
-- Longtime community members
+- Long-term community members
   - General Joystream "record", such as
     - Roles you had
     - Contributions (bounties, KPIs, etc.)
