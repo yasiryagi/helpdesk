@@ -109,7 +109,7 @@ For smaller, and perhaps more creative and subjective Bounty, it may make more s
 For smaller Bounties, perhaps running indefinitely, where entrants can make multiple submissions and there are few barriers to entry.
 
 ##### Closed Format
-For a Bounty that requires investing lots of time and/or other resources, it may be reasonable to guarantee one or more "Applicants" that gets "Assigned", giving them, some agreed time to complete all, or some, of the work, without having someone come in and "snipe" the reward.
+For a Bounty that requires investing lots of time and/or other resources, it may be reasonable to guarantee one or more "Applicants" that gets "Assigned", giving them some agreed time to complete all, or some, of the work, without having someone come in and "snipe" the reward.
 
 ##### Other
 In addition to the varieties outlined, other formats can be defined and chosen if they are more appropriate for a specific Bounty.
