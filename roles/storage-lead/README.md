@@ -25,6 +25,7 @@ Table of Contents
 - [Working As Storage Lead](#working-as-storage-lead)
   - [Responsibilities](#responsibilities)
   - [All Commands](#all-commands)
+  - [Set Vouchers Limits](#set-vouchers-limits)
 <!-- TOC END -->
 
 
@@ -356,6 +357,11 @@ More information on the usage can be found [here](/tools/cli)
 
 For convenience, the output of this command is listed below to give a sense of the powers and responsibilities of the Storage Lead:
 ```
+Working group lead and worker actions
+
+USAGE
+  $ joystream-cli working-groups:COMMAND
+
 COMMANDS
   working-groups:application                 Shows an overview of given application by Working Group Application ID
   working-groups:createOpening               Create working group opening (requires lead access)
@@ -374,5 +380,11 @@ COMMANDS
   working-groups:terminateApplication        Terminates given working group application. Requires lead access.
   working-groups:updateRewardAccount         Updates the worker/lead reward account (requires current role account to be selected)
   working-groups:updateRoleAccount           Updates the worker/lead role account. Requires member controller account to be selected
+  working-groups:updateRoleStorage           Updates the associated worker storage
   working-groups:updateWorkerReward          Change given worker's reward (amount only). Requires lead access.
 ```
+
+## Set Vouchers Limits
+Starting with `sumer`, the Storage Lead is also responsible for handling channel owners quotas. If requested, and approved, this can (for now) only be done by using the [extrinsics tab](https://testnet.joystream.org/#/extrinsics) (which requires you to enable the "Fully featured" view in settings), and selecting `dataDirectory`.
+
+Note that the quotas are on the `channel` level, not `member`. You can also check the current voucher limits in the [chain state tab](https://testnet.joystream.org/#/chainstate).
