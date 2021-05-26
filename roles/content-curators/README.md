@@ -27,14 +27,20 @@ Table of Contents
       - [Example](#example)
     - [Council Reports](#council-reports)
       - [Example](#example-1)
+    - [Tools](#tools)
+      - [Joystream Player](#joystream-player)
+      - [CLI](#cli)
+      - [Hydra Playground](#hydra-playground)
     - [Policy](#policy)
       - [Videos](#videos)
       - [Channels](#channels)
     - [Discretion](#discretion)
-  - [Curation](#curation)
+  - [Curation Tools](#curation-tools)
     - [Censoring](#censoring)
-    - [Updating](#updating)
-    - [Removing](#removing)
+    - [Category Management](#category-management)
+      - [Create Category](#create-category)
+      - [Update Category](#update-category)
+      - [Delete Category](#delete-category)
 <!-- TOC END -->
 
 # Overview
@@ -125,29 +131,34 @@ Each review of this kind should be reported in a designated thread on the Forum,
 - *Last report:* `<link.to.previous.post>`
 - *Author:* `<ID/Handle/WorkerId>`
 - *Overall Statistics:*
-  - *Total entities:* `2974`
-  - *Total channel entities:* `149`
-  - *Total video entities:* `535`
+  - *Total channels:* `149`
+  - *Total videos:* `535`
+  - *Total assets:* `1401`
 - *Since Last Report:*
-  - *Total new entities:* `12`
-  - *Total new channel entities:* `2`
-  - *Total new video entities:* `2`
+  - *Total new channels:* `2`
+  - *Total new videos:* `3`
+  - *Total new assets:* `13`
 
-##### New Entities Since Last Report
-|Entity ID |Class/ID      |Owner [memberId/Handle]|Title                          |Curator Status                                  |Reference        |
-|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:---------------:|
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Censored - requires attribution -`1`            |`#<number>`      |
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Approved                                        |NA               |
-|`<ID>`    |Channel/1     |`<ID>/<handle>`        |`<title>`                      |Hidden - Missing Avatar                         |`#<number>`      |
-|`<ID>`    |Channel/1     |`<ID>/<handle>`        |`<title>`                      |Approved                                        |NA               |
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Poor thumbnail, improve by `#<number>` - `2`    |NA               |
+##### New Videos and Channels Since Last Report
 
-1. All licenses of this kind requires attribution.
-2. The thumbnail is misleading, and in low resolution.
+|Channel ID/Title    |Owner [memberId/Handle]|Curator Status                                  |Reference        |
+|:------------------:|:---------------------:|:----------------------------------------------:|:---------------:|
+|`<ID>`/<title>      |`<ID>/<handle>`        |Censored - spam - `1`                           |`#<number>`      |
+|`<ID>`/<title>      |`<ID>/<handle>`        |Approved                                        |NA               |
+
+
+|Video ID/Title      |Owner [memberId/Handle]|Channel ID/Title               |Curator Status                                  |Reference        |
+|:------------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:---------------:|
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Censored - requires attribution -`2`            |`#<number>`      |
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Approved                                        |NA               |
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Poor thumbnail, improve by `#<number>` - `3`    |NA               |
+
+1. This is pure spam, and the owner was warned.
+2. All licenses of this kind requires attribution.
+3. The thumbnail is misleading, and in low resolution.
 
 ---
 
-In the table, the "Entity Id" refers to the video or channel `entityId`, where the former also includes the other (4-5) entities created when a video is uploaded.
 The "owner" and "title" is also included, to make it easier for the uploader to find out what the status of their channel is.
 
 The "curator status" should indicate either `Approved`, or what action, if any, was taken. In that case, a reference to the block height where the transaction change occurred.
@@ -157,7 +168,7 @@ The Curator team should also monitor this thread, as it would be where the chann
 ### Council Reports
 At some agreed interval, assumed to be at least once for each Council Term, _all_ videos and channels must be "checked in" on. There could be many reasons why  to verify that they are still acceptable. In some cases, some details may have been overlooked in previous "check-ups", but there is also the chance that a Channel owner or a (rogue) Curator makes a change that requires an action.
 
-To avoid having to go through thousands of entities every time, the Lead, or some other curator could perhaps deploy a script that checks for certain types of transaction that makes changes to the content directory.
+To avoid having to go through thousands of videos/channels every time, the Lead, or some other curator could perhaps deploy a script that checks for certain types of transaction that makes changes to the content directory.
 
 To avoid everyone stepping on each other’s toes, the Lead should consider splitting the workload between the team, e.g., by language, category, etc.
 
@@ -172,83 +183,88 @@ The results from this check in should be reported to the Council and the Channel
 - *Last report:* `<link.to.previous.post>`
 - *Author:* `<ID/Handle/WorkerId>`
 - *Overall Statistics:*
-  - *Total entities:* `2974`
-  - *Total channel entities:* `149`
-  - *Total video entities:* `535`
+  - *Total channels:* `149`
+  - *Total videos:* `535`
+  - *Total assets:* `1401`
 - *Changes Since Last Report:*
-  - *Total new entities:* `200`
-  - *Total new channel entities:* `10`
-  - *Total new video entities:* `38`
+  - *Total new channels:* `10`
+  - *Total new videos:* `38`
+  - *Total new assets:* `117`
 
 ##### Changes Made Since Last Report - Owner
-|Entity ID |Class/ID      |Owner [memberId/Handle]|Title                          |Changed                 |Consequence            |Reference (block/post)    |
-|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------:|----------------------:|:------------------------:|
-|`<ID>`    |Channel/1     |`<ID>/<handle>`        |`<title>`                      |Updated banner          |NA                     |`#<number>`               |
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Changed thumbnail       |No longer censored     |`#<number>/<postId>`      |
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Added thumbnail         |No longer hidden       |`#<number>/<postId>`      |
+|Channel ID/Title    |Owner [memberId/Handle]|Changed                 |Consequence            |Reference (block/post)    |
+|:------------------:|:---------------------:|:----------------------:|----------------------:|:------------------------:|
+|`<ID>`/<title>      |`<ID>/<handle>`        |Updated banner          |NA                     |`#<number>`               |
+
+
+|Video ID/Title      |Owner [memberId/Handle]|Channel ID/Title               |Changed                 |Consequence            |Reference (block/post)    |
+|:------------------:|:---------------------:|:-----------------------------:|:----------------------:|----------------------:|:------------------------:|
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Changed thumbnail       |No longer censored     |`#<number>/<postId>`      |
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Added thumbnail         |No longer hidden       |`#<number>/<postId>`      |
+
 
 ##### Changes Made Since Last Report - Curators
-|Entity ID |Class/ID      |Owner [memberId/Handle]|Title                          |Curator Status                                  |Reference (block/post)    |
-|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:------------------------:|
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Attribution added, no longer censored           |`#<number>/<postId>`      |
-|`<ID>`    |Channel/1     |`<ID>/<handle>`        |`<title>`                      |Hidden - Missing Avatar                         |`#<number>/<postId>`      |
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Censored - requires attribution                 |`#<number>/<postId>`      |
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Changed thumbnail, no longer censored           |`#<number>/<postId>`      |
-|`<ID>`    |Video/10      |`<ID>/<handle>`        |`<title>`                      |Added thumbnail, no longer hidden               |`#<number>/<postId>`      |
+|Channel ID/Title    |Owner [memberId/Handle]|Curator Status                                  |Reference (block/post)    |
+|:------------------:|:---------------------:|:----------------------------------------------:|:------------------------:|
+|`<ID>`/<title>      |`<ID>/<handle>`        |Censored - spam - `1`                           |`#<number>/<postId>`      |
 
-##### All Non-Playable Videos
-|Entity ID |Channel ID    |Owner [memberId/Handle]|Title                          |Reason                                          |Reference (block/post)    |
-|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:------------------------:|
-|`1834`    |`1829`        |`<ID>/<handle>`        |`<title>`                      |Text Property too long at creation              |`#2175058/NA`             |
-|`1839`    |`1829`        |`<ID>/<handle>`        |`<title>`                      |Video deleted by owner                          |`#2175164/NA`             |
-|`<ID>`    |`<title>`     |`<ID>/<handle>`        |`<title>`                      |Censored, Copyright                             |`#<number>/<postId>`      |
-|`<ID>`    |`<ID>`        |`<ID>/<handle>`        |`<title>`                      |Set as not public by owner                      |`#<number>/<postId>`      |
-|`<ID>`    |`<ID>`        |`<ID>/<handle>`        |`<title>`                      |Censored - requires attribution                 |`#<number>/<postId>`      |
-|`2402`    |`2396`        |`<ID>/<handle>`        |`<title>`                      |Added to "empty" channels                       |`#2215006/NA`             |
+|Video ID/Title      |Owner [memberId/Handle]|Channel ID/Title               |Curator Status                                  |Reference (block/post)    |
+|:------------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:------------------------:|
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Attribution added, no longer censored           |`#<number>/<postId>`      |
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Censored - requires attribution                 |`#<number>/<postId>`      |
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Changed thumbnail, no longer censored           |`#<number>/<postId>`      |
 
 ##### All Non-Visible Channels
-|Entity ID |Videos        |Owner [memberId/Handle]|Title                          |Reason                                          |Reference (block/post)    |
-|:--------:|:------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:------------------------:|
-|`1840`    |`2402`        |`<ID>/<handle>`        |`<title>`                      |Rejected - channel name not unique              |`#2214830/NA`             |
-|`<ID>`    |`<ID,ID,ID>`  |`<ID>/<handle>`        |`<title>`                      |Hidden - Missing Avatar                         |`#<number>/<postId>`      |
-|`<ID>`    |-             |`<ID>/<handle>`        |`<title>`                      |No videos in channels                           |`#<number>/<postId>`      |
-|`2396`    |`<ID,ID,ID>`  |`<ID>/<handle>`        |`<title>`                      |Rejected - Text property (title?) too long      |`#2175058/NA`             |
+|Channel ID/Title    |Owner [memberId/Handle]|Reason                                          |Reference (block/post)    |
+|:------------------:|:---------------------:|:----------------------------------------------:|:------------------------:|
+|`<ID>`/<title>      |`<ID>/<handle>`        |Title too long at creation                      |`#<number>/<postId>`      |
+
+##### All Non-Playable Videos
+|Video ID/Title      |Owner [memberId/Handle]|Channel ID/Title               |Reason                                          |Reference (block/post)    |
+|:------------------:|:---------------------:|:-----------------------------:|:----------------------------------------------:|:------------------------:|
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Video deleted by owner                          |`#<number>/<postId>`      |
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Set as not public by owner                      |`#<number>/<postId>`      |
+|`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Censored - requires attribution                 |`#<number>/<postId>`      |
+
 
 ##### Notes
 Some notes from the curator.
 
 ---
 
-This may look like a _lot_ of work, but all the data needed can be found using a script that checks all blocks from `n` to `m`, and looks at all events with `event.section == contentDirectory`, and returns these blocks (or the full data). A basic version of this will be made available in the [community repo](https://github.com/Joystream/community-repo).
+This will be quite a lot of work, but all the data needed can be found using a script that checks all blocks from `n` to `m`, and looks at all events with `event.section == content`, and returns these blocks (or the full data). A basic version of this will be made available in the [community repo](https://github.com/Joystream/community-repo).
 
-- The CLI can be used to find all video, `content-directory:entities <10|Video>` and channel, `content-directory:entities <1|Channel>` entities in the content directory.
-- The data in "Changes Made Since Last Report - Owner" can be found by said script.
-- The data in "Changes Made Since Last Report - Curators" can be found using the same script, in addition to copy/pasting data the from the [Regular Checks](#regular-checks) - which _should_ be correct if all actions were reported there.
-- "All Non-Playable Videos" and "All Non-Visible Channels" should be extractable from older reports, and data already filled in.
+### Tools
+For every job, good tools are needed.
+
+#### Joystream Player
+Going through each video and channel one by one can be quite ardous, but to verify that the assets work, and look ok it is needed for [Regular Checks](#regular-checks). The url of each video and channel will match their respective IDs, which will help.
+
+#### CLI
+With the release of the Sumer network, in a transitional phase, the CLI will not display a lot of context for each video and channel.
+- for channels: `ID   Owner       IsCensored   RewardAccount`
+- for vidoes:   `ID   InChannel   InSeries     IsCensored   `
+- Where `InSeries` and `RewardAccount` can be ignored.
+
+#### Hydra Playground
+To effectively get information about videos in bulk, the [playground](https://hydra.joystream.org/graphql) will need to be used. We are adding helpers to assist the Curators here.
 
 ### Policy
 
 `warning`
 Means posting a note in the forum, as part of the [Regular Checks](#regular-checks), that something has to be corrected within a certain time period
 
-`hidden`
-Means updating the status (`isPublic`) for a video from `true` to `false`. Note that this can be changed back to `true` by the owner!
-
 `censor`
-Means updating the status (`isCensored`) for a video from `true` to `false`. Unlike `hidden`, this cannot be changed back by anyone but another curator.
+Means updating the status (`isCensored`) for a video from `true` to `false`.This cannot be changed back by anyone but another curator in an active group.
 
 #### Videos
 **When to (only) issue a `warning`:**
 - Missing artwork
-  - If the thumbnail is missing, or just really poor, the video can be `hidden`, or issued a `warning` (Council decides u.n.o.).
+  - If the thumbnail is missing, or just really poor, the video can be issued a `warning`
 - Suspicious license
   - If the Curator suspects, but is not able to verify that a video is incorrectly licensed, a `warning` can be issued, leaving the channel owner some defined deadline to respond and provide more information or evidence.
-
-**When to make a video `hidden`:**
-- The content must be as "advertised"
+- Content not as "advertised"
   - If the title, description, category and thumbnail imply a baking video, the video should not be a documentary about Bitcoin
-- Missing artwork
-  - If thumbnail is missing, or just really poor, the video can be hidden, or given a warning.
 - Poor quality
   - If the video quality is "unreasonably" low
 
@@ -259,30 +275,16 @@ Means updating the status (`isCensored`) for a video from `true` to `false`. Unl
   - If the license has specific requirements with it (e.g. "no derivatives" if [CC_BY_NC_ND](https://creativecommons.org/licenses/by-nc-nd/4.0/))
 - Suspected copyright violation
   - If it's not clear that the video is in violation, but this is strongly suspected by the Curator
-- Status change by owner without resolving issue
-  - If a video is `hidden` by a curator, and the channel owner makes it public again without correcting the issue described by the curators
 - Terms of Service violation
-  - If the video is in violation of other parts of the [ToS](https://testnet.joystream.org/#/pages/tos)
+  - If the video is in violation of other parts of the [ToS](https://play.joystream.org/legal/tos)
 
 #### Channels
 **When to (only) issue a `warning`:**
-- Missing artwork
-  - If the avatar or cover is missing, or just really poor, the channel can be `hidden`, or issued a `warning` (Council decides).
-
-**When to make a channel `hidden`:**
-- No videos
-  - If there are no videos, that is *not* `censored` or `hidden`, or simply no uploads to a channel that wasn't made very recently
-- Multiple infractions
-  - If multiple videos are currently `censored` or `hidden`, and the owner has made no efforts to fix this
-- Recurring infractions
-  - The channel owner continuously uploads new videos requiring curation
+- Multiple warnings for videos
 
 **When to `censor` a channel:**
 - Multiple or recurring *serious* infractions
   - If multiple videos are currently `censored` and the owner has made no efforts to fix this
-
-In this case, `limiting` the channel owners right to create new channels/videos may be required.
-As only the [Lead](/roles/content-curator-lead/README.md#increasing-or-decreasing-limits-for-members) can do this.
 
 
 ### Discretion
@@ -291,72 +293,99 @@ These rules are not clearly defined in all cases, so it's important that curator
 "Speak softly, and carry a big stick"
 - Theodore Roosevelt
 
-## Curation
-Curation can mean either censoring, updating or altogether removing content. It can also involve putting content in a "featured" state on the platform.
+## Curation Tools
 
-A key part of understanding Curation is to understand the basics of the Content Directory using the [CLI](https://github.com/Joystream/joystream/tree/master/cli). Examples:
-
-```
-# Info about a specific class:
-$ joystream-cli content-directory:class <CLASSNAME|CLASSID>
-
-# Info about a specific entity:
-$ joystream-cli content-directory:entity <ENTITYID>
-
-# List all classes:
-$ joystream-cli content-directory:classes
-
-# List all entities in a class:
-$ joystream-cli content-directory:entities <CLASSNAME|CLASSID>
-```
+The two main on chain tasks for curators are [censoring](#censoring) and [category management](#category-management).
 
 ### Censoring
-The first step to perform if a video or channel is not in line with the testnet Terms of Service is to censor it.
-
-If the Curator has "Maintainer" permission for a Channel or Video, this is done by the following [CLI](https://github.com/Joystream/joystream/tree/master/cli) command `joystream-cli media:curateContent`. Suppose you want to censor a Video with `entityId` 300:
 ```
-$ joystream-cli media:curateContent --className 10 --status Censored --id 300
+# Censor channel:
+$ joystream-cli content:updateChannelCensorshipStatus --help
+
+Update Channel censorship status (Censored / Not censored).
+
+USAGE
+  $ joystream-cli content:updateChannelCensorshipStatus ID [STATUS]
+
+ARGUMENTS
+  ID      ID of the Channel
+  STATUS  New censorship status of the channel (1 - censored, 0 - not censored)
+
+OPTIONS
+  --rationale=rationale
+
+# Censor video:
+$ joystream-cli content:updateVideoCensorshipStatus --help
+
+Update Video censorship status (Censored / Not censored).
+
+USAGE
+  $ joystream-cli content:updateVideoCensorshipStatus ID [STATUS]
+
+ARGUMENTS
+  ID      ID of the Video
+  STATUS  New video censorship status (1 - censored, 0 - not censored)
+
+OPTIONS
+  --rationale=rationale  rationale
 ```
 
-If it's a minor issue, you can try to reach out to the creator, and have them make the modification required. If the issue gets resolved, you can reverse the censoring by:
+### Category Management
+Curators can create, update and delete categories. Instructions below are for videos only, as channel categories are not (yet) visible in the player.
 
+#### Create Category
+Say a curator wants to add a category called "Joystream Videos":
+1. Create an input file in json format like so:
+```json
+{
+  "name": "Joystream Videos"
+}
 ```
-$ joystream-cli media:curateContent --className 10 --status Accepted --id 300
+2. As a curator, with your role key, use the following command:
+```
+$ joystream-cli content:createVideoCategory --help
+
+Create video category inside content directory.
+
+USAGE
+  $ joystream-cli content:createVideoCategory
+
+OPTIONS
+  -i, --input=input         (required) Path to JSON file to use as input
+  --context=(Lead|Curator)  Actor context to execute the command in (Lead/Curator)
+```
+3. Set the correct options, and submit!
+
+#### Update Category
+Same as above, but:
+```
+$ joystream-cli content:updateVideoCategory --help
+
+Update video category inside content directory.
+
+USAGE
+  $ joystream-cli content:updateVideoCategory VIDEOCATEGORYID
+
+ARGUMENTS
+  VIDEOCATEGORYID  ID of the Video Category
+
+OPTIONS
+  -i, --input=input         (required) Path to JSON file to use as input
+  --context=(Lead|Curator)  Actor context to execute the command in (Lead/Curator)
 ```
 
-If it's a more serious infraction, contact the Lead and let them know. In general, it's preferable to share the information with other curators regardless.
-
-### Updating
-If you have the permission, you can update a Channel (with `entityId` 100) or Video (with `entityId` 200) like so:
+#### Delete Category
 ```
-$ joystream-cli media:updateChannel 100 --asCurator
-$ joystream-cli media:updateVideo 200 --asCurator
-```
-This is particularly useful if the Channel owner is using the wrong "License", or has forgotten "Attribution".
+$ joystream-cli content:deleteVideoCategory --help
 
+Delete video category.
 
-### Removing
-If you have the permission, you can remove a Channel (with `entityId` 100) like so:
-```
-$ joystream-cli content-directory:removeEntity 100 --context <Curator|Lead>
-```
-A Video will usually have 5 or more entities for each upload, so a Curator will need to check which entities are associated with the Video, and delete them "backwards". If you want to remove the Video with `entityId` 200...
-```
-$ joystream-cli content-directory:entity 200
-$ joystream-cli content-directory:removeEntity 200
+USAGE
+  $ joystream-cli content:deleteVideoCategory VIDEOCATEGORYID
 
-$ joystream-cli content-directory:entity 199
-$ joystream-cli content-directory:removeEntity 199
+ARGUMENTS
+  VIDEOCATEGORYID  ID of the Video Category
 
-$ joystream-cli content-directory:entity 198
-$ joystream-cli content-directory:removeEntity 198
-
-$ joystream-cli content-directory:entity 197
-$ joystream-cli content-directory:removeEntity 197
-
-$ joystream-cli content-directory:entity 196
-$ joystream-cli content-directory:removeEntity 196
-
-$ joystream-cli content-directory:entity 195
-# When you a see a new Video or Channel entity (or something else unrelated), you are clear and must stop
+OPTIONS
+  --context=(Lead|Curator)  Actor context to execute the command in (Lead/Curator)
 ```
