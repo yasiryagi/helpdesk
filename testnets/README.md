@@ -9,8 +9,9 @@ Table of Contents
 <!-- TOC END -->
 
 ## Current Testnet
-[Antioch](/testnets/antioch)
+[Sumer](/testnets/sumer)
 
 ## Past Testnets
-[Constantinople](/testnets/constantinople)
-[Alexandria](/testnets/alexandria)
+- [Constantinople](/testnets/constantinople)
+- [Alexandria](/testnets/alexandria)
+- [Antioch](/testnets/antioch)
