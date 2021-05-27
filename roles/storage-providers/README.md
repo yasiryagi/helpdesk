@@ -279,8 +279,9 @@ $ ./setup.sh
 $ exit
 $ ssh user@ipOrURL
 # on your local machine, just close the terminal and open a new one
-$ cd ~/joystream/storage-node/packages/colossus
+$ cd ~/joystream
 $ yarn build:packages
+$ cd ~/joystream/storage-node/packages/colossus
 $ yarn run colossus --help
 ```
 
