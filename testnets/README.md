@@ -9,7 +9,7 @@ Table of Contents
 <!-- TOC END -->
 
 ## Current Testnet
-[Sumer](/testnets/sumer)
+- [Sumer](/testnets/sumer)
 
 ## Past Testnets
 - [Constantinople](/testnets/constantinople)
