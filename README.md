@@ -22,8 +22,12 @@
       Content Curators
     </a>
     <span> | </span>
+    <a href="/roles/operators">
+      Operators
+    <span> | </span>
     <a href="/roles/builders">
       Builders
+    </a>
     </a>
   </h4>
 </div>
