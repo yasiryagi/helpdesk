@@ -101,20 +101,21 @@ Which should return the output below:
 Command Line Interface for Joystream community and governance activities
 
 VERSION
-  @joystream/cli/0.4.0 linux-x64 node-v12.18.2
+  @joystream/cli/0.5.0 linux-x64 node-v14.16.1
 
 USAGE
   $ joystream-cli [COMMAND]
 
+TOPICS
+  account         Accounts management - create, import or switch currently used account
+  api             Inspect the substrate node api, perform lower-level api calls or change the current api provider uri
+  content         Interactions with content directory module - managing vidoes, channels, assets, categories and curator groups
+  council         Council-related information and activities like voting, becoming part of the council etc.
+  working-groups  Working group lead and worker actions
+
 COMMANDS
-  account            Accounts management - create, import or switch currently used account
-  api                Inspect the substrate node api, perform lower-level api calls or change the current api provider uri
-  autocomplete       display autocomplete installation instructions
-  content-directory  Interactions with content directory module - managing classes, schemas, entities and permissions
-  council            Council-related information and activities like voting, becoming part of the council etc.
-  help               display help for joystream-cli
-  media              Higher-level content directory interactions, ie. publishing and curating content
-  working-groups     Working group lead and worker actions
+  autocomplete  display autocomplete installation instructions
+  help          display help for joystream-cli
 ```
 
 ## Getting Started
