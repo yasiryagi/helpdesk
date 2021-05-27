@@ -188,10 +188,39 @@ If you only want to change the title of your channel or video, the .json example
 If you have any issues - the first step is to ask in our [Discord server](https://discord.gg/mzv7DeNq)!
 
 ## Content Directory
-The new content directory is partially using [metaprotocols](https://github.com/Joystream/joystream/issues/1990). That means a lot of the information in a transaction is not actually available on chain, but has to be looked up in our query node.
+The new content directory is partially using [metaprotocols](https://github.com/Joystream/joystream/issues/1990). That means a lot of the information in a transaction is not actually available on chain, but has to be looked up in our query-node "playground" [here](https://hydra.joystream.org/graphql).
+
+A basic example of how to find the first 100 videos sorted by the block height created:
+```
+query {
+  videos (limit:100, orderBy:createdInBlock_ASC){
+    id
+    title
+    isCensored
+    isPublic
+    category {
+      id
+      name
+    }
+    channelId
+    channel {
+      id
+      createdAt
+      createdInBlock
+      ownerMember {
+        id
+        handle
+      }
+    }
+    createdAt
+    createdInBlock
+  }
+}
+```
+Note that the clicking "docs" (and/or "schema") is very be helpful, once you get the general syntaxt!
 
 ### Categories
-At the time of writing, the only way to find the current set of categories is to go to our query-node "playground" [here](https://hydra.joystream.org/graphql), and query:
+At the time of writing, the only way to find the current set of categories is to go to the query-node playground and query:
 ```
 query {
   videoCategories {
