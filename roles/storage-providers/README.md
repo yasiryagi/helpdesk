@@ -388,7 +388,7 @@ After you've had it running for a bit (>1 min):
 $ cd ~/joystream/
 $ yarn run helios
 ```
-If everything is working, you should rather quicly, with correct `workerId` and URL.
+If everything is working, you should rather quickly, see your SP as active, with correct `workerId` and URL.
 
 ### Run storage node as a service
 
