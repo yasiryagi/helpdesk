@@ -31,15 +31,15 @@ Table of Contents
 # Overview
 This page will contain all information on how to act as a `Content Creator`, and how to create a channel, upload videos, and managing your content.
 
-Starting with the Sumer release, content is now both consumed, created and managed in the [Joystream Player](https://play.joystream.org/). You can still use the [Joystream-CLI](https://www.npmjs.com/package/@joystream/cli) to create channels and upload videos, but using the [Joystream Studio](https://play.joystream.org/studio/) will provide a far better experience in most cases.
+Starting with the Sumer release, content is now consumed, created, and managed in the [Joystream Player](https://play.joystream.org/). You can still use the [Joystream-CLI](https://www.npmjs.com/package/@joystream/cli) to create channels and upload videos, but using the [Joystream Studio](https://play.joystream.org/studio/) will provide a far better experience for most purposes.
 
-Please consider the Terms of Service when uploading content. More [here](#content-restrictions).
+You must always keep in mind our Terms of Service when uploading content. Further details can be found [here](#content-restrictions).
 
 # Get Started
 Before you can upload your first video, you need to create a membership (if you don't already have one) and then a channel. Instructions for using the Joystream Player can be found below, but if you prefer to use the CLI, go [here](#using-the-cli).
 
 ## Using the Joystream Player
-In order to use the [Joystream Studio](https://play.joystream.org/studio/), you need the [Polkadot browser extension](https://polkadot.js.org/extension/) in order to sign transactions.
+In order to use the [Joystream Studio](https://play.joystream.org/studio/) interface, you need to install the [Polkadot browser extension](https://polkadot.js.org/extension/) in order to sign transactions.
 
 If you already have a membership, follow the instructions below.
 
@@ -54,13 +54,13 @@ If you are new to the platform, you can create a new membership through the onbo
 6. Select your membership profile, and you will be redirected to a page to [create your channel](#create-channel).
 
 ### Sign Up
-Note that you can also register in our (less polished - but we're working on a new one) governance app - [pioneer](https://testnet.joystream.org/#/accounts), but then you'll need to get tokens first. Using this onboarding is recommended.
+Note that you can also register in our (less polished - but we're working on a new one) governance app - [Pioneer](https://testnet.joystream.org/#/accounts), but then you'll need to get tokens first. Using the onboarding flow below is recommended for new participants.
 
 1. Download the Polkadot browser extension[here](https://polkadot.js.org/extension/).
 2. Go directly to [Joystream Studio](https://play.joystream.org/studio/), or select the menu -> then "Joystream Studio" in the [Player](https://play.joystream.org/).
 3. Click "Sign In", allow the extension access, and follow the instructions.
 4. Open the extension, and click the large circle to create an account. Confirm your account selection, and continue to create a membership.
-5. You need to choose a unique handle, consisting of only lowercase characthers, numbers and underscores. Optionally (and preferably), also add a link to your membership avatar, and some words about you. Create the membership and wait ~15 seconds for the transaction to confirm.
+5. You need to choose a unique handle, consisting of only lowercase characters, numbers and underscores. Optionally (and preferably), also add a link to your membership avatar, and some information about yourself. Create the membership and wait ~15 seconds for the transaction to confirm.
 6. Select your membership profile, and you will be redirected to a page to [create your channel](#create-channel)
 
 ### Create a Channel
@@ -85,15 +85,15 @@ Now that we have created a channel, we can upload a video.
 1. Click the blue button next to your profile in the top right corner, or "Videos" in the sidebar.
 2. Drag and drop your video file, or click the blue "Select a file" button to add your video file.
 3. Once completed, repeat the above step to add a thumbnail image. Crop and adjust your image to fit.
-4. The title will default to the name of the video file, but you probably want to change this.
+4. The title will default to the name of the video file, but this will probably need changing.
 5. Fill out the rest of the fields.
 6. Once you are satisfied, click "Start publishing", sign your transaction, and wait for it to confirm. Your assets will now upload in the background.
 7. To see how it looks in the [Player](https://play.joystream.org/videos), note that you have to wait for the uploads to complete, plus another ~15sec delay, before it will appear. Note that unlike channels, videos will never appear in the videos list unless you have successfully uploaded both the video and the thumbnail.
 
-If you've made a mistake, or simply want to make an improvement, you can edit the video. The exception is the video file itself, which can't be changed. If this is incorrect, you will have to delete the video, and start again.
+If you've made a mistake, or simply want to make an improvement, you can edit the video metadata. This is not possible for the video file itself, which can't be changed. If this is incorrect, you will have to delete the video, and start again.
 
 ### Troubleshooting
-If you have any issues - the first step is to ask on our [Discord](https://discord.gg/mzv7DeNq)!
+If you have any issues - the first step is to ask in our [Discord server](https://discord.gg/mzv7DeNq)!
 
 ## Using the CLI
 
@@ -144,7 +144,7 @@ Notes:
   "license": {
     "code": 1001
   },
-// All Creative Commons, ie. 1001-1008 (although not strictly required by 1001)
+// All Creative Commons, ie. 1002-1008 (although not strictly required by 1002)
   "license": {
     "code": 1002,
     "Attribution": "Attribution to the original creator as per the license rules."
@@ -185,7 +185,7 @@ If you only want to change the title of your channel or video, the .json example
 ```
 
 ### Troubleshooting
-If you have any issues - the first step is to ask on our [Discord](https://discord.gg/mzv7DeNq)!
+If you have any issues - the first step is to ask in our [Discord server](https://discord.gg/mzv7DeNq)!
 
 ## Content Directory
 The new content directory is partially using [metaprotocols](https://github.com/Joystream/joystream/issues/1990). That means a lot of the information in a transaction is not actually available on chain, but has to be looked up in our query node.
@@ -202,7 +202,7 @@ query {
 ```
 If you are looking for the channel categories, replace `videoCategories` with `channelCategories`
 
-Note that the below categories only includes what was set at launch, and may have changed since then.
+Note that the categories below only include what was set at launch, and may have changed since then.
 ```json
 {
     "categories":

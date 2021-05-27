@@ -114,7 +114,7 @@ USAGE
   $ joystream-cli working-groups:createOpening
 
 OPTIONS
-  -e, --edit                                          If provided along with --input - launches in edit mode allowing to modify the input before sending the exstinsic
+  -e, --edit                                          If provided along with --input - launches in edit mode allowing to modify the input before sending the exstrinsic
 
   -g, --group=(storageProviders|curators|operations)  The working group context in which the command should be executed
                                                       Available values are: storageProviders, curators, operations.
@@ -227,7 +227,7 @@ $ joystream-cli content:setCuratorGroupStatus <GROUPID>
 $ joystream-cli content:curatorGroups
 ```
 
-Only curators in active groups may censor content, or mange channel and video categories.
+Only curators in active groups may censor content, or manage channel and video categories.
 
 ### Firing Curators
 Unfortunately, it may sometimes be necessary to fire curators who are not doing their jobs correctly.

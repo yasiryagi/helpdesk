@@ -238,7 +238,7 @@ This will be quite a lot of work, but all the data needed can be found using a s
 For every job, good tools are needed.
 
 #### Joystream Player
-Going through each video and channel one by one can be quite ardous, but to verify that the assets work, and look ok it is needed for [Regular Checks](#regular-checks). The url of each video and channel will match their respective IDs, which will help.
+Going through each video and channel one by one can be quite arduous, but to verify that the assets work, and are displayed properly, [Regular Checks](#regular-checks) are required. The URL of each video and channel will match their respective IDs, which should help with the processing.
 
 #### CLI
 With the release of the Sumer network, in a transitional phase, the CLI will not display a lot of context for each video and channel.

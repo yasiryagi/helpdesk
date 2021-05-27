@@ -385,6 +385,6 @@ COMMANDS
 ```
 
 ## Set Vouchers Limits
-Starting with `sumer`, the Storage Lead is also responsible for handling channel owners quotas. If requested, and approved, this can (for now) only be done by using the [extrinsics tab](https://testnet.joystream.org/#/extrinsics) (which requires you to enable the "Fully featured" view in settings), and selecting `dataDirectory`.
+Starting with `Sumer`, the Storage Lead is also responsible for handling channel owners' quotas. If requested, and approved, this can (for now) only be done by using the [extrinsics tab](https://testnet.joystream.org/#/extrinsics) (which requires you to enable the "Fully featured" view in settings), and selecting `dataDirectory`.
 
 Note that the quotas are on the `channel` level, not `member`. You can also check the current voucher limits in the [chain state tab](https://testnet.joystream.org/#/chainstate).

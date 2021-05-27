@@ -258,7 +258,7 @@ $ colossus --help
 ```
 
 ## Update Your Storage Node
-To update your storage-node from an old network, it's probably time to update `ipfs` and `caddy`, although both _should_ work.
+To update your storage-node from an old network, it's probably time to update `ipfs` and `caddy`, although older versions _should_ continue to work.
 
 If you `rm -rf ~/.ipfs`, you are also saving a **lot** of storage space, as the content-directory will not be migrated in full.
 
