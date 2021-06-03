@@ -426,7 +426,7 @@ query {
 ```
 More examples can be found [here](/roles/content-curators/query-node-examples).
 
-Note that the clicking "docs" (and/or "schema") is very be helpful, once you get the general syntaxt!
+Note that the clicking "docs" (and/or "schema") is likely to be very helpful, once you get a grasp of the general syntax!
 
 ### Categories
 At the time of writing, the only way to find the current set of categories is to go to the query-node playground and query:
