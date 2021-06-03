@@ -41,6 +41,10 @@ Table of Contents
       - [Create Category](#create-category)
       - [Update Category](#update-category)
       - [Delete Category](#delete-category)
+  - [Content Directory](#content-directory)
+    - [Categories](#categories)
+    - [Licenses](#licenses)
+- [Content Restrictions](#content-restrictions)
 <!-- TOC END -->
 
 # Overview
@@ -389,3 +393,90 @@ ARGUMENTS
 OPTIONS
   --context=(Lead|Curator)  Actor context to execute the command in (Lead/Curator)
 ```
+
+## Content Directory
+The new content directory is partially using [metaprotocols](https://github.com/Joystream/joystream/issues/1990). That means a lot of the information in a transaction is not actually available on chain, but has to be looked up in our query-node "playground" [here](https://hydra.joystream.org/graphql).
+
+A basic example of how to find the first 100 videos sorted by the block height created:
+```
+query {
+  videos (limit:100, orderBy:createdInBlock_ASC){
+    id
+    title
+    isCensored
+    isPublic
+    category {
+      id
+      name
+    }
+    channelId
+    channel {
+      id
+      createdAt
+      createdInBlock
+      ownerMember {
+        id
+        handle
+      }
+    }
+    createdAt
+    createdInBlock
+  }
+}
+```
+More examples can be found [here](/roles/content-curators/query-node-examples).
+
+Note that the clicking "docs" (and/or "schema") is likely to be very helpful, once you get a grasp of the general syntax!
+
+### Categories
+At the time of writing, the only way to find the current set of categories is to go to the query-node playground and query:
+```
+query {
+  videoCategories {
+    id
+    name
+  }
+}
+```
+If you are looking for the channel categories, replace `videoCategories` with `channelCategories`
+
+Note that the categories below only include what was set at launch, and may have changed since then.
+```json
+{
+    "categories":
+    [
+        {"id":"1","name":"Film & Animation"},
+        {"id":"2","name":"Autos & Vehicles"},
+        {"id":"3","name":"Music"},
+        {"id":"4","name":"Pets & Animals"},
+        {"id":"5","name":"Sports"},
+        {"id":"6","name":"Travel & Events"},
+        {"id":"7","name":"Gaming"},
+        {"id":"8","name":"People & Blogs"},
+        {"id":"9","name":"Comedy"},
+        {"id":"10","name":"Entertainment"},
+        {"id":"11","name":"News & Politics"},
+        {"id":"12","name":"Howto & Style"},
+        {"id":"13","name":"Education"},
+        {"id":"14","name":"Science & Technology"},
+        {"id":"15","name":"Nonprofits & Activism"}
+    ]
+}
+```
+
+### Licenses
+At launch, the available license are:
+```
+1000   Custom
+1001   PDM           Public Domain                                                   https://creativecommons.org/share-your-work/public-domain/pdm
+1002   CC0           Public Domain Dedication                                        https://creativecommons.org/share-your-work/public-domain/cc0
+1003   CC_BY         Creative Commons Attribution License                            https://creativecommons.org/licenses/by/4.0                  
+1004   CC_BY_SA      Creative Commons Attribution-ShareAlike License                 https://creativecommons.org/licenses/by-sa/4.0               
+1005   CC_BY_ND      Creative Commons Attribution-NoDerivs License                   https://creativecommons.org/licenses/by-nd/4.0               
+1006   CC_BY_NC      Creative Commons Attribution-NonCommercial License              https://creativecommons.org/licenses/by-nc/4.0               
+1007   CC_BY_NC_SA   Creative Commons Attribution-NonCommercial-ShareAlike License   https://creativecommons.org/licenses/by-nc-sa/4.0            
+1008   CC_BY_NC_ND   Creative Commons Attribution-NonCommercial-NoDerivs License     https://creativecommons.org/licenses/by-nc-nd/4.0            
+```
+
+# Content Restrictions
+It is very important that you do not upload illegal or copyrighted content on our testnets. Firstly, this will result in a disqualification from payouts. It will also result in the takedown of content, potentially slashing of funds, and the deletion of your channel. Multiple spam uploads which represent a burden to moderate for the `Content Curators` may also be penalized and result in deductions on payouts due for qualifying content uploads on your content creator profile.
