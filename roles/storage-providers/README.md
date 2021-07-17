@@ -156,7 +156,7 @@ $ nano ~/Caddyfile
 # Paste in everything below the stapled line
 ---
 # Storage Node API
-https://<your.cool.url/storage/* {
+https://<your.cool.url>/storage/* {
         route /storage/* {
                 uri strip_prefix /storage
                 reverse_proxy localhost:3000
