@@ -390,7 +390,7 @@ In your second terminal window:
 ```
 $ ipfs bitswap wantlist
 ---
-# Output should be a long list of keys, eg. Note that it might take a few minutes before the actual content from the Joystream content directory shows up.
+# Output should be a long list of keys, e.g. Note that it might take a few minutes before the actual content from the Joystream content directory shows up.
 ---
 QmeszeBjBErFQrkiQPh8QhTs3hfCEGJuK2jNopatHnps1k
 ...
@@ -400,7 +400,7 @@ If you did this immediately after FIRST starting your storage node, the `wantlis
 ```
 $ ipfs refs local
 ---
-# Output should be an even longer list of keys, eg.
+# Output should be an even longer list of keys, e.g.
 ---
 QmeszeBjBErFQrkiQPh8QhTs3hfCEGJuK2jNopatHnps1k
 Qmezum3AWdxkm1AtHe35DZGWdfhTQ4PVmmZatGwDL68RES
@@ -412,7 +412,7 @@ Another thing you can monitor:
 ```
 $ ipfs stats repo
 ---
-# Should return the size and objects, eg:
+# Should return the size and objects, e.g.:
 ---
 NumObjects: 98416
 RepoSize:   25544041095
@@ -475,7 +475,7 @@ $ systemctl stop storage-node
 
 ### Verify everything is working
 
-In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org//#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, ie. whatever comes after the last `/`.
+In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org//#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, i.e. whatever comes after the last `/`.
 
 Then paste the following in your browser:
 `https://<your.cool.url>/storage/swagger.json`
@@ -483,7 +483,7 @@ Which should return a json.
 
 And:
 `https://<your.cool.url>/storage/asset/v0/<content-id>`.
-(eg. `5GPhGYaGumtdpFYowMHY15hsdZVZUyEUe2trgh2vq7zGcFKx`)
+(e.g. `5GPhGYaGumtdpFYowMHY15hsdZVZUyEUe2trgh2vq7zGcFKx`)
 If the content starts playing, that means you are good!
 
 # Troubleshooting
