@@ -28,7 +28,6 @@ Table of Contents
     - [Firing Curators](#firing-curators)
     - [Content Working Group Mint](#content-working-group-mint)
       - [Replenishing The Mint](#replenishing-the-mint)
-    - [Increasing (or Decreasing) Limits for Members](#increasing-or-decreasing-limits-for-members)
 - [Troubleshooting](#troubleshooting)
 <!-- TOC END -->
 
@@ -99,6 +98,7 @@ COMMANDS
   working-groups:terminateApplication        Terminates given working group application. Requires lead access.
   working-groups:updateRewardAccount         Updates the worker/lead reward account (requires current role account to be selected)
   working-groups:updateRoleAccount           Updates the worker/lead role account. Requires member controller account to be selected
+  working-groups:updateRoleStorage           Updates the associated worker storage
   working-groups:updateWorkerReward          Change given worker's reward (amount only). Requires lead access.
   ```
 
@@ -114,17 +114,16 @@ USAGE
   $ joystream-cli working-groups:createOpening
 
 OPTIONS
-  -e, --edit                               If provided along with --input - launches in edit mode allowing to modify the input before sending the extrinsic
+  -e, --edit                                          If provided along with --input - launches in edit mode allowing to modify the input before sending the exstrinsic
 
-  -g, --group=(CuratorProviders|curators)  The working group context in which the command should be executed
-                                           Available values are: CuratorProviders, curators.
+  -g, --group=(storageProviders|curators|operations)  The working group context in which the command should be executed
+                                                      Available values are: storageProviders, curators, operations.
 
-  -i, --input=input                        Path to JSON file to use as input (if not specified - the input can be provided interactively)
+  -i, --input=input                                   Path to JSON file to use as input (if not specified - the input can be provided interactively)
 
-  -o, --output=output                      Path to the file where the output JSON should be saved (this output can be then reused as input)
+  -o, --output=output                                 Path to the file where the output JSON should be saved (this output can be then reused as input)
 
-  --dryRun                                 If provided along with --output - skips sending the actual extrinsic (can be used to generate a "draft" which can be provided as input
-                                           later)
+  --dryRun                                            If provided along with --output - skips sending the actual extrinsic(can be used to generate a "draft" which can be provided as input later)
 ```
 
 Note that although some values are stated as `u128` or other confusing types, you should provide plaintext or numbers, and the CLI will convert them for you. Once this command is run, the prompts to set up the opening are *somewhat* self-explanatory. Feel free to ask, or give it a try with a --dryRun first :)
@@ -213,25 +212,22 @@ Most of the time however, the responsibilities of the `Content Curator Lead` wil
 ### Curation
 The main task of the `Curators` is curating the content on chain.
 
-The easiest way is to simply "hide" content by using the `curateContent` command. However, the Curator Lead must first enable curation:
+The easiest way is to simply "hide" content by using the `content:updateChannelCensorshipStatus` and `content:updateVideoCensorshipStatus` commands. However, the Curator Lead must first enable curation by creating groups:
 ```
 # Create a new group:
-$ joystream-cli content-directory:createCuratorGroup
+$ joystream-cli content:createCuratorGroup
 
 # Add curator to the group:
-$ joystream-cli content-directory:addCuratorToGroup <GROUPID> <CURATORID>
-
-# Give the group class privileges, (it's most useful to add classes "Channel" and "Video"):
-$ joystream-cli content-directory:addMaintainerToClass <CLASSNAME> <GROUPID>
+$ joystream-cli content:addCuratorToGroup <GROUPID> <CURATORID>
 
 # Make the group active:
-$ joystream-cli content-directory:setCuratorGroupStatus <GROUPID>
+$ joystream-cli content:setCuratorGroupStatus <GROUPID>
 
 # Overview of the group(s)
-$ joystream-cli content-directory:curatorGroups
+$ joystream-cli content:curatorGroups
 ```
 
-By creating more groups, the Lead can choose which `Curators` you want to give maintainer status across the individual classes. The Lead should include themselves access to each class.
+Only curators in active groups may censor content, or manage channel and video categories.
 
 ### Firing Curators
 Unfortunately, it may sometimes be necessary to fire curators who are not doing their jobs correctly.
@@ -246,24 +242,6 @@ To check the details of the current Content Working Group Mint:
 
 #### Replenishing The Mint
 It will sometimes be necessary to replenish the Content Working Group Mint. This can be done through a `Set Working Group Mint Capacity` proposal [here](https://testnet.joystream.org/#/proposals/new) which must be approved by the Council in order to take effect. For this reason, it is best to discuss these sorts of proposals with the Council before making them.
-
-### Increasing (or Decreasing) Limits for Members
-By default, a member can "only" create a total of 100 video (class 10) entities, and 25 channel (class 1) entities. This is not visible before a member creates their first (presumably channel) entity, but their "status" can then be tracked in the [Chain State](https://testnet.joystream.org/#/chainstate), through `contentDirectory.entityCreationVouchers`. Set `EntityController` to `Member` and fill in `MemberId`.
-
-If a member creates quality content, their limit can be raised. If a member continuously makes uploads that requires curation, their limit can be set to 0.
-
-This is done using [Extrinsics](https://testnet.joystream.org/#/extrinsics), with `contentDirectory.updateEntityCreationVoucher`.
-Example:
-If member `1` is to be given the right to make 200 videos:
-`class_id`: 10
-`controller`: Member
-`Member`: 1
-`maximum_entities_count`: 200
-
-Only the Lead's "role" key can perform this transaction, and any other origin will be rejected.
-
-
----
 
 # Troubleshooting
 If you need help with some of the more advanced operations associated with being the `Content Curator Lead` (e.g. maintaining the content directory), please simply ask for help in the [Discord group](https://discord.gg/DE9UN3YpRP) or get in touch with one of the Jsgenesis team directly.

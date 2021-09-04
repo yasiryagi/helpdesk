@@ -22,8 +22,12 @@
       Content Curators
     </a>
     <span> | </span>
+    <a href="/roles/operators">
+      Operators
+    <span> | </span>
     <a href="/roles/builders">
       Builders
+    </a>
     </a>
   </h4>
 </div>
@@ -110,12 +114,12 @@ Click `My Keys` in the sidebar, and then click the `Add account` button. The cho
 In any event, the `Keys` will be automatically stored in your browser storage for your convenience, but even so it's safest to save your `Raw seed` (you need it for certain roles) and save the .json file associated with the key. The `Mnemonic` can also be used to restore your `Keys`, but keeping the .json file somewhere safe is recommended, as it is the preferred format used to import your key in to certain tools, such as the [CLI](/tools/cli).
 
 ## Get a Membership
-To become a `Member` of the platform, you will need some tokens. The `faucet` is closed at the moment due to abuse from Sybil attackers though we are working on a frictional faucet which we hope to release soon. Currently, the only way to get tokens is to join our [Discord server](https://discord.gg/DE9UN3YpRP) and ask for some there. This group is also a great place to get support and discuss Joystream with other community members.
+To become a `Member` of the platform, you will need some tokens. There is now a `faucet` available as part of the Joystream Player app which grants participants with tokens to create a membership to start uploading content. Currently, the only other way to get tokens is to join our [Discord server](https://discord.gg/DE9UN3YpRP) and ask for some there. This group is also a great place to get support and discuss Joystream with other community members.
 
 **Note:**
-There are currently no fees associated with most transactions, but some parts of Pioneer will still require you to maintain a balance of at least 1 tJOY to allow you to perform certain actions.
+There are currently no fees associated with most transactions, but some parts of Pioneer may still require you to maintain a balance of at least 1 tJOY to allow you to perform certain actions.
 
-Now, click `Membership` in the sidebar, and select the `Register` tab. Choose a `Handle/nickname`. Optionally, provide a link to an image file for your avatar, and fill in the markdown-enabled `About` field.
+If you have tokens and would like to create a membership via Pioneer, click `Membership` in the sidebar, and select the `Register` tab. Choose a `Handle/nickname`. Optionally, provide a link to an image file for your avatar, and fill in the markdown-enabled `About` field.
 
 
 # Incentives
@@ -126,10 +130,10 @@ Previous testnets had weekly payouts for all roles, with the magnitude of reward
 When Joystream goes live on mainnet, there will be no one there to pay these (Bitcoin Cash) rewards, and the platform must rely on JOY tokens as the single value carrier for maintaining critical infrastructure, continued development, governance, and to provide incentives for content creators. In order to get a structure that reflects the mainnet incentives in a better way, we have decided to have the tJOY token issuance be backed by a fiat pool, where users can convert their tokens to cover their real costs, time and hardware. The basics of the new scheme is outlined below:
 
 -   At launch of a new network, the token issuance will be migrated from the previous network, and the existing fiat pool will be "transferred" to the new network.
--   For each Council Term (currently 2 weeks), an amount of USD will be added to fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance stays constant.
+-   For each Council Term (currently one week), an amount of USD will be added to fiat pool by Jsgenesis as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance stays constant.
 -   However, all roles on the platform will be compensated by newly minted tJOY tokens, effectively inflating the supply.
 -   In addition to the recurring replenishment, a set of Council KPIs (Key Performance Indicators), will be set by us, to ensure the network is working as intended.
--   If a KPI is reached, the fiat pool will increase by the amount computed based on the level success for each KPI, new tJOY will be minted proportionally, and these will be distributed to both the `Council Members` and the voters that elected them. As a consequence, this will not affect the value of token holders not participating in the governance.
+-   If a KPI is reached, the fiat pool will increase by the amount computed based on the level success for each KPI, new tJOY will be minted proportionally, and these will be distributed to the `Council Members` responsible for achieving each specific KPI and in some cases, those who vote for them. As a consequence, this will not affect the value of token holders not participating in the governance.
 -   Other ways that the tJOY supply and the fiat pool can increase include through bounties, competitions, spending proposals, etc.
 
 An overview on how the new incentive scheme works, and how it interacts with the new proposal model that gives far more power and responsibility to users via the council, can be found [here](/tokenomics).
@@ -242,15 +246,15 @@ When making a new "Set (Curator) Lead" proposal, one can propose to
 <p align="center""><img src="img/bugreporters.svg" width="500"></p>
 
 ### Description
-Unlike the other roles, `Builders` are not a formal role, with automatic on-chain rewards. Instead, Jsgenesis will create "Bounties", with specified tasks, conditions and rewards.
+The creation of the `Builder` or `Operations` working group means that this is now a formal role, with support for on-chain rewards. The `Builder` role is an evolving one, concerned mainly with the day-to-day management of the platform.
 
-The tasks associated with these Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community. In some cases, Bounties may be created as a result of requests from the Council or the community.
+Outside of the formal operations working group, Builders may be mostly focussed on solving bounties. The tasks associated with these Bounties will ideally try to solve some problem either for the community or Jsgenesis, but in some cases, their main purpose will be to create some fun and/or attract new members to the community. In some cases, Bounties may be created as a result of requests from the Council or the community.
 
-Over time, the tasks should allow people with different skill sets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort. To learn more about Bounties, go to the `Builders` section [here](/roles/builders).
+Over time, the tasks should allow people with different skill sets and interests to participate. Most challenges will be easier if you are somewhat technical or creative, but in other situations it will simply require putting in some time and effort. To learn more about Bounties, see [here](/roles/builders).
 
 ### Incentives
 
-The incentives will be to claim all, or parts, of the reward associated with the Bounty.
+The incentives will be to claim all, or parts, of the reward associated with the Bounty, and the formal rewards for members of the operations working group.
 
 # Other Features and Tools
 

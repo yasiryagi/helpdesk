@@ -28,7 +28,6 @@ Table of Contents
 - [Troubleshooting](#troubleshooting)
   - [Port not set](#port-not-set)
   - [No tokens in role account](#no-tokens-in-role-account)
-  - [Install yarn and node on linux](#install-yarn-and-node-on-linux)
   - [Caddy v1 (deprecated)](#caddy-v1-deprecated)
     - [Run caddy as a service](#run-caddy-as-a-service-1)
 <!-- TOC END -->
@@ -45,7 +44,7 @@ The guide for the `Storage Provider Lead` can be found [here](/roles/storage-lea
 
 The instructions below will assume you are running as `root`. This makes the instructions somewhat easier, but less safe and robust.
 
-Note that this has been tested on a fresh images of `Ubuntu 20.04 LTS` and `Debian 10`.
+Note that this has been tested on a fresh images of `Ubuntu 20.04 LTS`. You may run into some troubles with `Debian`.
 
 The system has shown to be quite resource intensive, so you should choose a VPS with specs equivalent to [Linode 8GB](https://www.linode.com/pricing/) or better (not an affiliate link).
 
@@ -59,21 +58,18 @@ Please note that unless there are any openings for new storage providers (which 
 First of all, you need to connect to a fully synced [Joystream full node](https://github.com/Joystream/joystream/releases). By default, the program assumes you are running a node on the same device. For instructions on how to set this up, go [here](/roles/validators). Note that you can disregard all the parts about keys before applying, and just install the software so it is ready to go.
 We strongly encourage that you run both the [node](/roles/validators#run-as-a-service) and the other software below as a service.
 
-First, you need to setup `node`, `npm` and `yarn`. This is sometime troublesome to do with the `apt` package manager. Go [here](#install-yarn-and-node-on-linux) to do this if you are not confident in your abilities to navigate the rough seas.
-
 Now, get the additional dependencies:
 ```
 $ apt-get update && apt-get upgrade -y
-$ apt-get install git build-essential libtool automake autoconf python
-# on debian 10
+# on debian 10, if you manage the first hurdle:
 $ apt-get install libcap2-bin
 ```
 
 ## Install IPFS
 The storage node uses [IPFS](https://ipfs.io/) as backend.
 ```
-$ wget https://github.com/ipfs/go-ipfs/releases/download/v0.6.0/go-ipfs_v0.6.0_linux-amd64.tar.gz
-$ tar -xvzf go-ipfs_v0.6.0_linux-amd64.tar.gz
+$ wget https://github.com/ipfs/go-ipfs/releases/download/v0.8.0/go-ipfs_v0.8.0_linux-amd64.tar.gz
+$ tar -xvzf go-ipfs_v0.8.0_linux-amd64.tar.gz
 $ cd go-ipfs
 $ ./ipfs init --profile server
 $ ./install.sh
@@ -89,7 +85,7 @@ Some of the default configurations needs to be changed, in order to get better p
 # cuz xyz
 ipfs config --bool Swarm.DisableBandwidthMetrics true
 # Default only allows storing 10GB, so:
-ipfs config Datastore.StorageMax "50GB"
+ipfs config Datastore.StorageMax "200GB"
 # cuz xyz
 ipfs config --json Gateway.PublicGateways '{"localhost": null }'
 ```
@@ -113,8 +109,8 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/root
-LimitNOFILE=8192
-PIDFile=/var/run/ipfs/ipfs.pid
+LimitNOFILE=10240
+PIDFile=/run/ipfs/ipfs.pid
 ExecStart=/usr/local/bin/ipfs daemon --routing=dhtclient
 Restart=on-failure
 RestartSec=3
@@ -135,7 +131,6 @@ $ systemctl enable ipfs
 $ systemctl stop ipfs
 ```
 
-
 ## Setup Hosting
 In order to allow for users to upload and download, you have to setup hosting, with an actual domain as both Chrome and Firefox requires `https://`. If you have a "spare" domain or subdomain you don't mind using for this purpose, go to your domain registrar and point your domain to the IP you want. If you don't, you will need to purchase one.
 
@@ -146,10 +141,10 @@ Previously, this guide was using Caddy v1, but this has now been deprecated. As 
 ### Instructions
 For the best setup, you should use the "official" [documentation](https://caddyserver.com/docs/).
 
-The instructions below are for Caddy v2.1:
+The instructions below are for Caddy v2.4.1:
 ```
-$ wget https://github.com/caddyserver/caddy/releases/download/v2.1.1/caddy_2.1.1_linux_amd64.tar.gz
-$ tar -vxf caddy_2.1.1_linux_amd64.tar.gz
+$ wget https://github.com/caddyserver/caddy/releases/download/v2.4.1/caddy_2.4.1_linux_amd64.tar.gz
+$ tar -vxf caddy_2.4.1_linux_amd64.tar.gz
 $ mv caddy /usr/bin/
 # Test that it's working:
 $ caddy version
@@ -161,14 +156,17 @@ $ nano ~/Caddyfile
 # Paste in everything below the stapled line
 ---
 # Storage Node API
-<your.cool.url> {
-    route /storage/* {
-        uri strip_prefix /storage
-        reverse_proxy localhost:3000
-    }
-    header /storage {
-        Access-Control-Allow-Methods "GET, PUT, HEAD, OPTIONS"
-    }
+https://<your.cool.url/storage>/* {
+        route /storage/* {
+                uri strip_prefix /storage
+                reverse_proxy localhost:3000
+        }
+        header /storage {
+                Access-Control-Allow-Methods "GET, PUT, HEAD, OPTIONS"
+        }
+        request_body {
+                max_size 10GB
+        }
 }
 ```
 
@@ -260,8 +258,13 @@ $ colossus --help
 ```
 
 ## Update Your Storage Node
-To update your storage-node from an old network, do the following steps:
+To update your storage-node from an old network, it's probably time to update `ipfs` and `caddy`, although older versions _should_ continue to work.
 
+If you `rm -rf ~/.ipfs`, you are also saving a **lot** of storage space, as the content-directory will not be migrated in full.
+
+There are also some changes required in all the .service files, so ideally go through the entire guide!
+
+To upgrade the storage node itself:
 ```
 # If you are running as service (which you should)
 $ systemctl stop storage-node
@@ -276,16 +279,10 @@ $ ./setup.sh
 $ exit
 $ ssh user@ipOrURL
 # on your local machine, just close the terminal and open a new one
+$ cd ~/joystream
 $ yarn build:packages
-$ yarn run colossus --help
-```
-You can set the PATH to avoid the `yarn run` prefix by:
-```
 $ cd ~/joystream/storage-node/packages/colossus
-$ yarn link
-# Test that it's working with:
-$ colossus --help
-# It should now work globally
+$ yarn run colossus --help
 ```
 
 If you have been running a storage node previously, and used `.bash_profile` to avoid the `yarn run` prefix, you need to:
@@ -297,23 +294,7 @@ alias colossus="/root/storage-node-joystream/packages/colossus/bin/cli.js"
 alias helios="/root/storage-node-joystream/packages/helios/bin/cli.js"
 ```
 For helios, you can instead change the path from `/root/storage-node-joystream/packages/helios/bin/cli.js` -> `/root/joystream/storage-node/packages/helios/bin/cli.js`
-Then:
 
-```
-$ . ~/.bash_profile
-$ cd ~/joystream/storage-node/packages/colossus
-$ yarn link
-# Test that it's working with:
-$ colossus --help
-```
-It should now work globally.
-
-Note that you also need to reconfigure [IPFS](#configure-ipfs).
-For most users, it might be easiest to:
-```
-rm -rf ~/.ipfs
-```
-And go back to [re-install](#install-ipfs).
 
 ### Applying for a Storage Provider opening
 
@@ -336,7 +317,7 @@ Assuming you are running the storage node on a VPS via ssh, on your local machin
 
 ```
 # Go the directory where you saved your <5YourStorageAddress.json>:
-$ scp <5YourStorageAddress.json> <user>@<your.vps.ip.address>:/path/to/joystream/storage-node/
+$ scp <5YourStorageAddress.json> <user>@<your.vps.ip.address>:/root/joystream/storage-node/
 ```
 Your `5YourStorageAddress.json` should now be where you want it.
 
@@ -344,7 +325,7 @@ On the machine/VPS you want to run your storage node:
 
 ```
 # If you are not already in that directory:
-$ cd /path/to/joystream/storage-node
+$ cd ~/joystream/storage-node
 ```
 
 On our older testnets, at this point you would have to "apply" using a separate colossus command to any available storage role. With the evolution of our testnet and the introduction of the `Storage Working Group`, this is no longer necessary. The next steps simply require that you link the "role key" (`5YourStorageAddress.json`) and `Storage ID` to your storage server.
@@ -357,10 +338,7 @@ To check your `Storage ID`, you have two (easy) options:
 
 ```
 # To make sure everything is running smoothly, it would be helpful to run with DEBUG.
-# If you used "yarn link":
-$ DEBUG=joystream:* colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
 
-# If not:
 $ cd ~/joystream
 $ DEBUG=joystream:* yarn run colossus server --key-file <5YourStorageAddress.json> --public-url https://<your.cool.url>/storage/ --provider-id <your_storage-id>
 
@@ -371,14 +349,34 @@ $ DEBUG=joystream:* (yarn run) colossus server --key-file <5YourStorageAddress.j
 If you do this, you should see (among other things) something like:
 
 ```
-<timestamp> localhost node[36281]: <timestamp> joystream:discovery:publish {
-<timestamp> localhost node[36281]:   name: 'Qm...fF',
-<timestamp> localhost node[36281]:   value: '/ipfs/Qm...12'
-<timestamp> localhost node[36281]: }
-<timestamp> localhost node[36281]: <timestamp> joystream:runtime:base:tx Submitted: {"nonce":<n>,"txhash":"0xf7d...46fd","tx":"0x...46"}
-<timestamp> localhost node[36281]: <timestamp> joystream:runtime:base:tx Finalized {"nonce":<n>,"txhash":"0xf7d...46fd"}
-<timestamp> localhost node[36281]: <timestamp> joystream:colossus publishing complete, scheduling next update
-
+... :  ________                     _____
+... :  ______(_)__________  __________  /__________________ _______ ___
+... :  _____  /_  __ \_  / / /_  ___/  __/_  ___/  _ \  __ `/_  __ `__ \
+... :  ____  / / /_/ /  /_/ /_(__  )/ /_ _  /   /  __/ /_/ /_  / / / / /
+... :  ___  /  \____/_\__, / /____/ \__/ /_/    \___/\__,_/ /_/ /_/ /_/
+... :  /___/         /____/
+... :  <timestamp>joystream:runtime:base Init
+... :  <timestamp>joystream:runtime:identities Init
+... :  <timestamp>joystream:runtime:identities Initializing key from /root/ <5YourStorageAddress.json>
+... :  <timestamp>joystream:runtime:identities Successfully initialized with address  <5YourStorageAddress>
+... :  <timestamp>joystream:runtime:balances Init
+... :  <timestamp>joystream:runtime:roles Init
+... :  <timestamp>joystream:runtime:assets Init
+... :  <timestamp>joystream:runtime:system Init
+... :  <timestamp>joystream:runtime:base Waiting for chain to be synced before proceeding.
+... :  <timestamp>joystream:sync Sync run started.
+... :  [HPM] Proxy created: function (path, req) {
+... :    // we get the full path here so it needs to match the path where
+... :    // it is used by the openapi initializer
+... :    return path.match('^/asset/v0') && (req.method === 'GET' || req.method === 'HEAD')
+... :  }  -> http://localhost:8080/
+... :  Starting API server...
+... :  API server started. { address: '::', family: 'IPv6', port: 3000 }
+... :  <timestamp>joystream:storage:storage IPFS node is up with identity:  <ipfsPeerId>
+... :  <timestamp>joystream:colossus announcing public url
+... :  <timestamp>joystream:sync Sync run completed, set <n> new relationships to ready
+... :  <timestamp>joystream:runtime:base:tx Submitted: {"nonce":"<nonce>","txhash":"<hash>","tx":"<hash>"}
+... :  <timestamp>joystream:runtime:base:tx Finalized {"nonce":"<nonce>","txhash":"<hash>"}
 ```
 
 If everything is working smoothly, you will now start syncing the `content directory`.
@@ -386,41 +384,12 @@ If everything is working smoothly, you will now start syncing the `content direc
 Note that unless you run this is a [service](#run-storage-node-as-a-service), you now have to open a second terminal for the remaining steps.
 
 #### Check that you are syncing
-In your second terminal window:
+After you've had it running for a bit (>1 min):
 ```
-$ ipfs bitswap wantlist
----
-# Output should be a long list of keys, e.g. Note that it might take a few minutes before the actual content from the Joystream content directory shows up.
----
-QmeszeBjBErFQrkiQPh8QhTs3hfCEGJuK2jNopatHnps1k
-...
-QmfCbUsYhKBmrdop3yFrerqVKwBJvY5tbpV1cf9Cx3L1J8
+$ cd ~/joystream/
+$ yarn run helios
 ```
-If you did this immediately after FIRST starting your storage node, the `wantlist` might be empty. Give it a minute, and it should contain at least the number of items in the content directory. You can also check what content you have stored by:
-```
-$ ipfs refs local
----
-# Output should be an even longer list of keys, e.g.
----
-QmeszeBjBErFQrkiQPh8QhTs3hfCEGJuK2jNopatHnps1k
-Qmezum3AWdxkm1AtHe35DZGWdfhTQ4PVmmZatGwDL68RES
-...
-QmfCCjC5w9wxTFoAaJ947ss2oc1jx6R2mM9xjU7Ccrq55M
-QmfCbUsYhKBmrdop3yFrerqVKwBJvY5tbpV1cf9Cx3L1J8
-```
-Another thing you can monitor:
-```
-$ ipfs stats repo
----
-# Should return the size and objects, e.g.:
----
-NumObjects: 98416
-RepoSize:   25544041095
-StorageMax: 50000000000
-RepoPath:   /root/.ipfs
-Version:    fs-repo@10
-```
-`RepoSize` will grow rapidly during sync.
+If everything is working, you should rather quickly, see your SP as active, with correct `workerId` and URL.
 
 ### Run storage node as a service
 
@@ -441,7 +410,8 @@ User=root
 WorkingDirectory=/root/joystream/storage-node
 LimitNOFILE=8192
 Environment=DEBUG=joystream:*,-joystream:util:ranges
-ExecStart=/usr/local/lib/nodejs/node-v12.18.2-linux-x64/bin/node packages/colossus/bin/cli.js \
+ExecStart=/root/.volta/bin/node \
+        packages/colossus/bin/cli.js \
         --key-file <5YourStorageAddress.json> \
         --public-url https://<your.cool.url>/storage/ \
         --provider-id <your_storage-id>
@@ -451,7 +421,7 @@ StartLimitInterval=600
 [Install]
 WantedBy=multi-user.target
 ```
-Save and exit. Close the running `colossus` if it's still running, then:
+Save and exit. Close `colossus` if it's still running, then:
 ```
 $ systemctl start storage-node
 # If everything works, you should get an output. Verify with:
@@ -503,119 +473,6 @@ Note that you have to modify the `Caddyfile` as well...
 
 ## No tokens in role account
 If you try to run the storage-node without tokens to pay the transaction fee, you may at some point have tried so many times your transaction gets "temporarily banned". In this case, you either have to wait for a while, or use the [CLI](/tools/cli/README.md#working-groups:updateRoleAccount) tool to change your "role account".
-
-## Install yarn and node on linux
-
-Go [here](https://nodejs.org/en/download/) and find the newest (LTS) binary for your distro. This guide will assume 64-bit linux, and `node-v12.18.2`.
-
-If you want to install as `root`, so your user can use `npm` without `sudo` privileges, go [here](#install-as-root).
-
-If you want to install as another user (must have `sudo` privileges), go [here](#install-as-user-with-sudo-privileges).
-
-Alternatives such as [nvm](https://github.com/nvm-sh/nvm) or [nodesource](https://github.com/nodesource/distributions/blob/master/README.md) are also worth considering.
-
-#### Install as Root
-This section assumes you are installing as `root`. It also demonstrates how you can provide another user access without having to use `sudo`. It doesn't matter if user `joystream` has `sudo` privileges or not.
-
-```
-$ wget https://nodejs.org/dist/v12.18.2/node-v12.18.2-linux-x64.tar.xz
-$ mkdir -p /usr/local/lib/nodejs
-$ tar -xJvf node-v12.18.2-linux-x64.tar.xz -C /usr/local/lib/nodejs
-$ nano ~/.bash_profile
----
-Append the following lines:
----
-# Nodejs
-VERSION=v12.18.2
-DISTRO=linux-x64
-export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
-```
-Save and exit, then:
-```
-$ source ~/.bash_profile
-# Verify version:
-$ node -v
-$ npm -v
-$ npx -v
-# Install yarn
-$ npm install yarn -g
-# If everything looks ok, and you want to allow user joystream access:
-$ chown -R joystream /usr/local/lib/nodejs
-```
-Log in to joystream:
-```
-$ su joystream
-$ cd
-# Repeat the .bash_profile config:
-$ nano ~/.bash_profile
----
-Append the following lines:
----
-# Nodejs
-VERSION=v12.18.2
-DISTRO=linux-x64
-export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
-```
-Save and exit, then:
-```
-$ source ~/.bash_profile
-# Verify that it works:
-$ node -v
-$ npm -v
-$ npx -v
-$ yarn -v
-```
-
-You have now successfully installed the newest (LTS) versions of `npm`, `node` and `yarn`.
-
-#### Install as user with `sudo` privileges
-This section assumes the steps are performed as user `joystream` with `sudo` privileges.
-
-As `joystream`
-```
-$ wget https://nodejs.org/dist/v12.18.2/node-v12.18.2-linux-x64.tar.xz
-$ mkdir -p /usr/local/lib/nodejs
-$ tar -xJvf node-v12.18.2-linux-x64.tar.xz -C /usr/local/lib/nodejs
-$ nano ~/.bash_profile
----
-Append the following lines:
----
-# Nodejs
-VERSION=v12.18.2
-DISTRO=linux-x64
-export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
-```
-Save and exit, then:
-```
-$ source ~/.bash_profile
-$ sudo chown -R joystream /usr/local/lib/nodejs
-# Verify that it works:
-$ node -v
-$ npm -v
-$ npx -v
-# Install yarn
-$ npm install yarn -g
-# Verify that it works:
-$ yarn -v
-```
-If you want `root` to be able to use `npm` as well:
-
-```
-$ sudo su
-$ nano ~/.bash_profile
----
-Append the following lines:
----
-# Nodejs
-VERSION=v12.18.2
-DISTRO=linux-x64
-export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
-```
-Save and exit, then:
-
-`$ source ~/.bash_profile`
-
-You have now successfully installed the newest (LTS) versions of `npm`, `node` and `yarn`.
 
 
 ## Caddy v1 (deprecated)
