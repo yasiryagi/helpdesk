@@ -1,6 +1,6 @@
 # Launch of Antioch
 
-Antioch was launched as a new chain on the 7th of April 2021, after a chain split bug resulted in the "fall" of [Babylon](/testnets/babylon).
+Antioch was launched as a new chain on the 7th of April 2021, after a chain split bug resulted in the "fall" of [Babylon](/testnets/babylon) (broken link).
 
 ## Migration
 A lot of the state and "history" was migrated from Babylon:
