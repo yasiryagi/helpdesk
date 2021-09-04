@@ -113,15 +113,15 @@ COMMANDS
   content-directory  Interactions with content directory module - managing classes, schemas, entities and permissions
   council            Council-related information and activities like voting, becoming part of the council etc.
   help               display help for joystream-cli
-  media              Higher-level content directory interactions, ie. publishing and curating content
+  media              Higher-level content directory interactions, i.e. publishing and curating content
   working-groups     Working group lead and worker actions
 ```
 
 ## Getting Started
 
-The first time you run a command, you will be prompted to set your API-endpoint. This will determine which node you are talking to. If you are running a node locally, you can choose `localhost`. If not, you can connect to the public node, or select a custom endpoint. You can also go the the [api](#api) section to do it manually.
+The first time you run a command, you will be prompted to set your API-endpoint. This will determine which node you are talking to. If you are running a node locally, you can choose `localhost`. If not, you can connect to the public node, or select a custom endpoint. You can also go the [api](#api) section to do it manually.
 
-The first time you want to perform an action that requires a key, you will be asked to import one. You can also go the the [account](#account) section to do it manually.
+The first time you want to perform an action that requires a key, you will be asked to import one. You can also go the [account](#account) section to do it manually.
 
 Note that your imports and setting are stored locally at:
 - `/home/<Username>/.local/share/joystream-cli` (Linux)
