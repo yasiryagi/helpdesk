@@ -59,7 +59,7 @@ If the system is changed, some of these can impact the exchange rate in the futu
 ### Deflationary Forces
 Tokens are slashed and/or burned for a variety of reasons, thus reducing supply and increasing the exchange rate.
 
-- Transactions (aka. extrinsics) fees, are burned
+- Transactions (aka "extrinsics") fees, are burned
   - Extrinsics are now in most cases free, but
   - Users may need/choose to set a higher fee for transaction priority
   - Users, or Jsgenesis, may set high fees to intentionally burn tokens
@@ -81,7 +81,7 @@ When an exchange takes place, the tokens are also burned, but this will have no 
 The fiat pool, denominated in USD, will start at a set value, but will change continuously.
 
 ### Regular Replenishments
-For each Council Term (currently 2 weeks), an amount of USD will be added to the fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance would stay constant.
+For each Council Term (currently 1 week), an amount of USD will be added to the fiat pool as recurring replenishment, thus increasing the value of each token, if one were to assume the issuance would stay constant.
 
 ## KPIs and Bounties
 Jsgenesis will regularly release new Key Performance Indicators ("KPIs") and Bounties as a way to incentivize the community and its participants to perform certain actions, maintain network functionality, produce reports, assets, code or other deliverables, etc.
@@ -204,7 +204,7 @@ Currently, the status of the roles and rewards are:
 -   It is assumed `4000 tJOY` will be enough to earn a slot
 -   Rewards are `300 tJOY/100800` blocks per CM
 
-**Curator:**
+**Curators:**
 
 -   The lead and 2 slots are filled, 1 slot is open for application
 -   Stake required is `500 tJOY`
