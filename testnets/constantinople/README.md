@@ -29,4 +29,4 @@ As all positions and roles on the network are paid in new tJOY minted, the suppl
 -   As all roles will be compensated in tJOY, community members can choose to stake their tokens to get one or more of these roles
 -   As the roles require a variety of resources, such as technical skills, hardware, time, etc. depending on your preference,  you can grow your tokens faster than the inflation.
 
-With the new proposal system, users can propose changing parameters that the council will then vote on. As it will be in everyone's interest to spend as few tokens as possible to achieve as many of the KPIs possible, the council will try to maximize the efficiency, both to increase their token value, and to get re-elected to for the role.
+With the new proposal system, users can propose changing parameters that the council will then vote on. As it will be in everyone's interest to spend as few tokens as possible to achieve as many of the KPIs possible, the council will try to maximize the efficiency, both to increase their token value, and to get re-elected for the role.
