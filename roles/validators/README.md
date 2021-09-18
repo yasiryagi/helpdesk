@@ -62,7 +62,7 @@ Table of Contents
 
 # Overview
 
-This page contains all information on how to setup your node and becoming a `Validator` on the Joystream Testnets. It will be updated for improvements, and when something changes for new testnets.
+This page contains all information on how to setup your node and become a `Validator` on the Joystream Testnets. It will be updated for improvements, and when something changes for new testnets.
 
 If you want to earn more `tJOY` tokens, but for some reason can't or won't become a `Validator`, you can [`Nominate`](#nominating) instead.
 
@@ -110,7 +110,7 @@ $ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
 - If you want to get a more verbose log output, add the flag:
   - `--log runtime,txpool,transaction-pool,trace=sync`
 
-Your node should now start syncing the blockchain. The output should look like this:
+Your node should now start syncing with the blockchain. The output should look like this:
 ```
 Joystream Node
   version "Version"-"your_OS"
@@ -152,7 +152,7 @@ Now it's time to configure your keys to start validating. Go [here](#configure-y
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
 * For terminal commands:
   * `$` means you must type what comes afterwards
-  * `#` Means it's just a comment/explanation for the readers convenience
+  * `#` means it's just a comment/explanation for the readers convenience
 ```
 # This is just a comment, don't type or paste it in your terminal!
 $ cd ~/
@@ -179,7 +179,7 @@ $ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
 - If you want to get a more verbose log output, add the flag:
   - `--log runtime,txpool,transaction-pool,trace=sync`
 
-Your node should now start syncing the blockchain. The output should look like this:
+Your node should now start syncing with the blockchain. The output should look like this:
 ```
 Joystream Node
   version "Version"-"your_OS"
@@ -271,7 +271,7 @@ curl: (7) Failed to connect to localhost port 9933: Connection refused
 4. In the third field, enter the amount you want to stake (the maximum amount is the tokens in the account -1).
 5. In the bottom dropdown, select the payment destination. Your selection here depends on your [preferences](#bonding-preferences).
 6. If the transaction goes through, you should now see a `Set Session Key` button next to your "stash" and "controller" keys in this window. Click it, paste in your `0xa0very0long0hex0string` in the field, and confirm.
-7. If the transaction goes through you should now see a `Validate` button instead. IF your node is fully synced click it, and set your `reward commission percentage`, a number between 0 and 100. Your input here depends on your preferences. A "high" number means you are less likely to get [Nominators](#nominating).
+7. If the transaction goes through, you should now see a `Validate` button instead. IF your node is fully synced click it, and set your `reward commission percentage`, a number between 0 and 100. Your input here depends on your preferences. A "high" number means you are less likely to get [Nominators](#nominating).
 
 Refresh your browser, and select the `Waiting` tab. If your account shows under `intentions`, wait for the next `era`, and you will be moved to the `validators` list (in the `Staking Overview` tab).
 
@@ -422,7 +422,7 @@ This automatically sends all rewards the `stash` address, where it gets bonded a
 
 2. `Stash account (do no increase the amount at stake)`
 
-As for 1. this automatically sends all rewards the `stash` address, but does *not* get bonded as stake, meaning you it will not help "guard" your spot in the `validator` set.
+As for 1. this automatically sends all rewards the `stash` address, but does *not* get bonded as stake, meaning it will not help "guard" your spot in the `validator` set.
 
 3. `Controller account`
 
@@ -447,7 +447,7 @@ r(1 - c) * n1/(v + n1 + n2)
 ### Example
 - assume there are 10 active validators in this era
 - validator 1 bonds 100,000 tJOY
-- validators 2-10 all bonds 300,000tJOY
+- validators 2-10 all bond 300,000tJOY
 - validator 1 has `reward commission` set to 10%
 - nominator A bonds 100,000 tJOY, and nominates validator 1
 - nominator B bonds 50,000 tJOY, and nominates validator 1
@@ -510,7 +510,7 @@ In order to be a `Nominator`, you need to stake. Note that you may have to refre
 7. Once submitted, you will start earning a share of the rewards.
 
 # Rewards
-Rewards are the most critical part of any blockchains infrastructure, block production, whether it's from [Proof of Work](https://en.wikipedia.org/wiki/Proof_of_work) (using miners, e.g. Bitcoin)  or [Proof of Stake](https://en.wikipedia.org/wiki/Proof_of_stake) (using validators, like Joystream). Validators are rewarded for producing, propagating and securing the network.
+Rewards are the most critical part of any blockchain infrastructure, block production, whether it's from [Proof of Work](https://en.wikipedia.org/wiki/Proof_of_work) (using miners, e.g. Bitcoin)  or [Proof of Stake](https://en.wikipedia.org/wiki/Proof_of_stake) (using validators, like Joystream). Validators are rewarded for producing, propagating and securing the network.
 
 ## Claiming Rewards
 Rewards are no longer paid out automatically to the validators, and it must be done manually.
@@ -526,7 +526,7 @@ This can only be done if you have the keys for the Validator or Nominator you wa
 In the UI, Validators can claim rewards in "bulks" of 40 `eras` at the time:
 1. In [Pioneer](testnet.joystream.org/), click `Validators` in the sidebar, and then the `Payouts` tab
 2. Make sure the `Max, x eras` are selected
-3. At the bottom of the page, all your you will see an overview of:
+3. At the bottom of the page, you will see an overview of:
   - which `eras` you can claim rewards for
   - the total amount `available` you are "owed"
   - the time `remaining` to claim (your "oldest") reward
@@ -577,7 +577,7 @@ For Substrate based blockchains, the validator rewards depend on some [dynamic p
 3. Issuance `I` - total tJOY tokens in circulation. This can be found:
   - in the [explorer](https://testnet.joystream.org/#/explorer) tab
   - or through a [chain state](https://testnet.joystream.org/#/chainstate) query of `balances.totalIssuance()`
-4. Validator stake (`S_v`) - ie. the total stake of the `validators` set, corresponding to the sum of the stakes of each `validator`, plus the stake of their [nominators](#nominating) if any. This can be found:
+4. Validator stake (`S_v`) - i.e. the total stake of the `validators` set, corresponding to the sum of the stakes of each `validator`, plus the stake of their [nominators](#nominating) if any. This can be found:
   - in the [staking](https://testnet.joystream.org/#/staking/targets) tab (alongside `I`, and the percentage of `S_v / I` - also known as the Active staking ratio, `S_v,ar`, see 5.)
   - or through a [chain state](https://testnet.joystream.org/#/chainstate) query of `staking.erasTotalStake(<EraIndex>)`
     - the `<EraIndex>` can be found by `staking.activeEra()`
@@ -620,7 +620,7 @@ R_vm,ie = R_vm,te / V_a
 For `S_v,ar<S_v,ir`, the total rewards drop linearly down to the minimum inflation rate `I_min` for `S_v,ar = 0`
 For `S_v,ar>S_v,ir`, the total rewards drop exponentially down to the minimum inflation rate for `I_min` `S_v,ar = 1` .
 
-The exact formulae:
+The exact formula:
 ```
 R_v,te = I * (I_min + (I_max - I_min) * 2^((S_v,ir − S_v,ar) / F_v)) * era_l / year
 ```
@@ -708,7 +708,7 @@ If `n` Validators go offline, there will be two "events" at the end of that `ses
 2. `offences.Offence`
 
 ### Offline Example
-Suppose we have two Validators offline, - `v_0` and `v_1`. `v_1` has one nominator `n_1` (all `accountId`/address of their "stash"):
+Suppose we have two Validators offline, - `v_0` and `v_1`. `v_1` has one nominator `n_1` (all `accountId`/address of their "stash").
 When selecting the block the event occurred in from the [explorer](https://testnet.joystream.org/#/explorer), it will appear like so:
 
 **1** `imOnline:SomeOffline`:
@@ -746,7 +746,7 @@ This identifies which valididators are reported "offline".
 
 **2** `offences.Offence`:
 ```
-There is an offence reported of the given `kind` happened at the `session_index` and (kind-specific) time slot. This event is not deposited for duplicate slashes. last element indicates of the offence was applied (true) or queued (false).
+There is an offence reported of the given `kind` happened at the `session_index` and (kind-specific) time slot. This event is not deposited for duplicate slashes. Last element indicates of the offence was applied (true) or queued (false).
 
   Kind
   im-online:offlin
@@ -783,7 +783,7 @@ The exact formula, from the comment in the codebase, is presented below (with va
 If you had any issues setting it up, you may find your answer here!
 
 ## Unstaking
-Due to an unfortunate error in Pioneer which we are working to fix, unstaking requires either lots of patience, or using the chain state/extrinsics tab for certain tasks:
+Due to an unfortunate error in Pioneer which we are working to fix, unstaking requires either lots of patience, or using the chain state/extrinsics tab for certain tasks.
 
 ### In Pioneer
 
