@@ -27,4 +27,4 @@ If some of your tokens were "lost" in the transfer, you can "claim" these until 
 ## Changes
 After the upgrade, all roles, eg. `Validators`, `Storage Providers` and `Curators` were fired from their position. The Council that was elected prior to the chain split was set by `sudo` for the first term.
 
-Some parameter changes was made, mostly related to the Council Election.
+Some parameter changes were made, mostly related to the Council Election.
