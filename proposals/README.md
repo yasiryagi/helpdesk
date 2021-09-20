@@ -207,4 +207,4 @@ A few more votes are cast:
 
 At this point, `Approval Quorum` parameter (67%<75% approval) is not fulfilled, whereas the `Approval Threshold` (50%), is now fulfilled.
 
-A final vote for Approve is cast, and the (unfinished sentence)
+A final vote for `Approve` is cast, and the (unfinished sentence)
