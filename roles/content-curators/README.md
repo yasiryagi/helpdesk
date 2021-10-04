@@ -112,9 +112,7 @@ If your application was successful, you will now be able to curate content on th
 The main job for curators is to regularly check the content directory and channels, and checking that rules and guidelines are being followed.
 
 ## Curation Policy
-Due to the large influx of users, and incentives for video curation, we need a formal workflow for the `Content Curators`, and a curation policy.
-
-Note that parts of this policy only apply to this testnet (Babylon).
+Due to the large influx of users, and incentives for video curation, we need a formal workflow for the `Content Curators`, and a curation policy. We now have a [Curation Policy](https://github.com/Joystream/community-repo/blob/master/rules/Curation_Policy.md), approved by the Council. 
 
 The exact intervals and delegation procedure should be agreed upon by the Council and the Lead, and the Lead and the Curators respectively.
 
@@ -158,21 +156,21 @@ Each review of this kind should be reported in a designated thread on the Forum,
 |`<ID>`/<title>      |`<ID>/<handle>`        |`<ID>`/<title>                 |Poor thumbnail, improve by `#<number>` - `3`    |NA               |
 
 1. This is pure spam, and the owner was warned.
-2. All licenses of this kind requires attribution.
+2. All licenses of this kind require attribution.
 3. The thumbnail is misleading, and in low resolution.
 
 ---
 
-The "owner" and "title" is also included, to make it easier for the uploader to find out what the status of their channel is.
+The "owner" and "title" are also included, to make it easier for the uploader to find out what the status of their channel is.
 
 The "curator status" should indicate either `Approved`, or what action, if any, was taken. In that case, a reference to the block height where the transaction change occurred.
 
 The Curator team should also monitor this thread, as it would be where the channel owner reports back to them if they made change(s) requested, disagrees with some action taken, or simply has any questions.
 
 ### Council Reports
-At some agreed interval, assumed to be at least once for each Council Term, _all_ videos and channels must be "checked in" on. There could be many reasons why  to verify that they are still acceptable. In some cases, some details may have been overlooked in previous "check-ups", but there is also the chance that a Channel owner or a (rogue) Curator makes a change that requires an action.
+At some agreed interval, assumed to be at least once for each Council Term, _all_ videos and channels must be "checked in" on. There could be many reasons why to verify that they are still acceptable. In some cases, some details may have been overlooked in previous "check-ups", but there is also the chance that a Channel owner or a (rogue) Curator makes a change that requires an action.
 
-To avoid having to go through thousands of videos/channels every time, the Lead, or some other curator could perhaps deploy a script that checks for certain types of transaction that makes changes to the content directory.
+To avoid having to go through thousands of videos/channels every time, the Lead, or some other curator could perhaps deploy a script that checks for certain types of transaction that make changes to the content directory.
 
 To avoid everyone stepping on each other’s toes, the Lead should consider splitting the workload between the team, e.g., by language, category, etc.
 
@@ -256,10 +254,10 @@ To effectively get information about videos in bulk, the [playground](https://hy
 ### Policy
 
 `warning`
-Means posting a note in the forum, as part of the [Regular Checks](#regular-checks), that something has to be corrected within a certain time period
+Means posting a note in the forum, as part of the [Regular Checks](#regular-checks), that something has to be corrected within a certain time period.
 
 `censor`
-Means updating the status (`isCensored`) for a video from `true` to `false`.This cannot be changed back by anyone but another curator in an active group.
+Means updating the status (`isCensored`) for a video from `false` to `true`. This cannot be changed back by anyone but another curator in an active group.
 
 #### Videos
 **When to (only) issue a `warning`:**
@@ -271,10 +269,12 @@ Means updating the status (`isCensored`) for a video from `true` to `false`.This
   - If the title, description, category and thumbnail imply a baking video, the video should not be a documentary about Bitcoin
 - Poor quality
   - If the video quality is "unreasonably" low
+- Duplicates
+  - If the same video has been uploaded several times
 
 **When to `censor` a video:**
 - License requires attribution
-  - If the selected license requires attribution, but none is given the, or attribution is incorrect
+  - If the selected license requires attribution, but none is given or attribution is incorrect
 - Breach of license
   - If the license has specific requirements with it (e.g. "no derivatives" if [CC_BY_NC_ND](https://creativecommons.org/licenses/by-nc-nd/4.0/))
 - Suspected copyright violation
@@ -331,7 +331,7 @@ ARGUMENTS
   STATUS  New video censorship status (1 - censored, 0 - not censored)
 
 OPTIONS
-  --rationale=rationale  rationale
+  --rationale=rationale
 ```
 
 ### Category Management
@@ -438,7 +438,7 @@ query {
   }
 }
 ```
-If you are looking for the channel categories, replace `videoCategories` with `channelCategories`
+If you are looking for the channel categories, replace `videoCategories` with `channelCategories`.
 
 Note that the categories below only include what was set at launch, and may have changed since then.
 ```json
@@ -465,7 +465,7 @@ Note that the categories below only include what was set at launch, and may have
 ```
 
 ### Licenses
-At launch, the available license are:
+At launch, the available licenses are:
 ```
 1000   Custom
 1001   PDM           Public Domain                                                   https://creativecommons.org/share-your-work/public-domain/pdm
