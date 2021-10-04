@@ -172,9 +172,9 @@ All else being equal, this will reduce the tJOY issuance from `10,000 to 9,500`,
 
 Furthermore, suppose the user, after considering their skillset and rate of return, decided that the best option for them was to stake their remaining `1,000 tJOY` for the role of `Storage Provider`, and assume further that the payout for this role was `2 tJOY per 3600 blocks` (6 hours).
 
-Assuming again all else being equal, ie. the only token inflation on the network was the payout for *this* user, the payout stays the same, and our user performs their job satisfactory, they can expect to cash in `560 tJOY` every week. After the first week, the total issuance is now `10,060 tJOY`, and the fiat pool is now `$950 USD`. The user cash out their `560 tJOY`, and with a rate of `~0.094 tJOY/USD`, will receive `$52.9 USD` for their job.
+Assuming again all else being equal, i.e. the only token inflation on the network was the payout for *this* user, the payout stays the same, and our user performs their job satisfactory, they can expect to cash in `560 tJOY` every week. After the first week, the total issuance is now `10,060 tJOY`, and the fiat pool is now `$950 USD`. The user cash out their `560 tJOY`, and with a rate of `~0.094 tJOY/USD`, will receive `$52.9 USD` for their job.
 
-If the user had instead chosen to exchange all their `1,500tJOY` in the first place, the would have locked in a value of `$150 USD`. Their actual choice however, resulted in having cashed in a total of `$102.9 USD`, with another `1,000` tJOY worth `$94.4 USD` at the prevailing rates, for a total of `$197.3 USD`.
+If the user had instead chosen to exchange all their `1,500tJOY` in the first place, they would have locked in a value of `$150 USD`. Their actual choice however, resulted in having cashed in a total of `$102.9 USD`, with another `1,000` tJOY worth `$94.4 USD` at the prevailing rates, for a total of `$197.3 USD`.
 
 In practice, the system will be far more complex than what is outlined above. For more precise calculations, please use [the spreadsheet](https://docs.google.com/spreadsheets/d/13Bf7VQ7-W4CEdTQ5LQQWWC7ef3qDU4qRKbnsYtgibGU/edit?usp=sharing).
 
@@ -189,14 +189,14 @@ Currently, the status of the roles and rewards are:
 -   5 slots filled, 1 slot open
 -   Stake is `3500 tJOY`, cost of entering is `200 tJOY`
 -   Rewards are `4 tJOY/600` blocks per slot
--   The users finds that running a Storage Provider costs them `$4 USD per week`
+-   The users find that running a Storage Provider costs them `$4 USD per week`
 
 **Validators**
 
 -   All 10 slots filled
 -   Lowest current stake in the pool is `2500 tJOY`
 -   Rewards are `575 tJOY/100800 blocks` in total
--   The users finds that running a Storage Provider costs them `$1 USD per week`
+-   The users find that running a Storage Provider costs them `$1 USD per week`
 
 **Council Members:**
 
@@ -217,6 +217,6 @@ The user assumes that on average, the KPIs will return 150 USD this week, and de
 -   no tx fees included
 -   no slashing
 
-At first glance it appears as if then `Storage Provider` is the most lucrative role. However, with a second look, one can see that you can instead try to become both a `Curator` and a `Validator`, as the up front stake and cost for the former totals `3,700 tJOY`, whereas the latter two totals just `3,000 tJOY`.
+At first glance it appears as if then `Storage Provider` is the most lucrative role. However, with a second look, one can see that you can instead try to become both a `Curator` and a `Validator`, as the upfront stake and cost for the former totals `3,700 tJOY`, whereas the latter two totals just `3,000 tJOY`.
 
-There are still a lot of factors that should be considered, such as time spent, transaction fees, risk of not getting or keeping your role, tokens being locked in for staking, reputation and knowledge building, etc. When all these are weighed against each other, one must assume that the various roles will be ranked differently depending on ones skills, costs, risk tolerance and other preferences.
+There are still a lot of factors that should be considered, such as time spent, transaction fees, risk of not getting or keeping your role, tokens being locked in for staking, reputation and knowledge building, etc. When all these are weighed against each other, one must assume that the various roles will be ranked differently depending on one's skills, costs, risk tolerance and other preferences.

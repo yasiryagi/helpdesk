@@ -85,7 +85,7 @@ Some of the default configurations needs to be changed, in order to get better p
 # cuz xyz
 ipfs config --bool Swarm.DisableBandwidthMetrics true
 # Default only allows storing 10GB, so:
-ipfs config Datastore.StorageMax "200GB"
+ipfs config Datastore.StorageMax "400GB"
 # cuz xyz
 ipfs config --json Gateway.PublicGateways '{"localhost": null }'
 ```
@@ -156,7 +156,7 @@ $ nano ~/Caddyfile
 # Paste in everything below the stapled line
 ---
 # Storage Node API
-https://<your.cool.url/storage>/* {
+https://<your.cool.url>/storage/* {
         route /storage/* {
                 uri strip_prefix /storage
                 reverse_proxy localhost:3000
@@ -445,7 +445,7 @@ $ systemctl stop storage-node
 
 ### Verify everything is working
 
-In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org//#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, ie. whatever comes after the last `/`.
+In your browser, find and click on an uploaded media file [here](https://testnet.joystream.org//#/media/), then open the developer console, and find the URL of the asset. Copy the `<content-id>`, i.e. whatever comes after the last `/`.
 
 Then paste the following in your browser:
 `https://<your.cool.url>/storage/swagger.json`
@@ -453,7 +453,7 @@ Which should return a json.
 
 And:
 `https://<your.cool.url>/storage/asset/v0/<content-id>`.
-(eg. `5GPhGYaGumtdpFYowMHY15hsdZVZUyEUe2trgh2vq7zGcFKx`)
+(e.g. `5GPhGYaGumtdpFYowMHY15hsdZVZUyEUe2trgh2vq7zGcFKx`)
 If the content starts playing, that means you are good!
 
 # Troubleshooting

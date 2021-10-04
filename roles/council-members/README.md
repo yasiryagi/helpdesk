@@ -92,12 +92,13 @@ As the governance system is arguably the most important component of the platfor
 A "good" Council needs CMs that all have a strong understanding of both the platform's token economics (["tokenomics"](/tokenomics)) and each of the individual Working Groups and the roles each of these play in making the platform function. Additionally, the composition of each Council should ensure that the group has expertise in every domain, and some CMs with low-level technical understanding will likely be required to provide guidance on other aspects of the project (marketing, legal, strategy etc.).
 
 ## Rewards and Incentives
-During the Constantinople testnet, Jsgenesis realized we need to put a lot more effort in to attracting, training and retaining these high-quality people. CMs will on a mainnet exclusively earn recurring rewards, similar to other roles. On our testnets however, where there is little incentives for users to diligently scrutinize each applicant and place votes, we have tried to mimic this through use of [KPIs](#council-kpis).
+During the Constantinople testnet, Jsgenesis realized we need to put a lot more effort in to attracting, training and retaining these high-quality people. CMs will on a mainnet exclusively earn recurring rewards, similar to other roles. On our testnets however, where there are little incentives for users to diligently scrutinize each applicant and place votes, we have tried to mimic this through use of [KPIs](#council-kpis).
 
 Jsgenesis will also take an active role in the elections. More information on how to apply, and increase your chances of getting elected can be found [here](#council-election-cycle).
 
 ### Recurring Rewards
-A newly elected Council will be assigned a recurring reward that automatically pays out tokens every `n`th block. The magnitude of this reward may change over time, but can be monitored on the [Tokenomics page](https://testnet.joystream.org/#/tokenomics).
+A newly elected Council could be assigned a recurring reward that automatically pays out tokens every `n`th block. The magnitude of this reward may change over time, but can be monitored on the [Tokenomics page](https://testnet.joystream.org/#/tokenomics).
+In the current Sumer testnet the recurring rewards are absent.    
 
 ### KPI Rewards
 The KPI rewards will depend on the Council's performance. Jsgenesis will provide a new set of [Council KPIs](#council-kpis) for each new term, with some variability in terms of scope and maximum rewards.
@@ -147,7 +148,7 @@ In addition to the length (and definitions) of the election stages described bel
 The full details of the election cycle will also expand upon these parameters.
 
 ## Council Election Cycle
-The election cycle consists four stages. Currently, the length of each are:
+The election cycle consists of four stages. Currently, the length of each one is:
 1. [Announcing](#announcing) - lasts 57,600 blocks (~4 days)
 2. [Voting](#voting) - lasts 14,400 blocks (~24h)
 3. [Revealing](#revealing) - lasts 14,400 blocks (~24h)
@@ -160,7 +161,7 @@ During the entire `Announcing` stage, anyone that is a Member and can stake a gr
 With your membership key:
 - select "Council" in the sidebar
 - click the "Applicants" tab
-- set the amount of tokens you want to stake
+- set the number of tokens you want to stake
 - click "Apply to council" and confirm
 
 **Important Notes**
@@ -200,7 +201,7 @@ With your membership key:
 - select "Council" in the sidebar
 - click the "Applicants" tab
 - find your preferred Applicant, and click the "Vote" button
-- set the amount of tokens you want to stake
+- set the number of tokens you want to stake
 - click "Submit my vote" and confirm
 
 You can vote as many times as you like, for any Applicant (including yourself).
@@ -285,7 +286,7 @@ As you are likely to get some follow up questions, it is a good idea to check in
 # Elected Council Members
 The CMs have a variety of [tasks](#tasks-overview). Some are pro-active, others are re-active. Some are recurring and predictable, others will require on the spot problem solving.
 
-To some extent, the same applies to their rewards. They receive a fixed (in tJOY) [Recurring Reward](#recurring-rewards), which will be handled automatically by the chain. The other relies on their ability to solve the tasks and challenges they face through the [Council KPIs](#council-kpis).
+To some extent, the same applies to their rewards. They could receive a fixed (in tJOY) [Recurring Reward](#recurring-rewards), which will be handled automatically by the chain. The other relies on their ability to solve the tasks and challenges they face through the [Council KPIs](#council-kpis).
 
 A CM that is slacking off, or for other reasons unable or unwilling to perform their tasks will still receive their rewards for the term, but are unlikely to get re-elected in the near future.
 

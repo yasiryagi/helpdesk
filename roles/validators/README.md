@@ -323,7 +323,7 @@ ExecStart=/home/joystream/joystream-node \
         --chain joy-testnet-5.json \
         --pruning archive \
         --validator \
-        --name <nodename> \
+        --name <memberId-memberHandle> \
         --log runtime,txpool,transaction-pool,trace=sync
 Restart=on-failure
 RestartSec=3
@@ -353,7 +353,7 @@ ExecStart=/root/joystream-node \
         --chain joy-testnet-5.json \
         --pruning archive \
         --validator \
-        --name <nodename> \
+        --name <memberId-memberHandle> \
         --log runtime,txpool,transaction-pool,trace=sync
 Restart=on-failure
 RestartSec=3
@@ -429,7 +429,7 @@ As for 1. this automatically sends all rewards the `stash` address, but does *no
 This sends all rewards to the `controller`, at your disposal.
 
 ### Validating preferences
-The `reward commission` determines how the (tJOY) staking rewards are split between yourself and any potential [nominators](#nominating). The default - 0(%) - means that the reward is split based on the amount of bonded stake the `validator` and `nominators` have put up. Example:
+The `reward commission` determines how the (tJOY) staking rewards are split between yourself and any potential [nominators](#nominating). The default - 0(%) - means that the reward is split based on the number of bonded stake the `validator` and `nominators` have put up. Example:
 
 - Let `v` be the bonded tokens by the validators `stash` key
 - Let `c` be the `reward commission` decided by the validator
@@ -799,7 +799,7 @@ If you want to stop being a `validator` and move your tokens to other/better use
 
 2. Next you must unbond. In the same window (`Validator -> Account Actions`), next to your keypair, click the rightmost triple dotted "settings" button, select `Unbond funds`, and choose the amount you wish to unbond.
 
-After the transaction has gone through, you will see a new line appearing in the `bonded` column, showing the amount and a "clock" icon. Hovering over this with your cursor will tell you when your unbonding is complete ( starts at <24h / <14,400 blocks), and you can go to the third and final step.
+After the transaction has gone through, you will see a new line appearing in the `bonded` column, showing the amount and a "clock" icon. Hovering over this with your cursor will tell you when your unbonding is complete (starts at <24h / <14,400 blocks), and you can go to the third and final step.
 
 3. Within 24h, the tokens should be unbonded, and you will see a new line appearing in the `bonded` column, showing the amount you can claim and a blue "lock" button. Click the button to finalize the unbonding, and your tokens will be "free" to spend from your "stash".
 
@@ -816,8 +816,8 @@ First, make sure you have set `Fully Featured` interface in the `Settings` sideb
 
 #### Definitions
 - `<tot_bonded>` Is the total amount you have staked/bonded
-- `<act_bonded>` Is the amount of tokens that is not being unlocked
-- `<unbonding_n>` Is the amount of tokens that is in the process of being freed from your `n`th `Unbond funds` request  
+- `<act_bonded>` Is the number of tokens that is not being unlocked
+- `<unbonding_n>` Is the number of tokens that is in the process of being freed from your `n`th `Unbond funds` request  
   - `sum <unbonding_n>` + `<act_bonded>` = `<tot_bonded>`
 - `<era_unbonded_n>` Is the `era` when your `n`th `Unbond funds` request tokens will be "free" to transfer/bond/vote
 
@@ -858,7 +858,7 @@ To understand what `claimedRewards` means, go [here](#check-claims-made).
 
 2. The `era` should only change every 600 blocks, but certain events may trigger a new era. To calculate when your funds are "free" In `Chain State` -> `staking.currentEra()`. Let output be `<era_current>`
 
-If `<era_unbonded_n>` >= `<era_current_n>`, you can claim the unbonded funds in step 3..
+If `<era_unbonded_n>` >= `<era_current_n>`, you can claim the unbonded funds in step 3.
 
 3. Once the unbonding is complete, go to [extrinsics](https://testnet.joystream.org/#/extrinsics), with the `controller`, select `staking.withdrawUnbonded(num_slashing_spans)`
 

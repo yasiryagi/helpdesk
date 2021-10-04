@@ -1,6 +1,6 @@
 # Launch of Antioch
 
-Antioch was launched as a new chain on the 7th of April 2021, after a chain split bug resulted in the "fall" of [Babylon](/testnets/babylon).
+Antioch was launched as a new chain on the 7th of April 2021, after a chain split bug resulted in the "fall" of [Babylon](/testnets/babylon) (broken link).
 
 ## Migration
 A lot of the state and "history" was migrated from Babylon:
@@ -25,6 +25,6 @@ A lot of the state and "history" was migrated from Babylon:
 If some of your tokens were "lost" in the transfer, you can "claim" these until the end of April 2021.
 
 ## Changes
-After the upgrade, all roles, eg. `Validators`, `Storage Providers` and `Curators` were fired from their position. The Council that was elected prior to the chain split was set by `sudo` for the first term.
+After the upgrade, all roles, e.g. `Validators`, `Storage Providers` and `Curators` were fired from their position. The Council that was elected prior to the chain split was set by `sudo` for the first term.
 
 Some parameter changes were made, mostly related to the Council Election.

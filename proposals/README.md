@@ -140,12 +140,12 @@ Below is a list of the states a proposal can be in, and what each of them means:
 ## Proposal Parameters
 The parameters below are specific to each proposal type, and the values are chosen to balance the importance and risks associated with each of them.
 
-- **Voting Period [blocks]** - the maximum amount of blocks where voting is open before a proposal expires
-- **Grace Period [blocks]** - the amount of blocks after a proposal is approved until it as implemented on chain
-- **Approval Quorum [%]** - the amount of votes required to be cast before a proposal _can_ be approved
+- **Voting Period [blocks]** - the maximum number of blocks where voting is open before a proposal expires
+- **Grace Period [blocks]** - the number of blocks after a proposal is approved until it as implemented on chain
+- **Approval Quorum [%]** - the number of votes required to be cast before a proposal _can_ be approved
 - **Approval Threshold [%]** - the required threshold ratio of cast votes for `approve`, relative to those that vote `abstain`, `reject` or `slash`
-- **Slashing Quorum [%]** -  the amount of votes required to be cast before a proposal _can_ lead to slashing the stake of the proposer
-- **Slashing Threshold [%]** - the required threshold ratio of cast votes that slash relative to those that vote approve, abstain or reject
+- **Slashing Quorum [%]** -  the number of votes required to be cast before a proposal _can_ lead to slashing the stake of the proposer
+- **Slashing Threshold [%]** - the required threshold ratio of cast votes that slash relative to those that vote approve, abstain or reject.
 - **Proposal Stake [tJOY]** - the required stake to create a proposal of this type
 
 There are also some general parameters that apply equally to all proposals, such as fees, length of text allowed, the maximum number of proposals currently in the `active` stage, etc.
