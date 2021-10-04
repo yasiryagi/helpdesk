@@ -49,7 +49,7 @@ If you find a bug in any of our software, reporting these as `Issues` in the mai
 ### Making Contributions
 As an open-source project, we try to follow the standard conventions and workflow.
 
-If you find a bug or want to improve or add something in the code, documentation, or guides, go to [our Github organization](https://github.com/Joystream) and find the appropriate repo.
+If you find a bug or want to improve or add something in the code, documentation, or guides, go to [our GitHub organization](https://github.com/Joystream) and find the appropriate repo.
 
 Fork it, make the changes you want to address, and create a `Pull request`. For our mutual convenience, it would be nice if you made an [Issue](#reporting-issues) first, so we can address whether your work would qualify for a Bounty.
 

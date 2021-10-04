@@ -114,15 +114,15 @@ TOPICS
   working-groups  Working group lead and worker actions
 
 COMMANDS
-  autocomplete  display autocomplete installation instructions
+autocomplete display autocomplete installation instructions
   help          display help for joystream-cli
 ```
 
 ## Getting Started
 
-The first time you run a command, you will be prompted to set your API-endpoint. This will determine which node you are talking to. If you are running a node locally, you can choose `localhost`. If not, you can connect to the public node, or select a custom endpoint. You can also go the the [api](#api) section to do it manually.
+The first time you run a command, you will be prompted to set your API-endpoint. This will determine which node you are talking to. If you are running a node locally, you can choose `localhost`. If not, you can connect to the public node, or select a custom endpoint. You can also go the [api](#api) section to do it manually.
 
-The first time you want to perform an action that requires a key, you will be asked to import one. You can also go the the [account](#account) section to do it manually.
+The first time you want to perform an action that requires a key, you will be asked to import one. You can also go the [account](#account) section to do it manually.
 
 Note that your imports and setting are stored locally at:
 - `/home/<Username>/.local/share/joystream-cli` (Linux)
