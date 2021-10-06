@@ -112,7 +112,7 @@ If your application was successful, you will now be able to curate content on th
 The main job for curators is to regularly check the content directory and channels, and checking that rules and guidelines are being followed.
 
 ## Curation Policy
-Due to the large influx of users, and incentives for video curation, we need a formal workflow for the `Content Curators`, and a curation policy. We now have a [Curation Policy](https://github.com/Joystream/community-repo/blob/master/rules/Curation_Policy.md), approved by the Council. 
+Due to the large influx of users, and incentives for video curation, we need a formal workflow for the `Content Curators`, and a curation policy. We now have a [Curation Policy](https://github.com/Joystream/community-repo/blob/master/governance/Curation_Policy.md), approved by the Council. 
 
 The exact intervals and delegation procedure should be agreed upon by the Council and the Lead, and the Lead and the Curators respectively.
 
