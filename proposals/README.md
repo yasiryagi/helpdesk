@@ -145,7 +145,7 @@ The parameters below are specific to each proposal type, and the values are chos
 - **Approval Quorum [%]** - the number of votes required to be cast before a proposal _can_ be approved
 - **Approval Threshold [%]** - the required threshold ratio of cast votes for `approve`, relative to those that vote `abstain`, `reject` or `slash`
 - **Slashing Quorum [%]** -  the number of votes required to be cast before a proposal _can_ lead to slashing the stake of the proposer
-- **Slashing Threshold [%]** - the required threshold ratio of cast votes that slash relative to those that vote approve, abstain or reject.
+- **Slashing Threshold [%]** - the required threshold ratio of cast votes that slash relative to those that vote approve, abstain or reject
 - **Proposal Stake [tJOY]** - the required stake to create a proposal of this type
 
 There are also some general parameters that apply equally to all proposals, such as fees, length of text allowed, the maximum number of proposals currently in the `active` stage, etc.
@@ -178,7 +178,7 @@ The votes come in, until we have:
 - 0 `Slash`
 - 0 `Abstain`
 
-At this point, the `Approval Quorum` parameter is fulfilled (100%>75% approval), but there are still too few votes cast to fulfil the `Approval Threshold` (at 30%<50%).
+At this point, the `Approval Threshold` parameter is fulfilled (100%>75% approval), but there are still too few votes cast to fulfil the `Approval Quorum` (at 30%<50%).
 
 A few more votes are cast:
 
@@ -187,7 +187,7 @@ A few more votes are cast:
 - 1 `Slash`
 - 1 `Abstain`
 
-At this point, neither the `Approval Quorum` parameter (67%<75% approval), nor the `Approval Threshold` (at 45%<50%), is fulfilled.
+At this point, neither the `Approval Threshold` parameter (67%<75% approval), nor the `Approval Quorum` (at 45%<50%), is fulfilled.
 
 Another vote comes in:
 
@@ -196,7 +196,7 @@ Another vote comes in:
 - 1 `Slash`
 - 1 `Abstain`
 
-At this point, `Approval Quorum` parameter (60%<75% approval) is not fulfilled, whereas the `Approval Threshold` (50%), is now fulfilled.
+At this point, `Approval Threshold` parameter (60%<75% approval) is not fulfilled, whereas the `Approval Quorum` (50%), is now fulfilled.
 
 A few more votes are cast:
 
@@ -205,6 +205,13 @@ A few more votes are cast:
 - 1 `Slash`
 - 1 `Abstain`
 
-At this point, `Approval Quorum` parameter (67%<75% approval) is not fulfilled, whereas the `Approval Threshold` (50%), is now fulfilled.
+At this point, `Approval Threshold` parameter (67%<75% approval) is not fulfilled, whereas the `Approval Quorum` (at 60%>50%), is now fulfilled.
 
-A final vote for `Approve` is cast, and the (unfinished sentence)
+To approve this proposal, 4 more `Approve` votes are needed:
+
+- 12 `Approve`
+- 2 `Reject`
+- 1 `Slash`
+- 1 `Abstain`
+
+At this point, `Approval Threshold` parameter (75%=75% approval) is now fulfilled, as well as `Approval Quorum` (at 80%>50%). Proposal is approved.
