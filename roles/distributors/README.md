@@ -1,4 +1,4 @@
-<p align="center"><img src="img/distributor-provider_new.svg"></p>
+<p align="center"><img src="img/distributor.png"></p>
 
 <div align="center">
   <h4>This is a guide to setting up your <a href="https://github.com/Joystream/joystream/tree/master/distributor-node">distributor node</a>, and getting started as a Distributor Provider on the latest
@@ -32,12 +32,12 @@ Table of Contents
 
 This page contains all information required to set up your distributor node and become a `Distributor Provider` on the current Joystream testnet.
 
-The guide for the `Distributor Provider Lead` can be found [here](/roles/distributor-lead).
+The guide for the `Distributor Provider Lead` can be found [here](/roles/distributors-lead).
 
 ## Resources
 To understand how the distributor node works in detail, checkout the [node](https://github.com/Joystream/joystream/blob/master/distributor-node/docs/node/index.md) documentation.
 
-You may also find it helpful to look at the [Distributor Lead guide](/roles/distributor-lead), and the [gitbook](https://joystream.gitbook.io/testnet-workspace/).
+You may also find it helpful to look at the [Distributor Lead guide](/roles/distributors-lead), and the [gitbook](https://joystream.gitbook.io/testnet-workspace/).
 
 # Instructions
 
