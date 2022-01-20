@@ -11,6 +11,7 @@ Table of Contents
 ==
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Overview](#overview)
+  - [Resources](#resources)
 - [Instructions](#instructions)
   - [Initial setup](#initial-setup)
   - [Setup Hosting](#setup-hosting)
@@ -19,7 +20,7 @@ Table of Contents
   - [Setup Query Node](#setup-query-node)
   - [Install and Setup the Storage Node](#install-and-setup-the-storage-node)
     - [Applying for a Storage Provider opening](#applying-for-a-storage-provider-opening)
-    - [Setup and configure the storage node](#setup-and-configure-the-storage-node)
+    - [Setup and Configure the Storage Node](#setup-and-configure-the-storage-node)
     - [Accept Invitation](#accept-invitation)
     - [Set Metadata](#set-metadata)
   - [Deploy the Storage Node](#deploy-the-storage-node)
@@ -34,6 +35,12 @@ Table of Contents
 This page contains all information required to set up your storage node and become a `Storage Provider` on the current Joystream testnet.
 
 The guide for the `Storage Provider Lead` can be found [here](/roles/storage-lead).
+
+## Resources
+Some information can be found in the main joystream [github page.](https://github.com/Joystream/joystream/blob/master/distributor-node/docs/node/index.md)
+
+You may also find it helpful to look at the [Storage Lead guide](/roles/storage-lead), and the [gitbook](https://joystream.gitbook.io/testnet-workspace/).
+
 
 # Instructions
 
@@ -168,8 +175,7 @@ $ caddy reload
 
 ## Install and Setup the Storage Node
 
-First, you need to clone the Joystream monorepo, which contains the storage software.
-Note that if you already have a storage-node installed (or running), go [here](#update-your-storage-node).
+First, you need to clone the Joystream/joystream repo, which contains the storage software.
 
 ```
 $ git clone https://github.com/Joystream/joystream.git
@@ -196,7 +202,7 @@ During this process you will be provided with a role key, which will be made ava
 The next steps (below) will only apply if you are a successful applicant.
 
 
-### Setup and configure the storage node
+### Setup and Configure the Storage Node
 
 On the machine/VPS you want to run your storage node:
 
