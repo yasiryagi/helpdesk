@@ -11,7 +11,8 @@ Table of Contents
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
   - [The Storage and Distribution System](#the-storage-and-distribution-system)
     - [Bags](#bags)
-    - [Buckets](#buckets)
+    - [Storage Buckets](#storage-buckets)
+    - [Distribution Buckets](#distribution-buckets)
 - [Storage CLI](#storage-cli)
   - [Leader](#leader)
     - [cancel-invite](#cancel-invite)
@@ -38,28 +39,93 @@ Table of Contents
 Storage and Distribution system is well documented on github. A simple version will be outlined here.
 
 ### Bags
-Whenever a new channel is created, a new "bag" is created. Each time a new asset is added under this channel, the bag "grows" in size, and each time an asset is removed, the bag shrinks.
+A bag is a collection of assets associated (in most cases `*`) with a single `channel`.
 
-Currently, we only support `dynamic` bags (`static` will be added), on the `channel` level. Channels are identified by a Channel ID (`channelId`) that is incremented by 1 for each new channel as transaction are made.
+A single channel cannot be in two bags, and a bag can only contain one channel.
 
-If a new channel is created and given the `channelId` 1337, the new bag will be `dynamic:channel:1337`. Even if there are no assets in the bag, it will persist until the channel is deleted.
+`*` Currently, we only support `dynamic` bags (`static` will be added), on the `channel` level. Channels are identified by a Channel ID (`channelId`) that is incremented by 1 for each new channel as transaction are made.
 
-### Buckets
-Both the Storage and Distribution implementation uses the concept of `buckets`. A `bucket` can be populated with multiple `bags`.
+#### Creation
+Whenever a new channel is created, a new "bag" is created.
 
-#### Storage Buckets
+If a new channel is created and given the `channelId` 1337, the new bag will be `dynamic:channel:1337`.
+
+#### Deletion
+Even if there are no assets in the bag, it will persist until the channel is deleted.
+
+#### Modification
+Every time an asset is added (eg. a video is created), the bag grows larger.
+Every time an asset is removed (eg. a video is deleted), the bag shrinks.
+
+At all times, a bag will have `n` files, with the total size of `s` bytes associated with it.
+
+### Storage Buckets
+Both the Storage and Distribution implementation uses the concept of `buckets`. A `bucket` can be populated with multiple `bags`. A bag can be held by multiple buckets, and be added/removed to/from a bucket by the Lead.
+
+#### Creation
 A Storage Bucket can only be created by the Storage Lead. A single worker can only be invited, (and thus accept) to be the operator of a single bucket at the time. Simultaneously, the Lead can not invite more than a single worker to be the operator of a single bucket. Only if the operator is removed, or the invitation is cancelled, can a new operator be invited, or the operator be invited to another bucket.
 
-When creating them, a limit on both the number of files it can contain, and the total size of the files, must be set. If this capacity is exceeded, any new assets added will be rejected.
+When creating them, a limit on both the number of files it can contain, and the total size of the files, must be set. If this capacity is exceeded, any new assets added will be rejected `*`.
 
-The consequence of that is that any channels whose bag is assigned to this bucket, will not be able to create new videos. It will fail on the runtime level, even if the Storage Node assigned to the bucket has the storage space to accept them, or that there are other buckets whose limits are not exceeded that also is assigned that bag.
+`*` The consequence of that is that any channels whose bag is assigned to this bucket, will not be able to create new videos. It will fail on the runtime level, even if the Storage Node assigned to the bucket has the storage space to accept them, or that there are other buckets whose limits are not exceeded that also is assigned that bag.
 
 #### Deleting or Re-assigning Storage Buckets
-As long as there are any bags in a bucket, the bucket can not be deleted. And a worker that is operating a bucket can not be fired from a role, before they are removed from the bucket. In order to
+As long as there are any bags in a bucket, the bucket can not be deleted. And a worker that is operating a bucket can not be fired from a role, before they are removed from the bucket.
 
+In order to delete a bucket, the Lead must first remove all the bags from it.
+
+#### Modification
+A bag can be added to, and removed from, a bucket at any time, as long as it doesn't violate some other parameter.
+
+Note that this means a bag can be removed from all buckets, which makes it hard (if not impossible) to recover that data. Therefore, the Lead should never remove a bag from a bucket without knowing it is held (not "just" supposed to be held) by other buckets.
+
+
+### Distribution Buckets
+The distribution buckets work somewhat differently, as they also have the concept of `bucket families`.
+
+#### Bucket Families
+A bucket family is a collection of distribution buckets associated with a geographical region (eg. from larger to smaller: World, Europe, Norther Europe, Scandinavia, Norway, Oslo). This is meant to reduce latency when serving content.
+
+At the time of writing, the Joystream Player picks distributors to serve content "randomly", giving much less importance to this concept. That doesn't mean they should be ignored, as it's not trivial to re-configure this in flight.
+
+However, it's probably still more than sufficient to focus on 2-4 families for now, until the project and usage has grown significantly.
+
+##### Creation
+New bucket families are created, and it's metadata is set, by the Lead.
+
+##### Modification
+New buckets can be added to a family by the Lead.
+
+##### Deletion
+A bucket family can only be deleted if there are no buckets in it.
+
+#### Buckets
+A (distribution) buckets lives in a bucket family. Inside it, there are bags, which work identically to the bags in storage buckets.
+
+##### Creation
+When creating a new bucket, it must be added to an (existing) family.
+
+##### Modification
+A new bag that is created (`dynamic:channel:1336`) will be placed in distribution buckets according to the configurations. Suppose there are 3 families, with 3 buckets in each. Suppose the Lead has deleted the bucket family with id 2, and deleted two buckets from family 1 (for whatever reason), we may have the following (`family:index`):
+- `[0:0, 0:1, 0:2  1:1, 1:3, 1:4  3:0, 3:1, 3:2]`
+
+Suppose the system is configured (dynamic bag policy) to accept each new bag in to:
+- 1 out 3 buckets in family `0`
+- 2 out of 3 buckets in family `1`
+- all 3 buckets in family `3`
+
+Suppose bucket `1:3` is not accepting new bags.
+
+Then, `dynamic:channel:1336` will be placed in to:
+- 1 out of `[0:0, 0:1, 0:2]`, selected psuedo randomly
+- `[1:1, 1:4]`
+- `[3:0, 3:1, 3:2]`
+
+As with Storage Buckets, the Lead can add or remove bags from bucket as they wish (assuming it doesn't violate some other constraint).
+
+In general, the distributor node is a little more flexible than the storage node, as errors in the configuration in the former can cause permanent data loss, whereas the "worst" case scenario with the latter is some content not being served temporarily.
 
 # Storage CLI
-
 ## Leader
 ```
 COMMANDS
