@@ -296,7 +296,7 @@ yarn storage-node leader:set-bucket-limits --help
 
 #### Example
 ```
-yarn storage-node leader:set-bucket-limits -i 0 -k /path/to/storage-lead-role-key.json -o 1000 -s 100000000000
+yarn storage-node leader:set-bucket-limits -i 0 -o 5000 -s 1000000000000 -k /path/to/storage-lead-role-key.json
 ```
 Means you want to change the bucket limits of bucket 1 to:
 - hold up to 1000 files
@@ -546,7 +546,7 @@ OPTIONS
 
 #### Example
 ```
-yarn storage-node leader:update-dynamic-bag-policy -n 1 -k /path/to/storage-lead-role-key.json -t Channel
+yarn storage-node leader:update-dynamic-bag-policy -n 2 -t Channel -k /path/to/storage-lead-role-key.json
 ```
 Means that a new upload, from a new channel, will be assigned to 1 ("random", if multiple are available) SP only. (`-t Member` isn't relevant)
 
@@ -569,7 +569,7 @@ yarn storage-node leader:update-voucher-limits --help
 
 #### Example
 ```
-yarn storage-node leader:update-voucher-limits -k /path/to/storage-lead-role-key.json -n 1000 -s 100000000000
+yarn storage-node leader:update-voucher-limits -o 1000 -s 100000000000 -k /path/to/storage-lead-role-key.json
 ```
 Means setting the Global limits to:
 - hold up to 1000 files

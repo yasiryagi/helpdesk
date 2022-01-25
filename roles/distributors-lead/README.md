@@ -239,6 +239,7 @@ yarn joystream-distributor leader:delete-bucket -B 0:0 -y
 Means you want to delete bucket `0:0`
 
 #### Notes
+- Can delete a bucket despite it being non-empty and with an operator assigned.
 
 ### delete-bucket-family
 ```
@@ -318,6 +319,7 @@ yarn joystream-distributor leader:remove-bucket-operator -B 0:1 -w 0 -y
 Means you want to remove worker `0` from operating bucket `0:1`
 
 #### Notes
+- Can't
 
 ### set-bucket-family-metadata
 ```

@@ -61,11 +61,6 @@ First of all, you need to connect to a fully synced [Joystream full node](https:
 
 We strongly encourage that you run both the [node](/roles/validators#run-as-a-service) and the other software below as a service.
 
-Now, get the additional dependencies:
-```
-$ apt-get update && apt-get upgrade -y
-```
-
 ## Setup Hosting
 In order to allow for users to upload and download, you have to setup hosting, with an actual domain as both Chrome and Firefox requires `https://`. If you have a "spare" domain or subdomain you don't mind using for this purpose, go to your domain registrar and point your domain to the IP you want. If you don't, you will need to purchase one.
 
@@ -88,6 +83,11 @@ Configure the `Caddyfile`:
 $ nano ~/Caddyfile
 # Modify, and paste in everything below the stapled line
 ---
+# Joystream-node
+wss://<your.cool.url>/rpc {
+	reverse_proxy localhost:9944
+}
+
 # Storage Node
 https://<your.cool.url>/storage/* {
         log {
@@ -184,7 +184,7 @@ $ ./setup.sh
 # this requires you to start a new session. if you are using a vps:
 $ exit
 $ ssh user@ipOrURL
-# on your local machine, just close the terminal and open a new one
+$ cd joystream
 $ ./build-packages
 $ yarn storage-node --help
 ```
@@ -200,7 +200,6 @@ To check for current openings, visit [this page](https://testnet.joystream.org/#
 During this process you will be provided with a role key, which will be made available to download in the format `5YourStorageRoleKey.json`. If you set a password for this key, remember it :)
 
 The next steps (below) will only apply if you are a successful applicant.
-
 
 ### Setup and Configure the Storage Node
 

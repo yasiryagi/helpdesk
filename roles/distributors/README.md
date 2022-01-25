@@ -11,15 +11,17 @@ Table of Contents
 ==
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Overview](#overview)
+  - [Resources](#resources)
 - [Instructions](#instructions)
   - [Initial setup](#initial-setup)
   - [Setup Hosting](#setup-hosting)
-    - [Instructions](#instructions-1)
+    - [Caddy](#caddy)
     - [Run caddy as a service](#run-caddy-as-a-service)
   - [Setup Query Node](#setup-query-node)
   - [Install and Setup the Distributor Node](#install-and-setup-the-distributor-node)
-    - [Applying for a Distributor Provider opening](#applying-for-a-distributor-provider-opening)
-    - [Setup and configure the distributor node](#setup-and-configure-the-distributor-node)
+    - [Applying for a Distributor opening](#applying-for-a-distributor-opening)
+    - [Setup and Configure the Distributor Node](#setup-and-configure-the-distributor-node)
+    - [Config File](#config-file)
     - [Accept Invitation](#accept-invitation)
     - [Set Metadata](#set-metadata)
   - [Deploy the Distributor Node](#deploy-the-distributor-node)
@@ -85,6 +87,12 @@ Configure the `Caddyfile`:
 $ nano ~/Caddyfile
 # Modify, and paste in everything below the stapled line
 ---
+# Joystream-node
+wss://<your.cool.url>/rpc {
+	reverse_proxy localhost:9944
+}
+
+
 # Distributor Node
 https://<your.cool.url>/distributor/* {
         log {
@@ -178,7 +186,7 @@ $ ./setup.sh
 # this requires you to start a new session. if you are using a vps:
 $ exit
 $ ssh user@ipOrURL
-# on your local machine, just close the terminal and open a new one
+$ cd joystream
 $ ./build-packages
 $ yarn distributor-node --help
 ```
