@@ -43,7 +43,7 @@ $ ./build-packages
 ```
 The last command will take a while...
 
-After it's completed, you need to fetch the state as it was before the upgrade. As the upgrade occurred on block [`#<xxx>`](https://testnet.joystream.org/#/explorer/query/<xxx>):
+After it's completed, you need to fetch the state as it was before the upgrade. As the upgrade occurred on block [`#4191207`](https://testnet.joystream.org/#/explorer/query/4191207):
 
 ### Set Your Environment
 ```
@@ -53,7 +53,7 @@ $ export WS_PROVIDER_ENDPOINT_URI=ws://localhost:9944
 $ export WS_PROVIDER_ENDPOINT_URI=wss://rome-rpc-endpoint.joystream.org:9944
 
 $ export QUERY_NODE_URL=https://hydra-sumer.joystream.org/graphql
-$ export AT_BLOCK_NUMBER=<xxx>
+$ export AT_BLOCK_NUMBER=4191207
 ```
 
 ### Fetch State and Build
@@ -73,7 +73,7 @@ nano manifest.yml
 # change second to last line from:
 #           height: "[0,0]"
 # to:
-           height: "[<xxx>,<xxx>]"
+           height: "[4191207,4191207]"
 ```
 
 ### Prepare Deployement
@@ -88,7 +88,7 @@ nano .env
 # Change to make, where "old" line is commented out:
 ---
 #BLOCK_HEIGHT=0
-BLOCK_HEIGHT=<xxx>
+BLOCK_HEIGHT=4191207
 
 #JOYSTREAM_NODE_WS=ws://joystream-node:9944/
 JOYSTREAM_NODE_WS=wss://<your.cool.url>/rpc
@@ -146,7 +146,7 @@ $ docker ps
 
 # Is it syncing?
 $ docker logs -f -n 100 processor
-# this should get all the blocks between <xxx> and the current height. It's fast :)
+# this should get all the blocks between 4191207 and the current height. It's fast :)
 
 $ docker logs -f -n 100 indexer
 # this should parse all the "interesting" events that the processor processes.
