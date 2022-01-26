@@ -522,7 +522,7 @@ Means you want to change the fees to 1 tJOY per MB. Currently, this is 0.
 
 #### Notes
 - Please do not do this (yet), as these fees will rack up and discourage content creation.
-- Unlike the `deletionPrice` (which are reimbursed when you delete an asset) the fees are burned.
+- Unlike the `deletionPrize` (which are reimbursed when you delete an asset) the fees are burned.
 
 ### update-dynamic-bag-policy
 ```

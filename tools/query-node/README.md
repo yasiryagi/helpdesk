@@ -39,7 +39,7 @@ $ ./setup.sh
 $ exit
 $ ssh user@ipOrURL
 $ cd joystream
-$ ./build-packages
+$ ./build-packages.sh
 ```
 The last command will take a while...
 
