@@ -30,6 +30,7 @@ Table of Contents
   - [Operator](#operator)
     - [accept-invitation](#accept-invitation)
     - [set-metadata](#set-metadata)
+  - [Initial Configurations - Giza](#initial-configurations---giza)
 <!-- TOC END -->
 
 ## The Storage and Distribution System
@@ -596,5 +597,67 @@ Means you (worker `0`) wants to set/update the metadata of bucket `0:1`
     }
   },
   "extra": "Welcome to Joystream - Singapore branch!"
+}
+```
+
+## Initial Configurations - Giza
+When `giza` went live, some initial configurations was set for the migration script:
+```
+# Create Families
+yarn joystream-distributor leader:create-bucket-family -y -c config-lead.yml
+yarn joystream-distributor leader:create-bucket-family -y -c config-lead.yml
+
+# Set family bucket metadata
+yarn joystream-distributor leader:set-bucket-family-metadata -f 0 -i /path/to/fam-bucket-0.json -y -c config-lead.yml
+yarn joystream-distributor leader:set-bucket-family-metadata -f 1 -i /path/to/fam-bucket-1.json -y -c config-lead.yml
+
+# Create 4 buckets, 1 in fam 0, 3 in fam 1. All to accept new bags
+yarn joystream-distributor leader:create-bucket -f 0 -a yes -y -c config-lead.yml
+yarn joystream-distributor leader:create-bucket -f 1 -a yes -y -c config-lead.yml
+yarn joystream-distributor leader:create-bucket -f 1 -a yes -y -c config-lead.yml
+yarn joystream-distributor leader:create-bucket -f 1 -a yes -y -c config-lead.yml
+
+# Invite bucket operator
+yarn joystream-distributor leader:invite-bucket-operator -B 0:0 -w 1 -y -c config-lead.yml
+
+# Set dynamic bag policy
+yarn joystream-distributor leader:update-dynamic-bag-policy -t Channel -p 0:1 1:1 -y -c config-lead.yml
+
+# Set initial buckets per bag limit
+yarn joystream-distributor leader:set-buckets-per-bag-limit -l 2 -y -c config-lead.yml
+
+# Turn off distribution on non-jsg nodes:
+yarn joystream-distributor leader:update-bucket-mode -B 1:0 -d off -y -c config-lead.yml
+yarn joystream-distributor leader:update-bucket-mode -B 1:1 -d off -y -c config-lead.yml
+yarn joystream-distributor leader:update-bucket-mode -B 1:2 -d off -y -c config-lead.yml
+```
+
+Where,
+- `fam-bucket-0.json`:
+```json
+{
+  "region": "eu-0",
+  "description": "Temporary Distributor",
+  "latencyTestTargets": [
+  ],
+  "areas": [
+    {
+      "continentCode": "EU"
+    }
+  ]
+}
+```
+- `fam-bucket-1.json`:
+```json
+{
+  "region": "eu-north-1",
+  "description": "Central and northern Europe",
+  "latencyTestTargets": [
+  ],
+  "areas": [
+    {
+      "continentCode": "EU"
+    }
+  ]
 }
 ```

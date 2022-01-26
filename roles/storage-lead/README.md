@@ -32,6 +32,7 @@ Table of Contents
   - [Operator](#operator)
     - [Accept Invitation](#accept-invitation)
     - [Set Metadata](#set-metadata)
+  - [Initial Configurations - Giza](#initial-configurations---giza)
 <!-- TOC END -->
 
 
@@ -660,3 +661,22 @@ Example file:
   "extra": "Welcome to Joystream - Singapore branch!"
 }
 ```
+
+
+## Initial Configurations - Giza
+When `giza` went live, some initial configurations was set for the migration script:
+```
+# Set "global" storage limits to 2000 GB and 200000 files:
+yarn storage-node leader:update-voucher-limits -s 2000000000000 -o 20000 -k /path/to/storage-lead-role-key.json
+
+# Create a bucket that accepts uploads, should hold everything and invite worker 10 (Jsgenesis):
+yarn storage-node leader:create-bucket -a -i 10 -s 2000000000000 -n 20000 -k /path/to/storage-lead-role-key.json
+
+# Update/set the dynamic bag policy:
+yarn storage-node leader:update-dynamic-bag-policy -t Channel -n 1 -k /path/to/storage-lead-role-key.json
+
+# Update the bag limit:
+yarn storage-node leader:update-bag-limit -l 5 -k /path/to/storage-lead-role-key.json
+```
+
+This was a requirement for the content migration to work, as all content (and uploads) to go to the same bucket. (Not the only possible configuration, but a safe and easy one).

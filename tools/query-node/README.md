@@ -4,15 +4,14 @@ Table of Contents
 - [Overview](#overview)
   - [Get Started](#get-started)
     - [Clone the Repo](#clone-the-repo)
-    - [Set Your Environment](#set-your-environment)
-    - [Fetch State and Build](#fetch-state-and-build)
-    - [Update Manifest](#update-manifest)
-    - [Prepare Deployement](#prepare-deployement)
-    - [Deploy With Docker](#deploy-with-docker)
+    - [Install a Newer Version of `docker-compose`](#install-a-newer-version-of-docker-compose)
+    - [Fetch the "old" State](#fetch-the-old-state)
+    - [Deploy](#deploy)
     - [Confirm Everything is Working](#confirm-everything-is-working)
   - [Setup Hosting](#setup-hosting)
     - [Caddy](#caddy)
     - [Run caddy as a service](#run-caddy-as-a-service)
+  - [Troubleshooting](#troubleshooting)
 <!-- TOC END -->
 
 # Overview
@@ -45,8 +44,25 @@ The last command will take a while...
 
 After it's completed, you need to fetch the state as it was before the upgrade. As the upgrade occurred on block [`#4191207`](https://testnet.joystream.org/#/explorer/query/4191207):
 
-### Set Your Environment
+### Install a Newer Version of `docker-compose`
+The package manager `apt-get` installs an old version of `docker-compose`, that doesn't take the `.env` file format we have used. We recommend removing the old one, and install the new one, with:
+
 ```
+$ cd ~/
+$ apt-get remove docker-compose
+$ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ chmod +x /usr/local/bin/docker-compose
+$ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
+If you don't want to, proceed the same way until []
+
+### Fetch the "old" State
+The query node relies on data from before the upgrade at block `#4191207`. First, we get this.
+
+#### Set the State Import Environment
+```
+$ cd ~/joystream
 # If your local node is synced:
 $ export WS_PROVIDER_ENDPOINT_URI=ws://localhost:9944
 # If not:
@@ -56,35 +72,31 @@ $ export QUERY_NODE_URL=https://hydra-sumer.joystream.org/graphql
 $ export AT_BLOCK_NUMBER=4191207
 ```
 
-### Fetch State and Build
+#### Fetch State and Build
 ```
+$ cd ~/joystream
 $ yarn workspace query-node-mappings bootstrap-data:fetch
 $ yarn workspace query-node-root build
 ```
 
-### Update Manifest
-Now, you need to update the `manifest.yml`:
+### Deploy
 
+#### Update Manifest
 ```
-cd query-node/
-yarn build
-nano manifest.yml
+$ cd ~/joystream
+$ nano query-node/manifest.yml
 
 # change second to last line from:
-#           height: "[0,0]"
+           height: "[0,0]"
 # to:
            height: "[4191207,4191207]"
 ```
 
-### Prepare Deployement
-We assume that:
-- you may want to run a `storage-node` or `distributor-node` in the future; and
-- `docker-compose --version` returns a version lower than `1.29.0`.
-  - If it is `1.29.0` or higher, you don't have to make these changes.
-
+#### Set the Environment
+First, get your
 ```
-cd ~/joystream/
-nano .env
+$ cd ~/joystream
+$ nano .env
 # Change to make, where "old" line is commented out:
 ---
 #BLOCK_HEIGHT=0
@@ -92,7 +104,27 @@ BLOCK_HEIGHT=4191207
 
 #JOYSTREAM_NODE_WS=ws://joystream-node:9944/
 JOYSTREAM_NODE_WS=wss://<your.cool.url>/rpc
+```
 
+#### Deploy - Easy
+Assuming you installed the newer version of [docker-compose](#install-a-newer-version-of-docker-compose):
+```
+$ cd ~/joystream
+$ query-node/start.sh
+```
+And you should be done!
+
+Go and [confirm everything is working](#confirm-everything-is-working)
+
+#### Deploy - Elaborate
+If you want to use a version of `docker-compose` older than 1.29.0:
+
+First, you need to edit the `.env` file some more:
+```
+$ cd ~/joystream
+$ nano .env
+# Change to make, where "old" line is commented out:
+---
 #COLOSSUS_QUERY_NODE_URL=http://graphql-server:${GRAPHQL_SERVER_PORT}/graphql
 COLOSSUS_QUERY_NODE_URL=http://graphql-server:4000/graphql
 
@@ -101,10 +133,8 @@ DISTRIBUTOR_QUERY_NODE_URL=http://graphql-server:4000/graphql
 
 #PROCESSOR_INDEXER_GATEWAY=http://hydra-indexer-gateway:${HYDRA_INDEXER_GATEWAY_PORT}/graphql
 PROCESSOR_INDEXER_GATEWAY=http://hydra-indexer-gateway:4000/graphql
----
 ```
 
-### Deploy With Docker
 You are now ready to run a script that deploys the query node with `docker`.
 ```
 $ cd ~/joystream
@@ -133,10 +163,14 @@ docker-compose up -d hydra-indexer-gateway
 # Start processor and graphql server
 docker-compose up -d processor
 docker-compose up -d graphql-server
----
-chmod +x deploy-qn.sh
+```
+Then, deploy!
+```
+
+$ chmod +x deploy-qn.sh
 ./deploy-qn.sh
 ```
+
 
 ### Confirm Everything is Working
 ```
@@ -269,3 +303,5 @@ $ systemctl stop caddy
 # If you want to edit your Caddfile, edit it, then run:
 $ caddy reload
 ```
+
+## Troubleshooting
