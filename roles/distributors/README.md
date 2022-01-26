@@ -360,7 +360,7 @@ $ journalctl -f -n 200 -u distributor-node
 # If it looks ok, it probably is :)
 ---
 
-# To have colossus start automatically at reboot:
+# To have the distributor-node start automatically at reboot:
 $ systemctl enable distributor-node
 # If you want to stop the distributor node, either to edit the distributor-node.service file or some other reason:
 $ systemctl stop distributor-node
