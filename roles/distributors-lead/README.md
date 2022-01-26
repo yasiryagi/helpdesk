@@ -60,7 +60,7 @@ At all times, a bag will have `n` files, with the total size of `s` bytes associ
 Both the Storage and Distribution implementation uses the concept of `buckets`. A `bucket` can be populated with multiple `bags`. A bag can be held by multiple buckets, and be added/removed to/from a bucket by the Lead.
 
 #### Creation
-A Storage Bucket can only be created by the Storage Lead. A single worker can only be invited, (and thus accept) to be the operator of a single bucket at the time. Simultaneously, the Lead can not invite more than a single worker to be the operator of a single bucket. Only if the operator is removed, or the invitation is cancelled, can a new operator be invited, or the operator be invited to another bucket.
+A Storage Bucket can only be created by the Storage Lead. A single worker only can be invited, (and thus accept) to be the operator of a single bucket at the time. Only if the operator is removed, or the invitation is cancelled, can a new operator be invited. However, a worker can be invited to, and accept, to operate multiple buckets.
 
 When creating them, a limit on both the number of files it can contain, and the total size of the files, must be set. If this capacity is exceeded, any new assets added will be rejected `*`.
 
