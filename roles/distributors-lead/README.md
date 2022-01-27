@@ -34,7 +34,7 @@ Table of Contents
 <!-- TOC END -->
 
 ## The Storage and Distribution System
-Storage and Distribution system is well documented on github. A simple version will be outlined here.
+Storage and Distribution system is well documented on GitHub. A simple version will be outlined here.
 
 ### Bags
 A bag is a collection of assets associated (in most cases `*`) with a single `channel`.
@@ -82,7 +82,7 @@ Note that this means a bag can be removed from all buckets, which makes it hard 
 The distribution buckets work somewhat differently, as they also have the concept of `bucket families`.
 
 #### Bucket Families
-A bucket family is a collection of distribution buckets associated with a geographical region (eg. from larger to smaller: World, Europe, Norther Europe, Scandinavia, Norway, Oslo). This is meant to reduce latency when serving content.
+A bucket family is a collection of distribution buckets associated with a geographical region (eg. from larger to smaller: World, Europe, Northern Europe, Scandinavia, Norway, Oslo). This is meant to reduce latency when serving content.
 
 At the time of writing, the Joystream Player picks distributors to serve content "randomly", giving much less importance to this concept. That doesn't mean they should be ignored, as it's not trivial to re-configure this in flight.
 
@@ -115,7 +115,7 @@ Suppose the system is configured (dynamic bag policy) to accept each new bag in 
 Suppose bucket `1:3` is not accepting new bags.
 
 Then, `dynamic:channel:1336` will be placed in to:
-- 1 out of `[0:0, 0:1, 0:2]`, selected psuedo randomly
+- 1 out of `[0:0, 0:1, 0:2]`, selected pseudo-randomly
 - `[1:1, 1:4]`
 - `[3:0, 3:1, 3:2]`
 
