@@ -6,385 +6,677 @@
 </div>
 
 
-
 Table of Contents
 ==
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
-- [Overview](#overview)
-- [About The Storage Lead](#about-the-storage-lead)
-- [Hiring Storage Lead](#hiring-storage-lead)
-  - [Proposals](#proposals)
-    - [Create Opening](#create-opening)
-    - [Review Applications](#review-applications)
-    - [Processing Applications](#processing-applications)
-- [Hiring Storage Providers](#hiring-storage-providers)
-  - [Using the CLI](#using-the-cli)
-    - [Create Opening](#create-opening-1)
-    - [Accepting Applications](#accepting-applications)
-    - [Processing Applications](#processing-applications-1)
-- [Working As Storage Lead](#working-as-storage-lead)
-  - [Responsibilities](#responsibilities)
-  - [All Commands](#all-commands)
-  - [Set Vouchers Limits](#set-vouchers-limits)
+  - [The Storage and Distribution System](#the-storage-and-distribution-system)
+    - [Bags](#bags)
+    - [Storage Buckets](#storage-buckets)
+    - [Distribution Buckets](#distribution-buckets)
+- [Storage CLI](#storage-cli)
+  - [Leader](#leader)
+    - [cancel-invite](#cancel-invite)
+    - [create-bucket](#create-bucket)
+    - [delete-bucket](#delete-bucket)
+    - [invite-operator](#invite-operator)
+    - [remove-operator](#remove-operator)
+    - [set-bucket-limits](#set-bucket-limits)
+    - [set-global-uploading-status](#set-global-uploading-status)
+    - [update-bag](#update-bag)
+    - [update-bag-limit](#update-bag-limit)
+    - [update-blacklist](#update-blacklist)
+    - [update-bucket-status](#update-bucket-status)
+    - [update-data-fee](#update-data-fee)
+    - [update-dynamic-bag-policy](#update-dynamic-bag-policy)
+    - [update-voucher-limits](#update-voucher-limits)
+  - [Operator](#operator)
+    - [Accept Invitation](#accept-invitation)
+    - [Set Metadata](#set-metadata)
+  - [Initial Configurations - Giza](#initial-configurations---giza)
 <!-- TOC END -->
 
 
-# Overview
+## The Storage and Distribution System
+Storage and Distribution system is well documented on github. A simple version will be outlined here.
 
-This page contains all the information required on becoming `Storage Provider Lead`, and how to perform the various tasks required for the job.
+### Bags
+A bag is a collection of assets associated (in most cases `*`) with a single `channel`.
 
-# About The Storage Lead
+A single channel cannot be in two bags, and a bag can only contain one channel.
 
-The `Storage Working Group Lead`, `Storage Provider Lead` or simply `Storage Lead` is a new role introduced as part of the _Nicaea_ upgrade to our Constantinople testnet. The `Storage Lead` is hired directly by the council through the proposals system and is responsible for the hiring, firing and wider management of `Storage Providers` on the network.
+`*` Currently, we only support `dynamic` bags (`static` will be added), on the `channel` level. Channels are identified by a Channel ID (`channelId`) that is incremented by 1 for each new channel as transaction are made.
 
-# Hiring Storage Lead
+#### Creation
+Whenever a new channel is created, a new "bag" is created.
 
-## Proposals
+If a new channel is created and given the `channelId` 1337, the new bag will be `dynamic:channel:1337`.
 
-Hiring the `Storage Lead` is the responsibility of the `Council` through the proposals system. Three new proposal types have been introduced to support the hiring process, and more have also been added to allow the `Council` to effectively manage the lead once "in office", through slashing, setting the mint capacity, decreasing stake and firing etc.
+#### Deletion
+Even if there are no assets in the bag, it will persist until the channel is deleted.
 
-### Create Opening
+#### Modification
+Every time an asset is added (eg. a video is created), the bag grows larger.
+Every time an asset is removed (eg. a video is deleted), the bag shrinks.
 
-The first step from the Council's perspective is creating an opening where prospective `Storage Leads` can apply for the role.
-Within [Pioneer](https://testnet.joystream.org), navigate first to the proposals tab and select `New Proposal`.
+At all times, a bag will have `n` files, with the total size of `s` bytes associated with it.
 
-To create an opening, select `Add Working Group Leader Opening` and fill in the variables.
+### Storage Buckets
+Both the Storage and Distribution implementation uses the concept of `buckets`. A `bucket` can be populated with multiple `bags`. A bag can be held by multiple buckets, and be added/removed to/from a bucket by the Lead.
 
-### Review Applications
+#### Creation
+A Storage Bucket can only be created by the Storage Lead. A single worker only can be invited, (and thus accept) to be the operator of a single bucket at the time. Only if the operator is removed, or the invitation is cancelled, can a new operator be invited. However, a worker can be invited to, and accept, to operate multiple buckets.
 
-In order to formally "close" the opening to further applicants and inform the existing candidates that their submissions are currently being considered, the status of the opening must be changed to "In Review".
+When creating them, a limit on both the number of files it can contain, and the total size of the files, must be set. If this capacity is exceeded, any new assets added will be rejected `*`.
 
-This can be done very easily through the creation of another proposal by the `Council`, this time with the `Begin Review Working Group Leader Application` proposal type. The main thing to pay attention to here is the `Working Group Opening ID` created earlier. Helpfully there is a dropdown box for choosing among the currently active openings, in case you have forgotten the ID.
+`*` The consequence of that is that any channels whose bag is assigned to this bucket, will not be able to create new videos. It will fail on the runtime level, even if the Storage Node assigned to the bucket has the storage space to accept them, or that there are other buckets whose limits are not exceeded that also is assigned that bag.
 
-### Processing Applications
+#### Deleting or Re-assigning Storage Buckets
+As long as there are any bags in a bucket, the bucket can not be deleted. And a worker that is operating a bucket can not be fired from a role, before they are removed from the bucket.
 
-The final step in hiring the `Storage Lead` is to create a `Fill Working Group Leader Opening`. The requirements here simply to choose the relevant opening from the drop-down menu and choose between the candidate applications (in JSON format) shown on the page.
+In order to delete a bucket, the Lead must first remove all the bags from it.
 
-Once a candidate has been chosen and the final proposal has passed, the focus is now on the new `Storage Lead`...
+#### Modification
+A bag can be added to, and removed from, a bucket at any time, as long as it doesn't violate some other parameter.
 
-# Hiring Storage Providers
+Note that this means a bag can be removed from all buckets, which makes it hard (if not impossible) to recover that data. Therefore, the Lead should never remove a bag from a bucket without knowing it is held (not "just" supposed to be held) by other buckets.
 
-## Using the CLI
-Our newly developed Command-Line Interface (CLI) is an essential tool for the Storage Lead, as it is by far the simplest way to hire and manage `Storage Providers` and applicants for this role. The program and its instructions for use can be found [here](https://github.com/Joystream/joystream/tree/master/cli).
 
-All of the useful commands which can be executed by the `Storage Lead` will require the lead to import their "role" key rather than their "member" key. Consequently, in the CLI the `account:import` and `account:choose` commands will need to be used.
+### Distribution Buckets
+The distribution buckets work somewhat differently, as they also have the concept of `bucket families`.
 
-### Create Opening
+#### Bucket Families
+A bucket family is a collection of distribution buckets associated with a geographical region (eg. from larger to smaller: World, Europe, Norther Europe, Scandinavia, Norway, Oslo). This is meant to reduce latency when serving content.
 
-To create an opening, the lead needs to run the `working-groups:createOpening` command using their role key.
+At the time of writing, the Joystream Player picks distributors to serve content "randomly", giving much less importance to this concept. That doesn't mean they should be ignored, as it's not trivial to re-configure this in flight.
 
-There are some options for specific purposes which can be selected with this command, as shown below:
+However, it's probably still more than sufficient to focus on 2-4 families for now, until the project and usage has grown significantly.
+
+##### Creation
+New bucket families are created, and it's metadata is set, by the Lead.
+
+##### Modification
+New buckets can be added to a family by the Lead.
+
+##### Deletion
+A bucket family can only be deleted if there are no buckets in it.
+
+#### Buckets
+A (distribution) buckets lives in a bucket family. Inside it, there are bags, which work identically to the bags in storage buckets.
+
+##### Creation
+When creating a new bucket, it must be added to an (existing) family.
+
+##### Modification
+A new bag that is created (`dynamic:channel:1336`) will be placed in distribution buckets according to the configurations. Suppose there are 3 families, with 3 buckets in each. Suppose the Lead has deleted the bucket family with id 2, and deleted two buckets from family 1 (for whatever reason), we may have the following (`family:index`):
+- `[0:0, 0:1, 0:2  1:1, 1:3, 1:4  3:0, 3:1, 3:2]`
+
+Suppose the system is configured (dynamic bag policy) to accept each new bag in to:
+- 1 out 3 buckets in family `0`
+- 2 out of 3 buckets in family `1`
+- all 3 buckets in family `3`
+
+Suppose bucket `1:3` is not accepting new bags.
+
+Then, `dynamic:channel:1336` will be placed in to:
+- 1 out of `[0:0, 0:1, 0:2]`, selected psuedo randomly
+- `[1:1, 1:4]`
+- `[3:0, 3:1, 3:2]`
+
+As with Storage Buckets, the Lead can add or remove bags from bucket as they wish (assuming it doesn't violate some other constraint).
+
+In general, the distributor node is a little more flexible than the storage node, as errors in the configuration in the former can cause permanent data loss, whereas the "worst" case scenario with the latter is some content not being served temporarily.
+
+# Storage CLI
+## Leader
 ```
-Create working group opening (requires lead access)
+COMMANDS
+  leader:cancel-invite                Cancel a storage bucket operator invite. Requires storage working group leader permissions.
+  leader:create-bucket                Create new storage bucket. Requires storage working group leader permissions.
+  leader:delete-bucket                Delete a storage bucket. Requires storage working group leader permissions.
+  leader:invite-operator              Invite a storage bucket operator. Requires storage working group leader permissions.
+  leader:remove-operator              Remove a storage bucket operator. Requires storage working group leader permissions.
+  leader:set-bucket-limits            Set VoucherObjectsSizeLimit and VoucherObjectsNumberLimit for the storage bucket.
+  leader:set-global-uploading-status  Set global uploading block. Requires storage working group leader permissions.
+  leader:update-bag                   Add/remove a storage bucket from a bag (adds by default).
+  leader:update-bag-limit             Update StorageBucketsPerBagLimit variable in the Joystream node storage.
+  leader:update-blacklist             Add/remove a content ID from the blacklist (adds by default).
+  leader:update-bucket-status         Update storage bucket status (accepting new bags).
+  leader:update-data-fee              Update data size fee. Requires storage working group leader permissions.
+  leader:update-dynamic-bag-policy    Update number of storage buckets used in the dynamic bag creation policy.
+  leader:update-voucher-limits        Update VoucherMaxObjectsSizeLimit and VoucherMaxObjectsNumberLimit for the Joystream node storage.
+```
+
+### cancel-invite
+```
+yarn storage-node leader:cancel-invite --help
+
+  -h, --help                   show CLI help
+  -i, --bucketId=bucketId      (required) Storage bucket ID
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+yarn storage-node leader:cancel-invite -i 2 -k /path/to/storage-lead-role-key.json
+```
+
+#### Notes
+Can be used to cancel an invitation. Useful if:
+- the worker is not responding
+- the wrong worker was invited
+
+### create-bucket
+```
+yarn storage-node leader:create-bucket --help
+
+  -a, --allow                  Accepts new bags
+  -h, --help                   show CLI help
+  -i, --invited=invited        Invited storage operator ID (storage WG worker ID)
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -n, --number=number          Storage bucket max total objects number
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -s, --size=size              Storage bucket max total objects size
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+#### Example
+```
+yarn storage-node leader:create-bucket -a -i 1 -k /path/to/storage-lead-role-key.json -n 1000 -s 100000000000
+```
+Means you are creating a new bucket, set to:
+- allow new bags
+- inviting worker with ID 1
+- hold up to 1000 files
+- store up to 100 GB of files
+
+#### Notes
+- Not possible for `-s` or `-n` to be larger than their ["global" limits](update-voucher-limit).
+
+### delete-bucket
+```
+ yarn storage-node leader:delete-bucket --help
 
 USAGE
-  $ joystream-cli working-groups:createOpening
+  $ storage-node leader:delete-bucket
 
 OPTIONS
-  -e, --edit                               If provided along with --input - launches in edit mode allowing to modify the input before sending the extrinsic
-
-  -g, --group=(storageProviders|curators)  The working group context in which the command should be executed
-                                           Available values are: storageProviders, curators.
-
-  -i, --input=input                        Path to JSON file to use as input (if not specified - the input can be provided interactively)
-
-  -o, --output=output                      Path to the file where the output JSON should be saved (this output can be then reused as input)
-
-  --dryRun                                 If provided along with --output - skips sending the actual extrinsic (can be used to generate a "draft" which can be provided as input
-                                           later)
+  -h, --help                   show CLI help
+  -i, --bucketId=bucketId      (required) Storage bucket ID
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
 ```
 
-Note that although some values are stated as `u128` or other confusing types, you should provide plaintext or numbers, and the CLI will convert them for you. Once this command is run, the prompts to set up the opening are *somewhat* self-explanatory.
-However, here are some pointers when creating an Opening.
-
-#### Application Parameters
-- `Choose value for activate_at:`
-  - Use `CurrentBlock` for allowing applications right away
-- `Do you want to provide the optional application_rationing_policy parameter?`
-  - This lets you set a max number of active applicants (`n`).
-  - Can be useful to avoid "spam", and combined with
-  - This lets you require an application stake from the Applicants
-  - Combined with setting `role/application_staking_policy`, and `at_least` for one or both, only the `n` applicants with the highest combined `role+application` stake will be considered.
-- `Provide value for max_review_period_length` should be high enough to allow you enough time to review. If the Review Period expires, the Opening closes, and no one is hired.
-- The various `*_unstaking_period_length` parameters means all take an argument `x` in blocks
-  - `crowded_out_unstaking_period_length` - "Application" and/or "Role" stake:
-    - If an applicant is crowded out due to the `number_of_applicants>n`, this lets you set an "unstaking period". May not make much sense, as they may want to re-apply with (a) higher stakes, and this will block them from re-using said stake(s) for `x` blocks.
-  - `review_period_expired_unstaking_period_length` - "Application" and/or "Role" stake:
-    - If the Opening expired with no one hired, this keeps their stake(s) locked for `x` blocks. May be overly harsh?
-  - `fill_opening_successful_applicant_application_stake_unstaking_period` - Only "Application" stake:
-    - If an Opening is ended with one or more Workers hired, `x` is the number of blocks until the hired Worker(s) Application stake is returned.
-  - `fill_opening_failed_applicant_*_stake_unstaking_period` - "Application" and/or "Role" stake:
-    - If an Opening is ended with one or more Workers hired, `x` is the number of blocks until the Application stake is returned to those that were not hired.
-  - `terminate_*_stake_unstaking_period` - "Application" and/or "Role" stake:
-    - If an Application was terminated, this keeps their stake(s) locked for `x` blocks. May be useful to stop spammers.
-    - If no one was hired, this keeps their Application stake locked for `x` blocks. May be overly harsh?
-  - `exit_role_*_stake_unstaking_period` - "Application" and/or "Role" stake:
-    - If a Worker exits their role, this keeps their stake(s) locked for `x` blocks.
-    - Should be used for the Role stake
-    - Maybe not so useful for the Application stake?
-
-#### Human Readable Information and Questions
-The second part is filling out a JSON schema, where you can set what information is provided to applicants and what details are collected as part of the application process. As mentioned above, you should consider creating a draft first, to review your input before broadcasting on-chain. Here are some pointers:
-- When prompted for a version, provide the value `1`.
-- When providing "type" for the `questions vector`, `text` means single line, whereas `text area` means a multi-line text area.
-
-#### Complete Example
+#### Example
 ```
-? Your account's password [hidden]
-  Choose value for activate_at: CurrentBlock
-  Providing values for commitment struct:
-    Do you want to provide the optional application_rationing_policy parameter? Yes
-      Providing values for {
-        max_active_applicants:u32
-      } struct:
-        Provide value for max_active_applicants 3
-    Provide value for max_review_period_length 14400
-    Do you want to provide the optional application_staking_policy parameter? Yes
-      Providing values for {
-        amount:u128
-        amount_mode:{"_enum":["AtLeast","Exact"]}
-        crowded_out_unstaking_period_length:Option<u32>
-        review_period_expired_unstaking_period_length:Option<u32>
-      } struct:
-        Provide value for amount 1000
-        Choose value for amount_mode: AtLeast
-        Do you want to provide the optional crowded_out_unstaking_period_length parameter? Yes
-          Provide value for u32 1
-        Do you want to provide the optional review_period_expired_unstaking_period_length parameter? Yes
-          Provide value for u32 2
-    Do you want to provide the optional role_staking_policy parameter? Yes
-      Providing values for {
-        amount:u128
-        amount_mode:{"_enum":["AtLeast","Exact"]}
-        crowded_out_unstaking_period_length:Option<u32>
-        review_period_expired_unstaking_period_length:Option<u32>
-      } struct:
-        Provide value for amount 1001
-        Choose value for amount_mode: AtLeast
-        Do you want to provide the optional crowded_out_unstaking_period_length parameter? Yes
-          Provide value for u32 3
-        Do you want to provide the optional review_period_expired_unstaking_period_length parameter? Yes
-          Provide value for u32 4
-    Do you want to provide the optional fill_opening_successful_applicant_application_stake_unstaking_period parameter? Yes
-      Provide value for u32 5
-    Do you want to provide the optional fill_opening_failed_applicant_application_stake_unstaking_period parameter? Yes
-      Provide value for u32 6
-    Do you want to provide the optional fill_opening_failed_applicant_role_stake_unstaking_period parameter? Yes
-      Provide value for u32 7
-    Do you want to provide the optional terminate_application_stake_unstaking_period parameter? Yes
-      Provide value for u32 8
-    Do you want to provide the optional terminate_role_stake_unstaking_period parameter? Yes
-      Provide value for u32 9
-    Do you want to provide the optional exit_role_application_stake_unstaking_period parameter? Yes
-      Provide value for u32 10
-    Do you want to provide the optional exit_role_stake_unstaking_period parameter? Yes
-      Provide value for u32 11
-Providing values for human_readable_text struct:
-    Provide value for version 1
-    Provide value for headline Some Headline
-    Providing values for job struct:
-      Provide value for title Some Title
-      Provide value for description Some Description
-    Providing values for application struct:
-      Providing values for sections vector:
-        Do you want to add another entry to sections vector (currently: 0)? Yes
-        Providing values for {
-          title:Text
-          questions:Vec<{"title":"Text","type":"Text"}>
-        } struct:
-          Provide value for title Sections Title 0
-          Providing values for questions vector:
-            Do you want to add another entry to questions vector (currently: 0)? Yes
-            Providing values for {
-              title:Text
-              type:Text
-            } struct:
-              Provide value for title Questions Title 0
-              Provide value for type text area
-            Do you want to add another entry to questions vector (currently: 1)? Yes
-            Providing values for {
-              title:Text
-              type:Text
-            } struct:
-              Provide value for title Questions Title 1
-              Provide value for type text
-            Do you want to add another entry to questions vector (currently: 2)? Yes
-            Providing values for {
-              title:Text
-              type:Text
-            } struct:
-              Provide value for title Questions Title 2
-              Provide value for type text area
-            Do you want to add another entry to questions vector (currently: 3)? No
-        Do you want to add another entry to sections vector (currently: 1)? Yes
-        Providing values for {
-          title:Text
-          questions:Vec<{"title":"Text","type":"Text"}>
-        } struct:
-          Provide value for title Sections Title 1
-          Providing values for questions vector:
-            Do you want to add another entry to questions vector (currently: 0)? Yes
-            Providing values for {
-              title:Text
-              type:Text
-            } struct:
-              Provide value for title Questions Title 0 in Section 1
-              Provide value for type text
-            Do you want to add another entry to questions vector (currently: 1)? No
-        Do you want to add another entry to sections vector (currently: 2)? No
-    Provide value for reward x tJOY per n blocks
-    Providing values for creator struct:
-      Providing values for membership struct:
-        Provide value for handle Lead
-    Providing values for process struct:
-      Providing values for details vector:
-        Do you want to add another entry to details vector (currently: 0)? Yes
-        Provide value for Text Detail 0
-        Do you want to add another entry to details vector (currently: 1)? Yes
-        Provide value for Text Detail 1
-        Do you want to add another entry to details vector (currently: 2)? No
+yarn storage-node leader:delete-bucket -i 1 -k /path/to/storage-lead-role-key.json
 ```
-If successfully submitted, you can look at your Opening using the `working-groups:opening <WGOPENINGID>`, which returns:
+Means you want to delete bucket 1.
+
+#### Notes
+- Not possible to delete non-empty bucket - even if not assigned to anyone.
+- Not possible to delete a bucket that is assigned to a worker.
+
+### invite-operator
 ```
-Group: storageProviders
-
-______________ Human readable text _______________
-
-{
-    version: 1,
-    headline: "Some Headline",
-    job: {
-        title: "Some Title",
-        description: "Some Description"
-    },
-    application: {
-        sections: [
-            {
-                title: "Sections Title 0",
-                questions: [
-                    {
-                        title: "Questions Title 0",
-                        type: "text area"
-                    },
-                    {
-                        title: "Questions Title 1",
-                        type: "text"
-                    },
-                    {
-                        title: "Questions Title 2",
-                        type: "text area"
-                    }
-                ]
-            },
-            {
-                title: "Sections Title 1",
-                questions: [
-                    {
-                        title: "Questions Title 0 in Section 1",
-                        type: "text"
-                    }
-                ]
-            }
-        ]
-    },
-    reward: "x tJOY per n blocks",
-    creator: {
-        membership: {
-            handle: "Lead"
-        }
-    },
-    process: {
-        details: [
-            "Detail 0",
-            "Detail 1"
-        ]
-    }
-}
-
-________________ Opening details _________________
-
-WG Opening ID                 8                                
-Opening ID                    10                               
-Type                          Worker                           
-Stage                         Accepting Applications           
-Last status change            ~ 6:31:06 AM 7/29/2020 (#194118)
-Application stake             >= 1.000k JOY                    
-Role stake                    >= 1.001k JOY                    
-
-_______________ Unstaking periods ________________
-
-Crowded Out Application Stake Unstaking Period Length:                  1 block  
-Crowded Out Role Stake Unstaking Period Length:                         3 blocks  
-Exit Role Application Stake Unstaking Period:                           10 blocks
-Exit Role Stake Unstaking Period:                                       11 blocks
-Fill Opening Failed Applicant Application Stake Unstaking Period:       6 blocks  
-Fill Opening Failed Applicant Role Stake Unstaking Period:              7 blocks  
-Fill Opening Successful Applicant Application Stake Unstaking Period:   5 blocks  
-Review Period Expired Application Stake Unstaking Period Length:        2 blocks  
-Review Period Expired Role Stake Unstaking Period Length:               4 blocks  
-Terminate Application Stake Unstaking Period:                           8 blocks  
-Terminate Role Stake Unstaking Period:                                  9 blocks  
-```
-
-
-### Accepting Applications
-
-Once enough applications have been submitted, these can now be reviewed to decide who should be hired as a `Storage Provider`.
-The command to be used is the following: `working-groups:startReviewPeriod <WGOPENINGID>`.
-
-You can find the `WGOPENINGID` in the URL in Pioneer or through a chain state query of the currently active openings.
-
-### Processing Applications
-
-As soon as the opening is in the `In Review` state, you can start hiring!
-
-Simply run `working-groups:fillOpening <WGOPENINGID>` where `<WGOPENINGID>` is the same as earlier, and you will be prompted to select the applicants you wish to hire (using a check-box dialog). The usernames of the candidates will be shown so you don't have to worry about numerical IDs for this part.
-
-# Working As Storage Lead
-
-## Responsibilities
-As the `Storage Lead` you are responsible for ensuring that `Storage Providers` are performing adequately. They must hold a complete and up-to-date copy of the content directory and ensure uptime in order to effectively serve testnet content consumers.
-
-If a `Storage Provider` is not performing adequately, it is up to you to decide the sanctions for this, which may include slashing and, as a last resort, their eviction from the Storage Working Group.
-
-## All Commands
-
-Within the CLI, all of the relevant commands for the Storage Lead can be found through the following query:
-```
-working-groups --help
-```
-More information on the usage can be found [here](/tools/cli)
-
-For convenience, the output of this command is listed below to give a sense of the powers and responsibilities of the Storage Lead:
-```
-Working group lead and worker actions
+Invite a storage bucket operator. Requires storage working group leader permissions.
 
 USAGE
-  $ joystream-cli working-groups:COMMAND
+  $ storage-node leader:invite-operator
 
-COMMANDS
-  working-groups:application                 Shows an overview of given application by Working Group Application ID
-  working-groups:createOpening               Create working group opening (requires lead access)
-  working-groups:decreaseWorkerStake         Decreases given worker stake by an amount that will be returned to the worker role account. Requires lead access.
-  working-groups:evictWorker                 Evicts given worker. Requires lead access.
-  working-groups:fillOpening                 Allows filling working group opening that's currently in review. Requires lead access.
-  working-groups:increaseStake               Increases current role (lead/worker) stake. Requires active role account to be selected.
-  working-groups:leaveRole                   Leave the worker or lead role associated with currently selected account.
-  working-groups:opening                     Shows an overview of given working group opening by Working Group Opening ID
-  working-groups:openings                    Shows an overview of given working group openings
-  working-groups:overview                    Shows an overview of given working group (current lead and workers)
-  working-groups:setDefaultGroup             Change the default group context for working-groups commands.
-  working-groups:slashWorker                 Slashes given worker stake. Requires lead access.
-  working-groups:startAcceptingApplications  Changes the status of pending opening to "Accepting applications". Requires lead access.
-  working-groups:startReviewPeriod           Changes the status of active opening to "In review". Requires lead access.
-  working-groups:terminateApplication        Terminates given working group application. Requires lead access.
-  working-groups:updateRewardAccount         Updates the worker/lead reward account (requires current role account to be selected)
-  working-groups:updateRoleAccount           Updates the worker/lead role account. Requires member controller account to be selected
-  working-groups:updateRoleStorage           Updates the associated worker storage
-  working-groups:updateWorkerReward          Change given worker's reward (amount only). Requires lead access.
+OPTIONS
+  -h, --help                   show CLI help
+  -i, --bucketId=bucketId      (required) Storage bucket ID
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -w, --operatorId=operatorId  (required) Storage bucket operator ID (storage group worker ID)
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
 ```
 
-## Set Vouchers Limits
-Starting with `Sumer`, the Storage Lead is also responsible for handling channel owners' quotas. If requested, and approved, this can (for now) only be done by using the [extrinsics tab](https://testnet.joystream.org/#/extrinsics) (which requires you to enable the "Fully featured" view in settings), and selecting `dataDirectory`.
+#### Example
+```
+yarn storage-node leader:invite-operator -i 1 -k /path/to/storage-lead-role-key.json -w 3
+```
+Means you are inviting worker 3, to operate bucket 1.
 
-Note that the quotas are on the `channel` level, not `member`. You can also check the current voucher limits in the [chain state tab](https://testnet.joystream.org/#/chainstate).
+#### Notes
+- Can not invite multiple people, or invite to a bucket when it is assigned.
+- Can invite an SP to multiple buckets
+
+### remove-operator
+```
+yarn storage-node leader:remove-operator --help
+
+Remove a storage bucket operator. Requires storage working group leader permissions.
+
+USAGE
+  $ storage-node leader:remove-operator
+
+OPTIONS
+  -h, --help                   show CLI help
+  -i, --bucketId=bucketId      (required) Storage bucket ID
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+yarn storage-node leader:remove-operator -k /path/to/storage-lead-role-key.json -i 4
+```
+Means you are removing the operator of bucket 4.
+
+#### Notes
+
+### set-bucket-limits
+
+```
+yarn storage-node leader:set-bucket-limits --help
+
+  -h, --help                   show CLI help
+  -i, --bucketId=bucketId      (required) Storage bucket ID
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -o, --objects=objects        (required) New 'voucher object number limit' value
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -s, --size=size              (required) New 'voucher object size limit' value
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+yarn storage-node leader:set-bucket-limits -i 0 -o 5000 -s 1000000000000 -k /path/to/storage-lead-role-key.json
+```
+Means you want to change the bucket limits of bucket 1 to:
+- hold up to 1000 files
+- store up to 100 GB of files
+
+#### Notes
+- Can not be set lower than what the bucket currently contains.
+- Not possible for `-s` or `-o` to be larger than their ["global" limits](update-voucher-limit).
+
+### set-global-uploading-status
+```
+ yarn storage-node leader:set-global-uploading-status --help
+
+Set global uploading block. Requires storage working group leader permissions.
+
+USAGE
+  $ storage-node leader:set-global-uploading-status
+
+OPTIONS
+  -h, --help                   show CLI help
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -s, --set=(on|off)           (required) Sets global uploading block (on/off).
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by
+                               ACCOUNT_URI environment variable.
+```
+
+#### Notes
+Useful if you want to stop all uploads.
+
+### update-bag
+```
+yarn storage-node leader:update-bag --help
+
+Add/remove a storage bucket from a bag (adds by default).
+
+USAGE
+  $ storage-node leader:update-bag
+
+OPTIONS
+  -a, --add=add
+      [default: ] ID of a bucket to add to bag
+
+  -h, --help
+      show CLI help
+
+  -i, --bagId=bagId
+      (required) Bag ID. Format: {bag_type}:{sub_type}:{id}.
+          - Bag types: 'static', 'dynamic'
+          - Sub types: 'static:council', 'static:wg', 'dynamic:member', 'dynamic:channel'
+          - Id:
+            - absent for 'static:council'
+            - working group name for 'static:wg'
+            - integer for 'dynamic:member' and 'dynamic:channel'
+          Examples:
+          - static:council
+          - static:wg:storage
+          - dynamic:member:4
+
+  -k, --keyFile=keyFile
+      Key file for the account. Mandatory in non-dev environment.
+
+  -m, --dev
+      Use development mode
+
+  -p, --password=password
+      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+
+  -r, --remove=remove
+      [default: ] ID of a bucket to remove from bag
+
+  -u, --apiUrl=apiUrl
+      [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+
+  -y, --accountUri=accountUri
+      Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+# Remove
+yarn storage-node leader:update-bag -i dynamic:channel:191 -k /path/to/storage-lead-role-key.json -r 1
+
+# Add
+yarn storage-node leader:update-bag -i dynamic:channel:191 -k /path/to/storage-lead-role-key.json -a 1
+```
+Means you are either removing, or adding, bag `dynamic:channel:191` from bucket 1.
+
+
+#### Notes
+- Can only add OR remove 1 at the time
+- Can remove a bag, even if the bucket is the only one assigned
+- Can add a bag, that no else has
+- Can add a bag to a bucket w/o metadata
+- Can NOT add a bag too MORE buckets than what is set in `updage-bucket-limit`
+- Can add a bag to a bucket with no operators, or invited operators
+- can NOT add a bag if `update-bucket-status` is set to `off`
+
+### update-bag-limit
+```
+yarn storage-node leader:update-bag-limit --help
+
+Update StorageBucketsPerBagLimit variable in the Joystream node storage.
+
+USAGE
+  $ storage-node leader:update-bag-limit
+
+OPTIONS
+  -h, --help                   show CLI help
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -l, --limit=limit            (required) New StorageBucketsPerBagLimit value
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+yarn storage-node leader:update-bag-limit -l 5 -k /path/to/storage-lead-role-key.json
+```
+Means you are changing the "bag limit", namely the maximum number of buckets a single bag can be in, to 5.
+
+#### Notes
+- Runtime Config 4<value<20
+- If the `bag` that is held by the MOST SPs is `n`, then `update-bag-limit` can't be set lower than `n`.
+
+### update-blacklist
+```
+yarn storage-node leader:update-blacklist --help
+
+Add/remove a content ID from the blacklist (adds by default).
+
+USAGE
+  $ storage-node leader:update-blacklist
+
+OPTIONS
+  -a, --add=add                [default: ] Content ID to add
+  -h, --help                   show CLI help
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -r, --remove=remove          [default: ] Content ID to remove
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+yarn storage-node leader:update-blacklist -a gW2PvsndeSMCqfVF8j5imGE6a8WSLNC1fS8d8TuToUbsMM -k /path/to/storage-lead-role-key.json
+```
+Means that if someone tries to upload a file with the `ipfsHash` above, it will get rejected. Any channel or video that gets created or changed to have that asset, will see the transaction rejected.
+
+#### Notes
+- Takes ipfs hash as argument
+- Does not remove existing files with said hash, only blocks adding it.
+
+### update-bucket-status
+```
+yarn storage-node leader:update-bucket-status --help
+
+Update storage bucket status (accepting new bags).
+
+USAGE
+  $ storage-node leader:update-bucket-status
+
+OPTIONS
+  -h, --help                   show CLI help
+  -i, --bucketId=bucketId      (required) Storage bucket ID
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -s, --set=(on|off)           (required) Sets 'accepting new bags' parameter for the bucket (on/off).
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+# stop accepting
+yarn storage-node leader:update-bucket-status -k /path/to/storage-lead-role-key.json -i 0 -s off
+
+# start accepting
+yarn storage-node leader:update-bucket-status -k /path/to/storage-lead-role-key.json -i 0 -s on
+```
+Means you want bucket 0 to stop/start accepting new bags. Useful if the bucket is (getting) full.
+
+#### Notes
+- set to off to stop accepting NEW bags.
+- set back to one
+- if you try to add a new bag to a bucket set to off using [update-bag](#update-bag), it will fail
+- will not randomly be assigned new bags
+
+### update-data-fee
+```
+yarn storage-node leader:update-data-fee --help
+
+Update data size fee. Requires storage working group leader permissions.
+
+USAGE
+  $ storage-node leader:update-data-fee
+
+OPTIONS
+  -f, --fee=fee                (required) New data size fee
+  -h, --help                   show CLI help
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+
+yarn storage-node leader:update-data-fee -f 1 -k /path/to/storage-lead-role-key.json
+```
+
+#### Example
+```
+yarn storage-node leader:update-data-fee -f 1 -k /path/to/storage-lead-role-key.json
+```
+Means you want to change the fees to 1 tJOY per MB. Currently, this is 0.
+
+#### Notes
+- Please do not do this (yet), as these fees will rack up and discourage content creation.
+- Unlike the `deletionPrize` (which are reimbursed when you delete an asset) the fees are burned.
+
+### update-dynamic-bag-policy
+```
+yarn storage-node leader:update-dynamic-bag-policy --help
+
+Update number of storage buckets used in the dynamic bag creation policy.
+
+USAGE
+  $ storage-node leader:update-dynamic-bag-policy
+
+OPTIONS
+  -h, --help                      show CLI help
+  -k, --keyFile=keyFile           Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                       Use development mode
+  -n, --number=number             (required) New storage buckets number
+  -p, --password=password         Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -t, --bagType=(Channel|Member)  (required) Dynamic bag type (Channel, Member).
+  -u, --apiUrl=apiUrl             [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri     Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+yarn storage-node leader:update-dynamic-bag-policy -n 2 -t Channel -k /path/to/storage-lead-role-key.json
+```
+Means that a new upload, from a new channel, will be assigned to 1 ("random", if multiple are available) SP only. (`-t Member` isn't relevant)
+
+#### Notes
+- `-n 0` means no uploads new bags can be created
+
+### update-voucher-limits
+```
+yarn storage-node leader:update-voucher-limits --help
+
+  -h, --help                   show CLI help
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -o, --objects=objects        (required) New 'max voucher object number limit' value
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -s, --size=size              (required) New 'max voucher object size limit' value
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+yarn storage-node leader:update-voucher-limits -o 1000 -s 100000000000 -k /path/to/storage-lead-role-key.json
+```
+Means setting the Global limits to:
+- hold up to 1000 files
+- store up to 100 GB of files
+
+#### Notes
+- If the sum of all assets in all bags exceeds this number, no uploads is accepted
+- A single bucket can not have limits that exceeds this number
+
+## Operator
+```
+  operator:accept-invitation  Accept pending storage bucket invitation.
+  operator:set-metadata       Set metadata for the storage bucket.
+```
+
+### Accept Invitation
+
+```
+yarn run storage-node operator:accept-invitation --help
+
+Accept pending storage bucket invitation.
+
+USAGE
+  $ storage-node operator:accept-invitation
+
+OPTIONS
+  -h, --help                                     show CLI help
+  -i, --bucketId=bucketId                        (required) Storage bucket ID
+  -k, --keyFile=keyFile                          Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                                      Use development mode
+  -p, --password=password                        Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -t, --transactorAccountId=transactorAccountId  (required) Transactor account ID (public key)
+  -u, --apiUrl=apiUrl                            [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -w, --workerId=workerId                        (required) Storage operator worker ID
+  -y, --accountUri=accountUri                    Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+
+#### Example
+```
+yarn run storage-node operator:accept-invitation -i 3 -k /path/to/storage-lead-role-key.json -w 1 -t 5StorageOperatorKey
+```
+Means that worker 1 accepts the invitation to bucket 3, and sets their operator key to `5StorageOperatorKey`
+
+#### Notes
+- Can accept an invite to more buckets, having already accepted to another?
+- The operator must run their storage node with this key as an argument to run
+
+### Set Metadata
+```
+yarn run storage-node operator:set-metadata --help
+
+Set metadata for the storage bucket.
+
+USAGE
+  $ storage-node operator:set-metadata
+
+OPTIONS
+  -e, --endpoint=endpoint      Root distribution node endpoint
+  -h, --help                   show CLI help
+  -i, --bucketId=bucketId      (required) Storage bucket ID
+  -j, --jsonFile=jsonFile      Path to JSON metadata file
+  -k, --keyFile=keyFile        Key file for the account. Mandatory in non-dev environment.
+  -m, --dev                    Use development mode
+  -p, --password=password      Key file password (optional). Could be overriden by ACCOUNT_PWD environment variable.
+  -u, --apiUrl=apiUrl          [default: ws://localhost:9944] Runtime API URL. Mandatory in non-dev environment.
+  -w, --operatorId=operatorId  (required) Storage bucket operator ID (storage group worker ID)
+  -y, --accountUri=accountUri  Account URI (optional). Has a priority over the keyFile and password flags. Could be overriden by ACCOUNT_URI environment variable.
+```
+#### Example
+```
+yarn run storage-node operator:set-metadata -i 3 -k /path/to/storage-lead-role-key.json -w 1 -j /path/to/metadata.json
+```
+Means that worker 1 is setting the metadata to bucket 3.
+
+#### Notes
+Example file:
+```json
+{
+  "endpoint": "https://giza-staging-b.joystream.app/storage/",
+  "location": {
+    "countryCode": "SG",
+    "city": "Singapore",
+    "coordinates": {
+      "latitude": 1,
+      "longitude": 104
+    }
+  },
+  "extra": "Welcome to Joystream - Singapore branch!"
+}
+```
+
+
+## Initial Configurations - Giza
+When `giza` went live, some initial configurations was set for the migration script:
+```
+# Set "global" storage limits to 2000 GB and 200000 files:
+yarn storage-node leader:update-voucher-limits -s 2000000000000 -o 20000 -k /path/to/storage-lead-role-key.json
+
+# Create a bucket that accepts uploads, should hold everything and invite worker 10 (Jsgenesis):
+yarn storage-node leader:create-bucket -a -i 10 -s 2000000000000 -n 20000 -k /path/to/storage-lead-role-key.json
+
+# Update/set the dynamic bag policy:
+yarn storage-node leader:update-dynamic-bag-policy -t Channel -n 1 -k /path/to/storage-lead-role-key.json
+
+# Update the bag limit:
+yarn storage-node leader:update-bag-limit -l 5 -k /path/to/storage-lead-role-key.json
+```
+
+This was a requirement for the content migration to work, as all content (and uploads) to go to the same bucket. (Not the only possible configuration, but a safe and easy one).
