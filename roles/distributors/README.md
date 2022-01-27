@@ -173,7 +173,7 @@ $ caddy reload
 ```
 
 ## Setup Query Node
-[Go here for the installation guide](#tools/query-node/README.md).
+[Go here for the installation guide](/tools/query-node/README.md).
 
 ## Install and Setup the Distributor Node
 
@@ -188,7 +188,7 @@ $ exit
 $ ssh user@ipOrURL
 $ cd joystream
 $ ./build-packages
-$ yarn distributor-node --help
+$ yarn joystream-distributor --help
 ```
 
 ### Applying for a Distributor opening
@@ -226,7 +226,7 @@ $ scp distributor-role-key.json <user>@<your.vps.ip.address>:/root/keys/
 ### Config File
 The default `config.yml` file can be found below. Note that you only need to modify a few lines.
 ```
-nano config.yml
+nano ~/joystream/distributor-node/config.yml
 ---
 
 id: test-node
@@ -297,7 +297,7 @@ Once hired, the Distributor Lead will invite you a to "bucket". Before this is d
 - the Lead has invited to bucket family `<bucketFamilyId>` with index `<bucketId>` -> `<bucketFamilyId>:<bucketId>`
 
 ```
-$ cd ~/joystream
+$ cd ~/joystream/distributor-node
 $ yarn joystream-distributor operator:accept-invitation -B <bucketFamilyId>:<bucketId> -w <workerId>
 ```
 
@@ -305,7 +305,7 @@ $ yarn joystream-distributor operator:accept-invitation -B <bucketFamilyId>:<buc
 When you have accepted the invitation, you have to set metadata for your node. If your VPS is in Frankfurt, Germany:
 
 ```
-$ nano metadata.json
+$ nano ~/joystream/distributor-node/metadata.json
 # Modify, and paste in everything below the stapled line
 ---
 {
@@ -324,6 +324,13 @@ $ nano metadata.json
 Where:
 - The location should really be correct (you can google your way to latitude/longitude)
 - extra is not that critical. It could perhaps be nice to add some info on your max capacity?
+
+Then set it on-chain with:
+
+```
+$ cd ~/joystream/distributor-node
+$ yarn joystream-distributor operator:set-metadata <bucketFamilyId>:<bucketId> -w <workerId> -i /path/to/metadata.json
+```
 
 ## Deploy the Distributor Node
 First, create a `systemd` file. Example file below:

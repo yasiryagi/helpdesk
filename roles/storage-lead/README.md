@@ -33,6 +33,11 @@ Table of Contents
     - [Accept Invitation](#accept-invitation)
     - [Set Metadata](#set-metadata)
   - [Initial Configurations - Giza](#initial-configurations---giza)
+  - [Good Practice](#good-practice)
+    - [New Buckets](#new-buckets)
+    - [Dynamic Bag Creation](#dynamic-bag-creation)
+    - [When to Disable a Bucket from Accepting new Bags](#when-to-disable-a-bucket-from-accepting-new-bags)
+    - [When to Update Bags](#when-to-update-bags)
 <!-- TOC END -->
 
 
@@ -118,7 +123,7 @@ Suppose the system is configured (dynamic bag policy) to accept each new bag in 
 Suppose bucket `1:3` is not accepting new bags.
 
 Then, `dynamic:channel:1336` will be placed in to:
-- 1 out of `[0:0, 0:1, 0:2]`, selected psuedo randomly
+- 1 out of `[0:0, 0:1, 0:2]`, selected psuedo-randomly
 - `[1:1, 1:4]`
 - `[3:0, 3:1, 3:2]`
 
@@ -189,7 +194,7 @@ yarn storage-node leader:create-bucket --help
 yarn storage-node leader:create-bucket -a -i 1 -k /path/to/storage-lead-role-key.json -n 1000 -s 100000000000
 ```
 Means you are creating a new bucket, set to:
-- allow new bags
+- allow new bags (should be disabled on new buckets)
 - inviting worker with ID 1
 - hold up to 1000 files
 - store up to 100 GB of files
@@ -610,7 +615,7 @@ OPTIONS
 
 #### Example
 ```
-yarn run storage-node operator:accept-invitation -i 3 -k /path/to/storage-lead-role-key.json -w 1 -t 5StorageOperatorKey
+yarn run storage-node operator:accept-invitation -i 3 -k /path/to/storage-worker-role-key.json -w 1 -t 5StorageOperatorKey
 ```
 Means that worker 1 accepts the invitation to bucket 3, and sets their operator key to `5StorageOperatorKey`
 
@@ -641,7 +646,7 @@ OPTIONS
 ```
 #### Example
 ```
-yarn run storage-node operator:set-metadata -i 3 -k /path/to/storage-lead-role-key.json -w 1 -j /path/to/metadata.json
+yarn run storage-node operator:set-metadata -i 3 -k /path/to/storage-worker-role-key.json -w 1 -j /path/to/metadata.json
 ```
 Means that worker 1 is setting the metadata to bucket 3.
 
@@ -680,3 +685,88 @@ yarn storage-node leader:update-bag-limit -l 5 -k /path/to/storage-lead-role-key
 ```
 
 This was a requirement for the content migration to work, as all content (and uploads) to go to the same bucket. (Not the only possible configuration, but a safe and easy one).
+
+
+## Good Practice
+### New Buckets
+When creating a new bucket, it is wise to NOT have it allow new bags right away. The reason is that once you do that, it will be assumed to be ready to accept uploads right away. Which, of course is impossible before the invitation is accepted (no operator) and metadata is set (no url to upload to).
+
+```
+# avoid the -a
+$ yarn storage-node leader:create-bucket -i 1 -k -n 1000 -s 100000000000 /path/to/storage-lead-role-key.json
+```
+
+Once the operator has accepted their invititation and set their metadata, you can check the url and confirm the node is running before you:
+```
+$ yarn storage-node leader:update-bucket-status -i 1 -s on -k /path/to/storage-lead-role-key.json
+```
+
+### Dynamic Bag Creation
+This number should be a function of a multiple parameters.
+- The ideal replication factor, `k_r`, meaning the number of backups we want of each bag held in storage.
+- The number of buckets operated `b_a`.
+- The capacity each of those `i` buckets are `b_i_c`.
+To a lesser extent, and/or if we consider costs:
+- How frequently storage nodes goes down, workers leave their role without "sufficiently long" unstaking periods, or how many workers are "close" to getting fired for underperfomance.
+- How quickly we can deploy extra capacity, either by increasing the number of buckets, or expanding them.
+- How much extra capacity we anticipate is needed in the near future (at some point, this will be based on statisics).
+- How costly extra storage is.
+- On a network with storage fees, (which the Lead can control), this can be scaled up or down to reduce or increase demand. (The storage lead will also have to pay fees for their transaction, although we may assume this is covered by the platform, it's still an expense.)
+- Probably lots of other minor things as well, especially on an incentivezed testnet, where JSG will reward the Lead and Workers based on how well they reach certain goals.
+
+It will be hard to create a simple formulae to calculate this, so we need to cut some corners in this simple example. Suppose:
+- `k_r` = 4
+- `b_a`= 10
+- All i buckets, are at less than 60% capacity.
+
+At this point, it seems obvious are `k_r` should be at least 4. We have spare capacity, so we can use 5. It becomes a question of probabilites, workload and costs.
+As an example, if we chose 5, it's rather easy to remove bags from a bucket if we need extra capacity. If we chose 4, a worker leaves, and we don't have anyone that can take over their bucket right away, we instead to need to distribute all the individual bags they hold (which could be many), to the remaining 9 buckets. For each bag, we need to ensure which 3 of them already holds it, how many objects and the total size of each bag and bucket, etc. The first approach saves money along the way, but the latter is easier.
+
+Note that changing this number will never affect existing bags. Only when a NEW channel is created, thus a new bag is created, will this number be adhered to by the runtime. It will "dynamically" assign a new bag to the number of buckets we set psuedo-randomly, assuming the buckets are set to accept new bags of course.
+
+### When to Disable a Bucket from Accepting new Bags
+Without proposing a specific number, a bucket should be disabled from this well before getting full. It will still have to get (and hold) any new data objects to any bags it already holds (eg. a new video is created to channel corresponding to a bag they are holding). If, by chance or design, the bags (channels) a specific bucket holds all happen to rarely/never add content, it can be a different ratio than for a bucket that holds bags that frequently creates new (large) videos.
+
+Again, if EITHER amount of objects in the bags the bucket holds, OR the cumulative size of said objects reaches a single buckets limits, the upload will fail. Even if the bag in question are held by 10 other buckets, that all have "lots" of spare capacity.
+
+### When to Update Bags
+Related to the above, we sometimes need to move bags around. For example when we upgraded to the `giza` network, and content was migrated from the "old" storage system, all bags were assigned to a single bucket operated by jsgenesis. As we don't want rely on a single bucket (that could crash, or reach capacity, or in this specific case, we want to simply remove), we need to replicate all those bags over to other buckets. This is a slow process if done manually (you can only add OR remove a single bag from a single bucket in one transaction), but a simple `bash` script can do the work for us. An example follows below.
+
+Suppose we have:
+- a bucket single bucket (id 0), that holds bags 714-901 (eg. `dynamic:channel:714-dynamic:channel:901`).
+- we want to add all bags covered by 4 other buckets (1-4) that currently all hold no bags
+- we want to replicate all bags twice, not more
+- although it's probably not ideal, we don't care if bucket 1 and 2 hold the "first half", and bucket 3 and 4 hold the "second half"
+- finally, we want to remove all bags from bucket 0
+For simplicity, we assume all buckets have the same (sufficient) capacity, and all bags are the same size.
+(This would of course not be true).
+
+
+```sh
+#!/bin/bash
+export AUTO_CONFIRM=true
+
+cd /root/joystream/distributor-node/
+for i in $(seq 714 808)
+do
+    yarn storage-node leader:update-bag -i dynamic:channel:$i -k /path/to/storage-lead-role-key.json -a 1
+    yarn storage-node leader:update-bag -i dynamic:channel:$i -k /path/to/storage-lead-role-key.json -a 2
+done
+
+for i in $(seq 809 901)
+do
+    yarn storage-node leader:update-bag -i dynamic:channel:$i -k /path/to/storage-lead-role-key.json -a 3
+    yarn storage-node leader:update-bag -i dynamic:channel:$i -k /path/to/storage-lead-role-key.json -a 4
+done
+
+for i in $(seq 714 901)
+do
+    yarn storage-node leader:update-bag -i dynamic:channel:$i -k /path/to/storage-lead-role-key.json -r 0
+done
+```
+This is not a very complicated script, for a simple job, but it gets it done. However, there are many dangers with such an approach:
+- If you make a mistake (easy with a "smart" version that cares about size and objects in each bag, and bucket capacity), you may do a lot of harm before you notice.
+- If you do the last step first, or there is not sufficient time for buckets 1-4 to get at least one copy of EACH of the data objects before you start removing bucket 0, it may be hard (or impossible) to recover.
+
+
+...TBD
