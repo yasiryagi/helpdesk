@@ -729,8 +729,8 @@ It will be hard to create a simple formulae to calculate this, so we need to cut
 - `b_a`= 10
 - All i buckets, are at less than 60% capacity.
 
-At this point, it seems obvious are `k_r` should be at least 4. We have spare capacity, so we can use 5. It becomes a question of probabilites, workload and costs.
-As an example, if we chose 5, it's rather easy to remove bags from a bucket if we need extra capacity. If we chose 4, a worker leaves, and we don't have anyone that can take over their bucket right away, we instead to need to distribute all the individual bags they hold (which could be many), to the remaining 9 buckets. For each bag, we need to ensure which 3 of them already holds it, how many objects and the total size of each bag and bucket, etc. The first approach saves money along the way, but the latter is easier.
+At this point, it seems obvious are `k_r` should be at least 4. We have spare capacity, so we can use 5. It becomes a question of probabilities, workload and costs.
+As an example, if we chose 5, it's rather easy to remove bags from a bucket if we need extra capacity. If we chose 4, a worker leaves, and we don't have anyone that can take over their bucket right away, we instead need to distribute all the individual bags they hold (which could be many), to the remaining 9 buckets. For each bag, we need to ensure which 3 of them already holds it, how many objects and the total size of each bag and bucket, etc. The first approach saves money along the way, but the latter is easier.
 
 Note that changing this number will never affect existing bags. Only when a NEW channel is created, thus a new bag is created, will this number be adhered to by the runtime. It will "dynamically" assign a new bag to the number of buckets we set psuedo-randomly, assuming the buckets are set to accept new bags of course.
 
@@ -740,7 +740,7 @@ Without proposing a specific number, a bucket should be disabled from this well 
 Again, if EITHER amount of objects in the bags the bucket holds, OR the cumulative size of said objects reaches a single buckets limits, the upload will fail. Even if the bag in question are held by 10 other buckets, that all have "lots" of spare capacity.
 
 ### When to Update Bags
-Related to the above, we sometimes need to move bags around. For example when we upgraded to the `giza` network, and content was migrated from the "old" storage system, all bags were assigned to a single bucket operated by jsgenesis. As we don't want rely on a single bucket (that could crash, or reach capacity, or in this specific case, we want to simply remove), we need to replicate all those bags over to other buckets. This is a slow process if done manually (you can only add OR remove a single bag from a single bucket in one transaction), but a simple `bash` script can do the work for us. An example follows below.
+Related to the above, we sometimes need to move bags around. For example when we upgraded to the `giza` network, and content was migrated from the "old" storage system, all bags were assigned to a single bucket operated by jsgenesis. As we don't want to rely on a single bucket (that could crash, or reach capacity, or in this specific case, we want to simply remove), we need to replicate all those bags over to other buckets. This is a slow process if done manually (you can only add OR remove a single bag from a single bucket in one transaction), but a simple `bash` script can do the work for us. An example follows below.
 
 Suppose we have:
 - a bucket single bucket (id 0), that holds bags 714-901 (eg. `dynamic:channel:714-dynamic:channel:901`).
