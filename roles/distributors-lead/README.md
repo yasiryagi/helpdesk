@@ -178,8 +178,12 @@ DESCRIPTION
 ```
 yarn joystream-distributor leader:cancel-invitation -B 0:1 -w 5 -y
 ```
+Means you want to cancel the pending invitation off worker 5 to bucket 0:1.
 
 #### Notes
+Can be used to cancel a pending invitation. Useful if:
+- the worker is not responding
+- the wrong worker was invited to the wrong bucket
 
 ### create-bucket
 ```
@@ -201,12 +205,13 @@ OPTIONS
 ```
 yarn joystream-distributor leader:create-bucket -a yes -f 0 -y
 ```
-Creates a new bucket:
+Means you are creating a new bucket:
 - in family `0`
-- accepts new bags
-- returns the index of the bucket, eg. `1` meaning you created bucket `0:1`
+- that accepts new bags
+Returns the index of the bucket, eg. `1` meaning you created bucket `0:1`
 
 #### Notes
+- good practice to have new buckets not accept new bags - see [good practice](#good-practice)
 
 ### create-bucket-family
 ```
@@ -220,8 +225,10 @@ yarn joystream-distributor leader:create-bucket-family --help
 ```
 yarn joystream-distributor leader:create-bucket-family
 ```
+Means you want to create a new bucket family. Returns the id of the new family created.
 
 #### Notes
+- bucket families by themselves have no impact on the system before buckets are created in said family
 
 ### delete-bucket
 ```
@@ -269,7 +276,7 @@ yarn joystream-distributor leader:delete-bucket-family -f 0 -y
 Means you want to delete bucket family `0`
 
 #### Notes
-
+- cannot delete a bucket family that has buckets (you must delete them first)
 
 ### invite-bucket-operator
 ```
@@ -298,6 +305,8 @@ yarn joystream-distributor leader:invite-bucket-operator -B 0:1 -w 0 -y
 Means you want to invite worker `0` to operate bucket `0:1`
 
 #### Notes
+- can invite multiple operators to the same bucket
+- can invite same operator to multiple buckets
 
 ### remove-bucket-operator
 ```
@@ -325,7 +334,8 @@ yarn joystream-distributor leader:remove-bucket-operator -B 0:1 -w 0 -y
 Means you want to remove worker `0` from operating bucket `0:1`
 
 #### Notes
-- Can't
+- can remove an operator from buckets with data
+- if the only operator of a bucket is removed, it's [good practice](#good-practice) to also turn the status and mode off.
 
 ### set-bucket-family-metadata
 ```
@@ -366,6 +376,7 @@ Means you want to set/update the metadata of bucket family `0`
 ```
 
 #### Notes
+- Go [here](https://github.com/Joystream/joystream/blob/master/distributor-node/docs/node/index.md#distributionbucketfamilymetadata) for more information.
 
 ### set-buckets-per-bag-limit
 ```
@@ -389,6 +400,11 @@ yarn joystream-distributor leader:set-buckets-per-bag-limit -l 2
 Means you want to restrict the number of buckets that holds a single bag to `2`
 
 #### Notes
+- if set to 2 as above, adding a bag two a 3rd bucket will be rejected
+- however, if it was 3 and some bag(s) is already held by 3 buckets, setting it to 2 then will not change anything
+  - does not work retroactively
+- if a bag is held by 4 buckets, and the bag-limit is 3, you can't REMOVE a bag from a bucket before you have increased the limit first (will be fixed)
+
 
 ### update-bag
 ```
@@ -436,10 +452,17 @@ yarn joystream-distributor leader:update-bag -a 1 -b dynamic:channel:111 -f 0 -y
 
 # Remove
 yarn joystream-distributor leader:update-bag -r 1 -b dynamic:channel:111 -f 0 -y
+
+# Mix
+yarn joystream-distributor leader:update-bag -r 2 -r 3 -a 4 -b dynamic:channel:111 -f 0 -y
 ```
-Means you want to add/remove bag `dynamic:channel:111` to/from bucket `0:1`
+Means you want to add bag `dynamic:channel:111` to bucket `0:1`
+Means you want to remove bag `dynamic:channel:111` from bucket `0:1`
+Means you want to remove bag `dynamic:channel:111` from bucket `0:2` and `0:3`, and add it to bucket `0:4`
 
 #### Notes
+- useful for re-configuring the system
+- cannot update multiple bags and/or add/remove to buckets across families in one transaction.
 
 ### update-bucket-mode
 ```
@@ -459,11 +482,18 @@ OPTIONS
 
 #### Example
 ```
+# On
 yarn joystream-distributor leader:update-bucket-mode -B 1:1 -d on
+
+# Off
+yarn joystream-distributor leader:update-bucket-mode -B 1:1 -d off
 ```
-Means you want bucket `1:1` to distribute assets.
+Means you want bucket `1:1` to start/stop distributing assets.
 
 #### Notes
+- assuming one follows [good practice](#good-practice) and set mode (and status) to off when creating a new bucket, or replacing the operator of a bucket, use this to have them distribute once the operator has deployed and tested their setup
+- turn it off if a node goes down (eg. to maintenance), a worker leaves/gets fired/is reassigned
+
 
 ## update-bucket-status
 ```
@@ -487,9 +517,9 @@ yarn joystream-distributor leader:update-bucket-status -B 1:1 -a no -y
 ```
 Means you want bucket `1:1` to accept new bags.
 
-
 #### Notes
-
+- assuming one follows [good practice](#good-practice) and set mode (and status) to off when creating a new bucket, or replacing the operator of a bucket, use this to have them distribute once the operator has deployed and tested their setup
+- turn it off if a node goes down (eg. to maintenance), a worker leaves/gets fired/is reassigned
 
 ### update-dynamic-bag-policy
 ```
@@ -512,14 +542,33 @@ DESCRIPTION
 
 #### Example
 ```
-yarn joystream-distributor leader:update-dynamic-bag-policy -t Channel -p 1:5 2:10 3:5
+yarn joystream-distributor leader:update-dynamic-bag-policy -t Channel -p 1:2 2:1 3:4
 ```
 Means you want all *new* channels created, to be held by:
-- 5 buckets from family `1`
-- 10 buckets from family `2`
-- 5 buckets from family `3`
+- 2 buckets from family `1`
+- 1 buckets from family `2`
+- 4 buckets from family `3`
+  - assuming family 0 exists, leaving it blank is equivalent to `0:0`
+
+
+Say there are 4 families (0, 1, 3), with 3 buckets in each all accepting new bags:
+```
+yarn joystream-distributor leader:update-dynamic-bag-policy -t Channel -p 0:3 1:2
+```
+Means that for all *new* channels created:
+- all 3 buckets in family 0 will hold the new bag
+- 2 of the 3 buckets in fam 1 will randomly be chosen for all new bags
+
+If you add bucket to family 0 and remove one from family 1 without updating the dynamic bag policy:
+- 3 of the 4 buckets in fam fam 1 will randomly be chosen for all new bags
+- all buckets in family 1 will hold the new bag
 
 #### Notes
+- only affects new bags created
+- will be "overridden" by `leader:set-buckets-per-bag-limit`, and/or the number of buckets (accepting new bags)
+  - eg. if the bag limit is 3,
+- if there are
+- even if no worker has been invited to a bucket (nor accepted, nor metadata set) it will ("dynamically") accept new bags as long as the bucket exists,
 
 ## Operator
 
@@ -604,6 +653,9 @@ Means you (worker `0`) wants to set/update the metadata of bucket `0:1`
   "extra": "Welcome to Joystream - Singapore branch!"
 }
 ```
+
+#### Notes
+- Go [here](https://github.com/Joystream/joystream/blob/master/distributor-node/docs/node/index.md#distributionbucketfamilymetadata) for more information.
 
 ## Initial Configurations - Giza
 When `giza` went live, some initial configurations was set for the migration script:

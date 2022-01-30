@@ -134,6 +134,8 @@ In general, the distributor node is a little more flexible than the storage node
 # Storage CLI
 ## Leader
 ```
+yarn storage-node leader --help
+
 COMMANDS
   leader:cancel-invite                Cancel a storage bucket operator invite. Requires storage working group leader permissions.
   leader:create-bucket                Create new storage bucket. Requires storage working group leader permissions.
@@ -168,11 +170,12 @@ yarn storage-node leader:cancel-invite --help
 ```
 yarn storage-node leader:cancel-invite -i 2 -k /path/to/storage-lead-role-key.json
 ```
+Means you want to cancel the pending invitation to bucket 2.
 
 #### Notes
 Can be used to cancel an invitation. Useful if:
 - the worker is not responding
-- the wrong worker was invited
+- the wrong worker was invited to the wrong bucket
 
 ### create-bucket
 ```
@@ -255,7 +258,7 @@ Means you are inviting worker 3, to operate bucket 1.
 
 #### Notes
 - Can not invite multiple people, or invite to a bucket when it is assigned.
-- Can invite an SP to multiple buckets
+- Can invite one worker to multiple buckets
 
 ### remove-operator
 ```
@@ -283,6 +286,7 @@ yarn storage-node leader:remove-operator -k /path/to/storage-lead-role-key.json 
 Means you are removing the operator of bucket 4.
 
 #### Notes
+- you can remove an operator even if the bucket contains objects
 
 ### set-bucket-limits
 
@@ -302,11 +306,11 @@ yarn storage-node leader:set-bucket-limits --help
 
 #### Example
 ```
-yarn storage-node leader:set-bucket-limits -i 0 -o 5000 -s 1000000000000 -k /path/to/storage-lead-role-key.json
+yarn storage-node leader:set-bucket-limits -i 1 -o 5000 -s 1000000000000 -k /path/to/storage-lead-role-key.json
 ```
 Means you want to change the bucket limits of bucket 1 to:
-- hold up to 1000 files
-- store up to 100 GB of files
+- hold up to 5000 files
+- store up to 1000 GB of files
 
 #### Notes
 - Can not be set lower than what the bucket currently contains.
@@ -334,7 +338,7 @@ OPTIONS
 ```
 
 #### Notes
-Useful if you want to stop all uploads.
+- Only use if you want to stop all uploads.
 
 ### update-bag
 ```
@@ -402,7 +406,7 @@ Means you are either removing, or adding, bag `dynamic:channel:191` from bucket 
 - Can add a bag to a bucket w/o metadata
 - Can NOT add a bag too MORE buckets than what is set in `updage-bucket-limit`
 - Can add a bag to a bucket with no operators, or invited operators
-- can NOT add a bag if `update-bucket-status` is set to `off`
+- can NOT add a bag if the bucket does not accept new bags (`update-bucket-status` is set to `off`)
 
 ### update-bag-limit
 ```
@@ -461,7 +465,7 @@ Means that if someone tries to upload a file with the `ipfsHash` above, it will 
 
 #### Notes
 - Takes ipfs hash as argument
-- Does not remove existing files with said hash, only blocks adding it.
+- Does not remove existing files with said hash, only blocks creating new `dataObjects` with said hash.
 
 ### update-bucket-status
 ```
@@ -491,11 +495,12 @@ yarn storage-node leader:update-bucket-status -k /path/to/storage-lead-role-key.
 # start accepting
 yarn storage-node leader:update-bucket-status -k /path/to/storage-lead-role-key.json -i 0 -s on
 ```
-Means you want bucket 0 to stop/start accepting new bags. Useful if the bucket is (getting) full.
+Means you want bucket 0 to stop/start accepting new bags.
 
 #### Notes
+Useful (to turn off) if the bucket is getting "full", if the bucket operator is having some issues with their node (eg. VPS needs maintenance), or you created a new bucket to with `on`, and the operator needs some time to get up (which they always will).
 - set to off to stop accepting NEW bags.
-- set back to one
+- set back to on to start accepting NEW bags.
 - if you try to add a new bag to a bucket set to off using [update-bag](#update-bag), it will fail
 - will not randomly be assigned new bags
 
@@ -693,12 +698,17 @@ When creating a new bucket, it is wise to NOT have it allow new bags right away.
 
 ```
 # avoid the -a
-$ yarn storage-node leader:create-bucket -i 1 -k -n 1000 -s 100000000000 /path/to/storage-lead-role-key.json
+$ yarn storage-node leader:create-bucket -i 1 -n 1000 -s 100000000000 -k /path/to/storage-lead-role-key.json
+# returns the bucket ID (say 3)
+
+# currently, there is a bug in the storage-node CLI that sets all new buckets created to accept new bags, despite not enabling it (even if no one is invited). therefore, turn it off right away
+$ yarn storage-node leader:update-bucket-status -i 3 -s off -k /path/to/storage-lead-role-key.json
+
 ```
 
-Once the operator has accepted their invititation and set their metadata, you can check the url and confirm the node is running before you:
+Once the operator has accepted their invitation and set their metadata, you can check the url and confirm the node is running before you:
 ```
-$ yarn storage-node leader:update-bucket-status -i 1 -s on -k /path/to/storage-lead-role-key.json
+$ yarn storage-node leader:update-bucket-status -i 3 -s on -k /path/to/storage-lead-role-key.json
 ```
 
 ### Dynamic Bag Creation
