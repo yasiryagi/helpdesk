@@ -756,7 +756,7 @@ For simplicity, we assume all buckets have the same (sufficient) capacity, and a
 #!/bin/bash
 export AUTO_CONFIRM=true
 
-cd /root/joystream/distributor-node/
+cd /root/joystream/
 for i in $(seq 714 808)
 do
     yarn storage-node leader:update-bag -i dynamic:channel:$i -k /path/to/storage-lead-role-key.json -a 1

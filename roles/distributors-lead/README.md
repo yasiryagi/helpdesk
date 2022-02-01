@@ -567,7 +567,6 @@ If you add bucket to family 0 and remove one from family 1 without updating the 
 - only affects new bags created
 - will be "overridden" by `leader:set-buckets-per-bag-limit`, and/or the number of buckets (accepting new bags)
   - eg. if the bag limit is 3,
-- if there are
 - even if no worker has been invited to a bucket (nor accepted, nor metadata set) it will ("dynamically") accept new bags as long as the bucket exists,
 
 ## Operator
@@ -733,7 +732,7 @@ Canada, the worlds second largest in terms of area, is over 3x the size of the E
 
 A Lead will have to consider primarily the resources available, the current usage data, where one would expect, or target new users and how good/bad the quality of service is in the respective regions before deploying a coherent system of families and buckets.
 
-Currently, we believe most users are located in the eurozone and the CIS. If one were to assume one could only have to families, it *may* make sense to deploy a bucket in the north-eastern parts of the eurozone (eg. Germany or Poland), and one in central Russia. The Former would provide good coverage across the Eurozone and western parts of the CIS, whereas the latter would provide decent coverage across the "rest of" the CIS, and large parts of Asia.
+Currently, we believe most users are located in the eurozone and the CIS. If one were to assume one could only have two families, it *may* make sense to deploy a bucket in the north-eastern parts of the eurozone (eg. Germany or Poland), and one in central Russia. The Former would provide good coverage across the Eurozone and western parts of the CIS, whereas the latter would provide decent coverage across the "rest of" the CIS, and large parts of Asia.
 
 However, it may be better to place one bucket in North America, covering a large potential market there, and one somewhere like the Ukraine, covering the "current" userbase, assuming the latency wouldn't be too bad.
 
