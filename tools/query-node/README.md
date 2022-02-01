@@ -69,7 +69,7 @@ $ export WS_PROVIDER_ENDPOINT_URI=ws://localhost:9944
 $ export WS_PROVIDER_ENDPOINT_URI=wss://rome-rpc-endpoint.joystream.org:9944
 
 $ export QUERY_NODE_URL=https://hydra-sumer.joystream.org/graphql
-$ export AT_BLOCK_NUMBER=4191206
+$ export AT_BLOCK_NUMBER=4191207
 ```
 
 #### Fetch State and Build

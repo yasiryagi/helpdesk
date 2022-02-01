@@ -335,7 +335,7 @@ Means you want to remove worker `0` from operating bucket `0:1`
 
 #### Notes
 - can remove an operator from buckets with data
-- if the only operator of a bucket is removed, it's [good practice](#good-practice) to also turn the status and mode off.
+- if the only operator of a bucket is removed, it's [good practice](#good-practice) to also turn the [status](#update-bucket-status) and [mode](#update-bucket-mode) off.
 
 ### set-bucket-family-metadata
 ```
