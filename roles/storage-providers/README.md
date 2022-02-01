@@ -171,7 +171,7 @@ $ caddy reload
 ```
 
 ## Setup Query Node
-[Go here for the installation guide](#tools/query-node/README.md).
+[Go here for the installation guide](/tools/query-node/README.md).
 
 ## Install and Setup the Storage Node
 
@@ -205,6 +205,9 @@ The next steps (below) will only apply if you are a successful applicant.
 
 On the machine/VPS you want to run your storage node:
 
+Unlike earlier versions of the storage node, you need a third key in addition to the member key and role key. This is to avoid an upload failing as you may want to make transaction with your role key while having your storage node running. Although this mostly applies to the lead, that has to make many such transactions, a worker could for example want to set new metadata for their node. As this transaction would increase the "nonce" for your key, it may result in a failed upload, when your storage node made the transaction to accept the upload.
+
+In this guide, it's referred to as the operator key, whereas in the codebase it's referred to as the transactor key. Regardless, you can make one in pioneer and `scp` it over to your VPS, or do it on your VPS like so:
 ```
 $ mkdir ~/keys/
 $ cd ~/joystream/
@@ -239,7 +242,10 @@ Once hired, the Storage Lead will invite you a to "bucket". Before this is done,
 
 ```
 $ cd ~/joystream
-$ yarn run storage-node operator:accept-invitation -i <bucketId> -k /root/keys/storage-role-key.json -w <workerId> -t <5StorageOperatorKey>
+$ yarn run storage-node operator:accept-invitation -i <bucketId> -w <workerId> -t <5StorageOperatorKey> -k /root/keys/storage-role-key.json
+
+# With bucketId=1, workerId=2, and operatorkey=5StorageOperatorKey that would be:
+# yarn run storage-node operator:set-metadata -i 1 -w 2 -t 5StorageOperatorKey -k /root/keys/storage-role-key.json
 ```
 
 ### Set Metadata
@@ -265,6 +271,15 @@ $ nano metadata.json
 Where:
 - The location should really be correct (you can google your way to latitude/longitude)
 - extra is not that critical. It could perhaps be nice to add some info on your max capacity?
+
+Then, set it on-chain with:
+```
+$ cd ~/joystream
+$ yarn run storage-node operator:set-metadata -i <bucketId> -w <workerId> -j /path/to/metadata.json -k /root/keys/storage-role-key.json
+
+# With bucketId=1, workerId=2, that would be:
+# yarn run storage-node operator:set-metadata -i 1 -w 2 -j /path/to/metadata.json -k /root/keys/storage-role-key.json
+```
 
 ## Deploy the Storage Node
 First, create a `systemd` file. Example file below:

@@ -186,9 +186,9 @@ $ docker logs -f -n 100 indexer
 # this should parse all the "interesting" events that the processor processes.
 ```
 
-You can do a spotcheck to see if you have the correct categories:
+You can do a spotcheck to see if you have the correct storageBuckets:
 ```
-curl 'localhost:8081/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: localhost:8081/graphql' --data-binary '{"query":"query {\n  videoCategories {\n    name\n  }\n}"}' --compressed
+curl 'localhost:8081/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: localhost:8081/graphql' --data-binary '{"query":"query {\n  storageBuckets {\n    id\n  }\n}"}' --compressed
 ```
 
 Finally, if you included hosting of the `Query-node`, you can access the graphql server at `https://<your.cool.url>/server/graphql`.

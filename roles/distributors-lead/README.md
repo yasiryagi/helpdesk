@@ -31,6 +31,11 @@ Table of Contents
     - [accept-invitation](#accept-invitation)
     - [set-metadata](#set-metadata)
   - [Initial Configurations - Giza](#initial-configurations---giza)
+  - [Good Practice](#good-practice)
+    - [Bucket Families](#bucket-families-1)
+    - [New Buckets](#new-buckets)
+    - [Dynamic Bag Creation Policy](#dynamic-bag-creation-policy)
+    - [When to Update Bags](#when-to-update-bags)
 <!-- TOC END -->
 
 ## The Storage and Distribution System
@@ -173,8 +178,12 @@ DESCRIPTION
 ```
 yarn joystream-distributor leader:cancel-invitation -B 0:1 -w 5 -y
 ```
+Means you want to cancel the pending invitation off worker 5 to bucket 0:1.
 
 #### Notes
+Can be used to cancel a pending invitation. Useful if:
+- the worker is not responding
+- the wrong worker was invited to the wrong bucket
 
 ### create-bucket
 ```
@@ -196,12 +205,13 @@ OPTIONS
 ```
 yarn joystream-distributor leader:create-bucket -a yes -f 0 -y
 ```
-Creates a new bucket:
+Means you are creating a new bucket:
 - in family `0`
-- accepts new bags
-- returns the index of the bucket, eg. `1` meaning you created bucket `0:1`
+- that accepts new bags
+Returns the index of the bucket, eg. `1` meaning you created bucket `0:1`
 
 #### Notes
+- good practice to have new buckets not accept new bags - see [good practice](#good-practice)
 
 ### create-bucket-family
 ```
@@ -215,8 +225,10 @@ yarn joystream-distributor leader:create-bucket-family --help
 ```
 yarn joystream-distributor leader:create-bucket-family
 ```
+Means you want to create a new bucket family. Returns the id of the new family created.
 
 #### Notes
+- bucket families by themselves have no impact on the system before buckets are created in said family
 
 ### delete-bucket
 ```
@@ -264,7 +276,7 @@ yarn joystream-distributor leader:delete-bucket-family -f 0 -y
 Means you want to delete bucket family `0`
 
 #### Notes
-
+- cannot delete a bucket family that has buckets (you must delete them first)
 
 ### invite-bucket-operator
 ```
@@ -293,6 +305,8 @@ yarn joystream-distributor leader:invite-bucket-operator -B 0:1 -w 0 -y
 Means you want to invite worker `0` to operate bucket `0:1`
 
 #### Notes
+- can invite multiple operators to the same bucket
+- can invite same operator to multiple buckets
 
 ### remove-bucket-operator
 ```
@@ -320,7 +334,8 @@ yarn joystream-distributor leader:remove-bucket-operator -B 0:1 -w 0 -y
 Means you want to remove worker `0` from operating bucket `0:1`
 
 #### Notes
-- Can't
+- can remove an operator from buckets with data
+- if the only operator of a bucket is removed, it's [good practice](#good-practice) to also turn the [status](#update-bucket-status) and [mode](#update-bucket-mode) off.
 
 ### set-bucket-family-metadata
 ```
@@ -361,6 +376,7 @@ Means you want to set/update the metadata of bucket family `0`
 ```
 
 #### Notes
+- Go [here](https://github.com/Joystream/joystream/blob/master/distributor-node/docs/node/index.md#distributionbucketfamilymetadata) for more information.
 
 ### set-buckets-per-bag-limit
 ```
@@ -384,6 +400,11 @@ yarn joystream-distributor leader:set-buckets-per-bag-limit -l 2
 Means you want to restrict the number of buckets that holds a single bag to `2`
 
 #### Notes
+- if set to 2 as above, adding a bag two a 3rd bucket will be rejected
+- however, if it was 3 and some bag(s) is already held by 3 buckets, setting it to 2 then will not change anything
+  - does not work retroactively
+- if a bag is held by 4 buckets, and the bag-limit is 3, you can't REMOVE a bag from a bucket before you have increased the limit first (will be fixed)
+
 
 ### update-bag
 ```
@@ -431,10 +452,17 @@ yarn joystream-distributor leader:update-bag -a 1 -b dynamic:channel:111 -f 0 -y
 
 # Remove
 yarn joystream-distributor leader:update-bag -r 1 -b dynamic:channel:111 -f 0 -y
+
+# Mix
+yarn joystream-distributor leader:update-bag -r 2 -r 3 -a 4 -b dynamic:channel:111 -f 0 -y
 ```
-Means you want to add/remove bag `dynamic:channel:111` to/from bucket `0:1`
+Means you want to add bag `dynamic:channel:111` to bucket `0:1`
+Means you want to remove bag `dynamic:channel:111` from bucket `0:1`
+Means you want to remove bag `dynamic:channel:111` from bucket `0:2` and `0:3`, and add it to bucket `0:4`
 
 #### Notes
+- useful for re-configuring the system
+- cannot update multiple bags and/or add/remove to buckets across families in one transaction.
 
 ### update-bucket-mode
 ```
@@ -454,11 +482,18 @@ OPTIONS
 
 #### Example
 ```
+# On
 yarn joystream-distributor leader:update-bucket-mode -B 1:1 -d on
+
+# Off
+yarn joystream-distributor leader:update-bucket-mode -B 1:1 -d off
 ```
-Means you want bucket `1:1` to distribute assets.
+Means you want bucket `1:1` to start/stop distributing assets.
 
 #### Notes
+- assuming one follows [good practice](#good-practice) and set mode (and status) to off when creating a new bucket, or replacing the operator of a bucket, use this to have them distribute once the operator has deployed and tested their setup
+- turn it off if a node goes down (eg. to maintenance), a worker leaves/gets fired/is reassigned
+
 
 ## update-bucket-status
 ```
@@ -482,9 +517,9 @@ yarn joystream-distributor leader:update-bucket-status -B 1:1 -a no -y
 ```
 Means you want bucket `1:1` to accept new bags.
 
-
 #### Notes
-
+- assuming one follows [good practice](#good-practice) and set mode (and status) to off when creating a new bucket, or replacing the operator of a bucket, use this to have them distribute once the operator has deployed and tested their setup
+- turn it off if a node goes down (eg. to maintenance), a worker leaves/gets fired/is reassigned
 
 ### update-dynamic-bag-policy
 ```
@@ -507,14 +542,32 @@ DESCRIPTION
 
 #### Example
 ```
-yarn joystream-distributor leader:update-dynamic-bag-policy -t Channel -p 1:5 2:10 3:5
+yarn joystream-distributor leader:update-dynamic-bag-policy -t Channel -p 1:2 2:1 3:4
 ```
 Means you want all *new* channels created, to be held by:
-- 5 buckets from family `1`
-- 10 buckets from family `2`
-- 5 buckets from family `3`
+- 2 buckets from family `1`
+- 1 buckets from family `2`
+- 4 buckets from family `3`
+  - assuming family 0 exists, leaving it blank is equivalent to `0:0`
+
+
+Say there are 4 families (0, 1, 3), with 3 buckets in each all accepting new bags:
+```
+yarn joystream-distributor leader:update-dynamic-bag-policy -t Channel -p 0:3 1:2
+```
+Means that for all *new* channels created:
+- all 3 buckets in family 0 will hold the new bag
+- 2 of the 3 buckets in fam 1 will randomly be chosen for all new bags
+
+If you add bucket to family 0 and remove one from family 1 without updating the dynamic bag policy:
+- 3 of the 4 buckets in fam fam 1 will randomly be chosen for all new bags
+- all buckets in family 1 will hold the new bag
 
 #### Notes
+- only affects new bags created
+- will be "overridden" by `leader:set-buckets-per-bag-limit`, and/or the number of buckets (accepting new bags)
+  - eg. if the bag limit is 3,
+- even if no worker has been invited to a bucket (nor accepted, nor metadata set) it will ("dynamically") accept new bags as long as the bucket exists,
 
 ## Operator
 
@@ -600,6 +653,9 @@ Means you (worker `0`) wants to set/update the metadata of bucket `0:1`
 }
 ```
 
+#### Notes
+- Go [here](https://github.com/Joystream/joystream/blob/master/distributor-node/docs/node/index.md#distributionbucketfamilymetadata) for more information.
+
 ## Initial Configurations - Giza
 When `giza` went live, some initial configurations was set for the migration script:
 ```
@@ -661,3 +717,88 @@ Where,
   ]
 }
 ```
+
+
+## Good Practice
+
+### Bucket Families
+The main purpose of bucket families is to optimize the user experience by reducing the latency between a consumer and the distributor as much as possible without incurring too significant costs. This means having bucket families represent regions across the world, optimizing for:
+- costs
+- latency (all over the world)
+- usage (in geographical regions)
+
+As an example of the thought process:
+Canada, the worlds second largest in terms of area, is over 3x the size of the Eurozone. If you go by latency alone, that would imply 3 bucket families in Canada and one in the Eurozone. However, the population of Canada is ~40M, whereas the Eurozone is the home of ~340M people. Furthermore, "almost everyone" in Canada lives practically on the US border, and most of them in the east. So it makes no economic sense to optimize that way.
+
+A Lead will have to consider primarily the resources available, the current usage data, where one would expect, or target new users and how good/bad the quality of service is in the respective regions before deploying a coherent system of families and buckets.
+
+Currently, we believe most users are located in the eurozone and the CIS. If one were to assume one could only have two families, it *may* make sense to deploy a bucket in the north-eastern parts of the eurozone (eg. Germany or Poland), and one in central Russia. The Former would provide good coverage across the Eurozone and western parts of the CIS, whereas the latter would provide decent coverage across the "rest of" the CIS, and large parts of Asia.
+
+However, it may be better to place one bucket in North America, covering a large potential market there, and one somewhere like the Ukraine, covering the "current" userbase, assuming the latency wouldn't be too bad.
+
+Note that this is just an example. It is certainly not true that we can only have two families, and it may not be true that a bucket in the Ukraine would be good enough for the existing market.
+
+Further, one would have to consider the coverage of specific bags. Suppose now we have 5 families (number of buckets in each family) covering (note that this is not necessarily a good setup!):
+1. Europe (5)
+2. America (3)
+3. Asia (5)
+4. Africa (1)
+5. Australia (1)
+
+A bag (eg. channel) with content in Russian may be very poplar in Europe and Asia, but not in the other regions. It may then make sense to have it be served by 2 or 3 buckets in Europe and Asia, but not at all in the remaining regions. A user in other regions will still be able to play the content, but it will be slightly slower to render/play.
+
+### New Buckets
+When creating a new bucket, it is wise to NOT have it distribute bags right away. The reason is that once you enable this (and metadata is set), the player will assume it can serve content. Unless the configurations are correct, this will not be true.
+
+Although less important, assuming your dynamic bag policy is robust (meaning the new bucket can't be the only bucket accepting any new bags), it may also be advisable to disable `--acceptingBags`.
+
+Steps:
+
+```
+# create a new bucket in family 1, but don't have it accept new bags:
+$ yarn joystream-distributor leader:create-bucket -a no -f 1 -y
+# It will return the new bucket index in the family (let's say it's 3)
+
+# set the -mode to off:
+$ yarn joystream-distributor leader:update-bucket-mode -B 1:3 -d off
+
+# invite operator with --workerId 5, to this bag:
+$ yarn joystream-distributor leader:invite-bucket-operator -B 1:3 -w 5 -y
+
+# await the operator having first accepted the invitation and set their metadata. Then have them start their node. Once they have, check that their api status URL looks good. Then, turn it on/on
+
+$ yarn joystream-distributor leader:update-bucket-status -B 1:3 -a yes -y
+$ yarn joystream-distributor leader:update-bucket-mode -B 1:3 -d on
+
+# add some bag (in this example, bag 1337) to it:
+$ yarn joystream-distributor leader:update-bag -f 1 -a 3 -b dynamic:channel:1337 -y
+
+```
+Try getting an asset in said bag from it. If it works -> all is well. If not, disable status and troubleshoot with the operator. If you are able to quickly fix the issue, enable the status again. If not disable mode.
+Consider:
+- giving the operator more time; or
+- fire the operator (requires you to remove all bags first)
+
+### Dynamic Bag Creation Policy
+This number should be a function of a multiple parameters. When all the features of the system are utilized in the player, meaning the consumer app will consider which bucket family has the best latency to the consumer trying to fetch an asset, it would be even more complicated. As we are discussing the best practises, we will pretend this is still true.
+
+Suppose we have the same setup as in [Bucket Families](#bucket-families-1).
+One setup could be:
+
+```
+$ yarn joystream-distributor leader:update-dynamic-bag-policy -t Channel -p 0:1 1:1 2:1 3:1 4:1 5:1
+```
+Meaning all new bags are uploaded to a single (random) bucket in each family (if they all accept new bags). However, this would obviously mean that the bucket in australia would hold be assigned 5 times more (new) content than their counterparts in Asia and Europe.
+
+As a distribution bucket does not need to hold all data, this may be fine, but at some point, it's not clear that a bag that is cached in an asian bucket wouldn't serve an australian user faster assuming the bucket isn't cached in that bucket.
+
+Point is, it *may* be better to manually add bags that are popular to the australian, so it can focus on the popular content there. At the time, we don't know what would be the ideal setup here. It will have to be solved by extensive testing and big data.
+
+I am sure many of you have noticed that even on Youtube, an "obscure" video may take a while to start playing, whereas the content on the front page will play right away.
+
+### When to Update Bags
+There are many situations where the Lead will have to move bags around. The four we assume will be most common:
+1. A video goes "viral". Say a new channel, or one that hasn't had any videos watched more than a few times a day all of the sudden uploads an extremely popular video. If the Lead had done a "good" job optimizing before, the bag (channel) was likely held by a relatively small amount of buckets before. That would mean a user playing this video would frequently have a bad experience, unless the Lead manually updates the bag by adding it to more buckets.
+2. After the "hype" around said video goes down, the channel is unable to maintain it's recent popularity, and their new videos gets fewer and fewer views. This would be a good time to scale back on the amount of buckets that holds that bag.
+3. An worker quits or gets fired. In an extreme example, a couple of bags were only held by a/the bucket the worker operated. Unless the bucket can be assigned to another worker right away, this means you have add these bags (and maybe some others as well) to another bucket ASAP.
+4. A channel uploads a new video every Tuesday, that is very popular in some region. For some reason, "everyone" wants to watch it right away, and as the days goes by, it gets exponentially fewer views. If that becomes the norm, it would make sense to add the bag to a good number of buckets each on that day, before gradually removing them. Ideally, one would even ask the creator to give a heads up an hour or two before they publish. The same would of course be true for a channel that uploads extremely popular videos rarely and at unpredictable times.
