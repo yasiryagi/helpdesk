@@ -185,7 +185,7 @@ $ ./setup.sh
 $ exit
 $ ssh user@ipOrURL
 $ cd joystream
-$ ./build-packages
+$ ./build-packages.sh
 $ yarn storage-node --help
 ```
 
