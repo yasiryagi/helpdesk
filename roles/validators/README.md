@@ -98,7 +98,7 @@ Open the terminal (Applications->Utilities):
 
 ```
 $ cd ~/
-$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joystream-node-<TBD>-x86_64-macos.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joystream-node-<TBD>-x86_64-macos.tar.gz
 $ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joy-testnet-6.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
