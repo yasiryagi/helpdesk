@@ -46,7 +46,7 @@ The package manager `apt-get` installs an old version of `docker-compose`, that 
 
 ```
 $docker-compose version
-# if you see `1.29.2` skip to [Deploy](#deploy)
+# if you see `1.29.2` skip to Deploy
 $ cd ~/
 $ apt-get remove docker-compose
 $ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
