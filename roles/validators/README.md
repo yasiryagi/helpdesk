@@ -95,9 +95,8 @@ Open the terminal (Applications->Utilities):
 
 ```
 $ cd ~/
-$ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joystream-node-6.5.0-x86_64-linux-gnu.tar.gz
-$ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joy-testnet-6.json
-
+$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joy-testnet-5.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
 # Assuming it gets saved in your ~/Downloads folder:
@@ -166,13 +165,13 @@ Open the terminal:
 ```
 $ cd ~/
 # 64 bit debian based Linux
-$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joystream-node-5.1.0-9d9e77751-x86_64-linux-gnu.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joystream-node-6.5.0-x86_64-linux-gnu.tar.gz
 $ tar -vxf joystream-node-5.1.0-9d9e77751-x86_64-linux-gnu.tar.gz
 # armv7 (eg. raspberry pi)
 $ wget TBD
 $ tar -vxf TBD
 # For both
-$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joy-testnet-5.json
+$ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joy-testnet-6.json
 $ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag:
