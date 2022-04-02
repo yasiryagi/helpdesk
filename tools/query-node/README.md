@@ -48,6 +48,8 @@ After it's completed, you need to fetch the state as it was before the upgrade. 
 The package manager `apt-get` installs an old version of `docker-compose`, that doesn't take the `.env` file format we have used. We recommend removing the old one, and install the new one, with:
 
 ```
+$docker-compose version
+# if you see `1.29.2` skip
 $ cd ~/
 $ apt-get remove docker-compose
 $ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -55,42 +57,7 @@ $ chmod +x /usr/local/bin/docker-compose
 $ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
 
-If you don't want to, proceed the same way until []
-
-### Fetch the "old" State
-The query node relies on data from before the upgrade at block `#4191207`. First, we get this.
-
-#### Set the State Import Environment
-```
-$ cd ~/joystream
-# If your local node is synced:
-$ export WS_PROVIDER_ENDPOINT_URI=ws://localhost:9944
-# If not:
-$ export WS_PROVIDER_ENDPOINT_URI=wss://rome-rpc-endpoint.joystream.org:9944
-
-$ export QUERY_NODE_URL=https://hydra-sumer.joystream.org/graphql
-$ export AT_BLOCK_NUMBER=4191207
-```
-
-#### Fetch State and Build
-```
-$ cd ~/joystream
-$ yarn workspace query-node-mappings bootstrap-data:fetch
-$ yarn workspace query-node-root build
-```
-
 ### Deploy
-
-#### Update Manifest
-```
-$ cd ~/joystream
-$ nano query-node/manifest.yml
-
-# change second to last line from:
-           height: "[0,0]"
-# to:
-           height: "[4191207,4191207]"
-```
 
 #### Set the Environment
 First, get your
@@ -99,9 +66,6 @@ $ cd ~/joystream
 $ nano .env
 # Change to make, where "old" line is commented out:
 ---
-#BLOCK_HEIGHT=0
-BLOCK_HEIGHT=4191207
-
 #JOYSTREAM_NODE_WS=ws://joystream-node:9944/
 JOYSTREAM_NODE_WS=wss://<your.cool.url>/rpc
 ```
@@ -305,3 +269,4 @@ $ caddy reload
 ```
 
 ## Troubleshooting
+#Make sure your joystream node accept connections from your domain, use the flag `--rpc-cors`
