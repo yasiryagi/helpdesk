@@ -41,7 +41,6 @@ $ ./build-packages.sh
 ```
 The last command will take a while...
 
-After it's completed, you need to fetch the state as it was before the upgrade. As the upgrade occurred on block [`#4191207`](https://testnet.joystream.org/#/explorer/query/4191207):
 
 ### Install a Newer Version of `docker-compose`
 The package manager `apt-get` installs an old version of `docker-compose`, that doesn't take the `.env` file format we have used. We recommend removing the old one, and install the new one, with:
