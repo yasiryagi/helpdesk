@@ -267,4 +267,4 @@ $ caddy reload
 ```
 
 ## Troubleshooting
-#Make sure your joystream node accept connections from your domain, use the flag `--rpc-cors`
+Make sure your joystream node accept connections from your domain, use the flag `--rpc-cors` flag i.e. `--rpc-cors all`.
