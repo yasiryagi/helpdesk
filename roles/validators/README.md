@@ -79,7 +79,7 @@ If you are just running a node, and don't want to be a `Validator`, you can skip
 
 ---
 
-## Mac
+## Mac  
 
 * Every time something is written in `<brackets>`, it means you have to replace this with your input, without the `<>`.
 * When something is written in `"double_quotes"`, it means the number/data will vary depending on your node or the current state of the blockchain.
@@ -96,14 +96,14 @@ Open the terminal (Applications->Utilities):
 ```
 $ cd ~/
 $ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz
-$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joy-testnet-5.json
+$ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joy-testnet-6.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
 # Assuming it gets saved in your ~/Downloads folder:
 $ mv ~/Downloads/joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz ~/
 ---
 $ tar -vxf joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz
-$ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
+$ ./joystream-node --chain joy-testnet-6.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag:
   - `--name <nodename>`
