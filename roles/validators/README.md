@@ -164,15 +164,14 @@ Open the terminal:
 
 ```
 $ cd ~/
+$ mkdir joystream
 # 64 bit debian based Linux
 $ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joystream-node-6.5.0-x86_64-linux-gnu.tar.gz
-$ tar -vxf joystream-node-5.1.0-9d9e77751-x86_64-linux-gnu.tar.gz
-# armv7 (eg. raspberry pi)
-$ wget TBD
-$ tar -vxf TBD
-# For both
+$ tar -vxf joystream-node-6.5.0-x86_64-linux-gnu.tar.gz
+$ mv joystream-node /usr/local/bin/
 $ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joy-testnet-6.json
-$ ./joystream-node --chain joy-testnet-5.json --pruning archive --validator
+# Test is it working. Recommend to [Run as a service](#run-as-a-service)
+$ joystream-node --chain joy-testnet-6.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag:
   - `--name <nodename>`
