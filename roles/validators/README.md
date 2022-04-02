@@ -74,7 +74,10 @@ The instructions below cover Mac and Linux (64 bit and armv7). Windows binaries 
 If you are just running a node, and don't want to be a `Validator`, you can skip the flags
 `--pruning archive` and `--validator`
 
+# Release
 
+Find the lasted release [here](https://github.com/Joystream/joystream/releases)
+	  
 # On Your Machine
 
 ---
@@ -95,7 +98,7 @@ Open the terminal (Applications->Utilities):
 
 ```
 $ cd ~/
-$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz
+$ wget https://github.com/Joystream/joystream/releases/download/v9.3.0/joystream-node-<TBD>-x86_64-macos.tar.gz
 $ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joy-testnet-6.json
 ----
 # If you don't have wget installed, paste the link in your browser save.
@@ -306,8 +309,6 @@ $ nano joystream-node.service
 
 The example below assumes the following:
 - You have setup a user `joystream` to run the node
-- The path to the `joystream-node` binary is `/home/joystream/joystream-node`
-  - This can be confirmed by typing `pwd` in the directory you downloaded the binary to
 
 ```
 [Unit]
@@ -319,7 +320,7 @@ Type=simple
 User=joystream
 WorkingDirectory=/<path to work directory>/joystream/
 ExecStart=joystream-node \
-        --chain /<path to work directory>/joystream/joy-testnet-5.json \
+        --chain /<path to work directory>/joystream/joy-testnet-6.json \
         --pruning archive \
         --validator \
         --name <memberId-memberHandle> \
@@ -336,8 +337,6 @@ WantedBy=multi-user.target
 
 The example below assumes the following:
 - You have setup a user `root` to run the node
-- The path to the `joystream-node` binary is `/root/joystream-node`
-  - This can be confirmed by typing `pwd` in the directory you downloaded the binary to
 
 ```
 [Unit]
@@ -349,7 +348,7 @@ Type=simple
 User=root
 WorkingDirectory=/<path to work directory>/joystream/
 ExecStart=joystream-node \
-        --chain /<path to work directory>/joystream/joy-testnet-5.json \
+        --chain /<path to work directory>/joystream/joy-testnet-6.json \
         --pruning archive \
         --validator \
         --name <memberId-memberHandle> \
