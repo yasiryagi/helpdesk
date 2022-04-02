@@ -286,7 +286,6 @@ This can be done easily in [Pioneer](testnet.joystream.org/)
 ## Run as a service
 
 If you are running your node on a [Linux](#linux) and want to run it as a [service](https://wiki.debian.org/systemd/Services), you can set it up this way.
-Note that you should avoid this unless you know what you are doing, are running your node on **your own VPS** or a single board computer. With great (sudo) privileges, comes great responsibilities!
 
 If you are already running as a `validator`, consider [unstaking](#unstaking) first, as you may experience some downtime if you make any mistakes in the setup.
 
@@ -317,8 +316,8 @@ After=network.target
 [Service]
 Type=simple
 User=joystream
-WorkingDirectory=/home/joystream/
-ExecStart=/home/joystream/joystream-node \
+WorkingDirectory=/<path to work directory>/joystream/
+ExecStart=joystream-node \
         --chain joy-testnet-5.json \
         --pruning archive \
         --validator \
@@ -347,8 +346,8 @@ After=network.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/root/
-ExecStart=/root/joystream-node \
+WorkingDirectory=/<path to work directory>/joystream/
+ExecStart=joystream-node \
         --chain joy-testnet-5.json \
         --pruning archive \
         --validator \
