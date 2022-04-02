@@ -34,7 +34,8 @@ $ cd joystream
 $ ./setup.sh
 # this requires you to start a new session. if you are using a vps:
 $ exit
-$ ssh user@ipOrURL
+#
+# Login back again
 $ cd joystream
 $ ./build-packages.sh
 ```
