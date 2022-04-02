@@ -5,7 +5,6 @@ Table of Contents
   - [Get Started](#get-started)
     - [Clone the Repo](#clone-the-repo)
     - [Install a Newer Version of `docker-compose`](#install-a-newer-version-of-docker-compose)
-    - [Fetch the "old" State](#fetch-the-old-state)
     - [Deploy](#deploy)
     - [Confirm Everything is Working](#confirm-everything-is-working)
   - [Setup Hosting](#setup-hosting)
@@ -47,7 +46,7 @@ The package manager `apt-get` installs an old version of `docker-compose`, that 
 
 ```
 $docker-compose version
-# if you see `1.29.2` skip
+# if you see `1.29.2` skip to [Deploy](#deploy)
 $ cd ~/
 $ apt-get remove docker-compose
 $ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
