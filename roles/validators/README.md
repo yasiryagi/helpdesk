@@ -103,9 +103,9 @@ $ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joy-test
 ----
 # If you don't have wget installed, paste the link in your browser save.
 # Assuming it gets saved in your ~/Downloads folder:
-$ mv ~/Downloads/joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz ~/
+$ mv ~/Downloads/joystream-node-<TBD>-x86_64-macos.tar.gz ~/
 ---
-$ tar -vxf joystream-node-5.1.0-9d9e77751-x86_64-macos.tar.gz
+$ tar -vxf joystream-node-<TBD>1-x86_64-macos.tar.gz
 $ ./joystream-node --chain joy-testnet-6.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag:
