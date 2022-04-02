@@ -19,8 +19,7 @@ This guide will help you deploy a working query-node.
 
 The following assumptions apply:
 1. You are `root`, and [cloning](#clone-the-repo) to `~/joystream`
-2. some state will be migrated, as is the case for the latest release - `Giza`.
-3. in most cases, you will want to run your own `joystream-node` on the same device, and this guide assumes you are.
+2. in most cases, you will want to run your own `joystream-node` on the same device, and this guide assumes you are.
 
 For instructions on how to set this up, go [here](/roles/validators). Note that you can disregard all the parts about keys before applying, and just install the software so it is ready to go. You do need to run with `--pruning=archive` though, and be synced past the blockheight you are exporting the db from.
 
