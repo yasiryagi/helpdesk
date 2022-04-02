@@ -170,7 +170,7 @@ $ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joystrea
 $ tar -vxf joystream-node-6.5.0-x86_64-linux-gnu.tar.gz
 $ mv joystream-node /usr/local/bin/
 $ wget https://github.com/Joystream/joystream/releases/download/v10.5.0/joy-testnet-6.json
-# Test is it working. Recommend to [Run as a service](#run-as-a-service)
+# Test is it working. 
 $ joystream-node --chain joy-testnet-6.json --pruning archive --validator
 ```
 - If you want your node to have a non-random identifier, add the flag:
@@ -202,7 +202,7 @@ Syncing, target=#"block_height" ("n" peers), best: #"synced_height" ("hash_of_sy
 From the last line, notice `target=#"block_height"` and `best: #"synced_height"`
 When the `target=#block_height`is the same as `best: #"synced_height"`, your node is fully synced!
 
-**Keep the terminal window open.**
+**Keep the terminal window open.** or recommended to [Run as a service](#run-as-a-service)
 
 ### Keys
 
