@@ -319,7 +319,7 @@ Type=simple
 User=joystream
 WorkingDirectory=/<path to work directory>/joystream/
 ExecStart=joystream-node \
-        --chain joy-testnet-5.json \
+        --chain /<path to work directory>/joystream/joy-testnet-5.json \
         --pruning archive \
         --validator \
         --name <memberId-memberHandle> \
@@ -349,7 +349,7 @@ Type=simple
 User=root
 WorkingDirectory=/<path to work directory>/joystream/
 ExecStart=joystream-node \
-        --chain joy-testnet-5.json \
+        --chain /<path to work directory>/joystream/joy-testnet-5.json \
         --pruning archive \
         --validator \
         --name <memberId-memberHandle> \
